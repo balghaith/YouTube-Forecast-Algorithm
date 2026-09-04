@@ -14,6 +14,7 @@ Flask-Login==0.6.3
 fsspec==2025.10.0
 gevent==25.9.1
 geventhttpclient==2.3.5
+google-api-python-client
 greenlet==3.2.4
 h11==0.16.0
 idna==3.11
