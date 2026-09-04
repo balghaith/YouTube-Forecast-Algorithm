@@ -44,8 +44,9 @@ def push_to_github():
 
     token = os.getenv("GITHUB_TOKEN")
     remote_url = f"https://{token}@github.com/balghaith/YouTube-Forecast-Algorithm.git"
-    subprocess.run(["git", "remote", "set-url", "origin", remote_url])
-    subprocess.run(["git", "push"])
+    subprocess.run(["git", "remote", "remove", "origin"])
+    subprocess.run(["git", "remote", "add", "origin", remote_url])
+    subprocess.run(["git", "push", "origin", "HEAD:main"])
 
 if __name__ == "__main__":
     video_id = "EUlE7SY-51s"
