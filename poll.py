@@ -1,5 +1,6 @@
 import os
 import csv
+import subprocess
 from datetime import datetime, timezone
 from dotenv import load_dotenv
 from googleapiclient.discovery import build
@@ -51,3 +52,4 @@ if __name__ == "__main__":
     row = poll_video_stats(video_id)
     save_row(row)
     print("Saved:", row)
+    push_to_github()
