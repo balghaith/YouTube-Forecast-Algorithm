@@ -35,6 +35,17 @@ def save_row(row):
             writer.writeheader()
         writer.writerow(row)
 
+def push_to_github():
+    subprocess.run(["git", "config", "--global", "user.email", "balghaith05@gmail.com"])
+    subprocess.run(["git", "config", "--global", "user.name", "balghaith"])
+    subprocess.run(["git", "add", CSV_FILE])
+    subprocess.run(["git", "commit", "-m", "Update video_stats.csv"])
+
+    token = os.getenv("GITHUB_TOKEN")
+    remote_url = f"https://{token}@github.com/balghaith/YouTube-Forecast-Algorithm.git"
+    subprocess.run(["git", "remote", "set-url", "origin", remote_url])
+    subprocess.run(["git", "push"])
+
 if __name__ == "__main__":
     video_id = "EUlE7SY-51s"
     row = poll_video_stats(video_id)
