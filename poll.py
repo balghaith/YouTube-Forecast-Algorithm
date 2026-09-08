@@ -107,16 +107,21 @@ def run_polling_cycle(push=True):
     known_videos = load_json(KNOWN_VIDEOS_FILE, {})
 
     for channel in tracked_channels:
+        channel_added_at = channel.get("added_at")
         playlist_id = uploads_id(channel["channel_id"])
         latest = latest_videos(playlist_id, max_results=15)
 
         for video in latest:
             if video["video_id"] not in known_videos:
-                known_videos[video["video_id"]] = {
-                    "channel_id": channel["channel_id"],
-                    "published_at": video["published_at"],
-                    "status": "active"
-                }
+                published_at = datetime.fromisoformat(video["published_at"].replace("Z", "+00:00"))
+                added_at = datetime.fromisoformat(channel_added_at.replace("Z", "+00:00"))
+
+                if published_at > added_at:
+                    known_videos[video["video_id"]] = {
+                        "channel_id": channel["channel_id"],
+                        "published_at": video["published_at"],
+                        "status": "active"
+                    }
 
     for video_id, info in known_videos.items():
         if info["status"] == "active":
