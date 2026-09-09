@@ -10,9 +10,10 @@ load_dotenv()
 api_key = os.getenv("YOUTUBE_API_KEY")
 youtube = build("youtube", "v3", developerKey=api_key)
 
-CSV_FILE = "video_stats.csv"
+DATA_DIR = "data"
 TRACKED_CHANNELS_FILE = "tracked_channels.json"
 KNOWN_VIDEOS_FILE = "known_videos.json"
+MAX_TRACKED_CHANNELS = 15
 
 
 def load_json(filename, default):
@@ -36,7 +37,7 @@ def uploads_id(channel_id):
     return response["items"][0]["contentDetails"]["relatedPlaylists"]["uploads"]
 
 
-def latest_videos(playlist_id, max_results=15):
+def latest_videos(playlist_id, max_results=50):
     request = youtube.playlistItems().list(
         part="snippet,contentDetails",
         playlistId=playlist_id,
@@ -53,7 +54,7 @@ def latest_videos(playlist_id, max_results=15):
     return videos
 
 
-def poll_video_stats(video_id):
+def poll_video_stats(video_id, channel_id):
     request = youtube.videos().list(
         part="statistics",
         id=video_id
@@ -62,6 +63,7 @@ def poll_video_stats(video_id):
     stats = response["items"][0]["statistics"]
 
     row = {
+        "channel_id": channel_id,
         "video_id": video_id,
         "timestamp": datetime.now(timezone.utc).isoformat(),
         "views": stats.get("viewCount", 0),
@@ -72,12 +74,22 @@ def poll_video_stats(video_id):
 
 
 def save_row(row):
-    file_exists = os.path.isfile(CSV_FILE)
-    with open(CSV_FILE, "a", newline="") as f:
-        writer = csv.DictWriter(f, fieldnames=["video_id", "timestamp", "views", "likes", "comments"])
+    channel_folder = os.path.join(DATA_DIR, row["channel_id"])
+    os.makedirs(channel_folder, exist_ok=True)
+
+    video_file = os.path.join(channel_folder, f"{row['video_id']}.csv")
+    file_exists = os.path.isfile(video_file)
+
+    with open(video_file, "a", newline="") as f:
+        writer = csv.DictWriter(f, fieldnames=["timestamp", "views", "likes", "comments"])
         if not file_exists:
             writer.writeheader()
-        writer.writerow(row)
+        writer.writerow({
+            "timestamp": row["timestamp"],
+            "views": row["views"],
+            "likes": row["likes"],
+            "comments": row["comments"]
+        })
 
 
 def is_video_expired(published_at_str, max_days=30):
@@ -89,7 +101,7 @@ def is_video_expired(published_at_str, max_days=30):
 def push_to_github():
     subprocess.run(["git", "config", "--global", "user.email", "balghaith05@gmail.com"])
     subprocess.run(["git", "config", "--global", "user.name", "balghaith"])
-    subprocess.run(["git", "add", CSV_FILE, TRACKED_CHANNELS_FILE, KNOWN_VIDEOS_FILE])
+    subprocess.run(["git", "add", DATA_DIR, TRACKED_CHANNELS_FILE, KNOWN_VIDEOS_FILE])
     subprocess.run(["git", "commit", "-m", "Update tracked data"])
 
     token = os.getenv("GITHUB_TOKEN")
@@ -104,12 +116,16 @@ def push_to_github():
 
 def run_polling_cycle(push=True):
     tracked_channels = load_json(TRACKED_CHANNELS_FILE, [])
+
+    if len(tracked_channels) > MAX_TRACKED_CHANNELS:
+        tracked_channels = tracked_channels[:MAX_TRACKED_CHANNELS]
+
     known_videos = load_json(KNOWN_VIDEOS_FILE, {})
 
     for channel in tracked_channels:
         channel_added_at = channel.get("added_at")
         playlist_id = uploads_id(channel["channel_id"])
-        latest = latest_videos(playlist_id, max_results=15)
+        latest = latest_videos(playlist_id, max_results=50)
 
         for video in latest:
             if video["video_id"] not in known_videos:
@@ -128,7 +144,7 @@ def run_polling_cycle(push=True):
             if is_video_expired(info["published_at"]):
                 info["status"] = "expired"
             else:
-                row = poll_video_stats(video_id)
+                row = poll_video_stats(video_id, info["channel_id"])
                 save_row(row)
                 print("Saved:", row)
 
@@ -139,4 +155,4 @@ def run_polling_cycle(push=True):
 
 
 if __name__ == "__main__":
-    run_polling_cycle(push=True)
+    run_polling_cycle(push=False)
