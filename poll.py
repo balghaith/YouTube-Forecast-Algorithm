@@ -109,9 +109,19 @@ def push_to_github():
     subprocess.run(["git", "remote", "remove", "origin"])
     subprocess.run(["git", "remote", "add", "origin", remote_url])
 
-    subprocess.run(["git", "fetch", "origin", "main"])
-    subprocess.run(["git", "rebase", "origin/main"])
-    subprocess.run(["git", "push", "origin", "HEAD:main"])
+    fetch_result = subprocess.run(["git", "fetch", "origin", "main"], capture_output=True, text=True)
+    print("FETCH:", fetch_result.returncode, fetch_result.stderr)
+
+    rebase_result = subprocess.run(["git", "rebase", "origin/main"], capture_output=True, text=True)
+    print("REBASE:", rebase_result.returncode, rebase_result.stdout, rebase_result.stderr)
+
+    if rebase_result.returncode != 0:
+        print("Rebase failed, aborting rebase")
+        subprocess.run(["git", "rebase", "--abort"])
+        return
+
+    push_result = subprocess.run(["git", "push", "origin", "HEAD:main"], capture_output=True, text=True)
+    print("PUSH:", push_result.returncode, push_result.stdout, push_result.stderr)
 
 
 def run_polling_cycle(push=True):
