@@ -165,4 +165,4 @@ def run_polling_cycle(push=True):
 
 
 if __name__ == "__main__":
-    run_polling_cycle(push=False)
+    run_polling_cycle(push=True)
