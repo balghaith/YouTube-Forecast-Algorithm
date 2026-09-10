@@ -60,6 +60,10 @@ def poll_video_stats(video_id, channel_id):
         id=video_id
     )
     response = request.execute()
+
+    if not response["items"]:
+        return None
+
     stats = response["items"][0]["statistics"]
 
     row = {
@@ -155,8 +159,12 @@ def run_polling_cycle(push=True):
                 info["status"] = "expired"
             else:
                 row = poll_video_stats(video_id, info["channel_id"])
-                save_row(row)
-                print("Saved:", row)
+                if row is None:
+                    print(f"Video {video_id} no longer available, marking as removed")
+                    info["status"] = "removed"
+                else:
+                    save_row(row)
+                    print("Saved:", row)
 
     save_json(KNOWN_VIDEOS_FILE, known_videos)
 
