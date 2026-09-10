@@ -59,7 +59,11 @@ def poll_video_stats(video_id, channel_id):
         part="statistics",
         id=video_id
     )
-    response = request.execute()
+    try:
+        response = request.execute()
+    except Exception as e:
+        print(f"Error fetching stats for {video_id}: {e}")
+        return None
 
     if not response["items"]:
         return None
