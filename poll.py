@@ -120,13 +120,11 @@ def push_to_github():
     fetch_result = subprocess.run(["git", "fetch", "origin", "main"], capture_output=True, text=True)
     print("FETCH:", fetch_result.returncode, fetch_result.stderr)
 
-    rebase_result = subprocess.run(["git", "rebase", "origin/main"], capture_output=True, text=True)
-    print("REBASE:", rebase_result.returncode, rebase_result.stdout, rebase_result.stderr)
-
-    if rebase_result.returncode != 0:
-        print("Rebase failed, aborting rebase")
-        subprocess.run(["git", "rebase", "--abort"])
-        return
+    merge_result = subprocess.run(
+        ["git", "merge", "-X", "ours", "origin/main", "--no-edit"],
+        capture_output=True, text=True
+    )
+    print("MERGE:", merge_result.returncode, merge_result.stdout, merge_result.stderr)
 
     push_result = subprocess.run(["git", "push", "origin", "HEAD:main"], capture_output=True, text=True)
     print("PUSH:", push_result.returncode, push_result.stdout, push_result.stderr)
