@@ -283,3 +283,1574 @@ REBASE: 1  error: cannot rebase: You have unstaged changes.
 error: Please commit or stash them.
 
 Rebase failed, aborting rebase
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': '9BydgGX67WY', 'timestamp': '2026-09-14T00:00:03.413791+00:00', 'views': '6270', 'likes': '25', 'comments': '6'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': '6heoh0N-Erk', 'timestamp': '2026-09-14T00:00:03.566453+00:00', 'views': '15767', 'likes': '98', 'comments': '22'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': '9rm0sE_ZqpI', 'timestamp': '2026-09-14T00:00:03.636570+00:00', 'views': '33035', 'likes': '136', 'comments': '52'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'ZnhStkwVixw', 'timestamp': '2026-09-14T00:00:03.702928+00:00', 'views': '12633', 'likes': '103', 'comments': '8'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'GtQU5BLnGhc', 'timestamp': '2026-09-14T00:00:03.772408+00:00', 'views': '13330', 'likes': '72', 'comments': '21'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'yb8F5I0jsnA', 'timestamp': '2026-09-14T00:00:03.872837+00:00', 'views': '14014', 'likes': '109', 'comments': '6'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'XCyyPxnW-9U', 'timestamp': '2026-09-14T00:00:03.947519+00:00', 'views': '5420', 'likes': '9', 'comments': '6'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'irNbdnXX1ds', 'timestamp': '2026-09-14T00:00:04.089656+00:00', 'views': '6676', 'likes': '31', 'comments': '6'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': '6DY2_fiU_A4', 'timestamp': '2026-09-14T00:00:04.158434+00:00', 'views': '23485', 'likes': '184', 'comments': '24'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': '91p1e6yUVUk', 'timestamp': '2026-09-14T00:00:04.224262+00:00', 'views': '13541', 'likes': '85', 'comments': '6'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'dBnNjOGxrVE', 'timestamp': '2026-09-14T00:00:04.339112+00:00', 'views': '12656', 'likes': '33', 'comments': '45'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'CYoRD72FIlM', 'timestamp': '2026-09-14T00:00:04.404689+00:00', 'views': '30025', 'likes': '168', 'comments': '54'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'irEFxrbdIdQ', 'timestamp': '2026-09-14T00:00:04.472129+00:00', 'views': '20311', 'likes': '127', 'comments': '27'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'cYeOUI3LwxI', 'timestamp': '2026-09-14T00:00:04.618010+00:00', 'views': '6531', 'likes': '37', 'comments': '10'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'arUdngPeaVc', 'timestamp': '2026-09-14T00:00:04.679346+00:00', 'views': '193088', 'likes': '1277', 'comments': '239'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'IRzRICexkkA', 'timestamp': '2026-09-14T00:00:04.777300+00:00', 'views': '14251', 'likes': '88', 'comments': '8'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'xOD3TuBbQI0', 'timestamp': '2026-09-14T00:00:04.834298+00:00', 'views': '17369', 'likes': '57', 'comments': '137'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'EH7ObE_v820', 'timestamp': '2026-09-14T00:00:04.931128+00:00', 'views': '21939', 'likes': '152', 'comments': '21'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'hr972rDCLmA', 'timestamp': '2026-09-14T00:00:04.991733+00:00', 'views': '69658', 'likes': '768', 'comments': '744'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'rYuftELKtm8', 'timestamp': '2026-09-14T00:00:05.139842+00:00', 'views': '70953', 'likes': '216', 'comments': '79'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'A6V_z_7PI1I', 'timestamp': '2026-09-14T00:00:05.201250+00:00', 'views': '3708', 'likes': '9', 'comments': '1'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': '7ikjGKZsrP4', 'timestamp': '2026-09-14T00:00:05.283879+00:00', 'views': '1403', 'likes': '10', 'comments': '0'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'aL1BJrI56Z8', 'timestamp': '2026-09-14T00:00:05.348733+00:00', 'views': '4639', 'likes': '87', 'comments': '2'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'Pw23803PMQs', 'timestamp': '2026-09-14T00:00:05.413326+00:00', 'views': '4396', 'likes': '40', 'comments': '22'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': '5TpQpJATWio', 'timestamp': '2026-09-14T00:00:05.475781+00:00', 'views': '3716', 'likes': '10', 'comments': '5'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'JqZBFDC2Vio', 'timestamp': '2026-09-14T00:00:05.531820+00:00', 'views': '38599', 'likes': '326', 'comments': '99'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'CM0on-KPJGM', 'timestamp': '2026-09-14T00:00:05.665643+00:00', 'views': '4795', 'likes': '16', 'comments': '7'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'Mr3ohWyRE7c', 'timestamp': '2026-09-14T00:00:05.749705+00:00', 'views': '10275', 'likes': '24', 'comments': '12'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'pHgZ04NeZpo', 'timestamp': '2026-09-14T00:00:05.853141+00:00', 'views': '3878', 'likes': '8', 'comments': '2'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'Md3RlOwasc8', 'timestamp': '2026-09-14T00:00:05.942820+00:00', 'views': '4970', 'likes': '12', 'comments': '2'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'huDc4w-5D4A', 'timestamp': '2026-09-14T00:00:06.041921+00:00', 'views': '8656', 'likes': '42', 'comments': '19'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'LTsTNQCbE6Q', 'timestamp': '2026-09-14T00:00:06.188111+00:00', 'views': '22320', 'likes': '135', 'comments': '109'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'gIzVPV4w3G8', 'timestamp': '2026-09-14T00:00:06.266123+00:00', 'views': '6874', 'likes': '58', 'comments': '40'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'QsbJK2NdnHI', 'timestamp': '2026-09-14T00:00:06.347123+00:00', 'views': '36653', 'likes': '210', 'comments': '83'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'eSJ-aCQ4Juk', 'timestamp': '2026-09-14T00:00:06.415066+00:00', 'views': '5917', 'likes': '21', 'comments': '6'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'DtVdah1xXxM', 'timestamp': '2026-09-14T00:00:06.476829+00:00', 'views': '4105', 'likes': '5', 'comments': '1'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'UPJTbjqvkYc', 'timestamp': '2026-09-14T00:00:06.544654+00:00', 'views': '15461', 'likes': '104', 'comments': '19'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'l6o3HVZ0h7o', 'timestamp': '2026-09-14T00:00:06.609372+00:00', 'views': '4467', 'likes': '32', 'comments': '11'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'tP0ZdVZBwig', 'timestamp': '2026-09-14T00:00:06.808450+00:00', 'views': '4251', 'likes': '11', 'comments': '12'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'FmxUc97UFaw', 'timestamp': '2026-09-14T00:00:06.868087+00:00', 'views': '11757', 'likes': '68', 'comments': '12'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'TXbfvZ1ztXI', 'timestamp': '2026-09-14T00:00:06.975034+00:00', 'views': '4320', 'likes': '3', 'comments': '4'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': '-8Bxh3WAIAo', 'timestamp': '2026-09-14T00:00:07.095959+00:00', 'views': '8187', 'likes': '19', 'comments': '43'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'I3JFL6jB26s', 'timestamp': '2026-09-14T00:00:07.236175+00:00', 'views': '27080', 'likes': '125', 'comments': '71'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'Vbud-0Zvsck', 'timestamp': '2026-09-14T00:00:07.332093+00:00', 'views': '7273', 'likes': '40', 'comments': '8'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'XGbozh85pEA', 'timestamp': '2026-09-14T00:00:07.405155+00:00', 'views': '6539', 'likes': '22', 'comments': '2'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'bMWgGhL4ajI', 'timestamp': '2026-09-14T00:00:07.501053+00:00', 'views': '8525', 'likes': '55', 'comments': '6'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'joqHxBWmu5g', 'timestamp': '2026-09-14T00:00:07.579154+00:00', 'views': '41090', 'likes': '293', 'comments': '25'}[main 6693b71] Update tracked data
+ 84 files changed, 84 insertions(+)
+
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'KGly-C1QsNw', 'timestamp': '2026-09-14T00:00:07.650464+00:00', 'views': '60174', 'likes': '437', 'comments': '34'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'drk3FSVxtJ4', 'timestamp': '2026-09-14T00:00:07.762425+00:00', 'views': '58583', 'likes': '160', 'comments': 0}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'nGqYDqLWcgU', 'timestamp': '2026-09-14T00:00:07.825736+00:00', 'views': '74233', 'likes': '499', 'comments': '223'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': '-iNV7oojOrc', 'timestamp': '2026-09-14T00:00:07.892873+00:00', 'views': '151307', 'likes': '1024', 'comments': '393'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'u1uYTmcjr4o', 'timestamp': '2026-09-14T00:00:07.992203+00:00', 'views': '88909', 'likes': '369', 'comments': '321'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'AHZOCWgdAeA', 'timestamp': '2026-09-14T00:00:08.107765+00:00', 'views': '14886', 'likes': '103', 'comments': '35'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'HM0mvUeYj7Y', 'timestamp': '2026-09-14T00:00:08.286140+00:00', 'views': '12591', 'likes': '75', 'comments': '31'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': '3z6CP7dDd-8', 'timestamp': '2026-09-14T00:00:08.373954+00:00', 'views': '9601', 'likes': '40', 'comments': '42'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'Tc0MzizxEzI', 'timestamp': '2026-09-14T00:00:08.435339+00:00', 'views': '4261', 'likes': '11', 'comments': '0'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'jippuoypSpw', 'timestamp': '2026-09-14T00:00:08.505441+00:00', 'views': '6398', 'likes': '20', 'comments': '14'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'D6zl0MiDdIQ', 'timestamp': '2026-09-14T00:00:08.576609+00:00', 'views': '11541', 'likes': '34', 'comments': '5'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'ocV7vOeaXv4', 'timestamp': '2026-09-14T00:00:08.630971+00:00', 'views': '10670', 'likes': '42', 'comments': '30'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'Y4ZuQiO_XPg', 'timestamp': '2026-09-14T00:00:08.806893+00:00', 'views': '46914', 'likes': '204', 'comments': '82'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'Xjm-PZCnRkA', 'timestamp': '2026-09-14T00:00:08.901705+00:00', 'views': '1671', 'likes': '17', 'comments': '1'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': '28wORIGUuyQ', 'timestamp': '2026-09-14T00:00:08.960783+00:00', 'views': '235457', 'likes': '2162', 'comments': '639'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'vaHd1Kvbs-c', 'timestamp': '2026-09-14T00:00:09.048898+00:00', 'views': '6202', 'likes': '8', 'comments': '5'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': '6maRm3BgY7k', 'timestamp': '2026-09-14T00:00:09.116052+00:00', 'views': '7271', 'likes': '29', 'comments': '2'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'JRlVIGyIRR8', 'timestamp': '2026-09-14T00:00:09.219872+00:00', 'views': '8514', 'likes': '21', 'comments': '16'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': '9vNiF0SBRnQ', 'timestamp': '2026-09-14T00:00:09.333949+00:00', 'views': '17766', 'likes': '109', 'comments': '36'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'JOsbbK2ttAk', 'timestamp': '2026-09-14T00:00:09.423722+00:00', 'views': '3967', 'likes': '42', 'comments': '1'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': '2hSx1-WdXvs', 'timestamp': '2026-09-14T00:00:09.510401+00:00', 'views': '14491', 'likes': '122', 'comments': 0}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'Vd7QUMfvD80', 'timestamp': '2026-09-14T00:00:09.604664+00:00', 'views': '3609', 'likes': '7', 'comments': '3'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'ZWYtsN_NVpA', 'timestamp': '2026-09-14T00:00:09.720251+00:00', 'views': '5029', 'likes': '28', 'comments': '14'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': '1QGm7KogSOg', 'timestamp': '2026-09-14T00:00:09.859086+00:00', 'views': '7213', 'likes': '54', 'comments': '18'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'gK_ixxwCcQ8', 'timestamp': '2026-09-14T00:00:09.910233+00:00', 'views': '8709', 'likes': '55', 'comments': '23'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'sBZvQxrjuIQ', 'timestamp': '2026-09-14T00:00:10.027409+00:00', 'views': '7398', 'likes': '36', 'comments': '14'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'oGYaPfY9Ry8', 'timestamp': '2026-09-14T00:00:10.083808+00:00', 'views': '5656', 'likes': '20', 'comments': '9'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'dNTBzlHwnI4', 'timestamp': '2026-09-14T00:00:10.147248+00:00', 'views': '4648', 'likes': '16', 'comments': '5'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'NeX8S1JYwiY', 'timestamp': '2026-09-14T00:00:10.226075+00:00', 'views': '3882', 'likes': '2', 'comments': '2'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'Mgs3InYVTkc', 'timestamp': '2026-09-14T00:00:10.381872+00:00', 'views': '1841', 'likes': '16', 'comments': '0'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'zO_aT1uHhLw', 'timestamp': '2026-09-14T00:00:10.467539+00:00', 'views': '15312', 'likes': '150', 'comments': '19'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'fwv6hvK3t0Q', 'timestamp': '2026-09-14T00:00:10.521309+00:00', 'views': '3245', 'likes': '7', 'comments': '1'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'XVUk8Tmso2E', 'timestamp': '2026-09-14T00:00:10.573830+00:00', 'views': '10910', 'likes': '124', 'comments': '32'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': '10XhXHvwiAg', 'timestamp': '2026-09-14T00:00:10.657561+00:00', 'views': '14082', 'likes': '133', 'comments': '69'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'DODkXl9V1hg', 'timestamp': '2026-09-14T00:00:10.710327+00:00', 'views': '5305', 'likes': '24', 'comments': '2'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'JMaosDwXBlc', 'timestamp': '2026-09-14T00:00:10.905660+00:00', 'views': '7045', 'likes': '57', 'comments': '9'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'OpeQmWUPkDM', 'timestamp': '2026-09-14T00:00:11.016063+00:00', 'views': '15644', 'likes': '11', 'comments': '0'}
+FETCH: 0 From https://github.com/balghaith/YouTube-Forecast-Algorithm
+ * branch            main       -> FETCH_HEAD
+ * [new branch]      main       -> origin/main
+
+MERGE: 0 Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/-8Bxh3WAIAo.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/-iNV7oojOrc.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/10XhXHvwiAg.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/1QGm7KogSOg.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/28wORIGUuyQ.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/2hSx1-WdXvs.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/3z6CP7dDd-8.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/5TpQpJATWio.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/6DY2_fiU_A4.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/6heoh0N-Erk.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/6maRm3BgY7k.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/7ikjGKZsrP4.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/91p1e6yUVUk.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/9BydgGX67WY.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/9rm0sE_ZqpI.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/9vNiF0SBRnQ.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/A6V_z_7PI1I.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/AHZOCWgdAeA.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/CM0on-KPJGM.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/CYoRD72FIlM.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/D6zl0MiDdIQ.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/DODkXl9V1hg.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/DtVdah1xXxM.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/EH7ObE_v820.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/FmxUc97UFaw.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/GtQU5BLnGhc.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/HM0mvUeYj7Y.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/I3JFL6jB26s.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/IRzRICexkkA.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/JMaosDwXBlc.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/JOsbbK2ttAk.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/JRlVIGyIRR8.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/JqZBFDC2Vio.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/KGly-C1QsNw.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/LTsTNQCbE6Q.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/Md3RlOwasc8.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/Mgs3InYVTkc.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/Mr3ohWyRE7c.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/NeX8S1JYwiY.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/OpeQmWUPkDM.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/Pw23803PMQs.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/QsbJK2NdnHI.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/TXbfvZ1ztXI.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/Tc0MzizxEzI.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/UPJTbjqvkYc.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/Vbud-0Zvsck.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/Vd7QUMfvD80.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/XCyyPxnW-9U.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/XGbozh85pEA.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/XVUk8Tmso2E.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/Xjm-PZCnRkA.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/Y4ZuQiO_XPg.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/ZWYtsN_NVpA.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/ZnhStkwVixw.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/aL1BJrI56Z8.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/arUdngPeaVc.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/bMWgGhL4ajI.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/cYeOUI3LwxI.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/dBnNjOGxrVE.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/dNTBzlHwnI4.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/drk3FSVxtJ4.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/eSJ-aCQ4Juk.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/fwv6hvK3t0Q.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/gIzVPV4w3G8.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/gK_ixxwCcQ8.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/hr972rDCLmA.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/huDc4w-5D4A.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/irEFxrbdIdQ.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/irNbdnXX1ds.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/jippuoypSpw.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/joqHxBWmu5g.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/l6o3HVZ0h7o.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/nGqYDqLWcgU.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/oGYaPfY9Ry8.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/ocV7vOeaXv4.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/pHgZ04NeZpo.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/rYuftELKtm8.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/sBZvQxrjuIQ.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/tP0ZdVZBwig.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/u1uYTmcjr4o.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/vaHd1Kvbs-c.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/xOD3TuBbQI0.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/yb8F5I0jsnA.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/zO_aT1uHhLw.csv
+Merge made by the 'ort' strategy.
+ 
+PUSH: 0  To https://github.com/balghaith/YouTube-Forecast-Algorithm.git
+   483e34c..3a753e7  HEAD -> main
+
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': '9BydgGX67WY', 'timestamp': '2026-09-14T03:00:02.536767+00:00', 'views': '6288', 'likes': '25', 'comments': '6'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': '6heoh0N-Erk', 'timestamp': '2026-09-14T03:00:02.695998+00:00', 'views': '15854', 'likes': '98', 'comments': '22'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': '9rm0sE_ZqpI', 'timestamp': '2026-09-14T03:00:02.763590+00:00', 'views': '33072', 'likes': '136', 'comments': '52'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'ZnhStkwVixw', 'timestamp': '2026-09-14T03:00:02.836609+00:00', 'views': '12660', 'likes': '103', 'comments': '8'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'GtQU5BLnGhc', 'timestamp': '2026-09-14T03:00:02.927476+00:00', 'views': '13343', 'likes': '72', 'comments': '21'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'yb8F5I0jsnA', 'timestamp': '2026-09-14T03:00:03.007864+00:00', 'views': '14046', 'likes': '109', 'comments': '6'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'XCyyPxnW-9U', 'timestamp': '2026-09-14T03:00:03.077214+00:00', 'views': '5420', 'likes': '9', 'comments': '6'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'irNbdnXX1ds', 'timestamp': '2026-09-14T03:00:03.222323+00:00', 'views': '6684', 'likes': '31', 'comments': '6'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': '6DY2_fiU_A4', 'timestamp': '2026-09-14T03:00:03.320696+00:00', 'views': '23646', 'likes': '185', 'comments': '24'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': '91p1e6yUVUk', 'timestamp': '2026-09-14T03:00:03.389854+00:00', 'views': '13610', 'likes': '85', 'comments': '6'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'dBnNjOGxrVE', 'timestamp': '2026-09-14T03:00:03.484576+00:00', 'views': '12723', 'likes': '34', 'comments': '45'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'CYoRD72FIlM', 'timestamp': '2026-09-14T03:00:03.555656+00:00', 'views': '30026', 'likes': '168', 'comments': '54'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'irEFxrbdIdQ', 'timestamp': '2026-09-14T03:00:03.631037+00:00', 'views': '20343', 'likes': '127', 'comments': '27'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'cYeOUI3LwxI', 'timestamp': '2026-09-14T03:00:03.745079+00:00', 'views': '6562', 'likes': '37', 'comments': '10'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'arUdngPeaVc', 'timestamp': '2026-09-14T03:00:03.800858+00:00', 'views': '195650', 'likes': '1298', 'comments': '242'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'IRzRICexkkA', 'timestamp': '2026-09-14T03:00:03.864728+00:00', 'views': '14327', 'likes': '88', 'comments': '8'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'xOD3TuBbQI0', 'timestamp': '2026-09-14T03:00:03.924517+00:00', 'views': '17413', 'likes': '57', 'comments': '137'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'EH7ObE_v820', 'timestamp': '2026-09-14T03:00:03.990456+00:00', 'views': '22271', 'likes': '153', 'comments': '21'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'hr972rDCLmA', 'timestamp': '2026-09-14T03:00:04.057411+00:00', 'views': '70164', 'likes': '778', 'comments': '751'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'rYuftELKtm8', 'timestamp': '2026-09-14T03:00:04.122050+00:00', 'views': '71852', 'likes': '223', 'comments': '79'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'A6V_z_7PI1I', 'timestamp': '2026-09-14T03:00:04.270495+00:00', 'views': '3723', 'likes': '9', 'comments': '1'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': '7ikjGKZsrP4', 'timestamp': '2026-09-14T03:00:04.334366+00:00', 'views': '1427', 'likes': '10', 'comments': '0'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'aL1BJrI56Z8', 'timestamp': '2026-09-14T03:00:04.432714+00:00', 'views': '4689', 'likes': '87', 'comments': '2'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'Pw23803PMQs', 'timestamp': '2026-09-14T03:00:04.499977+00:00', 'views': '4452', 'likes': '40', 'comments': '22'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': '5TpQpJATWio', 'timestamp': '2026-09-14T03:00:04.571073+00:00', 'views': '3730', 'likes': '10', 'comments': '5'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'JqZBFDC2Vio', 'timestamp': '2026-09-14T03:00:04.686781+00:00', 'views': '39129', 'likes': '328', 'comments': '101'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'CM0on-KPJGM', 'timestamp': '2026-09-14T03:00:04.793006+00:00', 'views': '4842', 'likes': '16', 'comments': '7'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'Mr3ohWyRE7c', 'timestamp': '2026-09-14T03:00:04.875378+00:00', 'views': '10306', 'likes': '24', 'comments': '12'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'pHgZ04NeZpo', 'timestamp': '2026-09-14T03:00:04.942578+00:00', 'views': '3886', 'likes': '8', 'comments': '2'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'Md3RlOwasc8', 'timestamp': '2026-09-14T03:00:05.000364+00:00', 'views': '5012', 'likes': '12', 'comments': '2'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'huDc4w-5D4A', 'timestamp': '2026-09-14T03:00:05.099648+00:00', 'views': '8890', 'likes': '44', 'comments': '19'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'LTsTNQCbE6Q', 'timestamp': '2026-09-14T03:00:05.175243+00:00', 'views': '22389', 'likes': '135', 'comments': '109'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'gIzVPV4w3G8', 'timestamp': '2026-09-14T03:00:05.316807+00:00', 'views': '6996', 'likes': '59', 'comments': '40'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'QsbJK2NdnHI', 'timestamp': '2026-09-14T03:00:05.429251+00:00', 'views': '37587', 'likes': '217', 'comments': '84'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'eSJ-aCQ4Juk', 'timestamp': '2026-09-14T03:00:05.494630+00:00', 'views': '6003', 'likes': '21', 'comments': '6'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'DtVdah1xXxM', 'timestamp': '2026-09-14T03:00:05.568766+00:00', 'views': '4129', 'likes': '5', 'comments': '1'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'UPJTbjqvkYc', 'timestamp': '2026-09-14T03:00:05.668266+00:00', 'views': '15684', 'likes': '104', 'comments': '19'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'l6o3HVZ0h7o', 'timestamp': '2026-09-14T03:00:05.742248+00:00', 'views': '4508', 'likes': '32', 'comments': '11'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'tP0ZdVZBwig', 'timestamp': '2026-09-14T03:00:05.922322+00:00', 'views': '4262', 'likes': '11', 'comments': '12'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'FmxUc97UFaw', 'timestamp': '2026-09-14T03:00:06.023092+00:00', 'views': '11900', 'likes': '69', 'comments': '11'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'TXbfvZ1ztXI', 'timestamp': '2026-09-14T03:00:06.089656+00:00', 'views': '4343', 'likes': '3', 'comments': '4'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': '-8Bxh3WAIAo', 'timestamp': '2026-09-14T03:00:06.145733+00:00', 'views': '8267', 'likes': '19', 'comments': '43'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'I3JFL6jB26s', 'timestamp': '2026-09-14T03:00:06.258125+00:00', 'views': '27641', 'likes': '129', 'comments': '71'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'Vbud-0Zvsck', 'timestamp': '2026-09-14T03:00:06.366997+00:00', 'views': '7323', 'likes': '40', 'comments': '7'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'XGbozh85pEA', 'timestamp': '2026-09-14T03:00:06.421476+00:00', 'views': '6571', 'likes': '22', 'comments': '2'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'bMWgGhL4ajI', 'timestamp': '2026-09-14T03:00:06.480739+00:00', 'views': '8695', 'likes': '54', 'comments': '6'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'joqHxBWmu5g', 'timestamp': '2026-09-14T03:00:06.544486+00:00', 'views': '42784', 'likes': '307', 'comments': '25'}[main b5a77cd] Update tracked data
+ 84 files changed, 84 insertions(+)
+
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'KGly-C1QsNw', 'timestamp': '2026-09-14T03:00:06.605403+00:00', 'views': '62593', 'likes': '454', 'comments': '34'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'drk3FSVxtJ4', 'timestamp': '2026-09-14T03:00:06.717828+00:00', 'views': '58583', 'likes': '161', 'comments': 0}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'nGqYDqLWcgU', 'timestamp': '2026-09-14T03:00:06.891574+00:00', 'views': '74554', 'likes': '503', 'comments': '224'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': '-iNV7oojOrc', 'timestamp': '2026-09-14T03:00:06.959808+00:00', 'views': '156540', 'likes': '1038', 'comments': '395'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'u1uYTmcjr4o', 'timestamp': '2026-09-14T03:00:07.047013+00:00', 'views': '90412', 'likes': '378', 'comments': '320'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'AHZOCWgdAeA', 'timestamp': '2026-09-14T03:00:07.111413+00:00', 'views': '15183', 'likes': '105', 'comments': '35'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'HM0mvUeYj7Y', 'timestamp': '2026-09-14T03:00:07.183390+00:00', 'views': '12675', 'likes': '76', 'comments': '31'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': '3z6CP7dDd-8', 'timestamp': '2026-09-14T03:00:07.279987+00:00', 'views': '9608', 'likes': '41', 'comments': '42'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'Tc0MzizxEzI', 'timestamp': '2026-09-14T03:00:07.416504+00:00', 'views': '4294', 'likes': '11', 'comments': '0'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'jippuoypSpw', 'timestamp': '2026-09-14T03:00:07.482350+00:00', 'views': '6453', 'likes': '20', 'comments': '14'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'D6zl0MiDdIQ', 'timestamp': '2026-09-14T03:00:07.586656+00:00', 'views': '11653', 'likes': '34', 'comments': '5'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'ocV7vOeaXv4', 'timestamp': '2026-09-14T03:00:07.646133+00:00', 'views': '10811', 'likes': '43', 'comments': '31'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'Y4ZuQiO_XPg', 'timestamp': '2026-09-14T03:00:07.715032+00:00', 'views': '48425', 'likes': '215', 'comments': '85'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'Xjm-PZCnRkA', 'timestamp': '2026-09-14T03:00:07.800400+00:00', 'views': '1717', 'likes': '18', 'comments': '1'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': '28wORIGUuyQ', 'timestamp': '2026-09-14T03:00:07.940999+00:00', 'views': '243401', 'likes': '2213', 'comments': '643'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'vaHd1Kvbs-c', 'timestamp': '2026-09-14T03:00:08.005505+00:00', 'views': '6202', 'likes': '8', 'comments': '5'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': '6maRm3BgY7k', 'timestamp': '2026-09-14T03:00:08.075636+00:00', 'views': '7361', 'likes': '29', 'comments': '2'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'JRlVIGyIRR8', 'timestamp': '2026-09-14T03:00:08.178229+00:00', 'views': '8543', 'likes': '21', 'comments': '16'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': '9vNiF0SBRnQ', 'timestamp': '2026-09-14T03:00:08.250420+00:00', 'views': '18045', 'likes': '109', 'comments': '36'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'JOsbbK2ttAk', 'timestamp': '2026-09-14T03:00:08.321166+00:00', 'views': '4180', 'likes': '44', 'comments': '1'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': '2hSx1-WdXvs', 'timestamp': '2026-09-14T03:00:08.464731+00:00', 'views': '14509', 'likes': '123', 'comments': 0}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'Vd7QUMfvD80', 'timestamp': '2026-09-14T03:00:08.528238+00:00', 'views': '3989', 'likes': '8', 'comments': '4'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'ZWYtsN_NVpA', 'timestamp': '2026-09-14T03:00:08.590897+00:00', 'views': '5414', 'likes': '28', 'comments': '14'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': '1QGm7KogSOg', 'timestamp': '2026-09-14T03:00:08.690041+00:00', 'views': '7686', 'likes': '59', 'comments': '18'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'gK_ixxwCcQ8', 'timestamp': '2026-09-14T03:00:08.745297+00:00', 'views': '9501', 'likes': '64', 'comments': '24'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'sBZvQxrjuIQ', 'timestamp': '2026-09-14T03:00:08.818702+00:00', 'views': '8188', 'likes': '40', 'comments': '14'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'oGYaPfY9Ry8', 'timestamp': '2026-09-14T03:00:08.880369+00:00', 'views': '6150', 'likes': '22', 'comments': '10'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'dNTBzlHwnI4', 'timestamp': '2026-09-14T03:00:08.990458+00:00', 'views': '5265', 'likes': '19', 'comments': '5'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'NeX8S1JYwiY', 'timestamp': '2026-09-14T03:00:09.070803+00:00', 'views': '4498', 'likes': '3', 'comments': '2'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'Mgs3InYVTkc', 'timestamp': '2026-09-14T03:00:09.162652+00:00', 'views': '2141', 'likes': '21', 'comments': '0'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'zO_aT1uHhLw', 'timestamp': '2026-09-14T03:00:09.223844+00:00', 'views': '23146', 'likes': '179', 'comments': '21'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'fwv6hvK3t0Q', 'timestamp': '2026-09-14T03:00:09.290024+00:00', 'views': '3927', 'likes': '9', 'comments': '1'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'XVUk8Tmso2E', 'timestamp': '2026-09-14T03:00:09.354675+00:00', 'views': '23521', 'likes': '158', 'comments': '48'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': '10XhXHvwiAg', 'timestamp': '2026-09-14T03:00:09.411536+00:00', 'views': '18196', 'likes': '156', 'comments': '81'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'DODkXl9V1hg', 'timestamp': '2026-09-14T03:00:09.594242+00:00', 'views': '6403', 'likes': '29', 'comments': '3'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'JMaosDwXBlc', 'timestamp': '2026-09-14T03:00:09.694977+00:00', 'views': '11050', 'likes': '70', 'comments': '8'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'OpeQmWUPkDM', 'timestamp': '2026-09-14T03:00:09.766608+00:00', 'views': '25953', 'likes': '16', 'comments': '0'}
+FETCH: 0 From https://github.com/balghaith/YouTube-Forecast-Algorithm
+ * branch            main       -> FETCH_HEAD
+ * [new branch]      main       -> origin/main
+
+MERGE: 0 Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/-8Bxh3WAIAo.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/-iNV7oojOrc.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/10XhXHvwiAg.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/1QGm7KogSOg.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/28wORIGUuyQ.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/2hSx1-WdXvs.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/3z6CP7dDd-8.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/5TpQpJATWio.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/6DY2_fiU_A4.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/6heoh0N-Erk.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/6maRm3BgY7k.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/7ikjGKZsrP4.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/91p1e6yUVUk.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/9BydgGX67WY.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/9rm0sE_ZqpI.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/9vNiF0SBRnQ.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/A6V_z_7PI1I.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/AHZOCWgdAeA.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/CM0on-KPJGM.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/CYoRD72FIlM.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/D6zl0MiDdIQ.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/DODkXl9V1hg.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/DtVdah1xXxM.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/EH7ObE_v820.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/FmxUc97UFaw.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/GtQU5BLnGhc.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/HM0mvUeYj7Y.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/I3JFL6jB26s.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/IRzRICexkkA.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/JMaosDwXBlc.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/JOsbbK2ttAk.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/JRlVIGyIRR8.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/JqZBFDC2Vio.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/KGly-C1QsNw.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/LTsTNQCbE6Q.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/Md3RlOwasc8.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/Mgs3InYVTkc.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/Mr3ohWyRE7c.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/NeX8S1JYwiY.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/OpeQmWUPkDM.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/Pw23803PMQs.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/QsbJK2NdnHI.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/TXbfvZ1ztXI.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/Tc0MzizxEzI.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/UPJTbjqvkYc.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/Vbud-0Zvsck.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/Vd7QUMfvD80.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/XCyyPxnW-9U.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/XGbozh85pEA.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/XVUk8Tmso2E.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/Xjm-PZCnRkA.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/Y4ZuQiO_XPg.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/ZWYtsN_NVpA.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/ZnhStkwVixw.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/aL1BJrI56Z8.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/arUdngPeaVc.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/bMWgGhL4ajI.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/cYeOUI3LwxI.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/dBnNjOGxrVE.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/dNTBzlHwnI4.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/drk3FSVxtJ4.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/eSJ-aCQ4Juk.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/fwv6hvK3t0Q.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/gIzVPV4w3G8.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/gK_ixxwCcQ8.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/hr972rDCLmA.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/huDc4w-5D4A.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/irEFxrbdIdQ.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/irNbdnXX1ds.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/jippuoypSpw.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/joqHxBWmu5g.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/l6o3HVZ0h7o.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/nGqYDqLWcgU.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/oGYaPfY9Ry8.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/ocV7vOeaXv4.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/pHgZ04NeZpo.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/rYuftELKtm8.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/sBZvQxrjuIQ.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/tP0ZdVZBwig.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/u1uYTmcjr4o.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/vaHd1Kvbs-c.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/xOD3TuBbQI0.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/yb8F5I0jsnA.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/zO_aT1uHhLw.csv
+Merge made by the 'ort' strategy.
+ 
+PUSH: 0  To https://github.com/balghaith/YouTube-Forecast-Algorithm.git
+   f37a0b5..a5c55ba  HEAD -> main
+
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': '9BydgGX67WY', 'timestamp': '2026-09-14T04:00:23.774261+00:00', 'views': '6288', 'likes': '25', 'comments': '6'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': '6heoh0N-Erk', 'timestamp': '2026-09-14T04:00:23.930819+00:00', 'views': '15854', 'likes': '98', 'comments': '22'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': '9rm0sE_ZqpI', 'timestamp': '2026-09-14T04:00:24.005238+00:00', 'views': '33072', 'likes': '136', 'comments': '52'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'ZnhStkwVixw', 'timestamp': '2026-09-14T04:00:24.135074+00:00', 'views': '12689', 'likes': '103', 'comments': '8'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'GtQU5BLnGhc', 'timestamp': '2026-09-14T04:00:24.214492+00:00', 'views': '13343', 'likes': '72', 'comments': '21'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'yb8F5I0jsnA', 'timestamp': '2026-09-14T04:00:24.285873+00:00', 'views': '14046', 'likes': '109', 'comments': '6'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'XCyyPxnW-9U', 'timestamp': '2026-09-14T04:00:24.393331+00:00', 'views': '5432', 'likes': '9', 'comments': '6'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'irNbdnXX1ds', 'timestamp': '2026-09-14T04:00:24.495045+00:00', 'views': '6684', 'likes': '31', 'comments': '6'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': '6DY2_fiU_A4', 'timestamp': '2026-09-14T04:00:24.559750+00:00', 'views': '23748', 'likes': '185', 'comments': '24'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': '91p1e6yUVUk', 'timestamp': '2026-09-14T04:00:24.673114+00:00', 'views': '13730', 'likes': '87', 'comments': '6'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'dBnNjOGxrVE', 'timestamp': '2026-09-14T04:00:24.743390+00:00', 'views': '12723', 'likes': '34', 'comments': '45'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'CYoRD72FIlM', 'timestamp': '2026-09-14T04:00:24.915261+00:00', 'views': '30230', 'likes': '169', 'comments': '54'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'irEFxrbdIdQ', 'timestamp': '2026-09-14T04:00:24.983560+00:00', 'views': '20343', 'likes': '127', 'comments': '27'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'cYeOUI3LwxI', 'timestamp': '2026-09-14T04:00:25.047486+00:00', 'views': '6562', 'likes': '37', 'comments': '10'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'arUdngPeaVc', 'timestamp': '2026-09-14T04:00:25.140608+00:00', 'views': '197009', 'likes': '1303', 'comments': '245'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'IRzRICexkkA', 'timestamp': '2026-09-14T04:00:25.212876+00:00', 'views': '14388', 'likes': '88', 'comments': '8'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'xOD3TuBbQI0', 'timestamp': '2026-09-14T04:00:25.280898+00:00', 'views': '17413', 'likes': '57', 'comments': '137'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'EH7ObE_v820', 'timestamp': '2026-09-14T04:00:25.441218+00:00', 'views': '22282', 'likes': '153', 'comments': '21'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'hr972rDCLmA', 'timestamp': '2026-09-14T04:00:25.510862+00:00', 'views': '70440', 'likes': '783', 'comments': '751'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'rYuftELKtm8', 'timestamp': '2026-09-14T04:00:25.620382+00:00', 'views': '72571', 'likes': '226', 'comments': '79'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'A6V_z_7PI1I', 'timestamp': '2026-09-14T04:00:25.683914+00:00', 'views': '3723', 'likes': '9', 'comments': '1'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': '7ikjGKZsrP4', 'timestamp': '2026-09-14T04:00:25.750439+00:00', 'views': '1427', 'likes': '10', 'comments': '0'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'aL1BJrI56Z8', 'timestamp': '2026-09-14T04:00:25.820517+00:00', 'views': '4741', 'likes': '87', 'comments': '2'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'Pw23803PMQs', 'timestamp': '2026-09-14T04:00:25.965886+00:00', 'views': '4452', 'likes': '40', 'comments': '22'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': '5TpQpJATWio', 'timestamp': '2026-09-14T04:00:26.033313+00:00', 'views': '3730', 'likes': '10', 'comments': '5'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'JqZBFDC2Vio', 'timestamp': '2026-09-14T04:00:26.160115+00:00', 'views': '39386', 'likes': '329', 'comments': '101'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'CM0on-KPJGM', 'timestamp': '2026-09-14T04:00:26.220284+00:00', 'views': '4882', 'likes': '16', 'comments': '7'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'Mr3ohWyRE7c', 'timestamp': '2026-09-14T04:00:26.292381+00:00', 'views': '10306', 'likes': '24', 'comments': '12'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'pHgZ04NeZpo', 'timestamp': '2026-09-14T04:00:26.364590+00:00', 'views': '3886', 'likes': '8', 'comments': '2'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'Md3RlOwasc8', 'timestamp': '2026-09-14T04:00:26.490065+00:00', 'views': '5012', 'likes': '12', 'comments': '2'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'huDc4w-5D4A', 'timestamp': '2026-09-14T04:00:26.575024+00:00', 'views': '8983', 'likes': '46', 'comments': '19'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'LTsTNQCbE6Q', 'timestamp': '2026-09-14T04:00:26.643710+00:00', 'views': '22389', 'likes': '135', 'comments': '109'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'gIzVPV4w3G8', 'timestamp': '2026-09-14T04:00:26.750435+00:00', 'views': '6996', 'likes': '59', 'comments': '40'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'QsbJK2NdnHI', 'timestamp': '2026-09-14T04:00:26.810518+00:00', 'views': '38145', 'likes': '217', 'comments': '85'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'eSJ-aCQ4Juk', 'timestamp': '2026-09-14T04:00:26.885168+00:00', 'views': '6003', 'likes': '21', 'comments': '6'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'DtVdah1xXxM', 'timestamp': '2026-09-14T04:00:27.015158+00:00', 'views': '4129', 'likes': '5', 'comments': '1'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'UPJTbjqvkYc', 'timestamp': '2026-09-14T04:00:27.069246+00:00', 'views': '15684', 'likes': '104', 'comments': '19'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'l6o3HVZ0h7o', 'timestamp': '2026-09-14T04:00:27.142526+00:00', 'views': '4508', 'likes': '32', 'comments': '11'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'tP0ZdVZBwig', 'timestamp': '2026-09-14T04:00:27.208717+00:00', 'views': '4262', 'likes': '11', 'comments': '12'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'FmxUc97UFaw', 'timestamp': '2026-09-14T04:00:27.262925+00:00', 'views': '11981', 'likes': '70', 'comments': '11'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'TXbfvZ1ztXI', 'timestamp': '2026-09-14T04:00:27.329421+00:00', 'views': '4343', 'likes': '3', 'comments': '4'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': '-8Bxh3WAIAo', 'timestamp': '2026-09-14T04:00:27.394821+00:00', 'views': '8333', 'likes': '19', 'comments': '43'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'I3JFL6jB26s', 'timestamp': '2026-09-14T04:00:27.539170+00:00', 'views': '28086', 'likes': '129', 'comments': '71'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'Vbud-0Zvsck', 'timestamp': '2026-09-14T04:00:27.598774+00:00', 'views': '7324', 'likes': '40', 'comments': '7'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'XGbozh85pEA', 'timestamp': '2026-09-14T04:00:27.697541+00:00', 'views': '6568', 'likes': '22', 'comments': '2'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'bMWgGhL4ajI', 'timestamp': '2026-09-14T04:00:27.751251+00:00', 'views': '8752', 'likes': '55', 'comments': '6'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'joqHxBWmu5g', 'timestamp': '2026-09-14T04:00:27.812162+00:00', 'views': '43842', 'likes': '310', 'comments': '25'}[main 2ad09d9] Update tracked data
+ 84 files changed, 84 insertions(+)
+
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'KGly-C1QsNw', 'timestamp': '2026-09-14T04:00:27.877149+00:00', 'views': '64661', 'likes': '469', 'comments': '36'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'drk3FSVxtJ4', 'timestamp': '2026-09-14T04:00:28.062788+00:00', 'views': '58583', 'likes': '161', 'comments': 0}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'nGqYDqLWcgU', 'timestamp': '2026-09-14T04:00:28.163820+00:00', 'views': '74710', 'likes': '505', 'comments': '224'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': '-iNV7oojOrc', 'timestamp': '2026-09-14T04:00:28.217178+00:00', 'views': '159516', 'likes': '1039', 'comments': '397'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'u1uYTmcjr4o', 'timestamp': '2026-09-14T04:00:28.278843+00:00', 'views': '91514', 'likes': '381', 'comments': '322'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'AHZOCWgdAeA', 'timestamp': '2026-09-14T04:00:28.373598+00:00', 'views': '15364', 'likes': '106', 'comments': '35'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'HM0mvUeYj7Y', 'timestamp': '2026-09-14T04:00:28.430812+00:00', 'views': '12762', 'likes': '76', 'comments': '31'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': '3z6CP7dDd-8', 'timestamp': '2026-09-14T04:00:28.587335+00:00', 'views': '9682', 'likes': '41', 'comments': '42'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'Tc0MzizxEzI', 'timestamp': '2026-09-14T04:00:28.679150+00:00', 'views': '4294', 'likes': '11', 'comments': '0'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'jippuoypSpw', 'timestamp': '2026-09-14T04:00:28.733733+00:00', 'views': '6453', 'likes': '20', 'comments': '14'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'D6zl0MiDdIQ', 'timestamp': '2026-09-14T04:00:28.796323+00:00', 'views': '11657', 'likes': '34', 'comments': '5'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'ocV7vOeaXv4', 'timestamp': '2026-09-14T04:00:28.861427+00:00', 'views': '10993', 'likes': '44', 'comments': '31'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'Y4ZuQiO_XPg', 'timestamp': '2026-09-14T04:00:28.952262+00:00', 'views': '49513', 'likes': '221', 'comments': '86'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'Xjm-PZCnRkA', 'timestamp': '2026-09-14T04:00:29.004117+00:00', 'views': '1717', 'likes': '18', 'comments': '1'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': '28wORIGUuyQ', 'timestamp': '2026-09-14T04:00:29.113079+00:00', 'views': '248024', 'likes': '2228', 'comments': '643'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'vaHd1Kvbs-c', 'timestamp': '2026-09-14T04:00:29.171377+00:00', 'views': '6202', 'likes': '8', 'comments': '5'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': '6maRm3BgY7k', 'timestamp': '2026-09-14T04:00:29.241043+00:00', 'views': '7361', 'likes': '29', 'comments': '2'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'JRlVIGyIRR8', 'timestamp': '2026-09-14T04:00:29.334070+00:00', 'views': '8778', 'likes': '21', 'comments': '16'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': '9vNiF0SBRnQ', 'timestamp': '2026-09-14T04:00:29.396312+00:00', 'views': '18163', 'likes': '109', 'comments': '36'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'JOsbbK2ttAk', 'timestamp': '2026-09-14T04:00:29.487243+00:00', 'views': '4180', 'likes': '44', 'comments': '1'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': '2hSx1-WdXvs', 'timestamp': '2026-09-14T04:00:29.635397+00:00', 'views': '14542', 'likes': '123', 'comments': 0}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'Vd7QUMfvD80', 'timestamp': '2026-09-14T04:00:29.695858+00:00', 'views': '4160', 'likes': '8', 'comments': '5'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'ZWYtsN_NVpA', 'timestamp': '2026-09-14T04:00:29.774084+00:00', 'views': '5414', 'likes': '28', 'comments': '14'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': '1QGm7KogSOg', 'timestamp': '2026-09-14T04:00:29.834216+00:00', 'views': '7885', 'likes': '59', 'comments': '18'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'gK_ixxwCcQ8', 'timestamp': '2026-09-14T04:00:29.894136+00:00', 'views': '9891', 'likes': '63', 'comments': '24'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'sBZvQxrjuIQ', 'timestamp': '2026-09-14T04:00:29.978073+00:00', 'views': '8531', 'likes': '40', 'comments': '14'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'oGYaPfY9Ry8', 'timestamp': '2026-09-14T04:00:30.051781+00:00', 'views': '6361', 'likes': '24', 'comments': '11'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'dNTBzlHwnI4', 'timestamp': '2026-09-14T04:00:30.165039+00:00', 'views': '5526', 'likes': '20', 'comments': '6'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'NeX8S1JYwiY', 'timestamp': '2026-09-14T04:00:30.265597+00:00', 'views': '4506', 'likes': '3', 'comments': '2'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'Mgs3InYVTkc', 'timestamp': '2026-09-14T04:00:30.328970+00:00', 'views': '2285', 'likes': '23', 'comments': '0'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'zO_aT1uHhLw', 'timestamp': '2026-09-14T04:00:30.397696+00:00', 'views': '26718', 'likes': '185', 'comments': '21'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'fwv6hvK3t0Q', 'timestamp': '2026-09-14T04:00:30.457606+00:00', 'views': '4230', 'likes': '10', 'comments': '1'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'XVUk8Tmso2E', 'timestamp': '2026-09-14T04:00:30.558253+00:00', 'views': '28394', 'likes': '165', 'comments': '51'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': '10XhXHvwiAg', 'timestamp': '2026-09-14T04:00:30.681750+00:00', 'views': '19920', 'likes': '160', 'comments': '95'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'DODkXl9V1hg', 'timestamp': '2026-09-14T04:00:30.746944+00:00', 'views': '6830', 'likes': '29', 'comments': '4'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'JMaosDwXBlc', 'timestamp': '2026-09-14T04:00:30.836094+00:00', 'views': '13238', 'likes': '77', 'comments': '8'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'OpeQmWUPkDM', 'timestamp': '2026-09-14T04:00:30.904715+00:00', 'views': '30499', 'likes': '17', 'comments': '0'}
+FETCH: 0 From https://github.com/balghaith/YouTube-Forecast-Algorithm
+ * branch            main       -> FETCH_HEAD
+ * [new branch]      main       -> origin/main
+
+MERGE: 0 Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/-8Bxh3WAIAo.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/-iNV7oojOrc.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/10XhXHvwiAg.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/1QGm7KogSOg.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/28wORIGUuyQ.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/2hSx1-WdXvs.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/3z6CP7dDd-8.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/5TpQpJATWio.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/6DY2_fiU_A4.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/6heoh0N-Erk.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/6maRm3BgY7k.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/7ikjGKZsrP4.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/91p1e6yUVUk.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/9BydgGX67WY.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/9rm0sE_ZqpI.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/9vNiF0SBRnQ.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/A6V_z_7PI1I.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/AHZOCWgdAeA.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/CM0on-KPJGM.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/CYoRD72FIlM.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/D6zl0MiDdIQ.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/DODkXl9V1hg.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/DtVdah1xXxM.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/EH7ObE_v820.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/FmxUc97UFaw.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/GtQU5BLnGhc.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/HM0mvUeYj7Y.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/I3JFL6jB26s.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/IRzRICexkkA.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/JMaosDwXBlc.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/JOsbbK2ttAk.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/JRlVIGyIRR8.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/JqZBFDC2Vio.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/KGly-C1QsNw.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/LTsTNQCbE6Q.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/Md3RlOwasc8.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/Mgs3InYVTkc.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/Mr3ohWyRE7c.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/NeX8S1JYwiY.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/OpeQmWUPkDM.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/Pw23803PMQs.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/QsbJK2NdnHI.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/TXbfvZ1ztXI.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/Tc0MzizxEzI.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/UPJTbjqvkYc.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/Vbud-0Zvsck.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/Vd7QUMfvD80.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/XCyyPxnW-9U.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/XGbozh85pEA.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/XVUk8Tmso2E.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/Xjm-PZCnRkA.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/Y4ZuQiO_XPg.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/ZWYtsN_NVpA.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/ZnhStkwVixw.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/aL1BJrI56Z8.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/arUdngPeaVc.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/bMWgGhL4ajI.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/cYeOUI3LwxI.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/dBnNjOGxrVE.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/dNTBzlHwnI4.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/drk3FSVxtJ4.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/eSJ-aCQ4Juk.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/fwv6hvK3t0Q.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/gIzVPV4w3G8.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/gK_ixxwCcQ8.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/hr972rDCLmA.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/huDc4w-5D4A.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/irEFxrbdIdQ.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/irNbdnXX1ds.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/jippuoypSpw.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/joqHxBWmu5g.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/l6o3HVZ0h7o.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/nGqYDqLWcgU.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/oGYaPfY9Ry8.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/ocV7vOeaXv4.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/pHgZ04NeZpo.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/rYuftELKtm8.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/sBZvQxrjuIQ.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/tP0ZdVZBwig.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/u1uYTmcjr4o.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/vaHd1Kvbs-c.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/xOD3TuBbQI0.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/yb8F5I0jsnA.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/zO_aT1uHhLw.csv
+Merge made by the 'ort' strategy.
+ 
+PUSH: 0  To https://github.com/balghaith/YouTube-Forecast-Algorithm.git
+   8000434..30263bf  HEAD -> main
+
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': '9BydgGX67WY', 'timestamp': '2026-09-14T23:00:02.197712+00:00', 'views': '6327', 'likes': '25', 'comments': '6'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': '6heoh0N-Erk', 'timestamp': '2026-09-14T23:00:02.276199+00:00', 'views': '16562', 'likes': '99', 'comments': '20'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': '9rm0sE_ZqpI', 'timestamp': '2026-09-14T23:00:02.570056+00:00', 'views': '33159', 'likes': '136', 'comments': '52'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'ZnhStkwVixw', 'timestamp': '2026-09-14T23:00:02.670428+00:00', 'views': '12782', 'likes': '103', 'comments': '6'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'GtQU5BLnGhc', 'timestamp': '2026-09-14T23:00:02.770881+00:00', 'views': '13395', 'likes': '72', 'comments': '22'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'yb8F5I0jsnA', 'timestamp': '2026-09-14T23:00:02.906512+00:00', 'views': '14186', 'likes': '109', 'comments': '6'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'XCyyPxnW-9U', 'timestamp': '2026-09-14T23:00:03.108147+00:00', 'views': '5485', 'likes': '9', 'comments': '6'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'irNbdnXX1ds', 'timestamp': '2026-09-14T23:00:03.276776+00:00', 'views': '6727', 'likes': '32', 'comments': '6'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': '6DY2_fiU_A4', 'timestamp': '2026-09-14T23:00:03.359167+00:00', 'views': '24447', 'likes': '187', 'comments': '24'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': '91p1e6yUVUk', 'timestamp': '2026-09-14T23:00:03.448755+00:00', 'views': '14139', 'likes': '87', 'comments': '6'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'dBnNjOGxrVE', 'timestamp': '2026-09-14T23:00:03.614691+00:00', 'views': '12855', 'likes': '35', 'comments': '45'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'CYoRD72FIlM', 'timestamp': '2026-09-14T23:00:03.733793+00:00', 'views': '30596', 'likes': '171', 'comments': '55'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'irEFxrbdIdQ', 'timestamp': '2026-09-14T23:00:03.886059+00:00', 'views': '20511', 'likes': '127', 'comments': '27'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'cYeOUI3LwxI', 'timestamp': '2026-09-14T23:00:03.977657+00:00', 'views': '6789', 'likes': '40', 'comments': '10'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'arUdngPeaVc', 'timestamp': '2026-09-14T23:00:04.154270+00:00', 'views': '209244', 'likes': '1368', 'comments': '255'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'IRzRICexkkA', 'timestamp': '2026-09-14T23:00:04.314013+00:00', 'views': '14598', 'likes': '88', 'comments': '8'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'xOD3TuBbQI0', 'timestamp': '2026-09-14T23:00:04.414528+00:00', 'views': '17521', 'likes': '57', 'comments': '134'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'EH7ObE_v820', 'timestamp': '2026-09-14T23:00:04.554062+00:00', 'views': '23962', 'likes': '156', 'comments': '22'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'hr972rDCLmA', 'timestamp': '2026-09-14T23:00:04.738040+00:00', 'views': '72017', 'likes': '802', 'comments': '758'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'rYuftELKtm8', 'timestamp': '2026-09-14T23:00:04.924330+00:00', 'views': '80908', 'likes': '252', 'comments': '84'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'A6V_z_7PI1I', 'timestamp': '2026-09-14T23:00:05.044567+00:00', 'views': '3790', 'likes': '9', 'comments': '1'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': '7ikjGKZsrP4', 'timestamp': '2026-09-14T23:00:05.191447+00:00', 'views': '1477', 'likes': '12', 'comments': '0'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'aL1BJrI56Z8', 'timestamp': '2026-09-14T23:00:05.335675+00:00', 'views': '4881', 'likes': '90', 'comments': '2'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'Pw23803PMQs', 'timestamp': '2026-09-14T23:00:05.421495+00:00', 'views': '4628', 'likes': '41', 'comments': '21'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': '5TpQpJATWio', 'timestamp': '2026-09-14T23:00:05.489937+00:00', 'views': '3784', 'likes': '11', 'comments': '5'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'JqZBFDC2Vio', 'timestamp': '2026-09-14T23:00:05.715749+00:00', 'views': '41702', 'likes': '347', 'comments': '108'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'CM0on-KPJGM', 'timestamp': '2026-09-14T23:00:05.780508+00:00', 'views': '5167', 'likes': '16', 'comments': '8'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'Mr3ohWyRE7c', 'timestamp': '2026-09-14T23:00:05.941319+00:00', 'views': '10449', 'likes': '24', 'comments': '12'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'pHgZ04NeZpo', 'timestamp': '2026-09-14T23:00:06.018600+00:00', 'views': '3930', 'likes': '8', 'comments': '2'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'Md3RlOwasc8', 'timestamp': '2026-09-14T23:00:06.102410+00:00', 'views': '5042', 'likes': '12', 'comments': '2'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'huDc4w-5D4A', 'timestamp': '2026-09-14T23:00:06.246562+00:00', 'views': '9339', 'likes': '51', 'comments': '20'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'LTsTNQCbE6Q', 'timestamp': '2026-09-14T23:00:06.354345+00:00', 'views': '22557', 'likes': '135', 'comments': '110'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'gIzVPV4w3G8', 'timestamp': '2026-09-14T23:00:06.436327+00:00', 'views': '8046', 'likes': '65', 'comments': '43'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'QsbJK2NdnHI', 'timestamp': '2026-09-14T23:00:06.581542+00:00', 'views': '43935', 'likes': '245', 'comments': '107'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'eSJ-aCQ4Juk', 'timestamp': '2026-09-14T23:00:06.764126+00:00', 'views': '6364', 'likes': '24', 'comments': '6'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'DtVdah1xXxM', 'timestamp': '2026-09-14T23:00:06.931869+00:00', 'views': '4254', 'likes': '5', 'comments': '1'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'UPJTbjqvkYc', 'timestamp': '2026-09-14T23:00:07.041949+00:00', 'views': '16368', 'likes': '111', 'comments': '18'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'l6o3HVZ0h7o', 'timestamp': '2026-09-14T23:00:07.288348+00:00', 'views': '4722', 'likes': '33', 'comments': '11'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'tP0ZdVZBwig', 'timestamp': '2026-09-14T23:00:07.382513+00:00', 'views': '4296', 'likes': '11', 'comments': '12'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'FmxUc97UFaw', 'timestamp': '2026-09-14T23:00:07.458117+00:00', 'views': '12298', 'likes': '70', 'comments': '11'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'TXbfvZ1ztXI', 'timestamp': '2026-09-14T23:00:07.526376+00:00', 'views': '4383', 'likes': '3', 'comments': '4'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': '-8Bxh3WAIAo', 'timestamp': '2026-09-14T23:00:07.670870+00:00', 'views': '8915', 'likes': '19', 'comments': '47'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'I3JFL6jB26s', 'timestamp': '2026-09-14T23:00:07.813066+00:00', 'views': '29892', 'likes': '133', 'comments': '72'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'Vbud-0Zvsck', 'timestamp': '2026-09-14T23:00:07.889228+00:00', 'views': '7412', 'likes': '40', 'comments': '7'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'XGbozh85pEA', 'timestamp': '2026-09-14T23:00:07.974019+00:00', 'views': '6858', 'likes': '22', 'comments': '2'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'bMWgGhL4ajI', 'timestamp': '2026-09-14T23:00:08.049554+00:00', 'views': '9005', 'likes': '55', 'comments': '7'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'joqHxBWmu5g', 'timestamp': '2026-09-14T23:00:08.171318+00:00', 'views': '48692', 'likes': '345', 'comments': '33'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'KGly-C1QsNw', 'timestamp': '2026-09-14T23:00:08.336321+00:00', 'views': '81427', 'likes': '555', 'comments': '40'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'drk3FSVxtJ4', 'timestamp': '2026-09-14T23:00:08.423738+00:00', 'views': '58583', 'likes': '162', 'comments': 0}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'nGqYDqLWcgU', 'timestamp': '2026-09-14T23:00:08.505970+00:00', 'views': '77465', 'likes': '533', 'comments': '253'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': '-iNV7oojOrc', 'timestamp': '2026-09-14T23:00:08.565022+00:00', 'views': '176028', 'likes': '1181', 'comments': '452'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'u1uYTmcjr4o', 'timestamp': '2026-09-14T23:00:08.619120+00:00', 'views': '115694', 'likes': '444', 'comments': '391'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'AHZOCWgdAeA', 'timestamp': '2026-09-14T23:00:08.857102+00:00', 'views': '18146', 'likes': '119', 'comments': '38'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'HM0mvUeYj7Y', 'timestamp': '2026-09-14T23:00:08.978304+00:00', 'views': '12986', 'likes': '77', 'comments': '31'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': '3z6CP7dDd-8', 'timestamp': '2026-09-14T23:00:09.183636+00:00', 'views': '9975', 'likes': '41', 'comments': '42'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'Tc0MzizxEzI', 'timestamp': '2026-09-14T23:00:09.383441+00:00', 'views': '4431', 'likes': '11', 'comments': '0'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'jippuoypSpw', 'timestamp': '2026-09-14T23:00:09.498395+00:00', 'views': '6719', 'likes': '20', 'comments': '14'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'D6zl0MiDdIQ', 'timestamp': '2026-09-14T23:00:09.566978+00:00', 'views': '12659', 'likes': '42', 'comments': '6'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'ocV7vOeaXv4', 'timestamp': '2026-09-14T23:00:09.737425+00:00', 'views': '12010', 'likes': '50', 'comments': '37'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'Y4ZuQiO_XPg', 'timestamp': '2026-09-14T23:00:09.907413+00:00', 'views': '62792', 'likes': '263', 'comments': '99'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'Xjm-PZCnRkA', 'timestamp': '2026-09-14T23:00:10.034525+00:00', 'views': '1924', 'likes': '18', 'comments': '1'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': '28wORIGUuyQ', 'timestamp': '2026-09-14T23:00:10.193347+00:00', 'views': '406541', 'likes': '3387', 'comments': '944'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'vaHd1Kvbs-c', 'timestamp': '2026-09-14T23:00:10.328487+00:00', 'views': '6371', 'likes': '8', 'comments': '5'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': '6maRm3BgY7k', 'timestamp': '2026-09-14T23:00:10.433854+00:00', 'views': '7762', 'likes': '30', 'comments': '2'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'JRlVIGyIRR8', 'timestamp': '2026-09-14T23:00:10.666665+00:00', 'views': '10008', 'likes': '24', 'comments': '18'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': '9vNiF0SBRnQ', 'timestamp': '2026-09-14T23:00:10.847013+00:00', 'views': '18803', 'likes': '109', 'comments': '34'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'JOsbbK2ttAk', 'timestamp': '2026-09-14T23:00:10.958132+00:00', 'views': '4587', 'likes': '47', 'comments': '1'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': '2hSx1-WdXvs', 'timestamp': '2026-09-14T23:00:11.036164+00:00', 'views': '14656', 'likes': '123', 'comments': 0}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'Vd7QUMfvD80', 'timestamp': '2026-09-14T23:00:11.227514+00:00', 'views': '5100', 'likes': '10', 'comments': '5'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'ZWYtsN_NVpA', 'timestamp': '2026-09-14T23:00:11.311502+00:00', 'views': '6509', 'likes': '33', 'comments': '15'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': '1QGm7KogSOg', 'timestamp': '2026-09-14T23:00:11.498538+00:00', 'views': '10253', 'likes': '85', 'comments': '36'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'gK_ixxwCcQ8', 'timestamp': '2026-09-14T23:00:11.716142+00:00', 'views': '11288', 'likes': '68', 'comments': '25'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'sBZvQxrjuIQ', 'timestamp': '2026-09-14T23:00:11.858818+00:00', 'views': '10595', 'likes': '49', 'comments': '15'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'oGYaPfY9Ry8', 'timestamp': '2026-09-14T23:00:12.011084+00:00', 'views': '8171', 'likes': '27', 'comments': '16'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'dNTBzlHwnI4', 'timestamp': '2026-09-14T23:00:12.078733+00:00', 'views': '6757', 'likes': '29', 'comments': '8'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'NeX8S1JYwiY', 'timestamp': '2026-09-14T23:00:12.236951+00:00', 'views': '5531', 'likes': '4', 'comments': '2'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'Mgs3InYVTkc', 'timestamp': '2026-09-14T23:00:12.316212+00:00', 'views': '3323', 'likes': '33', 'comments': '0'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'zO_aT1uHhLw', 'timestamp': '2026-09-14T23:00:12.415083+00:00', 'views': '44072', 'likes': '255', 'comments': '34'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'fwv6hvK3t0Q', 'timestamp': '2026-09-14T23:00:12.554412+00:00', 'views': '5216', 'likes': '11', 'comments': '2'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'XVUk8Tmso2E', 'timestamp': '2026-09-14T23:00:12.768647+00:00', 'views': '44786', 'likes': '199', 'comments': '76'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': '10XhXHvwiAg', 'timestamp': '2026-09-14T23:00:12.898350+00:00', 'views': '26603', 'likes': '187', 'comments': '116'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'DODkXl9V1hg', 'timestamp': '2026-09-14T23:00:13.054795+00:00', 'views': '8897', 'likes': '32', 'comments': '10'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'JMaosDwXBlc', 'timestamp': '2026-09-14T23:00:13.128521+00:00', 'views': '19237', 'likes': '84', 'comments': '8'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'OpeQmWUPkDM', 'timestamp': '2026-09-14T23:00:13.260038+00:00', 'views': '41893', 'likes': '26', 'comments': '1'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': '3f8XR7I7YMc', 'timestamp': '2026-09-14T23:00:13.335388+00:00', 'views': '800', 'likes': '27', 'comments': '0'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'KBz_hbWS9-o', 'timestamp': '2026-09-14T23:00:13.444110+00:00', 'views': '195', 'likes': '5', 'comments': '0'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'fF1ZT5efWHk', 'timestamp': '2026-09-14T23:00:13.580696+00:00', 'views': '771', 'likes': '28', 'comments': '27'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': '6xv4YHN0WL4', 'timestamp': '2026-09-14T23:00:13.649018+00:00', 'views': '445', 'likes': '11', 'comments': '22'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'QAVI7xYZnrU', 'timestamp': '2026-09-14T23:00:13.762543+00:00', 'views': '1622', 'likes': '8', 'comments': '22'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': '_qGRo2Mrduc', 'timestamp': '2026-09-14T23:00:13.822079+00:00', 'views': '7782', 'likes': '248', 'comments': '89'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'x04xajItzx8', 'timestamp': '2026-09-14T23:00:13.941439+00:00', 'views': '3725', 'likes': '34', 'comments': '25'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'LgFGHvisVYI', 'timestamp': '2026-09-14T23:00:14.105312+00:00', 'views': '1316', 'likes': '3', 'comments': '26'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'AzQ51f_tq0w', 'timestamp': '2026-09-14T23:00:14.174965+00:00', 'views': '1440', 'likes': '14', 'comments': '26'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'tMSsmX_5mss', 'timestamp': '2026-09-14T23:00:14.277614+00:00', 'views': '1060', 'likes': '13', 'comments': '13'}[main 0c8119d] Update tracked data
+ 134 files changed, 183 insertions(+), 1 deletion(-)
+ create mode 100644 data/UCIALMKvObZNtJ6AmdCLP7Lg/0bdUshhzWs4.csv
+ create mode 100644 data/UCIALMKvObZNtJ6AmdCLP7Lg/1xvAzyG-DQ8.csv
+ create mode 100644 data/UCIALMKvObZNtJ6AmdCLP7Lg/3I9KCRckSfo.csv
+ create mode 100644 data/UCIALMKvObZNtJ6AmdCLP7Lg/3MGzxydUVh0.csv
+ create mode 100644 data/UCIALMKvObZNtJ6AmdCLP7Lg/3f8XR7I7YMc.csv
+ create mode 100644 data/UCIALMKvObZNtJ6AmdCLP7Lg/4IurRBylD_c.csv
+ create mode 100644 data/UCIALMKvObZNtJ6AmdCLP7Lg/6xv4YHN0WL4.csv
+ create mode 100644 data/UCIALMKvObZNtJ6AmdCLP7Lg/9BNzApt8_CA.csv
+ create mode 100644 data/UCIALMKvObZNtJ6AmdCLP7Lg/9OUzx0X2hb8.csv
+ create mode 100644 data/UCIALMKvObZNtJ6AmdCLP7Lg/AAyWcVOam9w.csv
+ create mode 100644 data/UCIALMKvObZNtJ6AmdCLP7Lg/AzQ51f_tq0w.csv
+ create mode 100644 data/UCIALMKvObZNtJ6AmdCLP7Lg/C2qXGaTLFfM.csv
+ create mode 100644 data/UCIALMKvObZNtJ6AmdCLP7Lg/EHcKvhIYmZ4.csv
+ create mode 100644 data/UCIALMKvObZNtJ6AmdCLP7Lg/Ef9M1P6DbJY.csv
+ create mode 100644 data/UCIALMKvObZNtJ6AmdCLP7Lg/G9vWMedVfmk.csv
+ create mode 100644 data/UCIALMKvObZNtJ6AmdCLP7Lg/GXV4ZNhjM8Q.csv
+ create mode 100644 data/UCIALMKvObZNtJ6AmdCLP7Lg/HSq-JNwErSM.csv
+ create mode 100644 data/UCIALMKvObZNtJ6AmdCLP7Lg/IVAlGIDPXWU.csv
+ create mode 100644 data/UCIALMKvObZNtJ6AmdCLP7Lg/Iqtt7J8CHqQ.csv
+ create mode 100644 data/UCIALMKvObZNtJ6AmdCLP7Lg/IuzfPLOo0Wk.csv
+ create mode 100644 data/UCIALMKvObZNtJ6AmdCLP7Lg/K61W4Rz17s4.csv
+ create mode 100644 data/UCIALMKvObZNtJ6AmdCLP7Lg/KBz_hbWS9-o.csv
+ create mode 100644 data/UCIALMKvObZNtJ6AmdCLP7Lg/KCt9a9AnNfk.csv
+ create mode 100644 data/UCIALMKvObZNtJ6AmdCLP7Lg/KnQmXQtMdsU.csv
+ create mode 100644 data/UCIALMKvObZNtJ6AmdCLP7Lg/LgFGHvisVYI.csv
+ create mode 100644 data/UCIALMKvObZNtJ6AmdCLP7Lg/MH8Bk2pxuog.csv
+ create mode 100644 data/UCIALMKvObZNtJ6AmdCLP7Lg/Oh955GX_E7g.csv
+ create mode 100644 data/UCIALMKvObZNtJ6AmdCLP7Lg/QAVI7xYZnrU.csv
+ create mode 100644 data/UCIALMKvObZNtJ6AmdCLP7Lg/QEaG2KB1MHw.csv
+ create mode 100644 data/UCIALMKvObZNtJ6AmdCLP7Lg/RmQmg02tvj8.csv
+ create mode 100644 data/UCIALMKvObZNtJ6AmdCLP7Lg/UI4pbRrpZxQ.csv
+ create mode 100644 data/UCIALMKvObZNtJ6AmdCLP7Lg/W-j1ue_PHIY.csv
+ create mode 100644 data/UCIALMKvObZNtJ6AmdCLP7Lg/WxoTeX-4UJc.csv
+ create mode 100644 data/UCIALMKvObZNtJ6AmdCLP7Lg/Xd38-3s2Tp0.csv
+ create mode 100644 data/UCIALMKvObZNtJ6AmdCLP7Lg/_PVVVQi1iLA.csv
+ create mode 100644 data/UCIALMKvObZNtJ6AmdCLP7Lg/_qGRo2Mrduc.csv
+ create mode 100644 data/UCIALMKvObZNtJ6AmdCLP7Lg/am8_5Luk54g.csv
+ create mode 100644 data/UCIALMKvObZNtJ6AmdCLP7Lg/es3UifUTlyY.csv
+ create mode 100644 data/UCIALMKvObZNtJ6AmdCLP7Lg/fF1ZT5efWHk.csv
+ create mode 100644 data/UCIALMKvObZNtJ6AmdCLP7Lg/iOKpafm7p5g.csv
+ create mode 100644 data/UCIALMKvObZNtJ6AmdCLP7Lg/ne2IAZs3M9c.csv
+ create mode 100644 data/UCIALMKvObZNtJ6AmdCLP7Lg/rkj9y4onyBU.csv
+ create mode 100644 data/UCIALMKvObZNtJ6AmdCLP7Lg/tMSsmX_5mss.csv
+ create mode 100644 data/UCIALMKvObZNtJ6AmdCLP7Lg/wSXiTgtwk-I.csv
+ create mode 100644 data/UCIALMKvObZNtJ6AmdCLP7Lg/x04xajItzx8.csv
+ create mode 100644 data/UCIALMKvObZNtJ6AmdCLP7Lg/xB3g57niaGI.csv
+ create mode 100644 data/UCIALMKvObZNtJ6AmdCLP7Lg/x_4lU7JHq1g.csv
+ create mode 100644 data/UCIALMKvObZNtJ6AmdCLP7Lg/xqXfEEsEtn4.csv
+ create mode 100644 data/UCIALMKvObZNtJ6AmdCLP7Lg/zNfEK3PnW7g.csv
+
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'GXV4ZNhjM8Q', 'timestamp': '2026-09-14T23:00:14.361443+00:00', 'views': '5602', 'likes': '36', 'comments': '48'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'IVAlGIDPXWU', 'timestamp': '2026-09-14T23:00:14.470004+00:00', 'views': '1707', 'likes': '7', 'comments': '29'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'iOKpafm7p5g', 'timestamp': '2026-09-14T23:00:14.631410+00:00', 'views': '5483', 'likes': '39', 'comments': '27'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': '4IurRBylD_c', 'timestamp': '2026-09-14T23:00:14.730299+00:00', 'views': '7897', 'likes': '48', 'comments': '38'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': '9OUzx0X2hb8', 'timestamp': '2026-09-14T23:00:14.801989+00:00', 'views': '3146', 'likes': '10', 'comments': '37'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'RmQmg02tvj8', 'timestamp': '2026-09-14T23:00:14.908545+00:00', 'views': '3458', 'likes': '27', 'comments': '26'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'Xd38-3s2Tp0', 'timestamp': '2026-09-14T23:00:14.994872+00:00', 'views': '5784', 'likes': '28', 'comments': '29'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': '3I9KCRckSfo', 'timestamp': '2026-09-14T23:00:15.185122+00:00', 'views': '1313', 'likes': '15', 'comments': '14'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'Oh955GX_E7g', 'timestamp': '2026-09-14T23:00:15.363083+00:00', 'views': '3778', 'likes': '9', 'comments': 0}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'xqXfEEsEtn4', 'timestamp': '2026-09-14T23:00:15.472732+00:00', 'views': '2555', 'likes': '9', 'comments': 0}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': '3MGzxydUVh0', 'timestamp': '2026-09-14T23:00:15.685624+00:00', 'views': '9394', 'likes': '101', 'comments': '25'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'QEaG2KB1MHw', 'timestamp': '2026-09-14T23:00:15.768426+00:00', 'views': '3708', 'likes': '84', 'comments': '17'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'HSq-JNwErSM', 'timestamp': '2026-09-14T23:00:15.888956+00:00', 'views': '4168', 'likes': '22', 'comments': '1'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'KCt9a9AnNfk', 'timestamp': '2026-09-14T23:00:15.996924+00:00', 'views': '153598', 'likes': '2365', 'comments': '887'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'Iqtt7J8CHqQ', 'timestamp': '2026-09-14T23:00:16.204585+00:00', 'views': '8242', 'likes': '17', 'comments': '0'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'WxoTeX-4UJc', 'timestamp': '2026-09-14T23:00:16.319710+00:00', 'views': '15337', 'likes': '126', 'comments': '48'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'wSXiTgtwk-I', 'timestamp': '2026-09-14T23:00:16.434411+00:00', 'views': '40187', 'likes': '379', 'comments': '595'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'W-j1ue_PHIY', 'timestamp': '2026-09-14T23:00:16.582735+00:00', 'views': '3655', 'likes': '22', 'comments': '9'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'UI4pbRrpZxQ', 'timestamp': '2026-09-14T23:00:16.737226+00:00', 'views': '4513', 'likes': '26', 'comments': '11'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'Ef9M1P6DbJY', 'timestamp': '2026-09-14T23:00:16.816080+00:00', 'views': '3717', 'likes': '14', 'comments': '4'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': '0bdUshhzWs4', 'timestamp': '2026-09-14T23:00:16.891008+00:00', 'views': '3769', 'likes': '21', 'comments': '9'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'KnQmXQtMdsU', 'timestamp': '2026-09-14T23:00:17.028873+00:00', 'views': '6862', 'likes': '39', 'comments': '7'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': '1xvAzyG-DQ8', 'timestamp': '2026-09-14T23:00:17.260784+00:00', 'views': '2066', 'likes': '19', 'comments': '0'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'ne2IAZs3M9c', 'timestamp': '2026-09-14T23:00:17.328302+00:00', 'views': '4199', 'likes': '14', 'comments': '16'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'EHcKvhIYmZ4', 'timestamp': '2026-09-14T23:00:17.495588+00:00', 'views': '11323', 'likes': '191', 'comments': '19'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': '_PVVVQi1iLA', 'timestamp': '2026-09-14T23:00:17.574185+00:00', 'views': '1810', 'likes': '10', 'comments': '0'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'IuzfPLOo0Wk', 'timestamp': '2026-09-14T23:00:17.767124+00:00', 'views': '3625', 'likes': '33', 'comments': '12'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'es3UifUTlyY', 'timestamp': '2026-09-14T23:00:17.871882+00:00', 'views': '15461', 'likes': '84', 'comments': '145'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'C2qXGaTLFfM', 'timestamp': '2026-09-14T23:00:18.016316+00:00', 'views': '35435', 'likes': '178', 'comments': '17'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'zNfEK3PnW7g', 'timestamp': '2026-09-14T23:00:18.137332+00:00', 'views': '21790', 'likes': '147', 'comments': '21'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'K61W4Rz17s4', 'timestamp': '2026-09-14T23:00:18.300589+00:00', 'views': '17368', 'likes': '101', 'comments': '38'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'am8_5Luk54g', 'timestamp': '2026-09-14T23:00:18.401255+00:00', 'views': '17099', 'likes': '54', 'comments': '42'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'x_4lU7JHq1g', 'timestamp': '2026-09-14T23:00:18.574659+00:00', 'views': '42257', 'likes': '261', 'comments': '56'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'MH8Bk2pxuog', 'timestamp': '2026-09-14T23:00:18.707405+00:00', 'views': '23626', 'likes': '84', 'comments': '12'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': '9BNzApt8_CA', 'timestamp': '2026-09-14T23:00:18.818485+00:00', 'views': '30691', 'likes': '168', 'comments': '29'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'G9vWMedVfmk', 'timestamp': '2026-09-14T23:00:18.918034+00:00', 'views': '54857', 'likes': '244', 'comments': '184'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'xB3g57niaGI', 'timestamp': '2026-09-14T23:00:18.995883+00:00', 'views': '11953', 'likes': '93', 'comments': '47'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'AAyWcVOam9w', 'timestamp': '2026-09-14T23:00:19.146233+00:00', 'views': '8895', 'likes': '66', 'comments': '15'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'rkj9y4onyBU', 'timestamp': '2026-09-14T23:00:19.357202+00:00', 'views': '55868', 'likes': '344', 'comments': '136'}
+FETCH: 0 From https://github.com/balghaith/YouTube-Forecast-Algorithm
+ * branch            main       -> FETCH_HEAD
+ * [new branch]      main       -> origin/main
+
+MERGE: 0 Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/-8Bxh3WAIAo.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/-iNV7oojOrc.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/0bdUshhzWs4.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/10XhXHvwiAg.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/1QGm7KogSOg.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/1xvAzyG-DQ8.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/28wORIGUuyQ.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/2hSx1-WdXvs.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/3I9KCRckSfo.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/3MGzxydUVh0.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/3z6CP7dDd-8.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/4IurRBylD_c.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/5TpQpJATWio.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/6DY2_fiU_A4.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/6heoh0N-Erk.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/6maRm3BgY7k.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/6xv4YHN0WL4.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/7ikjGKZsrP4.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/91p1e6yUVUk.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/9BNzApt8_CA.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/9BydgGX67WY.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/9OUzx0X2hb8.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/9rm0sE_ZqpI.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/9vNiF0SBRnQ.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/A6V_z_7PI1I.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/AAyWcVOam9w.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/AHZOCWgdAeA.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/AzQ51f_tq0w.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/C2qXGaTLFfM.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/CM0on-KPJGM.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/CYoRD72FIlM.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/D6zl0MiDdIQ.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/DODkXl9V1hg.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/DtVdah1xXxM.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/EH7ObE_v820.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/EHcKvhIYmZ4.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/Ef9M1P6DbJY.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/FmxUc97UFaw.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/G9vWMedVfmk.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/GXV4ZNhjM8Q.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/GtQU5BLnGhc.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/HM0mvUeYj7Y.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/HSq-JNwErSM.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/I3JFL6jB26s.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/IRzRICexkkA.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/IVAlGIDPXWU.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/Iqtt7J8CHqQ.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/IuzfPLOo0Wk.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/JMaosDwXBlc.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/JOsbbK2ttAk.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/JRlVIGyIRR8.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/JqZBFDC2Vio.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/K61W4Rz17s4.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/KCt9a9AnNfk.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/KGly-C1QsNw.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/KnQmXQtMdsU.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/LTsTNQCbE6Q.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/LgFGHvisVYI.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/MH8Bk2pxuog.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/Md3RlOwasc8.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/Mgs3InYVTkc.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/Mr3ohWyRE7c.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/NeX8S1JYwiY.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/Oh955GX_E7g.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/OpeQmWUPkDM.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/Pw23803PMQs.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/QAVI7xYZnrU.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/QEaG2KB1MHw.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/QsbJK2NdnHI.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/RmQmg02tvj8.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/TXbfvZ1ztXI.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/Tc0MzizxEzI.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/UI4pbRrpZxQ.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/UPJTbjqvkYc.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/Vbud-0Zvsck.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/Vd7QUMfvD80.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/W-j1ue_PHIY.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/WxoTeX-4UJc.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/XCyyPxnW-9U.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/XGbozh85pEA.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/XVUk8Tmso2E.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/Xd38-3s2Tp0.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/Xjm-PZCnRkA.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/Y4ZuQiO_XPg.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/ZWYtsN_NVpA.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/ZnhStkwVixw.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/_PVVVQi1iLA.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/_qGRo2Mrduc.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/aL1BJrI56Z8.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/am8_5Luk54g.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/arUdngPeaVc.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/bMWgGhL4ajI.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/cYeOUI3LwxI.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/dBnNjOGxrVE.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/dNTBzlHwnI4.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/drk3FSVxtJ4.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/eSJ-aCQ4Juk.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/es3UifUTlyY.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/fF1ZT5efWHk.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/fwv6hvK3t0Q.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/gIzVPV4w3G8.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/gK_ixxwCcQ8.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/hr972rDCLmA.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/huDc4w-5D4A.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/iOKpafm7p5g.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/irEFxrbdIdQ.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/irNbdnXX1ds.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/jippuoypSpw.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/joqHxBWmu5g.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/l6o3HVZ0h7o.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/nGqYDqLWcgU.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/ne2IAZs3M9c.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/oGYaPfY9Ry8.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/ocV7vOeaXv4.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/pHgZ04NeZpo.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/rYuftELKtm8.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/rkj9y4onyBU.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/sBZvQxrjuIQ.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/tMSsmX_5mss.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/tP0ZdVZBwig.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/u1uYTmcjr4o.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/vaHd1Kvbs-c.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/wSXiTgtwk-I.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/x04xajItzx8.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/xB3g57niaGI.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/xOD3TuBbQI0.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/x_4lU7JHq1g.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/xqXfEEsEtn4.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/yb8F5I0jsnA.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/zNfEK3PnW7g.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/zO_aT1uHhLw.csv
+Auto-merging known_videos.json
+Merge made by the 'ort' strategy.
+ data/UCIALMKvObZNtJ6AmdCLP7Lg/4-YOe37i644.csv | 12 ++++++++++++
+ data/UCIALMKvObZNtJ6AmdCLP7Lg/CifYwuaTtx8.csv | 10 ++++++++++
+ 2 files changed, 22 insertions(+)
+ create mode 100644 data/UCIALMKvObZNtJ6AmdCLP7Lg/4-YOe37i644.csv
+ create mode 100644 data/UCIALMKvObZNtJ6AmdCLP7Lg/CifYwuaTtx8.csv
+ 
+PUSH: 0  To https://github.com/balghaith/YouTube-Forecast-Algorithm.git
+   599b627..09029d5  HEAD -> main
+
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': '9BydgGX67WY', 'timestamp': '2026-09-15T00:00:01.680892+00:00', 'views': '6327', 'likes': '25', 'comments': '6'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': '6heoh0N-Erk', 'timestamp': '2026-09-15T00:00:01.783007+00:00', 'views': '16610', 'likes': '99', 'comments': '20'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': '9rm0sE_ZqpI', 'timestamp': '2026-09-15T00:00:01.943151+00:00', 'views': '33159', 'likes': '136', 'comments': '52'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'ZnhStkwVixw', 'timestamp': '2026-09-15T00:00:02.021723+00:00', 'views': '12782', 'likes': '103', 'comments': '6'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'GtQU5BLnGhc', 'timestamp': '2026-09-15T00:00:02.102984+00:00', 'views': '13395', 'likes': '72', 'comments': '22'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'yb8F5I0jsnA', 'timestamp': '2026-09-15T00:00:02.188940+00:00', 'views': '14186', 'likes': '109', 'comments': '6'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'XCyyPxnW-9U', 'timestamp': '2026-09-15T00:00:02.284397+00:00', 'views': '5485', 'likes': '9', 'comments': '6'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'irNbdnXX1ds', 'timestamp': '2026-09-15T00:00:02.457385+00:00', 'views': '6727', 'likes': '32', 'comments': '6'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': '6DY2_fiU_A4', 'timestamp': '2026-09-15T00:00:02.531726+00:00', 'views': '24482', 'likes': '187', 'comments': '24'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': '91p1e6yUVUk', 'timestamp': '2026-09-15T00:00:02.600274+00:00', 'views': '14139', 'likes': '87', 'comments': '6'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'dBnNjOGxrVE', 'timestamp': '2026-09-15T00:00:02.665647+00:00', 'views': '12855', 'likes': '35', 'comments': '45'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'CYoRD72FIlM', 'timestamp': '2026-09-15T00:00:02.739485+00:00', 'views': '30596', 'likes': '171', 'comments': '55'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'irEFxrbdIdQ', 'timestamp': '2026-09-15T00:00:02.823857+00:00', 'views': '20511', 'likes': '127', 'comments': '27'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'cYeOUI3LwxI', 'timestamp': '2026-09-15T00:00:02.983926+00:00', 'views': '6810', 'likes': '40', 'comments': '10'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'arUdngPeaVc', 'timestamp': '2026-09-15T00:00:03.062620+00:00', 'views': '210387', 'likes': '1375', 'comments': '255'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'IRzRICexkkA', 'timestamp': '2026-09-15T00:00:03.223815+00:00', 'views': '14598', 'likes': '88', 'comments': '8'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'xOD3TuBbQI0', 'timestamp': '2026-09-15T00:00:03.322115+00:00', 'views': '17521', 'likes': '57', 'comments': '134'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'EH7ObE_v820', 'timestamp': '2026-09-15T00:00:03.508928+00:00', 'views': '23962', 'likes': '156', 'comments': '22'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'hr972rDCLmA', 'timestamp': '2026-09-15T00:00:03.599087+00:00', 'views': '72120', 'likes': '802', 'comments': '758'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'rYuftELKtm8', 'timestamp': '2026-09-15T00:00:03.723878+00:00', 'views': '81013', 'likes': '252', 'comments': '84'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'A6V_z_7PI1I', 'timestamp': '2026-09-15T00:00:03.803008+00:00', 'views': '3795', 'likes': '9', 'comments': '1'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': '7ikjGKZsrP4', 'timestamp': '2026-09-15T00:00:04.021491+00:00', 'views': '1477', 'likes': '12', 'comments': '0'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'aL1BJrI56Z8', 'timestamp': '2026-09-15T00:00:04.092066+00:00', 'views': '4881', 'likes': '90', 'comments': '2'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'Pw23803PMQs', 'timestamp': '2026-09-15T00:00:04.182455+00:00', 'views': '4628', 'likes': '41', 'comments': '21'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': '5TpQpJATWio', 'timestamp': '2026-09-15T00:00:04.336191+00:00', 'views': '3798', 'likes': '11', 'comments': '5'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'JqZBFDC2Vio', 'timestamp': '2026-09-15T00:00:04.412183+00:00', 'views': '41702', 'likes': '347', 'comments': '108'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'CM0on-KPJGM', 'timestamp': '2026-09-15T00:00:04.547322+00:00', 'views': '5158', 'likes': '16', 'comments': '8'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'Mr3ohWyRE7c', 'timestamp': '2026-09-15T00:00:04.661050+00:00', 'views': '10456', 'likes': '24', 'comments': '12'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'pHgZ04NeZpo', 'timestamp': '2026-09-15T00:00:04.739903+00:00', 'views': '3930', 'likes': '8', 'comments': '2'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'Md3RlOwasc8', 'timestamp': '2026-09-15T00:00:04.800459+00:00', 'views': '5042', 'likes': '12', 'comments': '2'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'huDc4w-5D4A', 'timestamp': '2026-09-15T00:00:04.871359+00:00', 'views': '9339', 'likes': '51', 'comments': '20'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'LTsTNQCbE6Q', 'timestamp': '2026-09-15T00:00:04.943174+00:00', 'views': '22557', 'likes': '135', 'comments': '110'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'gIzVPV4w3G8', 'timestamp': '2026-09-15T00:00:05.075706+00:00', 'views': '8150', 'likes': '65', 'comments': '43'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'QsbJK2NdnHI', 'timestamp': '2026-09-15T00:00:05.144333+00:00', 'views': '44176', 'likes': '246', 'comments': '109'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'eSJ-aCQ4Juk', 'timestamp': '2026-09-15T00:00:05.263987+00:00', 'views': '6377', 'likes': '24', 'comments': '6'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'DtVdah1xXxM', 'timestamp': '2026-09-15T00:00:05.335197+00:00', 'views': '4255', 'likes': '5', 'comments': '1'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'UPJTbjqvkYc', 'timestamp': '2026-09-15T00:00:05.429106+00:00', 'views': '16368', 'likes': '111', 'comments': '18'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'l6o3HVZ0h7o', 'timestamp': '2026-09-15T00:00:05.592927+00:00', 'views': '4727', 'likes': '33', 'comments': '11'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'tP0ZdVZBwig', 'timestamp': '2026-09-15T00:00:05.678425+00:00', 'views': '4304', 'likes': '11', 'comments': '12'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'FmxUc97UFaw', 'timestamp': '2026-09-15T00:00:05.754938+00:00', 'views': '12298', 'likes': '70', 'comments': '11'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'TXbfvZ1ztXI', 'timestamp': '2026-09-15T00:00:05.826747+00:00', 'views': '4383', 'likes': '3', 'comments': '4'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': '-8Bxh3WAIAo', 'timestamp': '2026-09-15T00:00:05.890365+00:00', 'views': '8926', 'likes': '19', 'comments': '47'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'I3JFL6jB26s', 'timestamp': '2026-09-15T00:00:05.966897+00:00', 'views': '30148', 'likes': '134', 'comments': '72'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'Vbud-0Zvsck', 'timestamp': '2026-09-15T00:00:06.110501+00:00', 'views': '7412', 'likes': '40', 'comments': '7'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'XGbozh85pEA', 'timestamp': '2026-09-15T00:00:06.167578+00:00', 'views': '6858', 'likes': '22', 'comments': '2'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'bMWgGhL4ajI', 'timestamp': '2026-09-15T00:00:06.269376+00:00', 'views': '9005', 'likes': '55', 'comments': '7'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'joqHxBWmu5g', 'timestamp': '2026-09-15T00:00:06.337417+00:00', 'views': '48883', 'likes': '345', 'comments': '28'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'KGly-C1QsNw', 'timestamp': '2026-09-15T00:00:06.394496+00:00', 'views': '81959', 'likes': '557', 'comments': '40'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'drk3FSVxtJ4', 'timestamp': '2026-09-15T00:00:06.494548+00:00', 'views': '58583', 'likes': '162', 'comments': 0}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'nGqYDqLWcgU', 'timestamp': '2026-09-15T00:00:06.642522+00:00', 'views': '77586', 'likes': '533', 'comments': '253'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': '-iNV7oojOrc', 'timestamp': '2026-09-15T00:00:06.726647+00:00', 'views': '175965', 'likes': '1181', 'comments': '451'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'u1uYTmcjr4o', 'timestamp': '2026-09-15T00:00:06.793030+00:00', 'views': '116144', 'likes': '444', 'comments': '392'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'AHZOCWgdAeA', 'timestamp': '2026-09-15T00:00:06.878777+00:00', 'views': '18242', 'likes': '119', 'comments': '38'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'HM0mvUeYj7Y', 'timestamp': '2026-09-15T00:00:06.987870+00:00', 'views': '12986', 'likes': '77', 'comments': '31'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': '3z6CP7dDd-8', 'timestamp': '2026-09-15T00:00:07.062966+00:00', 'views': '10024', 'likes': '42', 'comments': '42'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'Tc0MzizxEzI', 'timestamp': '2026-09-15T00:00:07.264925+00:00', 'views': '4451', 'likes': '11', 'comments': '0'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'jippuoypSpw', 'timestamp': '2026-09-15T00:00:07.367942+00:00', 'views': '6719', 'likes': '20', 'comments': '14'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'D6zl0MiDdIQ', 'timestamp': '2026-09-15T00:00:07.442525+00:00', 'views': '12726', 'likes': '42', 'comments': '6'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'ocV7vOeaXv4', 'timestamp': '2026-09-15T00:00:07.528258+00:00', 'views': '12109', 'likes': '51', 'comments': '37'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'Y4ZuQiO_XPg', 'timestamp': '2026-09-15T00:00:07.691304+00:00', 'views': '63008', 'likes': '263', 'comments': '105'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'Xjm-PZCnRkA', 'timestamp': '2026-09-15T00:00:07.761972+00:00', 'views': '1934', 'likes': '18', 'comments': '1'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': '28wORIGUuyQ', 'timestamp': '2026-09-15T00:00:07.822127+00:00', 'views': '416588', 'likes': '3417', 'comments': '955'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'vaHd1Kvbs-c', 'timestamp': '2026-09-15T00:00:07.914781+00:00', 'views': '6372', 'likes': '8', 'comments': '4'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': '6maRm3BgY7k', 'timestamp': '2026-09-15T00:00:07.978596+00:00', 'views': '7762', 'likes': '30', 'comments': '2'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'JRlVIGyIRR8', 'timestamp': '2026-09-15T00:00:08.057310+00:00', 'views': '10044', 'likes': '24', 'comments': '18'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': '9vNiF0SBRnQ', 'timestamp': '2026-09-15T00:00:08.210355+00:00', 'views': '18803', 'likes': '109', 'comments': '34'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'JOsbbK2ttAk', 'timestamp': '2026-09-15T00:00:08.310133+00:00', 'views': '4584', 'likes': '47', 'comments': '1'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': '2hSx1-WdXvs', 'timestamp': '2026-09-15T00:00:08.378288+00:00', 'views': '14656', 'likes': '123', 'comments': 0}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'Vd7QUMfvD80', 'timestamp': '2026-09-15T00:00:08.504488+00:00', 'views': '5100', 'likes': '10', 'comments': '5'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'ZWYtsN_NVpA', 'timestamp': '2026-09-15T00:00:08.593087+00:00', 'views': '6509', 'likes': '33', 'comments': '15'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': '1QGm7KogSOg', 'timestamp': '2026-09-15T00:00:08.731931+00:00', 'views': '10531', 'likes': '86', 'comments': '36'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'gK_ixxwCcQ8', 'timestamp': '2026-09-15T00:00:08.810359+00:00', 'views': '11288', 'likes': '68', 'comments': '25'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'sBZvQxrjuIQ', 'timestamp': '2026-09-15T00:00:08.904968+00:00', 'views': '10595', 'likes': '49', 'comments': '15'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'oGYaPfY9Ry8', 'timestamp': '2026-09-15T00:00:09.014392+00:00', 'views': '8270', 'likes': '27', 'comments': '16'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'dNTBzlHwnI4', 'timestamp': '2026-09-15T00:00:09.089879+00:00', 'views': '6839', 'likes': '29', 'comments': '8'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'NeX8S1JYwiY', 'timestamp': '2026-09-15T00:00:09.151988+00:00', 'views': '5537', 'likes': '4', 'comments': '2'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'Mgs3InYVTkc', 'timestamp': '2026-09-15T00:00:09.263410+00:00', 'views': '3323', 'likes': '33', 'comments': '0'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'zO_aT1uHhLw', 'timestamp': '2026-09-15T00:00:09.370262+00:00', 'views': '44457', 'likes': '260', 'comments': '34'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'fwv6hvK3t0Q', 'timestamp': '2026-09-15T00:00:09.445393+00:00', 'views': '5245', 'likes': '11', 'comments': '2'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'XVUk8Tmso2E', 'timestamp': '2026-09-15T00:00:09.536590+00:00', 'views': '45007', 'likes': '200', 'comments': '76'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': '10XhXHvwiAg', 'timestamp': '2026-09-15T00:00:09.623005+00:00', 'views': '26546', 'likes': '187', 'comments': '106'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'DODkXl9V1hg', 'timestamp': '2026-09-15T00:00:09.688782+00:00', 'views': '8954', 'likes': '32', 'comments': '10'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'JMaosDwXBlc', 'timestamp': '2026-09-15T00:00:09.830005+00:00', 'views': '19303', 'likes': '84', 'comments': '6'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'OpeQmWUPkDM', 'timestamp': '2026-09-15T00:00:09.932111+00:00', 'views': '41893', 'likes': '26', 'comments': '1'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': '3f8XR7I7YMc', 'timestamp': '2026-09-15T00:00:10.009016+00:00', 'views': '1708', 'likes': '58', 'comments': '7'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'KBz_hbWS9-o', 'timestamp': '2026-09-15T00:00:10.111978+00:00', 'views': '445', 'likes': '8', 'comments': '0'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'fF1ZT5efWHk', 'timestamp': '2026-09-15T00:00:10.176318+00:00', 'views': '2376', 'likes': '32', 'comments': '4'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': '6xv4YHN0WL4', 'timestamp': '2026-09-15T00:00:10.310706+00:00', 'views': '597', 'likes': '13', 'comments': '4'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'QAVI7xYZnrU', 'timestamp': '2026-09-15T00:00:10.376093+00:00', 'views': '2064', 'likes': '8', 'comments': '1'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': '_qGRo2Mrduc', 'timestamp': '2026-09-15T00:00:10.452947+00:00', 'views': '13029', 'likes': '262', 'comments': '70'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'x04xajItzx8', 'timestamp': '2026-09-15T00:00:10.572544+00:00', 'views': '4285', 'likes': '34', 'comments': '2'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'LgFGHvisVYI', 'timestamp': '2026-09-15T00:00:10.638490+00:00', 'views': '1675', 'likes': '3', 'comments': '4'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'AzQ51f_tq0w', 'timestamp': '2026-09-15T00:00:10.702528+00:00', 'views': '1952', 'likes': '16', 'comments': '2'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'tMSsmX_5mss', 'timestamp': '2026-09-15T00:00:10.834830+00:00', 'views': '1306', 'likes': '16', 'comments': '7'}[main 9419ab5] Update tracked data
+ 135 files changed, 136 insertions(+), 1 deletion(-)
+ create mode 100644 data/UCIALMKvObZNtJ6AmdCLP7Lg/NuvaglYGWj4.csv
+
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'GXV4ZNhjM8Q', 'timestamp': '2026-09-15T00:00:10.888069+00:00', 'views': '6742', 'likes': '41', 'comments': '23'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'IVAlGIDPXWU', 'timestamp': '2026-09-15T00:00:10.996410+00:00', 'views': '2088', 'likes': '7', 'comments': '4'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'iOKpafm7p5g', 'timestamp': '2026-09-15T00:00:11.101029+00:00', 'views': '6632', 'likes': '41', 'comments': '5'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': '4IurRBylD_c', 'timestamp': '2026-09-15T00:00:11.203121+00:00', 'views': '8865', 'likes': '49', 'comments': '18'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': '9OUzx0X2hb8', 'timestamp': '2026-09-15T00:00:11.357093+00:00', 'views': '3797', 'likes': '12', 'comments': '15'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'RmQmg02tvj8', 'timestamp': '2026-09-15T00:00:11.487439+00:00', 'views': '3929', 'likes': '28', 'comments': '6'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'Xd38-3s2Tp0', 'timestamp': '2026-09-15T00:00:11.599089+00:00', 'views': '5992', 'likes': '29', 'comments': '12'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': '3I9KCRckSfo', 'timestamp': '2026-09-15T00:00:11.690422+00:00', 'views': '1522', 'likes': '15', 'comments': '1'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'Oh955GX_E7g', 'timestamp': '2026-09-15T00:00:11.777017+00:00', 'views': '4009', 'likes': '11', 'comments': 0}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'xqXfEEsEtn4', 'timestamp': '2026-09-15T00:00:11.889447+00:00', 'views': '2705', 'likes': '9', 'comments': 0}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': '3MGzxydUVh0', 'timestamp': '2026-09-15T00:00:11.948259+00:00', 'views': '10982', 'likes': '108', 'comments': '21'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'QEaG2KB1MHw', 'timestamp': '2026-09-15T00:00:12.069507+00:00', 'views': '4419', 'likes': '93', 'comments': '19'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'HSq-JNwErSM', 'timestamp': '2026-09-15T00:00:12.189265+00:00', 'views': '4686', 'likes': '26', 'comments': '1'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'KCt9a9AnNfk', 'timestamp': '2026-09-15T00:00:12.260456+00:00', 'views': '178325', 'likes': '2516', 'comments': '934'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'Iqtt7J8CHqQ', 'timestamp': '2026-09-15T00:00:12.416193+00:00', 'views': '8311', 'likes': '17', 'comments': '0'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'WxoTeX-4UJc', 'timestamp': '2026-09-15T00:00:12.528070+00:00', 'views': '15670', 'likes': '127', 'comments': '46'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'wSXiTgtwk-I', 'timestamp': '2026-09-15T00:00:12.617353+00:00', 'views': '44863', 'likes': '403', 'comments': '614'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'W-j1ue_PHIY', 'timestamp': '2026-09-15T00:00:12.682718+00:00', 'views': '4062', 'likes': '22', 'comments': '9'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'UI4pbRrpZxQ', 'timestamp': '2026-09-15T00:00:12.779782+00:00', 'views': '4719', 'likes': '26', 'comments': '11'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'Ef9M1P6DbJY', 'timestamp': '2026-09-15T00:00:12.946248+00:00', 'views': '3856', 'likes': '14', 'comments': '4'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': '0bdUshhzWs4', 'timestamp': '2026-09-15T00:00:13.059884+00:00', 'views': '3945', 'likes': '21', 'comments': '9'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'KnQmXQtMdsU', 'timestamp': '2026-09-15T00:00:13.126278+00:00', 'views': '7294', 'likes': '39', 'comments': '7'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': '1xvAzyG-DQ8', 'timestamp': '2026-09-15T00:00:13.224901+00:00', 'views': '2215', 'likes': '20', 'comments': '0'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'ne2IAZs3M9c', 'timestamp': '2026-09-15T00:00:13.305764+00:00', 'views': '4262', 'likes': '15', 'comments': '13'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'EHcKvhIYmZ4', 'timestamp': '2026-09-15T00:00:13.452527+00:00', 'views': '12561', 'likes': '204', 'comments': '20'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': '_PVVVQi1iLA', 'timestamp': '2026-09-15T00:00:13.568410+00:00', 'views': '1838', 'likes': '10', 'comments': '0'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'IuzfPLOo0Wk', 'timestamp': '2026-09-15T00:00:13.688493+00:00', 'views': '3680', 'likes': '33', 'comments': '8'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'es3UifUTlyY', 'timestamp': '2026-09-15T00:00:13.800573+00:00', 'views': '15774', 'likes': '86', 'comments': '140'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'C2qXGaTLFfM', 'timestamp': '2026-09-15T00:00:14.015778+00:00', 'views': '35974', 'likes': '178', 'comments': '17'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'zNfEK3PnW7g', 'timestamp': '2026-09-15T00:00:14.107279+00:00', 'views': '21891', 'likes': '149', 'comments': '21'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'K61W4Rz17s4', 'timestamp': '2026-09-15T00:00:14.219108+00:00', 'views': '17454', 'likes': '101', 'comments': '32'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'am8_5Luk54g', 'timestamp': '2026-09-15T00:00:14.292280+00:00', 'views': '17150', 'likes': '55', 'comments': '42'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'x_4lU7JHq1g', 'timestamp': '2026-09-15T00:00:14.372177+00:00', 'views': '43440', 'likes': '264', 'comments': '57'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'MH8Bk2pxuog', 'timestamp': '2026-09-15T00:00:14.498874+00:00', 'views': '23703', 'likes': '84', 'comments': '11'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': '9BNzApt8_CA', 'timestamp': '2026-09-15T00:00:14.559533+00:00', 'views': '30835', 'likes': '169', 'comments': '25'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'G9vWMedVfmk', 'timestamp': '2026-09-15T00:00:14.731959+00:00', 'views': '56114', 'likes': '246', 'comments': '181'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'xB3g57niaGI', 'timestamp': '2026-09-15T00:00:14.861296+00:00', 'views': '12060', 'likes': '93', 'comments': '47'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'AAyWcVOam9w', 'timestamp': '2026-09-15T00:00:15.060403+00:00', 'views': '9019', 'likes': '67', 'comments': '15'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'rkj9y4onyBU', 'timestamp': '2026-09-15T00:00:15.174441+00:00', 'views': '56939', 'likes': '345', 'comments': '136'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'NuvaglYGWj4', 'timestamp': '2026-09-15T00:00:15.269617+00:00', 'views': '803', 'likes': '20', 'comments': '7'}
+FETCH: 0 From https://github.com/balghaith/YouTube-Forecast-Algorithm
+ * branch            main       -> FETCH_HEAD
+ * [new branch]      main       -> origin/main
+
+MERGE: 0 Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/-8Bxh3WAIAo.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/-iNV7oojOrc.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/0bdUshhzWs4.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/10XhXHvwiAg.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/1QGm7KogSOg.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/1xvAzyG-DQ8.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/28wORIGUuyQ.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/2hSx1-WdXvs.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/3I9KCRckSfo.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/3MGzxydUVh0.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/3f8XR7I7YMc.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/3z6CP7dDd-8.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/4IurRBylD_c.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/5TpQpJATWio.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/6DY2_fiU_A4.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/6heoh0N-Erk.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/6maRm3BgY7k.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/6xv4YHN0WL4.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/7ikjGKZsrP4.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/91p1e6yUVUk.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/9BNzApt8_CA.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/9BydgGX67WY.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/9OUzx0X2hb8.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/9rm0sE_ZqpI.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/9vNiF0SBRnQ.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/A6V_z_7PI1I.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/AAyWcVOam9w.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/AHZOCWgdAeA.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/AzQ51f_tq0w.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/C2qXGaTLFfM.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/CM0on-KPJGM.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/CYoRD72FIlM.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/D6zl0MiDdIQ.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/DODkXl9V1hg.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/DtVdah1xXxM.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/EH7ObE_v820.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/EHcKvhIYmZ4.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/Ef9M1P6DbJY.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/FmxUc97UFaw.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/G9vWMedVfmk.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/GXV4ZNhjM8Q.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/GtQU5BLnGhc.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/HM0mvUeYj7Y.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/HSq-JNwErSM.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/I3JFL6jB26s.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/IRzRICexkkA.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/IVAlGIDPXWU.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/Iqtt7J8CHqQ.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/IuzfPLOo0Wk.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/JMaosDwXBlc.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/JOsbbK2ttAk.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/JRlVIGyIRR8.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/JqZBFDC2Vio.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/K61W4Rz17s4.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/KBz_hbWS9-o.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/KCt9a9AnNfk.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/KGly-C1QsNw.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/KnQmXQtMdsU.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/LTsTNQCbE6Q.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/LgFGHvisVYI.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/MH8Bk2pxuog.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/Md3RlOwasc8.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/Mgs3InYVTkc.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/Mr3ohWyRE7c.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/NeX8S1JYwiY.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/Oh955GX_E7g.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/OpeQmWUPkDM.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/Pw23803PMQs.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/QAVI7xYZnrU.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/QEaG2KB1MHw.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/QsbJK2NdnHI.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/RmQmg02tvj8.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/TXbfvZ1ztXI.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/Tc0MzizxEzI.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/UI4pbRrpZxQ.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/UPJTbjqvkYc.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/Vbud-0Zvsck.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/Vd7QUMfvD80.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/W-j1ue_PHIY.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/WxoTeX-4UJc.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/XCyyPxnW-9U.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/XGbozh85pEA.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/XVUk8Tmso2E.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/Xd38-3s2Tp0.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/Xjm-PZCnRkA.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/Y4ZuQiO_XPg.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/ZWYtsN_NVpA.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/ZnhStkwVixw.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/_PVVVQi1iLA.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/_qGRo2Mrduc.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/aL1BJrI56Z8.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/am8_5Luk54g.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/arUdngPeaVc.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/bMWgGhL4ajI.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/cYeOUI3LwxI.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/dBnNjOGxrVE.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/dNTBzlHwnI4.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/drk3FSVxtJ4.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/eSJ-aCQ4Juk.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/es3UifUTlyY.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/fF1ZT5efWHk.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/fwv6hvK3t0Q.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/gIzVPV4w3G8.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/gK_ixxwCcQ8.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/hr972rDCLmA.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/huDc4w-5D4A.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/iOKpafm7p5g.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/irEFxrbdIdQ.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/irNbdnXX1ds.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/jippuoypSpw.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/joqHxBWmu5g.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/l6o3HVZ0h7o.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/nGqYDqLWcgU.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/ne2IAZs3M9c.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/oGYaPfY9Ry8.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/ocV7vOeaXv4.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/pHgZ04NeZpo.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/rYuftELKtm8.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/rkj9y4onyBU.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/sBZvQxrjuIQ.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/tMSsmX_5mss.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/tP0ZdVZBwig.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/u1uYTmcjr4o.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/vaHd1Kvbs-c.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/wSXiTgtwk-I.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/x04xajItzx8.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/xB3g57niaGI.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/xOD3TuBbQI0.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/x_4lU7JHq1g.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/xqXfEEsEtn4.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/yb8F5I0jsnA.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/zNfEK3PnW7g.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/zO_aT1uHhLw.csv
+Auto-merging known_videos.json
+Merge made by the 'ort' strategy.
+ 
+PUSH: 0  To https://github.com/balghaith/YouTube-Forecast-Algorithm.git
+   4f55c59..d51fd1a  HEAD -> main
+
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': '9BydgGX67WY', 'timestamp': '2026-09-16T02:00:01.680152+00:00', 'views': '6311', 'likes': '25', 'comments': '6'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': '6heoh0N-Erk', 'timestamp': '2026-09-16T02:00:01.757853+00:00', 'views': '16867', 'likes': '100', 'comments': '20'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': '9rm0sE_ZqpI', 'timestamp': '2026-09-16T02:00:01.825076+00:00', 'views': '33258', 'likes': '137', 'comments': '52'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'ZnhStkwVixw', 'timestamp': '2026-09-16T02:00:01.901738+00:00', 'views': '12737', 'likes': '105', 'comments': '6'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'GtQU5BLnGhc', 'timestamp': '2026-09-16T02:00:02.070445+00:00', 'views': '13371', 'likes': '72', 'comments': '22'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'yb8F5I0jsnA', 'timestamp': '2026-09-16T02:00:02.185882+00:00', 'views': '14215', 'likes': '109', 'comments': '6'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'XCyyPxnW-9U', 'timestamp': '2026-09-16T02:00:02.260037+00:00', 'views': '5515', 'likes': '9', 'comments': '6'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'irNbdnXX1ds', 'timestamp': '2026-09-16T02:00:02.324952+00:00', 'views': '6744', 'likes': '32', 'comments': '6'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': '6DY2_fiU_A4', 'timestamp': '2026-09-16T02:00:02.397148+00:00', 'views': '24968', 'likes': '187', 'comments': '25'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': '91p1e6yUVUk', 'timestamp': '2026-09-16T02:00:02.455413+00:00', 'views': '14352', 'likes': '89', 'comments': '6'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'dBnNjOGxrVE', 'timestamp': '2026-09-16T02:00:02.591954+00:00', 'views': '12904', 'likes': '35', 'comments': '45'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'CYoRD72FIlM', 'timestamp': '2026-09-16T02:00:02.657762+00:00', 'views': '31014', 'likes': '174', 'comments': '55'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'irEFxrbdIdQ', 'timestamp': '2026-09-16T02:00:02.758962+00:00', 'views': '20630', 'likes': '127', 'comments': '27'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'cYeOUI3LwxI', 'timestamp': '2026-09-16T02:00:02.830697+00:00', 'views': '6838', 'likes': '40', 'comments': '10'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'arUdngPeaVc', 'timestamp': '2026-09-16T02:00:02.909476+00:00', 'views': '233986', 'likes': '1469', 'comments': '283'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'IRzRICexkkA', 'timestamp': '2026-09-16T02:00:02.987111+00:00', 'views': '14729', 'likes': '88', 'comments': '8'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'xOD3TuBbQI0', 'timestamp': '2026-09-16T02:00:03.116893+00:00', 'views': '17537', 'likes': '57', 'comments': '134'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'EH7ObE_v820', 'timestamp': '2026-09-16T02:00:03.196004+00:00', 'views': '24708', 'likes': '158', 'comments': '22'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'hr972rDCLmA', 'timestamp': '2026-09-16T02:00:03.261456+00:00', 'views': '73635', 'likes': '823', 'comments': '763'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'rYuftELKtm8', 'timestamp': '2026-09-16T02:00:03.346792+00:00', 'views': '85649', 'likes': '272', 'comments': '84'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'A6V_z_7PI1I', 'timestamp': '2026-09-16T02:00:03.412104+00:00', 'views': '3820', 'likes': '9', 'comments': '1'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': '7ikjGKZsrP4', 'timestamp': '2026-09-16T02:00:03.474834+00:00', 'views': '1535', 'likes': '12', 'comments': '0'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'aL1BJrI56Z8', 'timestamp': '2026-09-16T02:00:03.639076+00:00', 'views': '5038', 'likes': '89', 'comments': '2'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'Pw23803PMQs', 'timestamp': '2026-09-16T02:00:03.750742+00:00', 'views': '4732', 'likes': '42', 'comments': '23'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': '5TpQpJATWio', 'timestamp': '2026-09-16T02:00:03.937724+00:00', 'views': '3846', 'likes': '11', 'comments': '5'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'JqZBFDC2Vio', 'timestamp': '2026-09-16T02:00:04.046463+00:00', 'views': '44592', 'likes': '359', 'comments': '111'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'CM0on-KPJGM', 'timestamp': '2026-09-16T02:00:04.164343+00:00', 'views': '5256', 'likes': '16', 'comments': '8'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'Mr3ohWyRE7c', 'timestamp': '2026-09-16T02:00:04.296668+00:00', 'views': '10479', 'likes': '24', 'comments': '12'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'pHgZ04NeZpo', 'timestamp': '2026-09-16T02:00:04.367286+00:00', 'views': '3961', 'likes': '8', 'comments': '2'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'Md3RlOwasc8', 'timestamp': '2026-09-16T02:00:04.423575+00:00', 'views': '5040', 'likes': '12', 'comments': '2'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'huDc4w-5D4A', 'timestamp': '2026-09-16T02:00:04.491721+00:00', 'views': '9916', 'likes': '53', 'comments': '20'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'LTsTNQCbE6Q', 'timestamp': '2026-09-16T02:00:04.548122+00:00', 'views': '22469', 'likes': '136', 'comments': '110'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'gIzVPV4w3G8', 'timestamp': '2026-09-16T02:00:04.689246+00:00', 'views': '8450', 'likes': '66', 'comments': '47'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'QsbJK2NdnHI', 'timestamp': '2026-09-16T02:00:04.815938+00:00', 'views': '49277', 'likes': '278', 'comments': '136'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'eSJ-aCQ4Juk', 'timestamp': '2026-09-16T02:00:04.920346+00:00', 'views': '6638', 'likes': '25', 'comments': '6'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'DtVdah1xXxM', 'timestamp': '2026-09-16T02:00:04.972843+00:00', 'views': '4330', 'likes': '5', 'comments': '1'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'UPJTbjqvkYc', 'timestamp': '2026-09-16T02:00:05.046014+00:00', 'views': '16808', 'likes': '114', 'comments': '18'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'l6o3HVZ0h7o', 'timestamp': '2026-09-16T02:00:05.102678+00:00', 'views': '4835', 'likes': '33', 'comments': '11'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'tP0ZdVZBwig', 'timestamp': '2026-09-16T02:00:05.213215+00:00', 'views': '4304', 'likes': '11', 'comments': '12'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'FmxUc97UFaw', 'timestamp': '2026-09-16T02:00:05.309065+00:00', 'views': '12581', 'likes': '70', 'comments': '12'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'TXbfvZ1ztXI', 'timestamp': '2026-09-16T02:00:05.379212+00:00', 'views': '4398', 'likes': '3', 'comments': '4'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': '-8Bxh3WAIAo', 'timestamp': '2026-09-16T02:00:05.437229+00:00', 'views': '9032', 'likes': '20', 'comments': '47'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'I3JFL6jB26s', 'timestamp': '2026-09-16T02:00:05.508594+00:00', 'views': '31923', 'likes': '140', 'comments': '76'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'Vbud-0Zvsck', 'timestamp': '2026-09-16T02:00:05.570049+00:00', 'views': '7465', 'likes': '41', 'comments': '7'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'XGbozh85pEA', 'timestamp': '2026-09-16T02:00:05.634131+00:00', 'views': '6874', 'likes': '22', 'comments': '2'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'bMWgGhL4ajI', 'timestamp': '2026-09-16T02:00:05.739060+00:00', 'views': '9050', 'likes': '55', 'comments': '7'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'joqHxBWmu5g', 'timestamp': '2026-09-16T02:00:05.801627+00:00', 'views': '52375', 'likes': '372', 'comments': '41'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'KGly-C1QsNw', 'timestamp': '2026-09-16T02:00:06.656183+00:00', 'views': '101623', 'likes': '690', 'comments': '54'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'drk3FSVxtJ4', 'timestamp': '2026-09-16T02:00:06.783971+00:00', 'views': '55186', 'likes': '162', 'comments': 0}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'nGqYDqLWcgU', 'timestamp': '2026-09-16T02:00:06.877598+00:00', 'views': '78216', 'likes': '536', 'comments': '253'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': '-iNV7oojOrc', 'timestamp': '2026-09-16T02:00:06.986667+00:00', 'views': '183211', 'likes': '1242', 'comments': '461'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'u1uYTmcjr4o', 'timestamp': '2026-09-16T02:00:07.093627+00:00', 'views': '120385', 'likes': '456', 'comments': '399'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'AHZOCWgdAeA', 'timestamp': '2026-09-16T02:00:07.184474+00:00', 'views': '20414', 'likes': '137', 'comments': '42'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'HM0mvUeYj7Y', 'timestamp': '2026-09-16T02:00:07.310227+00:00', 'views': '12813', 'likes': '77', 'comments': '31'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': '3z6CP7dDd-8', 'timestamp': '2026-09-16T02:00:07.371562+00:00', 'views': '10312', 'likes': '43', 'comments': '43'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'Tc0MzizxEzI', 'timestamp': '2026-09-16T02:00:07.433352+00:00', 'views': '4512', 'likes': '11', 'comments': '0'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'jippuoypSpw', 'timestamp': '2026-09-16T02:00:07.496780+00:00', 'views': '6763', 'likes': '20', 'comments': '14'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'D6zl0MiDdIQ', 'timestamp': '2026-09-16T02:00:07.582608+00:00', 'views': '13213', 'likes': '44', 'comments': '6'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'ocV7vOeaXv4', 'timestamp': '2026-09-16T02:00:07.647939+00:00', 'views': '12624', 'likes': '53', 'comments': '38'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'Y4ZuQiO_XPg', 'timestamp': '2026-09-16T02:00:07.712116+00:00', 'views': '68652', 'likes': '294', 'comments': '110'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'Xjm-PZCnRkA', 'timestamp': '2026-09-16T02:00:07.833102+00:00', 'views': '2023', 'likes': '20', 'comments': '1'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': '28wORIGUuyQ', 'timestamp': '2026-09-16T02:00:07.919419+00:00', 'views': '538941', 'likes': '3951', 'comments': '1096'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'vaHd1Kvbs-c', 'timestamp': '2026-09-16T02:00:08.004074+00:00', 'views': '6396', 'likes': '8', 'comments': '4'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': '6maRm3BgY7k', 'timestamp': '2026-09-16T02:00:08.061766+00:00', 'views': '7920', 'likes': '31', 'comments': '2'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'JRlVIGyIRR8', 'timestamp': '2026-09-16T02:00:08.121811+00:00', 'views': '10496', 'likes': '24', 'comments': '18'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': '9vNiF0SBRnQ', 'timestamp': '2026-09-16T02:00:08.178134+00:00', 'views': '19072', 'likes': '110', 'comments': '33'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'JOsbbK2ttAk', 'timestamp': '2026-09-16T02:00:08.243265+00:00', 'views': '4906', 'likes': '52', 'comments': '1'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': '2hSx1-WdXvs', 'timestamp': '2026-09-16T02:00:08.354979+00:00', 'views': '14573', 'likes': '124', 'comments': 0}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'Vd7QUMfvD80', 'timestamp': '2026-09-16T02:00:08.419373+00:00', 'views': '5291', 'likes': '10', 'comments': '5'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'ZWYtsN_NVpA', 'timestamp': '2026-09-16T02:00:08.470454+00:00', 'views': '7266', 'likes': '34', 'comments': '15'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': '1QGm7KogSOg', 'timestamp': '2026-09-16T02:00:08.584507+00:00', 'views': '19442', 'likes': '141', 'comments': '112'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'gK_ixxwCcQ8', 'timestamp': '2026-09-16T02:00:08.638945+00:00', 'views': '11588', 'likes': '69', 'comments': '25'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'sBZvQxrjuIQ', 'timestamp': '2026-09-16T02:00:08.703497+00:00', 'views': '10987', 'likes': '50', 'comments': '16'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'oGYaPfY9Ry8', 'timestamp': '2026-09-16T02:00:08.773303+00:00', 'views': '8963', 'likes': '27', 'comments': '17'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'dNTBzlHwnI4', 'timestamp': '2026-09-16T02:00:08.882387+00:00', 'views': '7057', 'likes': '36', 'comments': '8'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'NeX8S1JYwiY', 'timestamp': '2026-09-16T02:00:08.948653+00:00', 'views': '5562', 'likes': '4', 'comments': '2'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'Mgs3InYVTkc', 'timestamp': '2026-09-16T02:00:09.008470+00:00', 'views': '3478', 'likes': '35', 'comments': '0'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'zO_aT1uHhLw', 'timestamp': '2026-09-16T02:00:09.069271+00:00', 'views': '64180', 'likes': '398', 'comments': '58'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'fwv6hvK3t0Q', 'timestamp': '2026-09-16T02:00:09.143747+00:00', 'views': '5287', 'likes': '10', 'comments': '2'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'XVUk8Tmso2E', 'timestamp': '2026-09-16T02:00:09.250368+00:00', 'views': '47473', 'likes': '214', 'comments': '78'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': '10XhXHvwiAg', 'timestamp': '2026-09-16T02:00:09.310249+00:00', 'views': '28560', 'likes': '204', 'comments': '106'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'DODkXl9V1hg', 'timestamp': '2026-09-16T02:00:09.481831+00:00', 'views': '9926', 'likes': '34', 'comments': '11'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'JMaosDwXBlc', 'timestamp': '2026-09-16T02:00:09.582140+00:00', 'views': '20209', 'likes': '86', 'comments': '6'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'OpeQmWUPkDM', 'timestamp': '2026-09-16T02:00:09.685947+00:00', 'views': '39840', 'likes': '29', 'comments': '1'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': '3f8XR7I7YMc', 'timestamp': '2026-09-16T02:00:09.777866+00:00', 'views': '20563', 'likes': '146', 'comments': '16'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'KBz_hbWS9-o', 'timestamp': '2026-09-16T02:00:10.049022+00:00', 'views': '3228', 'likes': '42', 'comments': '5'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'fF1ZT5efWHk', 'timestamp': '2026-09-16T02:00:10.109907+00:00', 'views': '9499', 'likes': '51', 'comments': '3'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': '6xv4YHN0WL4', 'timestamp': '2026-09-16T02:00:10.172407+00:00', 'views': '2465', 'likes': '28', 'comments': '6'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'QAVI7xYZnrU', 'timestamp': '2026-09-16T02:00:10.261650+00:00', 'views': '5059', 'likes': '13', 'comments': '1'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': '_qGRo2Mrduc', 'timestamp': '2026-09-16T02:00:10.330474+00:00', 'views': '26885', 'likes': '312', 'comments': '76'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'x04xajItzx8', 'timestamp': '2026-09-16T02:00:10.455017+00:00', 'views': '7188', 'likes': '38', 'comments': '1'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'LgFGHvisVYI', 'timestamp': '2026-09-16T02:00:10.519276+00:00', 'views': '4472', 'likes': '10', 'comments': '1'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'AzQ51f_tq0w', 'timestamp': '2026-09-16T02:00:10.601893+00:00', 'views': '4815', 'likes': '41', 'comments': '3'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'tMSsmX_5mss', 'timestamp': '2026-09-16T02:00:10.682192+00:00', 'views': '3403', 'likes': '29', 'comments': '11'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'GXV4ZNhjM8Q', 'timestamp': '2026-09-16T02:00:10.747569+00:00', 'views': '11336', 'likes': '62', 'comments': '29'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'IVAlGIDPXWU', 'timestamp': '2026-09-16T02:00:10.852487+00:00', 'views': '3927', 'likes': '16', 'comments': '3'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'iOKpafm7p5g', 'timestamp': '2026-09-16T02:00:10.982546+00:00', 'views': '14296', 'likes': '68', 'comments': '11'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': '4IurRBylD_c', 'timestamp': '2026-09-16T02:00:11.053221+00:00', 'views': '12328', 'likes': '57', 'comments': '22'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': '9OUzx0X2hb8', 'timestamp': '2026-09-16T02:00:11.126462+00:00', 'views': '8959', 'likes': '28', 'comments': '16'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'RmQmg02tvj8', 'timestamp': '2026-09-16T02:00:11.186588+00:00', 'views': '5577', 'likes': '34', 'comments': '7'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'Xd38-3s2Tp0', 'timestamp': '2026-09-16T02:00:11.254327+00:00', 'views': '7110', 'likes': '37', 'comments': '10'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': '3I9KCRckSfo', 'timestamp': '2026-09-16T02:00:11.319135+00:00', 'views': '2661', 'likes': '25', 'comments': '1'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'Oh955GX_E7g', 'timestamp': '2026-09-16T02:00:11.376075+00:00', 'views': '5584', 'likes': '21', 'comments': 0}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'xqXfEEsEtn4', 'timestamp': '2026-09-16T02:00:11.502583+00:00', 'views': '3743', 'likes': '14', 'comments': 0}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': '3MGzxydUVh0', 'timestamp': '2026-09-16T02:00:11.599643+00:00', 'views': '22435', 'likes': '150', 'comments': '29'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'QEaG2KB1MHw', 'timestamp': '2026-09-16T02:00:11.695901+00:00', 'views': '10292', 'likes': '130', 'comments': '25'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'HSq-JNwErSM', 'timestamp': '2026-09-16T02:00:11.761537+00:00', 'views': '23171', 'likes': '38', 'comments': '1'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'KCt9a9AnNfk', 'timestamp': '2026-09-16T02:00:11.826699+00:00', 'views': '278607', 'likes': '3164', 'comments': '1070'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'Iqtt7J8CHqQ', 'timestamp': '2026-09-16T02:00:11.927998+00:00', 'views': '8657', 'likes': '17', 'comments': '0'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'WxoTeX-4UJc', 'timestamp': '2026-09-16T02:00:12.077986+00:00', 'views': '17375', 'likes': '136', 'comments': '42'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'wSXiTgtwk-I', 'timestamp': '2026-09-16T02:00:12.141881+00:00', 'views': '95543', 'likes': '640', 'comments': '886'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'W-j1ue_PHIY', 'timestamp': '2026-09-16T02:00:12.197420+00:00', 'views': '5010', 'likes': '23', 'comments': '12'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'UI4pbRrpZxQ', 'timestamp': '2026-09-16T02:00:12.272059+00:00', 'views': '6242', 'likes': '38', 'comments': '14'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'Ef9M1P6DbJY', 'timestamp': '2026-09-16T02:00:12.335274+00:00', 'views': '4437', 'likes': '16', 'comments': '4'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': '0bdUshhzWs4', 'timestamp': '2026-09-16T02:00:12.393383+00:00', 'views': '5523', 'likes': '25', 'comments': '12'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'KnQmXQtMdsU', 'timestamp': '2026-09-16T02:00:12.548827+00:00', 'views': '11836', 'likes': '60', 'comments': '8'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': '1xvAzyG-DQ8', 'timestamp': '2026-09-16T02:00:12.616943+00:00', 'views': '2869', 'likes': '27', 'comments': '0'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'ne2IAZs3M9c', 'timestamp': '2026-09-16T02:00:12.676016+00:00', 'views': '4687', 'likes': '17', 'comments': '13'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'EHcKvhIYmZ4', 'timestamp': '2026-09-16T02:00:12.743246+00:00', 'views': '58940', 'likes': '2623', 'comments': '142'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': '_PVVVQi1iLA', 'timestamp': '2026-09-16T02:00:12.803715+00:00', 'views': '2178', 'likes': '12', 'comments': '0'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'IuzfPLOo0Wk', 'timestamp': '2026-09-16T02:00:12.866983+00:00', 'views': '4106', 'likes': '36', 'comments': '9'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'es3UifUTlyY', 'timestamp': '2026-09-16T02:00:12.930180+00:00', 'views': '18016', 'likes': '93', 'comments': '151'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'C2qXGaTLFfM', 'timestamp': '2026-09-16T02:00:13.078286+00:00', 'views': '40443', 'likes': '188', 'comments': '21'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'zNfEK3PnW7g', 'timestamp': '2026-09-16T02:00:13.141453+00:00', 'views': '22664', 'likes': '157', 'comments': '21'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'K61W4Rz17s4', 'timestamp': '2026-09-16T02:00:13.199037+00:00', 'views': '18218', 'likes': '106', 'comments': '27'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'am8_5Luk54g', 'timestamp': '2026-09-16T02:00:13.265294+00:00', 'views': '17430', 'likes': '57', 'comments': '42'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'x_4lU7JHq1g', 'timestamp': '2026-09-16T02:00:13.362826+00:00', 'views': '54366', 'likes': '305', 'comments': '68'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'MH8Bk2pxuog', 'timestamp': '2026-09-16T02:00:13.464867+00:00', 'views': '38785', 'likes': '94', 'comments': '8'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': '9BNzApt8_CA', 'timestamp': '2026-09-16T02:00:13.598898+00:00', 'views': '32606', 'likes': '178', 'comments': '23'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'G9vWMedVfmk', 'timestamp': '2026-09-16T02:00:13.707888+00:00', 'views': '65685', 'likes': '257', 'comments': '185'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'xB3g57niaGI', 'timestamp': '2026-09-16T02:00:13.760997+00:00', 'views': '13571', 'likes': '95', 'comments': '48'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'AAyWcVOam9w', 'timestamp': '2026-09-16T02:00:13.837878+00:00', 'views': '11190', 'likes': '100', 'comments': '23'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'rkj9y4onyBU', 'timestamp': '2026-09-16T02:00:13.890772+00:00', 'views': '60237', 'likes': '360', 'comments': '141'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'NuvaglYGWj4', 'timestamp': '2026-09-16T02:00:13.953789+00:00', 'views': '18837', 'likes': '69', 'comments': '24'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'JjGenvC3HVU', 'timestamp': '2026-09-16T02:00:14.009621+00:00', 'views': '511', 'likes': '23', 'comments': '4'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'hhqGhp0Rqq8', 'timestamp': '2026-09-16T02:00:14.125054+00:00', 'views': '1657', 'likes': '47', 'comments': '75'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'hT9GDECys1E', 'timestamp': '2026-09-16T02:00:14.187086+00:00', 'views': '2661', 'likes': '136', 'comments': '21'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'e-t_n88X1XA', 'timestamp': '2026-09-16T02:00:14.254047+00:00', 'views': '2186', 'likes': '43', 'comments': '12'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'i9NVYWHUqqU', 'timestamp': '2026-09-16T02:00:14.309642+00:00', 'views': '1606', 'likes': '30', 'comments': '5'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'LD5Dfke5vII', 'timestamp': '2026-09-16T02:00:14.410909+00:00', 'views': '6503', 'likes': '502', 'comments': '233'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'r7OxHMhDudY', 'timestamp': '2026-09-16T02:00:14.470304+00:00', 'views': '4201', 'likes': '43', 'comments': '8'}[main 5976dc6] Update tracked data
+ 182 files changed, 229 insertions(+), 1 deletion(-)
+ create mode 100644 data/UCIALMKvObZNtJ6AmdCLP7Lg/--tHHPaBuDY.csv
+ create mode 100644 data/UCIALMKvObZNtJ6AmdCLP7Lg/1ty8ScxjT-M.csv
+ create mode 100644 data/UCIALMKvObZNtJ6AmdCLP7Lg/4fDP0Zd8ERI.csv
+ create mode 100644 data/UCIALMKvObZNtJ6AmdCLP7Lg/6HTtvduWecU.csv
+ create mode 100644 data/UCIALMKvObZNtJ6AmdCLP7Lg/7hu2ElQljiM.csv
+ create mode 100644 data/UCIALMKvObZNtJ6AmdCLP7Lg/80_tjRIqmWE.csv
+ create mode 100644 data/UCIALMKvObZNtJ6AmdCLP7Lg/BObX_FPST9E.csv
+ create mode 100644 data/UCIALMKvObZNtJ6AmdCLP7Lg/FAVlNU9kbHA.csv
+ create mode 100644 data/UCIALMKvObZNtJ6AmdCLP7Lg/IfCcKIhuuFo.csv
+ create mode 100644 data/UCIALMKvObZNtJ6AmdCLP7Lg/JjGenvC3HVU.csv
+ create mode 100644 data/UCIALMKvObZNtJ6AmdCLP7Lg/LD5Dfke5vII.csv
+ create mode 100644 data/UCIALMKvObZNtJ6AmdCLP7Lg/NBXFDpEMCBE.csv
+ create mode 100644 data/UCIALMKvObZNtJ6AmdCLP7Lg/NnB8Ew_zwTU.csv
+ create mode 100644 data/UCIALMKvObZNtJ6AmdCLP7Lg/NtHzGKEz3Nk.csv
+ create mode 100644 data/UCIALMKvObZNtJ6AmdCLP7Lg/SDKVsmGa6iE.csv
+ create mode 100644 data/UCIALMKvObZNtJ6AmdCLP7Lg/TsLJDWjbFMU.csv
+ create mode 100644 data/UCIALMKvObZNtJ6AmdCLP7Lg/UayQUAyohmA.csv
+ create mode 100644 data/UCIALMKvObZNtJ6AmdCLP7Lg/WnawyiGd4YI.csv
+ create mode 100644 data/UCIALMKvObZNtJ6AmdCLP7Lg/YqEOkdMCHwQ.csv
+ create mode 100644 data/UCIALMKvObZNtJ6AmdCLP7Lg/ZeISJxUjWHo.csv
+ create mode 100644 data/UCIALMKvObZNtJ6AmdCLP7Lg/_Lh3psUTomw.csv
+ create mode 100644 data/UCIALMKvObZNtJ6AmdCLP7Lg/aJgFsUcPf2w.csv
+ create mode 100644 data/UCIALMKvObZNtJ6AmdCLP7Lg/aU_eIEp5qJg.csv
+ create mode 100644 data/UCIALMKvObZNtJ6AmdCLP7Lg/b_WZgUKQiZM.csv
+ create mode 100644 data/UCIALMKvObZNtJ6AmdCLP7Lg/bd-PNQ82Xts.csv
+ create mode 100644 data/UCIALMKvObZNtJ6AmdCLP7Lg/d_Me4RD-hs8.csv
+ create mode 100644 data/UCIALMKvObZNtJ6AmdCLP7Lg/e-t_n88X1XA.csv
+ create mode 100644 data/UCIALMKvObZNtJ6AmdCLP7Lg/gW00dJGI0as.csv
+ create mode 100644 data/UCIALMKvObZNtJ6AmdCLP7Lg/h7BrXXti7cw.csv
+ create mode 100644 data/UCIALMKvObZNtJ6AmdCLP7Lg/hT9GDECys1E.csv
+ create mode 100644 data/UCIALMKvObZNtJ6AmdCLP7Lg/hhqGhp0Rqq8.csv
+ create mode 100644 data/UCIALMKvObZNtJ6AmdCLP7Lg/i9NVYWHUqqU.csv
+ create mode 100644 data/UCIALMKvObZNtJ6AmdCLP7Lg/jZz1f_UpEOw.csv
+ create mode 100644 data/UCIALMKvObZNtJ6AmdCLP7Lg/kL6-lDe0t-o.csv
+ create mode 100644 data/UCIALMKvObZNtJ6AmdCLP7Lg/lBIq8jZ3boE.csv
+ create mode 100644 data/UCIALMKvObZNtJ6AmdCLP7Lg/lQO7vAj1BEg.csv
+ create mode 100644 data/UCIALMKvObZNtJ6AmdCLP7Lg/mxY-RqSgcCE.csv
+ create mode 100644 data/UCIALMKvObZNtJ6AmdCLP7Lg/qi61QghuHnk.csv
+ create mode 100644 data/UCIALMKvObZNtJ6AmdCLP7Lg/r7OxHMhDudY.csv
+ create mode 100644 data/UCIALMKvObZNtJ6AmdCLP7Lg/s4mXrlORpfY.csv
+ create mode 100644 data/UCIALMKvObZNtJ6AmdCLP7Lg/sVKHNvhzzfM.csv
+ create mode 100644 data/UCIALMKvObZNtJ6AmdCLP7Lg/tLPxPtqJios.csv
+ create mode 100644 data/UCIALMKvObZNtJ6AmdCLP7Lg/vYCDBox_A6o.csv
+ create mode 100644 data/UCIALMKvObZNtJ6AmdCLP7Lg/wRdDw7wS0rI.csv
+ create mode 100644 data/UCIALMKvObZNtJ6AmdCLP7Lg/yDAUm-j2Pc0.csv
+ create mode 100644 data/UCIALMKvObZNtJ6AmdCLP7Lg/zW8GdcfRNcQ.csv
+ create mode 100644 data/UCIALMKvObZNtJ6AmdCLP7Lg/zd6GGuhT-6o.csv
+
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'gW00dJGI0as', 'timestamp': '2026-09-16T02:00:14.525325+00:00', 'views': '1649', 'likes': '30', 'comments': '8'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': '--tHHPaBuDY', 'timestamp': '2026-09-16T02:00:14.649288+00:00', 'views': '9102', 'likes': '90', 'comments': '19'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'zW8GdcfRNcQ', 'timestamp': '2026-09-16T02:00:14.748211+00:00', 'views': '2066', 'likes': '85', 'comments': '11'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'lBIq8jZ3boE', 'timestamp': '2026-09-16T02:00:14.808077+00:00', 'views': '773', 'likes': '26', 'comments': '2'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': '4fDP0Zd8ERI', 'timestamp': '2026-09-16T02:00:14.866567+00:00', 'views': '642', 'likes': '18', 'comments': '1'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'tLPxPtqJios', 'timestamp': '2026-09-16T02:00:14.929759+00:00', 'views': '18412', 'likes': '114', 'comments': '30'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'IfCcKIhuuFo', 'timestamp': '2026-09-16T02:00:14.987421+00:00', 'views': '6585', 'likes': '22', 'comments': '13'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'kL6-lDe0t-o', 'timestamp': '2026-09-16T02:00:15.040588+00:00', 'views': '4059', 'likes': '24', 'comments': '0'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'ZeISJxUjWHo', 'timestamp': '2026-09-16T02:00:15.174068+00:00', 'views': '8195', 'likes': '83', 'comments': '146'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': '80_tjRIqmWE', 'timestamp': '2026-09-16T02:00:15.231570+00:00', 'views': '10239', 'likes': '119', 'comments': '19'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'WnawyiGd4YI', 'timestamp': '2026-09-16T02:00:15.298097+00:00', 'views': '2336', 'likes': '16', 'comments': '2'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'zd6GGuhT-6o', 'timestamp': '2026-09-16T02:00:15.411289+00:00', 'views': '6693', 'likes': '41', 'comments': '22'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'wRdDw7wS0rI', 'timestamp': '2026-09-16T02:00:15.469630+00:00', 'views': '21977', 'likes': '143', 'comments': '20'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': '7hu2ElQljiM', 'timestamp': '2026-09-16T02:00:15.529046+00:00', 'views': '3674', 'likes': '14', 'comments': '9'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'mxY-RqSgcCE', 'timestamp': '2026-09-16T02:00:15.584609+00:00', 'views': '8266', 'likes': '65', 'comments': '46'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'NtHzGKEz3Nk', 'timestamp': '2026-09-16T02:00:15.699425+00:00', 'views': '3442', 'likes': '18', 'comments': '10'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'yDAUm-j2Pc0', 'timestamp': '2026-09-16T02:00:15.755032+00:00', 'views': '3217', 'likes': '14', 'comments': '0'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'vYCDBox_A6o', 'timestamp': '2026-09-16T02:00:15.816909+00:00', 'views': '2464', 'likes': '15', 'comments': '3'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'jZz1f_UpEOw', 'timestamp': '2026-09-16T02:00:15.874582+00:00', 'views': '1743', 'likes': '29', 'comments': '3'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'h7BrXXti7cw', 'timestamp': '2026-09-16T02:00:15.932413+00:00', 'views': '6988', 'likes': '39', 'comments': '30'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'YqEOkdMCHwQ', 'timestamp': '2026-09-16T02:00:16.042848+00:00', 'views': '5787', 'likes': '211', 'comments': '12'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'NnB8Ew_zwTU', 'timestamp': '2026-09-16T02:00:16.105176+00:00', 'views': '6766', 'likes': '235', 'comments': '24'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'SDKVsmGa6iE', 'timestamp': '2026-09-16T02:00:16.221486+00:00', 'views': '17513', 'likes': '138', 'comments': '49'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': '_Lh3psUTomw', 'timestamp': '2026-09-16T02:00:16.278800+00:00', 'views': '24587', 'likes': '193', 'comments': '53'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'b_WZgUKQiZM', 'timestamp': '2026-09-16T02:00:16.340583+00:00', 'views': '3338', 'likes': '43', 'comments': '6'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': '6HTtvduWecU', 'timestamp': '2026-09-16T02:00:16.395438+00:00', 'views': '1295', 'likes': '21', 'comments': '0'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'aU_eIEp5qJg', 'timestamp': '2026-09-16T02:00:16.460723+00:00', 'views': '4140', 'likes': '20', 'comments': '3'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'UayQUAyohmA', 'timestamp': '2026-09-16T02:00:16.517464+00:00', 'views': '24367', 'likes': '182', 'comments': '22'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'NBXFDpEMCBE', 'timestamp': '2026-09-16T02:00:16.567401+00:00', 'views': '12067', 'likes': '47', 'comments': '15'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'd_Me4RD-hs8', 'timestamp': '2026-09-16T02:00:16.621961+00:00', 'views': '13300', 'likes': '75', 'comments': '8'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'qi61QghuHnk', 'timestamp': '2026-09-16T02:00:16.743703+00:00', 'views': '13576', 'likes': '100', 'comments': '15'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': '1ty8ScxjT-M', 'timestamp': '2026-09-16T02:00:16.790385+00:00', 'views': '22354', 'likes': '137', 'comments': '19'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'aJgFsUcPf2w', 'timestamp': '2026-09-16T02:00:16.883994+00:00', 'views': '24588', 'likes': '122', 'comments': '19'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 's4mXrlORpfY', 'timestamp': '2026-09-16T02:00:16.943797+00:00', 'views': '6346', 'likes': '30', 'comments': '15'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'BObX_FPST9E', 'timestamp': '2026-09-16T02:00:16.997544+00:00', 'views': '4133', 'likes': '14', 'comments': '9'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'bd-PNQ82Xts', 'timestamp': '2026-09-16T02:00:17.058846+00:00', 'views': '9602', 'likes': '47', 'comments': '27'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'TsLJDWjbFMU', 'timestamp': '2026-09-16T02:00:17.110728+00:00', 'views': '3701', 'likes': '11', 'comments': '2'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'lQO7vAj1BEg', 'timestamp': '2026-09-16T02:00:17.159962+00:00', 'views': '8034', 'likes': '39', 'comments': '10'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'FAVlNU9kbHA', 'timestamp': '2026-09-16T02:00:17.269934+00:00', 'views': '10745', 'likes': '85', 'comments': '18'}
+Saved: {'channel_id': 'UCIALMKvObZNtJ6AmdCLP7Lg', 'video_id': 'sVKHNvhzzfM', 'timestamp': '2026-09-16T02:00:17.322418+00:00', 'views': '8158', 'likes': '61', 'comments': '10'}
+FETCH: 0 From https://github.com/balghaith/YouTube-Forecast-Algorithm
+ * branch            main       -> FETCH_HEAD
+ * [new branch]      main       -> origin/main
+
+MERGE: 0 Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/--tHHPaBuDY.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/-8Bxh3WAIAo.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/-iNV7oojOrc.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/0bdUshhzWs4.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/10XhXHvwiAg.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/1QGm7KogSOg.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/1ty8ScxjT-M.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/1xvAzyG-DQ8.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/28wORIGUuyQ.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/2hSx1-WdXvs.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/3I9KCRckSfo.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/3MGzxydUVh0.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/3f8XR7I7YMc.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/3z6CP7dDd-8.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/4IurRBylD_c.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/4fDP0Zd8ERI.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/5TpQpJATWio.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/6DY2_fiU_A4.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/6HTtvduWecU.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/6heoh0N-Erk.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/6maRm3BgY7k.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/6xv4YHN0WL4.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/7hu2ElQljiM.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/7ikjGKZsrP4.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/80_tjRIqmWE.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/91p1e6yUVUk.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/9BNzApt8_CA.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/9BydgGX67WY.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/9OUzx0X2hb8.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/9rm0sE_ZqpI.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/9vNiF0SBRnQ.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/A6V_z_7PI1I.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/AAyWcVOam9w.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/AHZOCWgdAeA.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/AzQ51f_tq0w.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/BObX_FPST9E.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/C2qXGaTLFfM.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/CM0on-KPJGM.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/CYoRD72FIlM.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/D6zl0MiDdIQ.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/DODkXl9V1hg.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/DtVdah1xXxM.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/EH7ObE_v820.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/EHcKvhIYmZ4.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/Ef9M1P6DbJY.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/FAVlNU9kbHA.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/FmxUc97UFaw.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/G9vWMedVfmk.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/GXV4ZNhjM8Q.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/GtQU5BLnGhc.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/HM0mvUeYj7Y.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/HSq-JNwErSM.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/I3JFL6jB26s.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/IRzRICexkkA.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/IVAlGIDPXWU.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/IfCcKIhuuFo.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/Iqtt7J8CHqQ.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/IuzfPLOo0Wk.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/JMaosDwXBlc.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/JOsbbK2ttAk.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/JRlVIGyIRR8.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/JjGenvC3HVU.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/JqZBFDC2Vio.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/K61W4Rz17s4.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/KBz_hbWS9-o.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/KCt9a9AnNfk.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/KGly-C1QsNw.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/KnQmXQtMdsU.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/LD5Dfke5vII.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/LTsTNQCbE6Q.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/LgFGHvisVYI.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/MH8Bk2pxuog.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/Md3RlOwasc8.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/Mgs3InYVTkc.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/Mr3ohWyRE7c.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/NBXFDpEMCBE.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/NeX8S1JYwiY.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/NnB8Ew_zwTU.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/NtHzGKEz3Nk.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/NuvaglYGWj4.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/Oh955GX_E7g.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/OpeQmWUPkDM.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/Pw23803PMQs.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/QAVI7xYZnrU.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/QEaG2KB1MHw.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/QsbJK2NdnHI.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/RmQmg02tvj8.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/SDKVsmGa6iE.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/TXbfvZ1ztXI.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/Tc0MzizxEzI.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/TsLJDWjbFMU.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/UI4pbRrpZxQ.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/UPJTbjqvkYc.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/UayQUAyohmA.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/Vbud-0Zvsck.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/Vd7QUMfvD80.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/W-j1ue_PHIY.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/WnawyiGd4YI.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/WxoTeX-4UJc.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/XCyyPxnW-9U.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/XGbozh85pEA.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/XVUk8Tmso2E.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/Xd38-3s2Tp0.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/Xjm-PZCnRkA.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/Y4ZuQiO_XPg.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/YqEOkdMCHwQ.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/ZWYtsN_NVpA.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/ZeISJxUjWHo.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/ZnhStkwVixw.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/_Lh3psUTomw.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/_PVVVQi1iLA.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/_qGRo2Mrduc.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/aJgFsUcPf2w.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/aL1BJrI56Z8.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/aU_eIEp5qJg.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/am8_5Luk54g.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/arUdngPeaVc.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/bMWgGhL4ajI.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/b_WZgUKQiZM.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/bd-PNQ82Xts.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/cYeOUI3LwxI.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/dBnNjOGxrVE.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/dNTBzlHwnI4.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/d_Me4RD-hs8.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/drk3FSVxtJ4.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/e-t_n88X1XA.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/eSJ-aCQ4Juk.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/es3UifUTlyY.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/fF1ZT5efWHk.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/fwv6hvK3t0Q.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/gIzVPV4w3G8.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/gK_ixxwCcQ8.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/gW00dJGI0as.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/h7BrXXti7cw.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/hT9GDECys1E.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/hhqGhp0Rqq8.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/hr972rDCLmA.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/huDc4w-5D4A.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/i9NVYWHUqqU.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/iOKpafm7p5g.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/irEFxrbdIdQ.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/irNbdnXX1ds.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/jZz1f_UpEOw.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/jippuoypSpw.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/joqHxBWmu5g.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/kL6-lDe0t-o.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/l6o3HVZ0h7o.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/lBIq8jZ3boE.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/lQO7vAj1BEg.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/mxY-RqSgcCE.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/nGqYDqLWcgU.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/ne2IAZs3M9c.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/oGYaPfY9Ry8.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/ocV7vOeaXv4.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/pHgZ04NeZpo.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/qi61QghuHnk.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/r7OxHMhDudY.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/rYuftELKtm8.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/rkj9y4onyBU.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/s4mXrlORpfY.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/sBZvQxrjuIQ.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/sVKHNvhzzfM.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/tLPxPtqJios.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/tMSsmX_5mss.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/tP0ZdVZBwig.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/u1uYTmcjr4o.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/vYCDBox_A6o.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/vaHd1Kvbs-c.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/wRdDw7wS0rI.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/wSXiTgtwk-I.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/x04xajItzx8.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/xB3g57niaGI.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/xOD3TuBbQI0.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/x_4lU7JHq1g.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/xqXfEEsEtn4.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/yDAUm-j2Pc0.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/yb8F5I0jsnA.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/zNfEK3PnW7g.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/zO_aT1uHhLw.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/zW8GdcfRNcQ.csv
+Auto-merging data/UCIALMKvObZNtJ6AmdCLP7Lg/zd6GGuhT-6o.csv
+Auto-merging known_videos.json
+Merge made by the 'ort' strategy.
+ data/UCIALMKvObZNtJ6AmdCLP7Lg/8p6yjB_ZEj8.csv | 2 ++
+ 1 file changed, 2 insertions(+)
+ create mode 100644 data/UCIALMKvObZNtJ6AmdCLP7Lg/8p6yjB_ZEj8.csv
+ 
+PUSH: 0  To https://github.com/balghaith/YouTube-Forecast-Algorithm.git
+   45b4181..0c1ddc8  HEAD -> main
+
