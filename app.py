@@ -24,6 +24,8 @@ HORIZONS_DAYS = [7, 14, 30]
 
 
 def sync_data():
+    if not os.environ.get("RENDER"):
+        return
     repo_dir = os.path.dirname(os.path.abspath(__file__))
     token = os.environ.get("GITHUB_TOKEN")
     remote_url = f"https://{token}@github.com/balghaith/YouTube-Forecast-Algorithm.git"
