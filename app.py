@@ -24,7 +24,9 @@ HORIZONS_DAYS = [7, 14, 30]
 
 
 def sync_data():
-    subprocess.run(["git", "pull"], cwd=os.path.dirname(os.path.abspath(__file__)))
+    repo_dir = os.path.dirname(os.path.abspath(__file__))
+    subprocess.run(["git", "fetch", "origin", "main"], cwd=repo_dir)
+    subprocess.run(["git", "reset", "--hard", "origin/main"], cwd=repo_dir)
 
 
 def load_known_videos():
