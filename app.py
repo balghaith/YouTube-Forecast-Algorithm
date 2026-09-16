@@ -27,7 +27,8 @@ def sync_data():
     repo_dir = os.path.dirname(os.path.abspath(__file__))
     token = os.environ.get("GITHUB_TOKEN")
     remote_url = f"https://{token}@github.com/balghaith/YouTube-Forecast-Algorithm.git"
-    subprocess.run(["git", "remote", "set-url", "origin", remote_url], cwd=repo_dir)
+    subprocess.run(["git", "remote", "remove", "origin"], cwd=repo_dir)
+    subprocess.run(["git", "remote", "add", "origin", remote_url], cwd=repo_dir)
     subprocess.run(["git", "fetch", "origin", "main"], cwd=repo_dir)
     subprocess.run(["git", "reset", "--hard", "origin/main"], cwd=repo_dir)
 
