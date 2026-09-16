@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head><title>Forecast: {{ video_id }}</title></head>
+<body>
+  <p><a href="/">&larr; back</a></p>
+  <h1>{{ video_id }}</h1>
+
+  <p>Metric:
+    <a href="/forecast/{{ video_id }}?metric=views">views</a> |
+    <a href="/forecast/{{ video_id }}?metric=likes">likes</a> |
+    <a href="/forecast/{{ video_id }}?metric=comments">comments</a>
+  </p>
+
+  <p><b>R² = {{ r_squared }} ({{ confidence }} confidence)</b></p>
+
+  <img src="data:image/png;base64,{{ chart_b64 }}">
+
+  <table border="1" cellpadding="6">
+    <tr><th>Horizon</th><th>Forecasted {{ metric }}</th></tr>
+    {% for horizon, value in forecasts.items() %}
+      <tr><td>{{ horizon }}</td><td>{{ value }}</td></tr>
+    {% endfor %}
+  </table>
+</body>
+</html>

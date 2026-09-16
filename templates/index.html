@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head><title>Forecast Demo</title></head>
+<body>
+  <h1>YouTube Forecast Demo</h1>
+  <form onsubmit="window.location='/forecast/' + document.getElementById('video').value; return false;">
+    <label for="video">Pick a video:</label>
+    <select id="video">
+      {% for vid, info in videos %}
+        <option value="{{ vid }}">{{ vid }} ({{ info.published_at[:10] }})</option>
+      {% endfor %}
+    </select>
+    <button type="submit">Forecast</button>
+  </form>
+</body>
+</html>
