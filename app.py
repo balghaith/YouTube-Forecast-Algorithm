@@ -58,7 +58,7 @@ def make_chart(x_hours, y_vals, a, b, metric):
     fig, ax = plt.subplots(figsize=(7, 4))
 
     x_days = [h / 24 for h in x_hours]
-    ax.scatter(x_days, y_vals, label="Actual", color="teal", zorder=3)
+    ax.scatter([x_days[-1]], [y_vals[-1]], label="Actual", color="teal", zorder=3)
 
     last_day = max(x_days)
     fitted_x = np.linspace(0.05, last_day, 50)
