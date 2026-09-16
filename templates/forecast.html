@@ -1,25 +1,84 @@
 <!DOCTYPE html>
 <html>
-<head><title>Forecast: {{ video_id }}</title></head>
+<head>
+  <title>Forecast: {{ video_id }}</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
 <body>
   <p><a href="/">&larr; back</a></p>
   <h1>{{ video_id }}</h1>
 
   <p>Metric:
-    <a href="/forecast/{{ video_id }}?metric=views">views</a> |
-    <a href="/forecast/{{ video_id }}?metric=likes">likes</a> |
-    <a href="/forecast/{{ video_id }}?metric=comments">comments</a>
+    <a href="#" onclick="setMetric('views'); return false;">views</a> |
+    <a href="#" onclick="setMetric('likes'); return false;">likes</a> |
+    <a href="#" onclick="setMetric('comments'); return false;">comments</a>
   </p>
 
-  <p><b>R² = {{ r_squared }} ({{ confidence }} confidence)</b></p>
+  <p><b id="r2-label">Loading...</b></p>
 
-  <img src="data:image/png;base64,{{ chart_b64 }}">
+  <canvas id="chart" width="800" height="400"></canvas>
 
   <table border="1" cellpadding="6">
-    <tr><th>Horizon</th><th>Forecasted {{ metric }}</th></tr>
-    {% for horizon, value in forecasts.items() %}
-      <tr><td>{{ horizon }}</td><td>{{ value }}</td></tr>
-    {% endfor %}
+    <thead><tr><th>Horizon</th><th id="forecast-header">Forecasted</th></tr></thead>
+    <tbody id="forecast-body"></tbody>
   </table>
+
+  <script>
+    let currentMetric = "{{ metric }}";
+    let chart = null;
+
+    function setMetric(m) {
+      currentMetric = m;
+      loadData();
+    }
+
+    async function loadData() {
+      const res = await fetch(`/api/forecast/{{ video_id }}?metric=${currentMetric}`);
+      const data = await res.json();
+
+      document.getElementById("r2-label").textContent =
+        `R² = ${data.r_squared} (${data.confidence} confidence)`;
+
+      document.getElementById("forecast-header").textContent = `Forecasted ${data.metric}`;
+      const body = document.getElementById("forecast-body");
+      body.innerHTML = "";
+      for (const [horizon, value] of Object.entries(data.forecasts)) {
+        const row = document.createElement("tr");
+        row.innerHTML = `<td>${horizon}</td><td>${value}</td>`;
+        body.appendChild(row);
+      }
+
+      const actualPoints = data.actual.x.map((x, i) => ({x, y: data.actual.y[i]}));
+      const fittedPoints = data.fitted.x.map((x, i) => ({x, y: data.fitted.y[i]}));
+      const forecastPoints = data.forecast.x.map((x, i) => ({x, y: data.forecast.y[i]}));
+
+      const datasets = [
+        { label: "Actual", data: actualPoints, backgroundColor: "teal", showLine: false, pointRadius: 6 },
+        { label: "Fitted", data: fittedPoints, borderColor: "teal", backgroundColor: "transparent", showLine: true, pointRadius: 0 },
+        { label: "Forecast", data: forecastPoints, borderColor: "orange", borderDash: [6, 4], backgroundColor: "transparent", showLine: true, pointRadius: 0 },
+      ];
+
+      if (chart) {
+        chart.data.datasets = datasets;
+        chart.options.scales.y.title.text = currentMetric;
+        chart.update();
+      } else {
+        const ctx = document.getElementById("chart").getContext("2d");
+        chart = new Chart(ctx, {
+          type: "scatter",
+          data: { datasets },
+          options: {
+            scales: {
+              x: { title: { display: true, text: "Days since publish" }, type: "linear" },
+              y: { title: { display: true, text: currentMetric } },
+            },
+          },
+        });
+      }
+    }
+
+    loadData();
+    setInterval(loadData, 60000);
+  </script>
 </body>
 </html>
