@@ -1,12 +1,11 @@
 import numpy as np
 
 
-def compute_r_squared(x, y, a, b):
-    x = np.clip(np.array(x, dtype=float), 0.1, None)
+def compute_r_squared(x, y, L, k, x0):
+    x = np.array(x, dtype=float)
     y = np.array(y, dtype=float)
-    ln_x = np.log(x)
 
-    y_pred = np.exp(a * ln_x + b)
+    y_pred = L / (1 + np.exp(-k * (x - x0)))
     ss_res = np.sum((y - y_pred) ** 2)
     ss_tot = np.sum((y - np.mean(y)) ** 2)
 

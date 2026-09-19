@@ -16,6 +16,8 @@
 
   <p><b id="r2-label">Loading...</b></p>
 
+  <button id="toggle-original" onclick="toggleOriginal()">Compare to original forecast</button>
+
   <canvas id="chart" width="800" height="400"></canvas>
 
   <table border="1" cellpadding="6">
@@ -26,37 +28,63 @@
   <script>
     let currentMetric = "{{ metric }}";
     let chart = null;
+    let showOriginal = false;
+    let latestData = null;
 
     function setMetric(m) {
       currentMetric = m;
       loadData();
     }
 
+    function toggleOriginal() {
+      showOriginal = !showOriginal;
+      document.getElementById("toggle-original").textContent =
+        showOriginal ? "Hide original forecast" : "Compare to original forecast";
+      renderChart();
+    }
+
     async function loadData() {
       const res = await fetch(`/api/forecast/{{ video_id }}?metric=${currentMetric}`);
-      const data = await res.json();
+      latestData = await res.json();
 
       document.getElementById("r2-label").textContent =
-        `R² = ${data.r_squared} (${data.confidence} confidence)`;
+        `R² = ${latestData.r_squared} (${latestData.confidence} confidence)`;
 
-      document.getElementById("forecast-header").textContent = `Forecasted ${data.metric}`;
+      document.getElementById("forecast-header").textContent = `Forecasted ${latestData.metric}`;
       const body = document.getElementById("forecast-body");
       body.innerHTML = "";
-      for (const [horizon, value] of Object.entries(data.forecasts)) {
+      for (const [horizon, value] of Object.entries(latestData.forecasts)) {
         const row = document.createElement("tr");
         row.innerHTML = `<td>${horizon}</td><td>${value}</td>`;
         body.appendChild(row);
       }
 
-      const actualPoints = data.actual.x.map((x, i) => ({x, y: data.actual.y[i]}));
-      const fittedPoints = data.fitted.x.map((x, i) => ({x, y: data.fitted.y[i]}));
-      const forecastPoints = data.forecast.x.map((x, i) => ({x, y: data.forecast.y[i]}));
+      renderChart();
+    }
+
+    function renderChart() {
+      if (!latestData) return;
+
+      const actualPoints = latestData.actual.x.map((x, i) => ({x, y: latestData.actual.y[i]}));
+      const forecastPoints = latestData.forecast.x.map((x, i) => ({x, y: latestData.forecast.y[i]}));
+      const originalPoints = latestData.original.x.map((x, i) => ({x, y: latestData.original.y[i]}));
 
       const datasets = [
-        { label: "Actual", data: actualPoints, backgroundColor: "teal", showLine: false, pointRadius: 6 },
-        { label: "Fitted", data: fittedPoints, borderColor: "teal", backgroundColor: "transparent", showLine: true, pointRadius: 0 },
+        { label: "Actual", data: actualPoints, borderColor: "#2c3e50", backgroundColor: "#2c3e50", showLine: true, pointRadius: 1 },
         { label: "Forecast", data: forecastPoints, borderColor: "orange", borderDash: [6, 4], backgroundColor: "transparent", showLine: true, pointRadius: 0 },
       ];
+
+      if (showOriginal) {
+        datasets.push({
+          label: "Original forecast",
+          data: originalPoints,
+          borderColor: "#999999",
+          borderDash: [2, 2],
+          backgroundColor: "transparent",
+          showLine: true,
+          pointRadius: 0,
+        });
+      }
 
       if (chart) {
         chart.data.datasets = datasets;

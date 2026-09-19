@@ -2,6 +2,7 @@ import os
 import csv
 import json
 import numpy as np
+from scipy.optimize import curve_fit
 from datetime import datetime
 from confidence import compute_r_squared, confidence_label
 
@@ -36,21 +37,35 @@ def hours_since_publish(timestamp_str, published_at_str):
     return delta.total_seconds() / 3600
 
 
-def fit_log_regression(x, y):
-    x_clipped = np.clip(np.array(x, dtype=float), 0.1, None)
-    y_arr = np.array(y, dtype=float)
-    y_clean = np.maximum.accumulate(y_arr)
-    y_clipped = np.clip(y_clean, 0.1, None)
-    ln_x = np.log(x_clipped)
-    ln_y = np.log(y_clipped)
-
-    a, b = np.polyfit(ln_x, ln_y, 1)
-    return a, b
+def logistic(x, L, k, x0):
+    return L / (1 + np.exp(-k * (x - x0)))
 
 
-def predict(a, b, hours):
-    hours = max(hours, 0.1)
-    value = np.exp(a * np.log(hours) + b)
+def fit_logistic_regression(x, y):
+    x_arr = np.array(x, dtype=float)
+    y_arr = np.maximum.accumulate(np.array(y, dtype=float))
+
+    L_guess = y_arr[-1] * 3
+    k_guess = 0.1
+    x0_guess = x_arr[len(x_arr) // 2]
+
+    bounds = ([y_arr[-1], 0.0001, -1000], [y_arr[-1] * 100, 10, 10000])
+
+    try:
+        params, _ = curve_fit(
+            logistic, x_arr, y_arr,
+            p0=[L_guess, k_guess, x0_guess],
+            bounds=bounds,
+            maxfev=10000
+        )
+        return params[0], params[1], params[2]
+    except RuntimeError:
+        return y_arr[-1] * 2, 0.05, x_arr[-1]
+
+
+def predict(L, k, x0, hours):
+    days = hours / 24
+    value = logistic(days, L, k, x0)
     return max(0.0, value)
 
 
@@ -60,15 +75,16 @@ def forecast_video(channel_id, video_id, published_at):
         return None
 
     x = [hours_since_publish(row["timestamp"], published_at) for row in rows]
+    x_days = [h / 24 for h in x]
 
     results = {}
     for metric in METRICS:
         y = [float(row[metric]) for row in rows]
-        a, b = fit_log_regression(x, y)
-        r_squared = compute_r_squared(x, y, a, b)
+        L, k, x0 = fit_logistic_regression(x_days, y)
+        r_squared = compute_r_squared(x_days, y, L, k, x0)
 
         forecasts = {
-            f"day_{days}": round(predict(a, b, days * 24), 1)
+            f"day_{days}": round(predict(L, k, x0, days * 24), 1)
             for days in HORIZONS_DAYS
         }
 
