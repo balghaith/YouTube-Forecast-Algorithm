@@ -4,3 +4,4 @@ flask
 numpy
 matplotlib
 gunicorn
+scipy
