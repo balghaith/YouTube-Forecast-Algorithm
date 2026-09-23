@@ -7,7 +7,7 @@
     <label for="video">Pick a video:</label>
     <select id="video">
       {% for vid, info in videos %}
-        <option value="{{ vid }}">{{ vid }} ({{ info.published_at[:10] }})</option>
+        <option value="{{ vid }}">{{ vid }} ({{ info.published_at[:10] }}) {% if info.tracked %}[tracked]{% else %}[untracked]{% endif %}</option>
       {% endfor %}
     </select>
     <button type="submit">Forecast</button>

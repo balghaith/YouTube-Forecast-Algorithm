@@ -155,18 +155,28 @@ def run_polling_cycle(push=True):
                         "status": "active"
                     }
 
-    for video_id, info in known_videos.items():
-        if info["status"] == "active":
-            if is_video_expired(info["published_at"]):
-                info["status"] = "expired"
+    active_video_ids = [vid for vid, info in known_videos.items() if info["status"] == "active"]
+    polled_ids = active_video_ids[:50]
+    skipped_ids = active_video_ids[50:]
+
+    for video_id in polled_ids:
+        info = known_videos[video_id]
+        if is_video_expired(info["published_at"]):
+            info["status"] = "expired"
+            info["tracked"] = False
+        else:
+            row = poll_video_stats(video_id, info["channel_id"])
+            if row is None:
+                print(f"Video {video_id} no longer available, marking as removed")
+                info["status"] = "removed"
+                info["tracked"] = False
             else:
-                row = poll_video_stats(video_id, info["channel_id"])
-                if row is None:
-                    print(f"Video {video_id} no longer available, marking as removed")
-                    info["status"] = "removed"
-                else:
-                    save_row(row)
-                    print("Saved:", row)
+                save_row(row)
+                print("Saved:", row)
+                info["tracked"] = True
+
+    for video_id in skipped_ids:
+        known_videos[video_id]["tracked"] = False
 
     save_json(KNOWN_VIDEOS_FILE, known_videos)
 

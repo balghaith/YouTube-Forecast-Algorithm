@@ -2,7 +2,13 @@
 <html>
 <head>
   <title>Forecast: {{ video_id }}</title>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <style>
+    table { border-collapse: collapse; }
+    th, td { border: 1px solid #ccc; padding: 6px 12px; text-align: right; }
+    th { background: #f0f0f0; }
+    .locked { background: #eef7ee; }
+    .pending { color: #999; }
+  </style>
 </head>
 <body>
   <p><a href="/">&larr; back</a></p>
@@ -15,93 +21,41 @@
   </p>
 
   <p><b id="r2-label">Loading...</b></p>
+  <p id="current-label"></p>
 
-  <button id="toggle-original" onclick="toggleOriginal()">Compare to original forecast</button>
-
-  <canvas id="chart" width="800" height="400"></canvas>
-
-  <table border="1" cellpadding="6">
-    <thead><tr><th>Horizon</th><th id="forecast-header">Forecasted</th></tr></thead>
+  <table>
+    <thead><tr><th>Day</th><th>Predicted</th><th>Actual</th></tr></thead>
     <tbody id="forecast-body"></tbody>
   </table>
 
   <script>
     let currentMetric = "{{ metric }}";
-    let chart = null;
-    let showOriginal = false;
-    let latestData = null;
 
     function setMetric(m) {
       currentMetric = m;
       loadData();
     }
 
-    function toggleOriginal() {
-      showOriginal = !showOriginal;
-      document.getElementById("toggle-original").textContent =
-        showOriginal ? "Hide original forecast" : "Compare to original forecast";
-      renderChart();
-    }
-
     async function loadData() {
       const res = await fetch(`/api/forecast/{{ video_id }}?metric=${currentMetric}`);
-      latestData = await res.json();
+      const data = await res.json();
 
       document.getElementById("r2-label").textContent =
-        `R² = ${latestData.r_squared} (${latestData.confidence} confidence)`;
+        `R² = ${data.r_squared} (${data.confidence} confidence)`;
+      document.getElementById("current-label").textContent =
+        `Currently at day ${data.current_day}: ${data.current_value} ${data.metric}`;
 
-      document.getElementById("forecast-header").textContent = `Forecasted ${latestData.metric}`;
       const body = document.getElementById("forecast-body");
       body.innerHTML = "";
-      for (const [horizon, value] of Object.entries(latestData.forecasts)) {
-        const row = document.createElement("tr");
-        row.innerHTML = `<td>${horizon}</td><td>${value}</td>`;
-        body.appendChild(row);
-      }
 
-      renderChart();
-    }
-
-    function renderChart() {
-      if (!latestData) return;
-
-      const actualPoints = latestData.actual.x.map((x, i) => ({x, y: latestData.actual.y[i]}));
-      const forecastPoints = latestData.forecast.x.map((x, i) => ({x, y: latestData.forecast.y[i]}));
-      const originalPoints = latestData.original.x.map((x, i) => ({x, y: latestData.original.y[i]}));
-
-      const datasets = [
-        { label: "Actual", data: actualPoints, borderColor: "#2c3e50", backgroundColor: "#2c3e50", showLine: true, pointRadius: 1 },
-        { label: "Forecast", data: forecastPoints, borderColor: "orange", borderDash: [6, 4], backgroundColor: "transparent", showLine: true, pointRadius: 0 },
-      ];
-
-      if (showOriginal) {
-        datasets.push({
-          label: "Original forecast",
-          data: originalPoints,
-          borderColor: "#999999",
-          borderDash: [2, 2],
-          backgroundColor: "transparent",
-          showLine: true,
-          pointRadius: 0,
-        });
-      }
-
-      if (chart) {
-        chart.data.datasets = datasets;
-        chart.options.scales.y.title.text = currentMetric;
-        chart.update();
-      } else {
-        const ctx = document.getElementById("chart").getContext("2d");
-        chart = new Chart(ctx, {
-          type: "scatter",
-          data: { datasets },
-          options: {
-            scales: {
-              x: { title: { display: true, text: "Days since publish" }, type: "linear" },
-              y: { title: { display: true, text: currentMetric } },
-            },
-          },
-        });
+      const days = Object.values(data.checkpoints).sort((a, b) => a.day - b.day);
+      for (const row of days) {
+        const tr = document.createElement("tr");
+        tr.className = row.locked ? "locked" : "";
+        const actualText = row.actual === null ? `<span class="pending">pending</span>` : row.actual;
+        const predictedText = row.predicted === null ? `<span class="pending">n/a</span>` : row.predicted;
+        tr.innerHTML = `<td>${row.day}</td><td>${predictedText}</td><td>${actualText}</td>`;
+        body.appendChild(tr);
       }
     }
 

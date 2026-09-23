@@ -2,21 +2,20 @@ import os
 import json
 import csv
 import subprocess
-from datetime import datetime, timezone
+from datetime import datetime
 
 import numpy as np
 
 from flask import Flask, render_template, request, jsonify
 
-from confidence import compute_r_squared, confidence_label
-from forecast import fit_logistic_regression, predict
+from forecast import fit_arima_model, predict_arima, compute_arima_r_squared, confidence_label
+from checkpoints import update_checkpoints_for_video
+from channel_stats import apply_channel_adjustment
 
 app = Flask(__name__)
 
 DATA_DIR = "data"
 KNOWN_VIDEOS_FILE = "known_videos.json"
-ORIGINAL_FORECASTS_FILE = "original_forecasts.json"
-HORIZONS_DAYS = [7, 14, 30]
 
 
 def sync_data():
@@ -52,31 +51,6 @@ def hours_since_publish(timestamp_str, published_at_str):
     return (t - p).total_seconds() / 3600
 
 
-def load_original_forecasts():
-    if not os.path.isfile(ORIGINAL_FORECASTS_FILE):
-        return {}
-    with open(ORIGINAL_FORECASTS_FILE, "r") as f:
-        return json.load(f)
-
-
-def save_original_forecast_snapshot(video_id, metric, L, k, x0):
-    data = load_original_forecasts()
-    data.setdefault(video_id, {})
-    if metric in data[video_id]:
-        return
-    data[video_id][metric] = {
-        "L": L, "k": k, "x0": x0,
-        "recorded_at": datetime.now(timezone.utc).isoformat()
-    }
-    with open(ORIGINAL_FORECASTS_FILE, "w") as f:
-        json.dump(data, f)
-    if os.environ.get("RENDER"):
-        repo_dir = os.path.dirname(os.path.abspath(__file__))
-        subprocess.run(["git", "add", ORIGINAL_FORECASTS_FILE], cwd=repo_dir)
-        subprocess.run(["git", "commit", "-m", f"snapshot original forecast for {video_id}/{metric}"], cwd=repo_dir)
-        subprocess.run(["git", "push", "origin", "main"], cwd=repo_dir)
-
-
 @app.route("/")
 def index():
     sync_data()
@@ -106,43 +80,53 @@ def api_forecast(video_id):
     rows = load_video_rows(channel_id, video_id)
     x = [hours_since_publish(r["timestamp"], published_at) for r in rows]
     y = [float(r[metric]) for r in rows]
-    x_days = [h / 24 for h in x]
 
-    L, k, x0 = fit_logistic_regression(x_days, y)
-    r_squared = compute_r_squared(x_days, y, L, k, x0)
-    confidence = confidence_label(r_squared)
+    try:
+        fitted, last_hour_fit, y_grid = fit_arima_model(x, y)
+        r_squared = compute_arima_r_squared(fitted, y_grid)
+        confidence = confidence_label(r_squared)
+    except Exception:
+        r_squared = None
+        confidence = confidence_label(None)
 
-    forecasts = {
-        f"day_{d}": round(predict(L, k, x0, d * 24), 1) for d in HORIZONS_DAYS
-    }
+    last_hour = x[-1]
+    last_actual_value = y[-1]
 
-    last_day = max(x_days)
-    offset = y[-1] - predict(L, k, x0, x[-1])
-    forecast_x = list(np.linspace(last_day, 30, 50))
-    forecast_y = [predict(L, k, x0, d * 24) + offset for d in forecast_x]
+    first_hour = x[0]
+    first_value = y[0]
 
-    originals = load_original_forecasts()
-    existing = originals.get(video_id, {}).get(metric)
-    if existing is None:
-        save_original_forecast_snapshot(video_id, metric, L, k, x0)
-        orig_L, orig_k, orig_x0 = L, k, x0
+    if last_hour > first_hour:
+        overall_rate = (last_actual_value - first_value) / (last_hour - first_hour)
     else:
-        orig_L, orig_k, orig_x0 = existing["L"], existing["k"], existing["x0"]
+        overall_rate = 0.0
 
-    original_x = list(np.linspace(0.05, 30, 100))
-    original_y = [predict(orig_L, orig_k, orig_x0, d * 24) for d in original_x]
+    recent_x = [xi for xi in x if xi >= x[-1] - 24]
+    recent_y = y[-len(recent_x):]
+
+    if len(recent_x) >= 2 and recent_x[-1] > recent_x[0]:
+        recent_rate = (recent_y[-1] - recent_y[0]) / (recent_x[-1] - recent_x[0])
+    else:
+        recent_rate = overall_rate
+
+    rate_per_hour = 0.2 * overall_rate + 0.8 * recent_rate
+
+    def predict_fn(target_hour):
+        hours_ahead = target_hour - last_hour
+        value = last_actual_value + rate_per_hour * hours_ahead
+        return value
+
+    checkpoint_state = update_checkpoints_for_video(video_id, metric, x, y, predict_fn)
 
     return jsonify({
         "video_id": video_id,
         "metric": metric,
         "r_squared": round(r_squared, 3) if r_squared is not None else None,
         "confidence": confidence,
-        "forecasts": forecasts,
-        "actual": {"x": x_days, "y": y},
-        "forecast": {"x": forecast_x, "y": forecast_y},
-        "original": {"x": original_x, "y": original_y},
+        "checkpoints": checkpoint_state,
+        "current_value": round(last_actual_value),
+        "current_day": round(x[-1] / 24, 2),
     })
 
 
 if __name__ == "__main__":
-    app.run(debug=True, port=5000, ssl_context='adhoc')
+    app.run(debug=True, port=5000)

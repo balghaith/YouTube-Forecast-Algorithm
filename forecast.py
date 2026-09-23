@@ -2,9 +2,8 @@ import os
 import csv
 import json
 import numpy as np
-from scipy.optimize import curve_fit
 from datetime import datetime
-from confidence import compute_r_squared, confidence_label
+from statsmodels.tsa.arima.model import ARIMA
 
 DATA_DIR = "data"
 KNOWN_VIDEOS_FILE = "known_videos.json"
@@ -37,36 +36,98 @@ def hours_since_publish(timestamp_str, published_at_str):
     return delta.total_seconds() / 3600
 
 
-def logistic(x, L, k, x0):
-    return L / (1 + np.exp(-k * (x - x0)))
+def despike_series(y):
+    y = list(y)
+    n = len(y)
+    cleaned = y[:]
+    for i in range(1, n - 1):
+        prev_v = cleaned[i - 1]
+        curr_v = y[i]
+        next_v = y[i + 1]
+        moved_away = abs(curr_v - prev_v) > max(5, 0.02 * prev_v)
+        reverted = abs(next_v - prev_v) < max(5, 0.01 * prev_v)
+        if moved_away and reverted:
+            cleaned[i] = prev_v
+    return np.array(cleaned, dtype=float)
 
 
-def fit_logistic_regression(x, y):
-    x_arr = np.array(x, dtype=float)
-    y_arr = np.maximum.accumulate(np.array(y, dtype=float))
-
-    L_guess = y_arr[-1] * 3
-    k_guess = 0.1
-    x0_guess = x_arr[len(x_arr) // 2]
-
-    bounds = ([y_arr[-1], 0.0001, -1000], [y_arr[-1] * 100, 10, 10000])
-
-    try:
-        params, _ = curve_fit(
-            logistic, x_arr, y_arr,
-            p0=[L_guess, k_guess, x0_guess],
-            bounds=bounds,
-            maxfev=10000
-        )
-        return params[0], params[1], params[2]
-    except RuntimeError:
-        return y_arr[-1] * 2, 0.05, x_arr[-1]
+def prepare_hourly_series(x_hours, y):
+    x_arr = np.array(x_hours, dtype=float)
+    y_arr = despike_series(y)
+    last_hour = x_arr[-1]
+    grid = np.arange(0, int(np.floor(last_hour)) + 1)
+    y_grid = np.interp(grid, x_arr, y_arr)
+    return grid, y_grid
 
 
-def predict(L, k, x0, hours):
-    days = hours / 24
-    value = logistic(days, L, k, x0)
-    return max(0.0, value)
+def fit_arima_model(x_hours, y):
+    grid, y_grid = prepare_hourly_series(x_hours, y)
+    if len(y_grid) < 5:
+        raise ValueError("Not enough data points for ARIMA fit")
+    model = ARIMA(y_grid, order=(2, 1, 1))
+    fitted = model.fit()
+    return fitted, float(grid[-1]), y_grid
+
+
+def predict_arima(fitted, last_hour, target_hours):
+    target_hours = np.array(target_hours, dtype=float)
+    max_target = float(np.max(target_hours))
+    steps = int(np.ceil(max_target - last_hour)) + 1
+    steps = max(steps, 1)
+
+    forecast_values = np.array(fitted.forecast(steps=steps))
+    forecast_hours = last_hour + np.arange(1, steps + 1)
+
+    known_hours = np.concatenate(([last_hour], forecast_hours))
+    known_values = np.concatenate(([fitted.data.endog[-1]], forecast_values))
+
+    predicted = np.interp(target_hours, known_hours, known_values)
+    return np.maximum(predicted, 0.0)
+
+
+def predict_arima_with_interval(fitted, last_hour, target_hours, alpha=0.2):
+    target_hours = np.array(target_hours, dtype=float)
+    max_target = float(np.max(target_hours))
+    steps = int(np.ceil(max_target - last_hour)) + 1
+    steps = max(steps, 1)
+
+    forecast_result = fitted.get_forecast(steps=steps)
+    forecast_values = np.array(forecast_result.predicted_mean)
+    conf_int = np.array(forecast_result.conf_int(alpha=alpha))
+    lower = conf_int[:, 0]
+    upper = conf_int[:, 1]
+
+    forecast_hours = last_hour + np.arange(1, steps + 1)
+    known_hours = np.concatenate(([last_hour], forecast_hours))
+    known_values = np.concatenate(([fitted.data.endog[-1]], forecast_values))
+    known_lower = np.concatenate(([fitted.data.endog[-1]], lower))
+    known_upper = np.concatenate(([fitted.data.endog[-1]], upper))
+
+    predicted = np.maximum(np.interp(target_hours, known_hours, known_values), 0.0)
+    predicted_lower = np.maximum(np.interp(target_hours, known_hours, known_lower), 0.0)
+    predicted_upper = np.maximum(np.interp(target_hours, known_hours, known_upper), 0.0)
+
+    return predicted, predicted_lower, predicted_upper
+
+
+def compute_arima_r_squared(fitted, y_grid):
+    residuals = np.array(fitted.resid)
+    ss_res = np.sum(residuals ** 2)
+    ss_tot = np.sum((y_grid - np.mean(y_grid)) ** 2)
+    if ss_tot == 0:
+        return None
+    return 1 - (ss_res / ss_tot)
+
+
+def confidence_label(r_squared):
+    if r_squared is None:
+        return "Insufficient data"
+    elif r_squared < 0.33:
+        return "Low"
+    elif r_squared < 0.66:
+        return "Moderate"
+    else:
+        return "High"
 
 
 def forecast_video(channel_id, video_id, published_at):
@@ -75,17 +136,19 @@ def forecast_video(channel_id, video_id, published_at):
         return None
 
     x = [hours_since_publish(row["timestamp"], published_at) for row in rows]
-    x_days = [h / 24 for h in x]
 
     results = {}
     for metric in METRICS:
         y = [float(row[metric]) for row in rows]
-        L, k, x0 = fit_logistic_regression(x_days, y)
-        r_squared = compute_r_squared(x_days, y, L, k, x0)
+        fitted, last_hour, y_grid = fit_arima_model(x, y)
+        r_squared = compute_arima_r_squared(fitted, y_grid)
+
+        target_hours = [days * 24 for days in HORIZONS_DAYS]
+        predicted = predict_arima(fitted, last_hour, target_hours)
 
         forecasts = {
-            f"day_{days}": round(predict(L, k, x0, days * 24), 1)
-            for days in HORIZONS_DAYS
+            f"day_{days}": round(float(val), 1)
+            for days, val in zip(HORIZONS_DAYS, predicted)
         }
 
         results[metric] = {
