@@ -2,6 +2,7 @@ import os
 import csv
 import json
 import subprocess
+import shutil
 from datetime import datetime, timezone
 from dotenv import load_dotenv
 from googleapiclient.discovery import build
@@ -13,6 +14,7 @@ youtube = build("youtube", "v3", developerKey=api_key)
 DATA_DIR = "data"
 TRACKED_CHANNELS_FILE = "tracked_channels.json"
 KNOWN_VIDEOS_FILE = "known_videos.json"
+CHECKPOINTS_FILE = "forecast_checkpoints.json"
 MAX_TRACKED_CHANNELS = 15
 
 
@@ -26,6 +28,36 @@ def load_json(filename, default):
 def save_json(filename, data):
     with open(filename, "w") as f:
         json.dump(data, f)
+
+
+def cleanup_untracked_channels():
+    tracked_channels = load_json(TRACKED_CHANNELS_FILE, [])
+    tracked_ids = {c["channel_id"] for c in tracked_channels}
+
+    known_videos = load_json(KNOWN_VIDEOS_FILE, {})
+    checkpoints = load_json(CHECKPOINTS_FILE, {})
+
+    removed_video_ids = [
+        vid for vid, info in known_videos.items()
+        if info["channel_id"] not in tracked_ids
+    ]
+
+    for video_id in removed_video_ids:
+        del known_videos[video_id]
+        if video_id in checkpoints:
+            del checkpoints[video_id]
+
+    if removed_video_ids:
+        save_json(KNOWN_VIDEOS_FILE, known_videos)
+        save_json(CHECKPOINTS_FILE, checkpoints)
+        print(f"Removed {len(removed_video_ids)} video entries from untracked channels")
+
+    if os.path.isdir(DATA_DIR):
+        for entry in os.listdir(DATA_DIR):
+            channel_folder = os.path.join(DATA_DIR, entry)
+            if os.path.isdir(channel_folder) and entry not in tracked_ids:
+                shutil.rmtree(channel_folder)
+                print(f"Deleted entire folder for untracked channel {entry}")
 
 
 def uploads_id(channel_id):
@@ -109,7 +141,7 @@ def is_video_expired(published_at_str, max_days=30):
 def push_to_github():
     subprocess.run(["git", "config", "--global", "user.email", "balghaith05@gmail.com"])
     subprocess.run(["git", "config", "--global", "user.name", "balghaith"])
-    subprocess.run(["git", "add", DATA_DIR, TRACKED_CHANNELS_FILE, KNOWN_VIDEOS_FILE])
+    subprocess.run(["git", "add", DATA_DIR, TRACKED_CHANNELS_FILE, KNOWN_VIDEOS_FILE, CHECKPOINTS_FILE])
     subprocess.run(["git", "commit", "-m", "Update tracked data"])
 
     token = os.getenv("GITHUB_TOKEN")
@@ -131,6 +163,8 @@ def push_to_github():
 
 
 def run_polling_cycle(push=True):
+    cleanup_untracked_channels()
+
     tracked_channels = load_json(TRACKED_CHANNELS_FILE, [])
 
     if len(tracked_channels) > MAX_TRACKED_CHANNELS:

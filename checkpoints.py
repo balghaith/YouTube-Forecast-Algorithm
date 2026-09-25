@@ -76,11 +76,7 @@ def update_checkpoints_for_video(video_id, metric, x_hours, y, predict_fn):
 
         if block_locked:
             actual_value = round(interpolate_actual_at_hour(x_hours, y, horizon_hours)) if day_passed else None
-
-            if already_exists and vid_checkpoints[key].get("predicted") is not None:
-                predicted = vid_checkpoints[key]["predicted"]
-            else:
-                predicted = round(predict_fn(horizon_hours))
+            predicted = round(predict_fn(horizon_hours))
 
             vid_checkpoints[key] = {
                 "day": days,
