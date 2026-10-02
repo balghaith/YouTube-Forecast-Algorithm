@@ -153,7 +153,7 @@ def push_to_github():
     print("FETCH:", fetch_result.returncode, fetch_result.stderr)
 
     merge_result = subprocess.run(
-        ["git", "merge", "-X", "union", "origin/main", "--no-edit"],
+        ["git", "merge", "origin/main", "--no-edit"],
         capture_output=True, text=True
     )
     print("MERGE:", merge_result.returncode, merge_result.stdout, merge_result.stderr)
