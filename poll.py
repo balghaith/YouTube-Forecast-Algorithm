@@ -3,6 +3,7 @@ import csv
 import json
 import subprocess
 import shutil
+import glob
 from datetime import datetime, timezone
 from dotenv import load_dotenv
 from googleapiclient.discovery import build
@@ -157,6 +158,35 @@ def save_row(row):
         })
 
 
+def sort_all_data_files():
+    for channel_folder in glob.glob(os.path.join(DATA_DIR, "*")):
+        if not os.path.isdir(channel_folder):
+            continue
+        for video_file in glob.glob(os.path.join(channel_folder, "*.csv")):
+            with open(video_file, "r", newline="") as f:
+                reader = csv.DictReader(f)
+                rows = list(reader)
+                fieldnames = reader.fieldnames
+
+            if not rows:
+                continue
+
+            seen = set()
+            unique_rows = []
+            for row in rows:
+                key = tuple(row.items())
+                if key not in seen:
+                    seen.add(key)
+                    unique_rows.append(row)
+
+            unique_rows.sort(key=lambda r: r["timestamp"])
+
+            with open(video_file, "w", newline="") as f:
+                writer = csv.DictWriter(f, fieldnames=fieldnames)
+                writer.writeheader()
+                writer.writerows(unique_rows)
+
+
 def is_video_expired(published_at_str, max_days=30):
     published_at = datetime.fromisoformat(published_at_str.replace("Z", "+00:00"))
     age_days = (datetime.now(timezone.utc) - published_at).days
@@ -242,6 +272,8 @@ def run_polling_cycle(push=True):
         known_videos[video_id]["tracked"] = False
 
     save_json(KNOWN_VIDEOS_FILE, known_videos)
+
+    sort_all_data_files()
 
     if push:
         push_to_github()
