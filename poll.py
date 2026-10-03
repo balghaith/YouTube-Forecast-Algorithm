@@ -31,6 +31,30 @@ def save_json(filename, data):
         json.dump(data, f)
 
 
+def cleanup_excluded_videos():
+    known_videos = load_json(KNOWN_VIDEOS_FILE, {})
+    checkpoints = load_json(CHECKPOINTS_FILE, {})
+    excluded_videos = set(load_json(EXCLUDED_VIDEOS_FILE, []))
+
+    removed_video_ids = [vid for vid in known_videos if vid in excluded_videos]
+
+    for video_id in removed_video_ids:
+        channel_id = known_videos[video_id]["channel_id"]
+        del known_videos[video_id]
+        if video_id in checkpoints:
+            del checkpoints[video_id]
+
+        video_file = os.path.join(DATA_DIR, channel_id, f"{video_id}.csv")
+        if os.path.isfile(video_file):
+            os.remove(video_file)
+            print(f"Deleted CSV for excluded video {video_id}")
+
+    if removed_video_ids:
+        save_json(KNOWN_VIDEOS_FILE, known_videos)
+        save_json(CHECKPOINTS_FILE, checkpoints)
+        print(f"Removed {len(removed_video_ids)} excluded video entries from known_videos")
+
+
 def cleanup_untracked_channels():
     tracked_channels = load_json(TRACKED_CHANNELS_FILE, [])
     tracked_ids = {c["channel_id"] for c in tracked_channels}
@@ -167,6 +191,7 @@ def push_to_github():
 
 def run_polling_cycle(push=True):
     cleanup_untracked_channels()
+    cleanup_excluded_videos()
 
     tracked_channels = load_json(TRACKED_CHANNELS_FILE, [])
 
