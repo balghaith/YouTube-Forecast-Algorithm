@@ -15,6 +15,7 @@ DATA_DIR = "data"
 TRACKED_CHANNELS_FILE = "tracked_channels.json"
 KNOWN_VIDEOS_FILE = "known_videos.json"
 CHECKPOINTS_FILE = "forecast_checkpoints.json"
+EXCLUDED_VIDEOS_FILE = "excluded_videos.json"
 MAX_TRACKED_CHANNELS = 15
 
 
@@ -173,6 +174,7 @@ def run_polling_cycle(push=True):
         tracked_channels = tracked_channels[:MAX_TRACKED_CHANNELS]
 
     known_videos = load_json(KNOWN_VIDEOS_FILE, {})
+    excluded_videos = set(load_json(EXCLUDED_VIDEOS_FILE, []))
 
     for channel in tracked_channels:
         channel_added_at = channel.get("added_at")
@@ -180,7 +182,7 @@ def run_polling_cycle(push=True):
         latest = latest_videos(playlist_id, max_results=50)
 
         for video in latest:
-            if video["video_id"] not in known_videos:
+            if video["video_id"] not in known_videos and video["video_id"] not in excluded_videos:
                 published_at = datetime.fromisoformat(video["published_at"].replace("Z", "+00:00"))
                 added_at = datetime.fromisoformat(channel_added_at.replace("Z", "+00:00"))
 
