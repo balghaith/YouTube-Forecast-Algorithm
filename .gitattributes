@@ -1,1 +1,4 @@
 data/**/*.csv merge=union
+known_videos.json merge=ours
+forecast_checkpoints.json merge=ours
+tracked_channels.json merge=ours

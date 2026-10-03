@@ -152,6 +152,8 @@ def push_to_github():
     fetch_result = subprocess.run(["git", "fetch", "origin", "main"], capture_output=True, text=True)
     print("FETCH:", fetch_result.returncode, fetch_result.stderr)
 
+    subprocess.run(["git", "config", "merge.ours.driver", "true"])
+
     merge_result = subprocess.run(
         ["git", "merge", "origin/main", "--no-edit"],
         capture_output=True, text=True
