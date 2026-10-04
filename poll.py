@@ -215,6 +215,13 @@ def push_to_github():
     )
     print("MERGE:", merge_result.returncode, merge_result.stdout, merge_result.stderr)
 
+    sort_all_data_files()
+    amend_result = subprocess.run(
+        ["git", "commit", "-a", "--amend", "--no-edit"],
+        capture_output=True, text=True
+    )
+    print("RESORT COMMIT:", amend_result.returncode, amend_result.stdout, amend_result.stderr)
+
     push_result = subprocess.run(["git", "push", "origin", "HEAD:main"], capture_output=True, text=True)
     print("PUSH:", push_result.returncode, push_result.stdout, push_result.stderr)
 
