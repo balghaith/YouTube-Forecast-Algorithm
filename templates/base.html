@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{% block title %}YT Forecast{% endblock %}</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0b1016;
+    --panel: #121923;
+    --panel-raised: #17202c;
+    --border: #232e3c;
+    --text: #e4e9ee;
+    --text-dim: #8d98a6;
+    --text-faint: #5b6673;
+    --predicted: #e0a23d;
+    --predicted-bg: rgba(224, 162, 61, 0.12);
+    --actual: #4fae8b;
+    --actual-bg: rgba(79, 174, 139, 0.12);
+    --removed: #c97066;
+    --removed-bg: rgba(201, 112, 102, 0.12);
+    --link: #5b9bd1;
+    --radius: 6px;
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: "IBM Plex Sans", -apple-system, sans-serif;
+    font-size: 15px;
+    line-height: 1.55;
+  }
+
+  .mono {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-variant-numeric: tabular-nums;
+  }
+
+  a { color: var(--link); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  a:focus-visible, button:focus-visible, input:focus-visible {
+    outline: 2px solid var(--link);
+    outline-offset: 2px;
+  }
+
+  .topbar {
+    border-bottom: 1px solid var(--border);
+    padding: 16px 28px;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 16px;
+  }
+  .topbar .mark {
+    font-weight: 600;
+    font-size: 16px;
+    letter-spacing: -0.01em;
+    color: var(--text);
+  }
+  .topbar .mark a { color: inherit; }
+  .topbar .crumb { color: var(--text-dim); font-size: 14px; }
+
+  .shell {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 36px 28px 80px;
+  }
+
+  h1 {
+    font-size: 24px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    margin: 0 0 6px;
+  }
+  .lede { color: var(--text-dim); margin: 0 0 32px; font-size: 14.5px; }
+
+  .section-label {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-dim);
+    margin: 0 0 14px;
+  }
+
+  /* instrument-style stat tiles */
+  .stat-row {
+    display: flex;
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    margin-bottom: 36px;
+  }
+  .stat-tile {
+    flex: 1;
+    background: var(--panel);
+    padding: 16px 20px;
+  }
+  .stat-tile .value {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 26px;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+  }
+  .stat-tile .label {
+    color: var(--text-dim);
+    font-size: 13px;
+    margin-top: 2px;
+  }
+
+  /* list rows (channels, videos) */
+  .list {
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+  .list-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 14px 18px;
+    background: var(--panel);
+    border-bottom: 1px solid var(--border);
+    color: var(--text);
+  }
+  .list-row:last-child { border-bottom: none; }
+  a.list-row { display: flex; }
+  a.list-row:hover { background: var(--panel-raised); text-decoration: none; }
+  .list-row .primary { font-weight: 500; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .list-row .secondary { color: var(--text-dim); font-size: 13px; margin-top: 2px; }
+  .list-row .right { flex-shrink: 0; display: flex; align-items: center; gap: 10px; }
+  .chevron { color: var(--text-faint); font-size: 15px; }
+
+  .badge {
+    font-size: 12px;
+    font-weight: 500;
+    padding: 3px 9px;
+    border-radius: 999px;
+    white-space: nowrap;
+  }
+  .badge.active { background: var(--actual-bg); color: var(--actual); }
+  .badge.expired { background: var(--predicted-bg); color: var(--predicted); }
+  .badge.removed { background: var(--removed-bg); color: var(--removed); }
+
+  .empty {
+    color: var(--text-dim);
+    padding: 28px 18px;
+    text-align: center;
+    border: 1px dashed var(--border);
+    border-radius: var(--radius);
+    font-size: 14px;
+  }
+</style>
+{% block head %}{% endblock %}
+</head>
+<body>
+  <div class="topbar">
+    <span class="mark"><a href="/">YT Forecast</a></span>
+    {% block crumb %}{% endblock %}
+  </div>
+  <div class="shell">
+    {% block content %}{% endblock %}
+  </div>
+  {% block scripts %}{% endblock %}
+</body>
+</html>
