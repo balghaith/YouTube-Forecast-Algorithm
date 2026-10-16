@@ -46,7 +46,6 @@ def push_data():
         cwd=repo_dir, capture_output=True, text=True
     )
     if commit_result.returncode != 0:
-        # Nothing to commit (e.g. channel already existed) is not an error.
         return
 
     subprocess.run(["git", "remote", "remove", "origin"], cwd=repo_dir)
