@@ -32,6 +32,26 @@ def latest_videos(playlist_id, max_results=5):
         })
     return videos
 
+
+def search_channels(query, max_results=8):
+    request = youtube.search().list(
+        part="snippet",
+        q=query,
+        type="channel",
+        maxResults=max_results
+    )
+    response = request.execute()
+    channels = []
+    for item in response.get("items", []):
+        snippet = item["snippet"]
+        channels.append({
+            "channel_id": item["id"]["channelId"],
+            "title": snippet["title"],
+            "description": snippet.get("description", ""),
+            "thumbnail": snippet["thumbnails"]["default"]["url"]
+        })
+    return channels
+
 if __name__ == "__main__":
     channel_id = "UCIEv3lZ_tNXHzL3ox-_uUGQ"
     playlist_id = uploads_id(channel_id)
