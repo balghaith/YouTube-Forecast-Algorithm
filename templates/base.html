@@ -9,28 +9,35 @@
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #0b1016;
-    --panel: #121923;
-    --panel-raised: #17202c;
-    --border: #232e3c;
-    --text: #e4e9ee;
-    --text-dim: #8d98a6;
-    --text-faint: #5b6673;
+    --bg: #070505;
+    --panel: rgba(255, 255, 255, 0.035);
+    --panel-raised: rgba(255, 255, 255, 0.065);
+    --border: rgba(237, 90, 102, 0.16);
+    --text: #f3eceb;
+    --text-dim: #a8898c;
+    --text-faint: #6e5254;
     --predicted: #e0a23d;
     --predicted-bg: rgba(224, 162, 61, 0.12);
     --actual: #4fae8b;
     --actual-bg: rgba(79, 174, 139, 0.12);
-    --removed: #c97066;
-    --removed-bg: rgba(201, 112, 102, 0.12);
-    --link: #5b9bd1;
-    --radius: 6px;
+    --removed: #8f8f98;
+    --removed-bg: rgba(143, 143, 152, 0.12);
+    --accent: #e5394f;
+    --accent-bright: #ff5b6e;
+    --link: #ff6b78;
+    --radius: 8px;
   }
 
   * { box-sizing: border-box; }
 
   html, body {
     margin: 0;
-    background: var(--bg);
+    min-height: 100%;
+    background:
+      radial-gradient(ellipse 1100px 600px at 50% -10%, rgba(197, 32, 48, 0.32), transparent 60%),
+      radial-gradient(ellipse 800px 500px at 110% 10%, rgba(140, 16, 28, 0.18), transparent 55%),
+      var(--bg);
+    background-attachment: fixed;
     color: var(--text);
     font-family: "IBM Plex Sans", -apple-system, sans-serif;
     font-size: 15px;
@@ -56,6 +63,7 @@
     align-items: baseline;
     justify-content: space-between;
     gap: 16px;
+    backdrop-filter: blur(6px);
   }
   .topbar .mark {
     font-weight: 600;
@@ -65,6 +73,7 @@
   }
   .topbar .mark a { color: inherit; }
   .topbar .crumb { color: var(--text-dim); font-size: 14px; }
+  .topbar .crumb a { color: var(--link); }
 
   .shell {
     max-width: 880px;
@@ -135,6 +144,24 @@
   .list-row .secondary { color: var(--text-dim); font-size: 13px; margin-top: 2px; }
   .list-row .right { flex-shrink: 0; display: flex; align-items: center; gap: 10px; }
   .chevron { color: var(--text-faint); font-size: 15px; }
+
+  .avatar {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    object-fit: cover;
+    border: 1px solid var(--border);
+    background: var(--panel-raised);
+  }
+  .avatar.placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--text-dim);
+  }
 
   .badge {
     font-size: 12px;
