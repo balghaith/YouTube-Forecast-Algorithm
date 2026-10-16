@@ -252,7 +252,8 @@ def run_polling_cycle(push=True):
                     known_videos[video["video_id"]] = {
                         "channel_id": channel["channel_id"],
                         "published_at": video["published_at"],
-                        "status": "active"
+                        "status": "active",
+                        "title": video.get("title", "")
                     }
 
     active_video_ids = [vid for vid, info in known_videos.items() if info["status"] == "active"]
