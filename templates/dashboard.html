@@ -5,6 +5,17 @@
   <h1>Tracked channels</h1>
   <p class="lede">Search for a channel to start tracking it. New uploads are picked up automatically once polling runs.</p>
 
+  <div style="display:flex; gap:8px; margin-bottom:8px;">
+    <input id="search-input" type="text" placeholder="Search by channel name"
+      style="flex:1; padding:13px 16px; border-radius:8px; border:1px solid var(--border); background:var(--panel); color:var(--text); font-family:inherit; font-size:15px;">
+    <button id="search-btn"
+      style="padding:13px 22px; border-radius:8px; border:1px solid var(--accent); background:var(--accent); color:#fff; font-family:inherit; font-size:14.5px; font-weight:500; cursor:pointer;">
+      Search
+    </button>
+  </div>
+  <div id="search-status" style="font-size:13px; color:var(--text-dim); min-height:18px; margin-bottom:10px;"></div>
+  <div id="search-results" style="display:flex; flex-direction:column; gap:1px; margin-bottom:28px;"></div>
+
   <div class="stat-row">
     <div class="stat-tile">
       <div class="value mono">{{ channels|length }}</div>
@@ -16,26 +27,21 @@
     </div>
   </div>
 
-  <p class="section-label">Add a channel</p>
-  <div style="display:flex; gap:8px; margin-bottom:8px;">
-    <input id="search-input" type="text" placeholder="Search by channel name"
-      style="flex:1; padding:11px 14px; border-radius:6px; border:1px solid var(--border); background:var(--panel); color:var(--text); font-family:inherit; font-size:14.5px;">
-    <button id="search-btn"
-      style="padding:11px 18px; border-radius:6px; border:1px solid var(--border); background:var(--panel-raised); color:var(--text); font-family:inherit; font-size:14.5px; cursor:pointer;">
-      Search
-    </button>
-  </div>
-  <div id="search-status" style="font-size:13px; color:var(--text-dim); min-height:18px; margin-bottom:10px;"></div>
-  <div id="search-results" style="display:flex; flex-direction:column; gap:1px; margin-bottom:36px;"></div>
-
   <p class="section-label">Channels</p>
   {% if channels %}
     <div class="list">
       {% for c in channels %}
         <a class="list-row" href="/channel/{{ c.channel_id }}">
-          <div>
-            <div class="primary">{{ c.title }}</div>
-            <div class="secondary">{{ c.video_count }} video{{ 's' if c.video_count != 1 else '' }} tracked</div>
+          <div style="display:flex; align-items:center; gap:12px; min-width:0;">
+            {% if c.thumbnail %}
+              <img class="avatar" src="{{ c.thumbnail }}" alt="">
+            {% else %}
+              <div class="avatar placeholder">{{ c.title[:1]|upper }}</div>
+            {% endif %}
+            <div style="min-width:0;">
+              <div class="primary">{{ c.title }}</div>
+              <div class="secondary">{{ c.video_count }} video{{ 's' if c.video_count != 1 else '' }} tracked</div>
+            </div>
           </div>
           <div class="right"><span class="chevron">&rsaquo;</span></div>
         </a>
@@ -57,8 +63,8 @@
     border: 1px solid var(--border);
   }
   .result-row + .result-row { border-top: none; }
-  .result-row:first-child { border-radius: 6px 6px 0 0; }
-  .result-row:last-child { border-radius: 0 0 6px 6px; }
+  .result-row:first-child { border-radius: 8px 8px 0 0; }
+  .result-row:last-child { border-radius: 0 0 8px 8px; }
   .result-row img { width: 32px; height: 32px; border-radius: 50%; flex-shrink: 0; }
   .result-row .info { flex: 1; min-width: 0; }
   .result-row .title { font-weight: 500; font-size: 14.5px; }
@@ -70,15 +76,15 @@
     flex-shrink: 0;
     padding: 7px 13px;
     border-radius: 5px;
-    border: 1px solid var(--link);
+    border: 1px solid var(--accent);
     background: transparent;
-    color: var(--link);
+    color: var(--accent-bright);
     font-family: inherit;
     font-size: 13.5px;
     cursor: pointer;
   }
-  .result-row button:hover { background: var(--link); color: var(--bg); }
-  .result-row button:disabled { opacity: 0.5; cursor: default; background: transparent; color: var(--link); }
+  .result-row button:hover { background: var(--accent); color: #fff; }
+  .result-row button:disabled { opacity: 0.5; cursor: default; background: transparent; color: var(--accent-bright); }
 </style>
 {% endblock %}
 
@@ -116,7 +122,7 @@
             <div class="title">${ch.title}</div>
             <div class="desc">${ch.description || ""}</div>
           </div>
-          <button data-id="${ch.channel_id}" data-title="${ch.title.replace(/"/g, '&quot;')}">Track</button>
+          <button data-id="${ch.channel_id}" data-title="${ch.title.replace(/"/g, '&quot;')}" data-thumb="${ch.thumbnail}">Track</button>
         `;
         resultsEl.appendChild(row);
       }
@@ -137,7 +143,11 @@
       const res = await fetch("/api/channels/add", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ channel_id: button.dataset.id, title: button.dataset.title })
+        body: JSON.stringify({
+          channel_id: button.dataset.id,
+          title: button.dataset.title,
+          thumbnail: button.dataset.thumb
+        })
       });
       const data = await res.json();
 
