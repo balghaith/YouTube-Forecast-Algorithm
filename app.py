@@ -33,9 +33,6 @@ def sync_data():
 
 
 def push_data():
-    """Commit and push any local changes (e.g. a newly added channel) back to
-    GitHub, the same way poll.py does, so the change actually sticks instead
-    of being wiped by the next sync_data() hard reset."""
     repo_dir = os.path.dirname(os.path.abspath(__file__))
     token = os.environ.get("GITHUB_TOKEN")
     remote_url = f"https://{token}@github.com/balghaith/YouTube-Forecast-Algorithm.git"
@@ -115,7 +112,8 @@ def dashboard():
             {
                 "video_id": vid,
                 "title": info.get("title") or vid,
-                "published_at": info.get("published_at", "")
+                "published_at": info.get("published_at", ""),
+                "tracked": info.get("tracked", False)
             }
             for vid, info in known_videos.items()
             if info.get("channel_id") == channel_id and info.get("status") == "active"
@@ -128,7 +126,7 @@ def dashboard():
             "thumbnail": channel.get("thumbnail", ""),
             "added_at": channel.get("added_at", ""),
             "video_count": len(channel_videos),
-            "recent_videos": channel_videos[:3]
+            "recent_videos": channel_videos[:5]
         })
 
     channels_with_counts.sort(key=lambda c: c["title"].lower())

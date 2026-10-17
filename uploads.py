@@ -48,8 +48,22 @@ def search_channels(query, max_results=8):
             "channel_id": item["id"]["channelId"],
             "title": snippet["title"],
             "description": snippet.get("description", ""),
-            "thumbnail": snippet["thumbnails"]["default"]["url"]
+            "thumbnail": snippet["thumbnails"]["default"]["url"],
+            "subscriber_count": None
         })
+
+    if channels:
+        ids = ",".join(c["channel_id"] for c in channels)
+        stats_request = youtube.channels().list(part="statistics", id=ids)
+        stats_response = stats_request.execute()
+        stats_by_id = {}
+        for item in stats_response.get("items", []):
+            stats = item["statistics"]
+            if not stats.get("hiddenSubscriberCount"):
+                stats_by_id[item["id"]] = int(stats.get("subscriberCount", 0))
+        for c in channels:
+            c["subscriber_count"] = stats_by_id.get(c["channel_id"])
+
     return channels
 
 if __name__ == "__main__":
