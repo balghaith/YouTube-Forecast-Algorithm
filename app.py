@@ -21,6 +21,8 @@ TRACKED_CHANNELS_FILE = "tracked_channels.json"
 
 
 def sync_data():
+    if os.environ.get("SKIP_SYNC"):
+        return
     repo_dir = os.path.dirname(os.path.abspath(__file__))
     token = os.environ.get("GITHUB_TOKEN")
     remote_url = f"https://{token}@github.com/balghaith/YouTube-Forecast-Algorithm.git"
@@ -46,6 +48,7 @@ def push_data():
         cwd=repo_dir, capture_output=True, text=True
     )
     if commit_result.returncode != 0:
+        # Nothing to commit (e.g. channel already existed) is not an error.
         return
 
     subprocess.run(["git", "remote", "remove", "origin"], cwd=repo_dir)
@@ -116,6 +119,7 @@ def dashboard():
         channels_with_counts.append({
             "channel_id": channel_id,
             "title": channel.get("title", channel_id),
+            "thumbnail": channel.get("thumbnail", ""),
             "added_at": channel.get("added_at", ""),
             "video_count": video_count
         })
@@ -134,6 +138,7 @@ def channel_detail(channel_id):
 
     channel = next((c for c in tracked_channels if c["channel_id"] == channel_id), None)
     channel_title = channel.get("title", channel_id) if channel else channel_id
+    channel_thumbnail = channel.get("thumbnail", "") if channel else ""
 
     videos = [
         {
@@ -152,6 +157,7 @@ def channel_detail(channel_id):
         "channel.html",
         channel_id=channel_id,
         channel_title=channel_title,
+        channel_thumbnail=channel_thumbnail,
         videos=videos
     )
 
@@ -174,6 +180,7 @@ def api_channel_add():
     data = request.get_json(force=True)
     channel_id = data.get("channel_id")
     title = data.get("title", channel_id)
+    thumbnail = data.get("thumbnail", "")
 
     if not channel_id:
         return jsonify({"error": "channel_id required"}), 400
@@ -185,6 +192,7 @@ def api_channel_add():
     tracked_channels.append({
         "channel_id": channel_id,
         "title": title,
+        "thumbnail": thumbnail,
         "added_at": datetime.now(timezone.utc).isoformat()
     })
     save_tracked_channels(tracked_channels)
