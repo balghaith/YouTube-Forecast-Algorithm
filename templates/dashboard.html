@@ -19,20 +19,23 @@
         </div>
       </div>
 
-      <div style="display:flex; gap:8px;">
-        <input id="search-input" type="text" placeholder="Search by channel name"
-          style="flex:1; padding:13px 16px; border-radius:8px; border:1px solid var(--border); background:var(--panel); color:var(--text); font-family:inherit; font-size:15px;">
-        <button id="search-btn"
-          style="padding:13px 22px; border-radius:8px; border:1px solid var(--accent); background:var(--accent); color:#fff; font-family:inherit; font-size:14.5px; font-weight:500; cursor:pointer;">
-          Search
-        </button>
+      <div class="search-wrap" id="search-wrap">
+        <div style="display:flex; gap:8px;">
+          <div class="search-input-wrap">
+            <input id="search-input" type="text" placeholder="Search by channel name">
+            <button id="search-clear" type="button" aria-label="Clear search">&times;</button>
+          </div>
+          <button id="search-btn" class="search-submit-btn">Search</button>
+        </div>
+        <div class="search-dropdown" id="search-dropdown">
+          <div id="search-status" class="search-status"></div>
+          <div id="search-results"></div>
+        </div>
       </div>
-      <div id="search-status" style="font-size:13px; color:var(--text-dim); min-height:18px; margin-top:10px;"></div>
-      <div id="search-results" style="display:flex; flex-direction:column; gap:1px; text-align:left;"></div>
     </div>
 
     {% if channels %}
-      <h1 class="section-label dashboard-title" style="margin-left:-270px; margin-top:140px;">Dashboard</h1>
+      <h1 class="section-label dashboard-title" style="margin-left:-275px; margin-top:180px;">Dashboard</h1>
       <div class="channel-grid">
         {% for c in channels %}
           <div class="channel-card">
@@ -61,7 +64,13 @@
                 {% endfor %}
               </div>
             {% else %}
-              <div class="channel-card-videos empty">No videos tracked yet</div>
+              <div class="channel-card-videos empty">
+                <svg class="empty-icon" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <circle cx="12" cy="12" r="9.25"/>
+                  <path d="M10 8.7l6 3.3-6 3.3V8.7z" fill="currentColor" stroke="none"/>
+                </svg>
+                <span class="empty-label">No videos tracked yet</span>
+              </div>
             {% endif %}
 
             <a class="channel-card-btn" href="/channel/{{ c.channel_id }}">View all videos</a>
@@ -93,7 +102,7 @@
 
   .tracking-stats {
     position: relative;
-    top: -30px;
+    top: -60px;
     margin-bottom: -40px;
   }
   .tracking-label {
@@ -131,6 +140,90 @@
     letter-spacing: 0.04em;
     text-transform: uppercase;
     margin-top: 6px;
+  }
+
+  .search-wrap {
+    position: relative;
+  }
+  .search-input-wrap {
+    position: relative;
+    flex: 1;
+  }
+  .search-input-wrap input {
+    width: 100%;
+    padding: 13px 40px 13px 16px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: var(--panel);
+    color: var(--text);
+    font-family: inherit;
+    font-size: 15px;
+    box-sizing: border-box;
+  }
+  #search-clear {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    border: none;
+    background: var(--panel-raised);
+    color: var(--text-dim);
+    font-size: 16px;
+    line-height: 1;
+    cursor: pointer;
+    display: none;
+    align-items: center;
+    justify-content: center;
+  }
+  #search-clear.visible {
+    display: flex;
+  }
+  #search-clear:hover {
+    color: var(--text);
+  }
+  .search-submit-btn {
+    padding: 13px 22px;
+    border-radius: 8px;
+    border: 1px solid var(--accent);
+    background: var(--accent);
+    color: #fff;
+    font-family: inherit;
+    font-size: 14.5px;
+    font-weight: 500;
+    cursor: pointer;
+  }
+
+  .search-dropdown {
+    display: none;
+    position: absolute;
+    top: calc(100% + 10px);
+    left: 0;
+    right: 0;
+    z-index: 50;
+    text-align: left;
+    max-height: 420px;
+    overflow-y: auto;
+    border-radius: 14px;
+    background: rgba(30, 20, 22, 0.55);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid rgba(237, 90, 102, 0.22);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+    padding: 6px;
+  }
+  .search-dropdown.open {
+    display: block;
+  }
+  .search-status {
+    font-size: 13px;
+    color: var(--text-dim);
+    padding: 8px 10px 6px;
+  }
+  .search-status:empty {
+    display: none;
   }
 
   .channel-grid {
@@ -230,8 +323,24 @@
     100% { transform: scale(4.5); opacity: 0; }
   }
   .channel-card-videos.empty {
+    flex: 1;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 24px 0;
+    min-height: 140px;
+    border: none;
+    background: none;
     color: var(--text-faint);
     font-size: 13.5px;
+  }
+  .empty-icon {
+    color: var(--text-faint);
+    opacity: 0.55;
+  }
+  .empty-label {
+    letter-spacing: 0.01em;
   }
   .channel-card-btn {
     margin-top: auto;
@@ -253,16 +362,20 @@
     display: flex;
     align-items: center;
     gap: 12px;
-    padding: 10px 14px;
-    background: var(--panel);
-    border: 1px solid var(--border);
+    padding: 10px 12px;
+    border-radius: 9px;
   }
-  .result-row + .result-row { border-top: none; }
-  .result-row:first-child { border-radius: 8px 8px 0 0; }
-  .result-row:last-child { border-radius: 0 0 8px 8px; }
+  .result-row:hover {
+    background: rgba(255, 255, 255, 0.06);
+  }
   .result-row img { width: 32px; height: 32px; border-radius: 50%; flex-shrink: 0; }
   .result-row .info { flex: 1; min-width: 0; }
   .result-row .title { font-weight: 500; font-size: 14.5px; }
+  .result-row .sub-count {
+    color: var(--text-dim);
+    font-weight: 400;
+    font-size: 12.5px;
+  }
   .result-row .desc {
     color: var(--text-dim); font-size: 12.5px;
     overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
@@ -280,6 +393,10 @@
   }
   .result-row button:hover { background: var(--accent); color: #fff; }
   .result-row button:disabled { opacity: 0.5; cursor: default; background: transparent; color: var(--accent-bright); }
+  .result-row button.tracked {
+    border-color: var(--actual);
+    color: var(--actual);
+  }
 </style>
 {% endblock %}
 
@@ -287,8 +404,27 @@
 <script>
   const input = document.getElementById("search-input");
   const btn = document.getElementById("search-btn");
+  const clearBtn = document.getElementById("search-clear");
   const resultsEl = document.getElementById("search-results");
   const statusEl = document.getElementById("search-status");
+  const searchWrap = document.getElementById("search-wrap");
+  const dropdownEl = document.getElementById("search-dropdown");
+
+  function closeDropdown() {
+    resultsEl.innerHTML = "";
+    statusEl.textContent = "";
+    dropdownEl.classList.remove("open");
+  }
+
+  function updateClearVisibility() {
+    clearBtn.classList.toggle("visible", input.value.length > 0);
+  }
+
+  function formatSubs(n) {
+    if (n >= 1000000) return (n / 1000000).toFixed(1).replace(/\.0$/, "") + "M";
+    if (n >= 1000) return (n / 1000).toFixed(1).replace(/\.0$/, "") + "K";
+    return String(n);
+  }
 
   async function runSearch() {
     const q = input.value.trim();
@@ -296,6 +432,7 @@
 
     statusEl.textContent = "Searching...";
     resultsEl.innerHTML = "";
+    dropdownEl.classList.add("open");
 
     try {
       const res = await fetch(`/api/channels/search?q=${encodeURIComponent(q)}`);
@@ -311,10 +448,13 @@
       for (const ch of data.results) {
         const row = document.createElement("div");
         row.className = "result-row";
+        const subText = ch.subscriber_count !== null && ch.subscriber_count !== undefined
+          ? formatSubs(ch.subscriber_count) + " subscribers"
+          : "";
         row.innerHTML = `
           <img src="${ch.thumbnail}" alt="">
           <div class="info">
-            <div class="title">${ch.title}</div>
+            <div class="title">${ch.title}${subText ? ` <span class="sub-count">${subText}</span>` : ""}</div>
             <div class="desc">${ch.description || ""}</div>
           </div>
           <button data-id="${ch.channel_id}" data-title="${ch.title.replace(/"/g, '&quot;')}" data-thumb="${ch.thumbnail}">Track</button>
@@ -348,6 +488,7 @@
 
       if (data.status === "added" || data.status === "already_tracked") {
         button.textContent = "Tracking";
+        button.classList.add("tracked");
         statusEl.textContent = "Added. It'll appear below, and polling picks it up on its next hourly run.";
       } else {
         button.textContent = "Failed";
@@ -361,5 +502,25 @@
 
   btn.addEventListener("click", runSearch);
   input.addEventListener("keydown", (e) => { if (e.key === "Enter") runSearch(); });
+
+  input.addEventListener("input", () => {
+    updateClearVisibility();
+    if (input.value.trim().length === 0) {
+      closeDropdown();
+    }
+  });
+
+  clearBtn.addEventListener("click", () => {
+    input.value = "";
+    updateClearVisibility();
+    closeDropdown();
+    input.focus();
+  });
+
+  document.addEventListener("click", (e) => {
+    if (!searchWrap.contains(e.target)) {
+      closeDropdown();
+    }
+  });
 </script>
 {% endblock %}
