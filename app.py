@@ -129,7 +129,7 @@ def dashboard():
             "recent_videos": channel_videos[:5]
         })
 
-    channels_with_counts.sort(key=lambda c: c["title"].lower())
+    channels_with_counts.sort(key=lambda c: c["added_at"], reverse=True)
     total_videos = sum(c["video_count"] for c in channels_with_counts)
 
     return render_template("dashboard.html", channels=channels_with_counts, total_videos=total_videos)
