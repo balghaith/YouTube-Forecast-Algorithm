@@ -48,7 +48,6 @@ def push_data():
         cwd=repo_dir, capture_output=True, text=True
     )
     if commit_result.returncode != 0:
-        # Nothing to commit (e.g. channel already existed) is not an error.
         return
 
     subprocess.run(["git", "remote", "remove", "origin"], cwd=repo_dir)
@@ -112,16 +111,24 @@ def dashboard():
     channels_with_counts = []
     for channel in tracked_channels:
         channel_id = channel["channel_id"]
-        video_count = sum(
-            1 for info in known_videos.values()
+        channel_videos = [
+            {
+                "video_id": vid,
+                "title": info.get("title") or vid,
+                "published_at": info.get("published_at", "")
+            }
+            for vid, info in known_videos.items()
             if info.get("channel_id") == channel_id and info.get("status") == "active"
-        )
+        ]
+        channel_videos.sort(key=lambda v: v["published_at"], reverse=True)
+
         channels_with_counts.append({
             "channel_id": channel_id,
             "title": channel.get("title", channel_id),
             "thumbnail": channel.get("thumbnail", ""),
             "added_at": channel.get("added_at", ""),
-            "video_count": video_count
+            "video_count": len(channel_videos),
+            "recent_videos": channel_videos[:3]
         })
 
     channels_with_counts.sort(key=lambda c: c["title"].lower())
