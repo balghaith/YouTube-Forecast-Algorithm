@@ -119,9 +119,10 @@ def chunks(lst, size):
 
 def poll_video_stats_batch(video_ids):
     rows_by_id = {}
+    titles_by_id = {}
     for batch in chunks(video_ids, 50):
         request = youtube.videos().list(
-            part="statistics",
+            part="snippet,statistics",
             id=",".join(batch)
         )
         try:
@@ -141,13 +142,16 @@ def poll_video_stats_batch(video_ids):
                 "likes": stats.get("likeCount", 0),
                 "comments": stats.get("commentCount", 0)
             }
+            title = item.get("snippet", {}).get("title", "")
+            if title:
+                titles_by_id[item["id"]] = title
             returned_ids.add(item["id"])
 
         for vid in batch:
             if vid not in returned_ids:
                 rows_by_id[vid] = None
 
-    return rows_by_id
+    return rows_by_id, titles_by_id
 
 
 def save_row(channel_id, row):
@@ -274,10 +278,13 @@ def run_polling_cycle(push=True):
 
     active_video_ids = [vid for vid, info in known_videos.items() if info["status"] == "active"]
 
-    rows_by_id = poll_video_stats_batch(active_video_ids)
+    rows_by_id, titles_by_id = poll_video_stats_batch(active_video_ids)
 
     for video_id in active_video_ids:
         info = known_videos[video_id]
+        if not info.get("title") and video_id in titles_by_id:
+            info["title"] = titles_by_id[video_id]
+
         row = rows_by_id.get(video_id)
         if row is None:
             print(f"Video {video_id} no longer available, marking as removed")

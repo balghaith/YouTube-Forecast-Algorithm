@@ -38,7 +38,7 @@
       <h1 class="section-label dashboard-title" style="margin-left:-275px; margin-top:180px;">Dashboard</h1>
       <div class="channel-grid">
         {% for c in channels %}
-          <div class="channel-card">
+          <div class="channel-card" data-channel-id="{{ c.channel_id }}">
             <div class="channel-card-head">
               {% if c.thumbnail %}
                 <img class="avatar" src="{{ c.thumbnail }}" alt="" style="width:56px; height:56px;">
@@ -217,6 +217,12 @@
   .search-dropdown.open {
     display: block;
   }
+  .search-dropdown {
+    scrollbar-width: none;
+  }
+  .search-dropdown::-webkit-scrollbar {
+    display: none;
+  }
   .search-status {
     font-size: 13px;
     color: var(--text-dim);
@@ -225,11 +231,20 @@
   .search-status:empty {
     display: none;
   }
+  .search-status.success {
+    color: var(--text);
+    font-weight: 500;
+  }
+  .status-check {
+    color: var(--actual);
+    font-weight: 700;
+    margin-right: 6px;
+  }
 
   .channel-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(290px, 330px));
-    justify-content: start;
+    grid-template-columns: repeat(4, 1fr);
+    max-width: 1520px;
     gap: 22px;
     margin-left: -275px;
     margin-top: 20px;
@@ -489,7 +504,11 @@
       if (data.status === "added" || data.status === "already_tracked") {
         button.textContent = "Tracking";
         button.classList.add("tracked");
-        statusEl.textContent = "Added. It'll appear below, and polling picks it up on its next hourly run.";
+        statusEl.innerHTML = `<span class="status-check">&check;</span>It'll start tracking once a new video is uploaded.`;
+        statusEl.classList.add("success");
+        if (data.status === "added") {
+          addChannelCard(button.dataset.id, button.dataset.title, button.dataset.thumb);
+        }
       } else {
         button.textContent = "Failed";
         button.disabled = false;
@@ -497,6 +516,39 @@
     } catch (e) {
       button.textContent = "Failed";
       button.disabled = false;
+    }
+  }
+
+  function addChannelCard(channelId, title, thumbnail) {
+    const grid = document.querySelector(".channel-grid");
+    if (!grid) return;
+    if (grid.querySelector(`[data-channel-id="${channelId}"]`)) return;
+
+    const card = document.createElement("div");
+    card.className = "channel-card";
+    card.dataset.channelId = channelId;
+    card.innerHTML = `
+      <div class="channel-card-head">
+        <img class="avatar" src="${thumbnail}" alt="" style="width:56px; height:56px;">
+        <div style="min-width:0;">
+          <div class="channel-card-title">${title}</div>
+          <div class="channel-card-sub">0 videos tracked</div>
+        </div>
+      </div>
+      <div class="channel-card-videos empty">
+        <svg class="empty-icon" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <circle cx="12" cy="12" r="9.25"/>
+          <path d="M10 8.7l6 3.3-6 3.3V8.7z" fill="currentColor" stroke="none"/>
+        </svg>
+        <span class="empty-label">No videos tracked yet</span>
+      </div>
+      <a class="channel-card-btn" href="/channel/${channelId}">View all videos</a>
+    `;
+    grid.prepend(card);
+
+    const channelsStat = document.querySelector(".tracking-numbers .stat-block:first-child .stat-num");
+    if (channelsStat) {
+      channelsStat.textContent = String(parseInt(channelsStat.textContent, 10) + 1);
     }
   }
 
