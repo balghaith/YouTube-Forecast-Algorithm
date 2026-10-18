@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{% block title %}YT Forecast{% endblock %}</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #070505;
+    --panel: rgba(255, 255, 255, 0.035);
+    --panel-raised: rgba(255, 255, 255, 0.065);
+    --border: rgba(237, 90, 102, 0.16);
+    --text: #f3eceb;
+    --text-dim: #a8898c;
+    --text-faint: #6e5254;
+    --predicted: #e0a23d;
+    --predicted-bg: rgba(224, 162, 61, 0.12);
+    --actual: #4fae8b;
+    --actual-bg: rgba(79, 174, 139, 0.12);
+    --removed: #8f8f98;
+    --removed-bg: rgba(143, 143, 152, 0.12);
+    --accent: #e5394f;
+    --accent-bright: #ff5b6e;
+    --link: #ff6b78;
+    --radius: 8px;
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body {
+    margin: 0;
+    min-height: 100%;
+    background:
+      radial-gradient(ellipse 1100px 600px at 50% -10%, rgba(197, 32, 48, 0.32), transparent 60%),
+      radial-gradient(ellipse 800px 500px at 110% 10%, rgba(140, 16, 28, 0.18), transparent 55%),
+      radial-gradient(ellipse 1300px 900px at -10% 85%, rgba(255, 255, 255, 0.34), transparent 65%),
+      radial-gradient(ellipse 1300px 900px at 110% 115%, rgba(40, 70, 190, 0.85), transparent 65%),
+      var(--bg);
+    background-attachment: fixed;
+    color: var(--text);
+    font-family: "IBM Plex Sans", -apple-system, sans-serif;
+    font-size: 15px;
+    line-height: 1.55;
+  }
+
+  .mono {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-variant-numeric: tabular-nums;
+  }
+
+  a { color: var(--link); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  a:focus-visible, button:focus-visible, input:focus-visible {
+    outline: 2px solid var(--link);
+    outline-offset: 2px;
+  }
+
+  .topbar {
+    border-bottom: 1px solid var(--border);
+    padding: 16px 28px;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 16px;
+    backdrop-filter: blur(6px);
+  }
+  .topbar .mark {
+    font-weight: 600;
+    font-size: 16px;
+    letter-spacing: -0.01em;
+    color: var(--text);
+  }
+  .topbar .mark a { color: inherit; }
+  .topbar .crumb { color: var(--text-dim); font-size: 14px; }
+  .topbar .crumb a { color: var(--link); }
+
+  .shell {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 36px 28px 80px;
+  }
+
+  h1 {
+    font-size: 24px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    margin: 0 0 6px;
+  }
+  .lede { color: var(--text-dim); margin: 0 0 32px; font-size: 14.5px; }
+
+  .section-label {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-dim);
+    margin: 0 0 14px;
+  }
+
+  .stat-row {
+    display: flex;
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    margin-bottom: 36px;
+  }
+  .stat-tile {
+    flex: 1;
+    background: var(--panel);
+    padding: 16px 20px;
+  }
+  .stat-tile .value {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 26px;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+  }
+  .stat-tile .label {
+    color: var(--text-dim);
+    font-size: 13px;
+    margin-top: 2px;
+  }
+
+  /* list rows (channels, videos) */
+  .list {
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+  .list-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 14px 18px;
+    background: var(--panel);
+    border-bottom: 1px solid var(--border);
+    color: var(--text);
+  }
+  .list-row:last-child { border-bottom: none; }
+  a.list-row { display: flex; }
+  a.list-row:hover { background: var(--panel-raised); text-decoration: none; }
+  .list-row .primary { font-weight: 500; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .list-row .secondary { color: var(--text-dim); font-size: 13px; margin-top: 2px; }
+  .list-row .right { flex-shrink: 0; display: flex; align-items: center; gap: 10px; }
+  .chevron { color: var(--text-faint); font-size: 15px; }
+
+  .avatar {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    object-fit: cover;
+    border: 1px solid var(--border);
+    background: var(--panel-raised);
+  }
+  .avatar.placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--text-dim);
+  }
+
+  .badge {
+    font-size: 12px;
+    font-weight: 500;
+    padding: 3px 9px;
+    border-radius: 999px;
+    white-space: nowrap;
+  }
+  .badge.active { background: var(--actual-bg); color: var(--actual); }
+  .badge.expired { background: var(--predicted-bg); color: var(--predicted); }
+  .badge.removed { background: var(--removed-bg); color: var(--removed); }
+
+  .empty {
+    color: var(--text-dim);
+    padding: 28px 18px;
+    text-align: center;
+    border: 1px dashed var(--border);
+    border-radius: var(--radius);
+    font-size: 14px;
+  }
+</style>
+{% block head %}{% endblock %}
+</head>
+<body>
+  <div class="topbar">
+    <span class="mark"><a href="/">YT Forecast</a></span>
+    {% block crumb %}{% endblock %}
+  </div>
+  <div class="shell">
+    {% block content %}{% endblock %}
+  </div>
+  {% block scripts %}{% endblock %}
+</body>
+</html>
