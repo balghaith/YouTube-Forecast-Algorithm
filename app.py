@@ -99,12 +99,7 @@ def index_classic():
     return render_template("index.html", videos=active_videos)
 
 
-@app.route("/")
-def dashboard():
-    sync_data()
-    tracked_channels = load_tracked_channels()
-    known_videos = load_known_videos()
-
+def build_channels_with_counts(tracked_channels, known_videos):
     channels_with_counts = []
     for channel in tracked_channels:
         channel_id = channel["channel_id"]
@@ -130,9 +125,37 @@ def dashboard():
         })
 
     channels_with_counts.sort(key=lambda c: c["added_at"], reverse=True)
+    return channels_with_counts
+
+
+@app.route("/")
+def dashboard():
+    sync_data()
+    tracked_channels = load_tracked_channels()
+    known_videos = load_known_videos()
+
+    channels_with_counts = build_channels_with_counts(tracked_channels, known_videos)
+    total_videos = sum(c["video_count"] for c in channels_with_counts)
+    total_channels = len(channels_with_counts)
+
+    return render_template(
+        "dashboard.html",
+        channels=channels_with_counts[:4],
+        total_videos=total_videos,
+        total_channels=total_channels
+    )
+
+
+@app.route("/channels")
+def all_channels():
+    sync_data()
+    tracked_channels = load_tracked_channels()
+    known_videos = load_known_videos()
+
+    channels_with_counts = build_channels_with_counts(tracked_channels, known_videos)
     total_videos = sum(c["video_count"] for c in channels_with_counts)
 
-    return render_template("dashboard.html", channels=channels_with_counts, total_videos=total_videos)
+    return render_template("channels.html", channels=channels_with_counts, total_videos=total_videos)
 
 
 @app.route("/channel/<channel_id>")

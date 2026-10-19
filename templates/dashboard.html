@@ -7,10 +7,10 @@
       <div class="tracking-stats">
         <div class="tracking-label">Currently Tracking</div>
         <div class="tracking-numbers">
-          <div class="stat-block">
-            <div class="stat-num mono">{{ channels|length }}</div>
-            <div class="stat-word">Channel{{ 's' if channels|length != 1 else '' }}</div>
-          </div>
+          <a class="stat-block stat-block-link" href="/channels">
+            <div class="stat-num mono">{{ total_channels }}</div>
+            <div class="stat-word">Channel{{ 's' if total_channels != 1 else '' }}</div>
+          </a>
           <div class="stat-divider"></div>
           <div class="stat-block">
             <div class="stat-num mono">{{ total_videos }}</div>
@@ -35,7 +35,10 @@
     </div>
 
     {% if channels %}
-      <h1 class="section-label dashboard-title" style="margin-left:-275px; margin-top:180px;">Dashboard</h1>
+      <a class="dashboard-title-link" href="/channels" style="margin-left:-275px; margin-top:155px;">
+        <h1 class="section-label dashboard-title">Tracked Channels</h1>
+        <span class="dashboard-title-arrow">&rsaquo;</span>
+      </a>
       <div class="channel-grid">
         {% for c in channels %}
           <div class="channel-card" data-channel-id="{{ c.channel_id }}">
@@ -93,11 +96,31 @@
     top: 140px;
   }
 
+  .dashboard-title-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    color: var(--text);
+    margin: 0 0 10px;
+  }
+  .dashboard-title-link:hover {
+    text-decoration: none;
+    color: var(--text);
+  }
+  .dashboard-title-link:hover .dashboard-title-arrow {
+    transform: translateX(4px);
+  }
   .dashboard-title {
     font-size: 24px;
     font-weight: 600;
     letter-spacing: -0.01em;
-    margin: 0 0 10px;
+    margin: 0;
+  }
+  .dashboard-title-arrow {
+    font-size: 26px;
+    line-height: 1;
+    color: var(--text-dim);
+    transition: transform 0.15s ease;
   }
 
   .tracking-stats {
@@ -128,6 +151,14 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+  }
+  .stat-block-link {
+    color: inherit;
+    transition: opacity 0.15s ease;
+  }
+  .stat-block-link:hover {
+    opacity: 0.75;
+    text-decoration: none;
   }
   .stat-num {
     font-size: 52px;
