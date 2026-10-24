@@ -32,6 +32,40 @@ def latest_videos(playlist_id, max_results=5):
         })
     return videos
 
+
+def search_channels(query, max_results=8):
+    request = youtube.search().list(
+        part="snippet",
+        q=query,
+        type="channel",
+        maxResults=max_results
+    )
+    response = request.execute()
+    channels = []
+    for item in response.get("items", []):
+        snippet = item["snippet"]
+        channels.append({
+            "channel_id": item["id"]["channelId"],
+            "title": snippet["title"],
+            "description": snippet.get("description", ""),
+            "thumbnail": snippet["thumbnails"]["default"]["url"],
+            "subscriber_count": None
+        })
+
+    if channels:
+        ids = ",".join(c["channel_id"] for c in channels)
+        stats_request = youtube.channels().list(part="statistics", id=ids)
+        stats_response = stats_request.execute()
+        stats_by_id = {}
+        for item in stats_response.get("items", []):
+            stats = item["statistics"]
+            if not stats.get("hiddenSubscriberCount"):
+                stats_by_id[item["id"]] = int(stats.get("subscriberCount", 0))
+        for c in channels:
+            c["subscriber_count"] = stats_by_id.get(c["channel_id"])
+
+    return channels
+
 if __name__ == "__main__":
     channel_id = "UCIEv3lZ_tNXHzL3ox-_uUGQ"
     playlist_id = uploads_id(channel_id)
