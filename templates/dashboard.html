@@ -1,0 +1,608 @@
+{% extends "base.html" %}
+{% block title %}YT Forecast — Dashboard{% endblock %}
+
+{% block content %}
+  <div class="dashboard-layout">
+    <div class="top-controls">
+      <div class="tracking-stats">
+        <div class="tracking-label">Currently Tracking</div>
+        <div class="tracking-numbers">
+          <a class="stat-block stat-block-link" href="/channels">
+            <div class="stat-num mono">{{ total_channels }}</div>
+            <div class="stat-word">Channel{{ 's' if total_channels != 1 else '' }}</div>
+          </a>
+          <div class="stat-divider"></div>
+          <div class="stat-block">
+            <div class="stat-num mono">{{ total_videos }}</div>
+            <div class="stat-word">Video{{ 's' if total_videos != 1 else '' }}</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="search-wrap" id="search-wrap">
+        <div style="display:flex; gap:8px;">
+          <div class="search-input-wrap">
+            <input id="search-input" type="text" placeholder="Search by channel name">
+            <button id="search-clear" type="button" aria-label="Clear search">&times;</button>
+          </div>
+          <button id="search-btn" class="search-submit-btn">Search</button>
+        </div>
+        <div class="search-dropdown" id="search-dropdown">
+          <div id="search-status" class="search-status"></div>
+          <div id="search-results"></div>
+        </div>
+      </div>
+    </div>
+
+    {% if channels %}
+      <a class="dashboard-title-link" href="/channels" style="margin-left:-275px; margin-top:155px;">
+        <h1 class="section-label dashboard-title">Tracked Channels</h1>
+        <span class="dashboard-title-arrow">&rsaquo;</span>
+      </a>
+      <div class="channel-grid">
+        {% for c in channels %}
+          <div class="channel-card" data-channel-id="{{ c.channel_id }}">
+            <div class="channel-card-head">
+              {% if c.thumbnail %}
+                <img class="avatar" src="{{ c.thumbnail }}" alt="" style="width:56px; height:56px;">
+              {% else %}
+                <div class="avatar placeholder" style="width:56px; height:56px; font-size:20px;">{{ c.title[:1]|upper }}</div>
+              {% endif %}
+              <div style="min-width:0;">
+                <div class="channel-card-title">{{ c.title }}</div>
+                <div class="channel-card-sub">{{ c.video_count }} video{{ 's' if c.video_count != 1 else '' }} tracked</div>
+              </div>
+            </div>
+
+            {% if c.recent_videos %}
+              <div class="channel-card-videos">
+                {% for v in c.recent_videos %}
+                  <a href="/forecast/{{ v.video_id }}">
+                    <span class="track-dot-slot">
+                      {% if v.tracked %}<span class="track-dot"></span>{% endif %}
+                    </span>
+                    <img src="https://i.ytimg.com/vi/{{ v.video_id }}/mqdefault.jpg" alt="">
+                    <span class="video-title">{{ v.title }}</span>
+                  </a>
+                {% endfor %}
+              </div>
+            {% else %}
+              <div class="channel-card-videos empty">
+                <svg class="empty-icon" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <circle cx="12" cy="12" r="9.25"/>
+                  <path d="M10 8.7l6 3.3-6 3.3V8.7z" fill="currentColor" stroke="none"/>
+                </svg>
+                <span class="empty-label">No videos tracked yet</span>
+              </div>
+            {% endif %}
+
+            <a class="channel-card-btn" href="/channel/{{ c.channel_id }}">View all videos</a>
+          </div>
+        {% endfor %}
+      </div>
+    {% else %}
+      <div class="empty">No channels tracked yet. Search above to add your first one.</div>
+    {% endif %}
+  </div>
+{% endblock %}
+
+{% block head %}
+<style>
+  .top-controls {
+    max-width: 700px;
+    margin: 70px auto 60px;
+    text-align: center;
+    position: relative;
+    top: 140px;
+  }
+
+  .dashboard-title-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    color: var(--text);
+    margin: 0 0 10px;
+  }
+  .dashboard-title-link:hover {
+    text-decoration: none;
+    color: var(--text);
+  }
+  .dashboard-title-link:hover .dashboard-title-arrow {
+    transform: translateX(4px);
+  }
+  .dashboard-title {
+    font-size: 24px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    margin: 0;
+  }
+  .dashboard-title-arrow {
+    font-size: 26px;
+    line-height: 1;
+    color: var(--text-dim);
+    transition: transform 0.15s ease;
+  }
+
+  .tracking-stats {
+    position: relative;
+    top: -60px;
+    margin-bottom: -40px;
+  }
+  .tracking-label {
+    color: var(--text-dim);
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+  .tracking-numbers {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 36px;
+    margin-bottom: 24px;
+  }
+  .stat-divider {
+    width: 1px;
+    height: 48px;
+    background: var(--border);
+  }
+  .stat-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .stat-block-link {
+    color: inherit;
+    transition: opacity 0.15s ease;
+  }
+  .stat-block-link:hover {
+    opacity: 0.75;
+    text-decoration: none;
+  }
+  .stat-num {
+    font-size: 52px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+  }
+  .stat-word {
+    color: var(--text-dim);
+    font-size: 13px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    margin-top: 6px;
+  }
+
+  .search-wrap {
+    position: relative;
+  }
+  .search-input-wrap {
+    position: relative;
+    flex: 1;
+  }
+  .search-input-wrap input {
+    width: 100%;
+    padding: 13px 40px 13px 16px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: var(--panel);
+    color: var(--text);
+    font-family: inherit;
+    font-size: 15px;
+    box-sizing: border-box;
+  }
+  #search-clear {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    border: none;
+    background: var(--panel-raised);
+    color: var(--text-dim);
+    font-size: 16px;
+    line-height: 1;
+    cursor: pointer;
+    display: none;
+    align-items: center;
+    justify-content: center;
+  }
+  #search-clear.visible {
+    display: flex;
+  }
+  #search-clear:hover {
+    color: var(--text);
+  }
+  .search-submit-btn {
+    padding: 13px 22px;
+    border-radius: 8px;
+    border: 1px solid var(--accent);
+    background: var(--accent);
+    color: #fff;
+    font-family: inherit;
+    font-size: 14.5px;
+    font-weight: 500;
+    cursor: pointer;
+  }
+
+  .search-dropdown {
+    display: none;
+    position: absolute;
+    top: calc(100% + 10px);
+    left: 0;
+    right: 0;
+    z-index: 50;
+    text-align: left;
+    max-height: 420px;
+    overflow-y: auto;
+    border-radius: 14px;
+    background: rgba(30, 20, 22, 0.55);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid rgba(237, 90, 102, 0.22);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+    padding: 6px;
+  }
+  .search-dropdown.open {
+    display: block;
+  }
+  .search-dropdown {
+    scrollbar-width: none;
+  }
+  .search-dropdown::-webkit-scrollbar {
+    display: none;
+  }
+  .search-status {
+    font-size: 13px;
+    color: var(--text-dim);
+    padding: 8px 10px 6px;
+  }
+  .search-status:empty {
+    display: none;
+  }
+  .search-status.success {
+    color: var(--text);
+    font-weight: 500;
+  }
+  .status-check {
+    color: var(--actual);
+    font-weight: 700;
+    margin-right: 6px;
+  }
+
+  .channel-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 330px);
+    gap: 22px;
+    margin-left: -275px;
+    margin-top: 20px;
+  }
+  .channel-card {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 24px;
+  }
+  .channel-card-head {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .channel-card-title {
+    font-weight: 600;
+    font-size: 17px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .channel-card-sub {
+    color: var(--text-dim);
+    font-size: 13px;
+    margin-top: 3px;
+  }
+  .channel-card-videos {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .channel-card-videos a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--text-dim);
+  }
+  .channel-card-videos a:hover {
+    color: var(--link);
+    text-decoration: none;
+  }
+  .channel-card-videos a img {
+    width: 92px;
+    height: 52px;
+    object-fit: cover;
+    border-radius: 6px;
+    flex-shrink: 0;
+    background: var(--panel-raised);
+  }
+  .channel-card-videos a .video-title {
+    font-size: 14px;
+    line-height: 1.35;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+  }
+  .track-dot-slot {
+    width: 14px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: visible;
+  }
+  .track-dot {
+    position: relative;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--accent-bright);
+  }
+  .track-dot::before,
+  .track-dot::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    border: 1.5px solid var(--accent-bright);
+    animation: track-ripple 2s ease-out infinite;
+  }
+  .track-dot::after {
+    animation-delay: 1s;
+  }
+  @keyframes track-ripple {
+    0% { transform: scale(1); opacity: 0.7; }
+    100% { transform: scale(4.5); opacity: 0; }
+  }
+  .channel-card-videos.empty {
+    flex: 1;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 24px 0;
+    min-height: 140px;
+    border: none;
+    background: none;
+    color: var(--text-faint);
+    font-size: 13.5px;
+  }
+  .empty-icon {
+    color: var(--text-faint);
+    opacity: 0.55;
+  }
+  .empty-label {
+    letter-spacing: 0.01em;
+  }
+  .channel-card-btn {
+    margin-top: auto;
+    text-align: center;
+    padding: 11px 0;
+    border-radius: 7px;
+    border: 1px solid var(--border);
+    color: var(--text-dim);
+    font-size: 14px;
+    font-weight: 500;
+  }
+  .channel-card-btn:hover {
+    background: var(--panel-raised);
+    color: var(--text);
+    text-decoration: none;
+  }
+
+  .result-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 12px;
+    border-radius: 9px;
+  }
+  .result-row:hover {
+    background: rgba(255, 255, 255, 0.06);
+  }
+  .result-row img { width: 32px; height: 32px; border-radius: 50%; flex-shrink: 0; }
+  .result-row .info { flex: 1; min-width: 0; }
+  .result-row .title { font-weight: 500; font-size: 14.5px; }
+  .result-row .sub-count {
+    color: var(--text-dim);
+    font-weight: 400;
+    font-size: 12.5px;
+  }
+  .result-row .desc {
+    color: var(--text-dim); font-size: 12.5px;
+    overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  }
+  .result-row button {
+    flex-shrink: 0;
+    padding: 7px 13px;
+    border-radius: 5px;
+    border: 1px solid var(--accent);
+    background: transparent;
+    color: var(--accent-bright);
+    font-family: inherit;
+    font-size: 13.5px;
+    cursor: pointer;
+  }
+  .result-row button:hover { background: var(--accent); color: #fff; }
+  .result-row button:disabled { opacity: 0.5; cursor: default; background: transparent; color: var(--accent-bright); }
+  .result-row button.tracked {
+    border-color: var(--actual);
+    color: var(--actual);
+  }
+</style>
+{% endblock %}
+
+{% block scripts %}
+<script>
+  const input = document.getElementById("search-input");
+  const btn = document.getElementById("search-btn");
+  const clearBtn = document.getElementById("search-clear");
+  const resultsEl = document.getElementById("search-results");
+  const statusEl = document.getElementById("search-status");
+  const searchWrap = document.getElementById("search-wrap");
+  const dropdownEl = document.getElementById("search-dropdown");
+
+  function closeDropdown() {
+    resultsEl.innerHTML = "";
+    statusEl.textContent = "";
+    dropdownEl.classList.remove("open");
+  }
+
+  function updateClearVisibility() {
+    clearBtn.classList.toggle("visible", input.value.length > 0);
+  }
+
+  function formatSubs(n) {
+    if (n >= 1000000) return (n / 1000000).toFixed(1).replace(/\.0$/, "") + "M";
+    if (n >= 1000) return (n / 1000).toFixed(1).replace(/\.0$/, "") + "K";
+    return String(n);
+  }
+
+  async function runSearch() {
+    const q = input.value.trim();
+    if (!q) return;
+
+    statusEl.textContent = "Searching...";
+    resultsEl.innerHTML = "";
+    dropdownEl.classList.add("open");
+
+    try {
+      const res = await fetch(`/api/channels/search?q=${encodeURIComponent(q)}`);
+      const data = await res.json();
+
+      if (data.error) {
+        statusEl.textContent = "Search failed: " + data.error;
+        return;
+      }
+
+      statusEl.textContent = `${data.results.length} result${data.results.length === 1 ? "" : "s"}`;
+
+      for (const ch of data.results) {
+        const row = document.createElement("div");
+        row.className = "result-row";
+        const subText = ch.subscriber_count !== null && ch.subscriber_count !== undefined
+          ? formatSubs(ch.subscriber_count) + " subscribers"
+          : "";
+        row.innerHTML = `
+          <img src="${ch.thumbnail}" alt="">
+          <div class="info">
+            <div class="title">${ch.title}${subText ? ` <span class="sub-count">${subText}</span>` : ""}</div>
+            <div class="desc">${ch.description || ""}</div>
+          </div>
+          <button data-id="${ch.channel_id}" data-title="${ch.title.replace(/"/g, '&quot;')}" data-thumb="${ch.thumbnail}">Track</button>
+        `;
+        resultsEl.appendChild(row);
+      }
+
+      resultsEl.querySelectorAll("button").forEach(b => {
+        b.addEventListener("click", () => addChannel(b));
+      });
+    } catch (e) {
+      statusEl.textContent = "Search failed.";
+    }
+  }
+
+  async function addChannel(button) {
+    button.disabled = true;
+    button.textContent = "Adding...";
+
+    try {
+      const res = await fetch("/api/channels/add", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          channel_id: button.dataset.id,
+          title: button.dataset.title,
+          thumbnail: button.dataset.thumb
+        })
+      });
+      const data = await res.json();
+
+      if (data.status === "added" || data.status === "already_tracked") {
+        button.textContent = "Tracking";
+        button.classList.add("tracked");
+        statusEl.innerHTML = `<span class="status-check">&check;</span>It'll start tracking once a new video is uploaded.`;
+        statusEl.classList.add("success");
+        if (data.status === "added") {
+          addChannelCard(button.dataset.id, button.dataset.title, button.dataset.thumb);
+        }
+      } else {
+        button.textContent = "Failed";
+        button.disabled = false;
+      }
+    } catch (e) {
+      button.textContent = "Failed";
+      button.disabled = false;
+    }
+  }
+
+  function addChannelCard(channelId, title, thumbnail) {
+    const grid = document.querySelector(".channel-grid");
+    if (!grid) return;
+    if (grid.querySelector(`[data-channel-id="${channelId}"]`)) return;
+
+    const card = document.createElement("div");
+    card.className = "channel-card";
+    card.dataset.channelId = channelId;
+    card.innerHTML = `
+      <div class="channel-card-head">
+        <img class="avatar" src="${thumbnail}" alt="" style="width:56px; height:56px;">
+        <div style="min-width:0;">
+          <div class="channel-card-title">${title}</div>
+          <div class="channel-card-sub">0 videos tracked</div>
+        </div>
+      </div>
+      <div class="channel-card-videos empty">
+        <svg class="empty-icon" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <circle cx="12" cy="12" r="9.25"/>
+          <path d="M10 8.7l6 3.3-6 3.3V8.7z" fill="currentColor" stroke="none"/>
+        </svg>
+        <span class="empty-label">No videos tracked yet</span>
+      </div>
+      <a class="channel-card-btn" href="/channel/${channelId}">View all videos</a>
+    `;
+    grid.prepend(card);
+
+    const channelsStat = document.querySelector(".tracking-numbers .stat-block:first-child .stat-num");
+    if (channelsStat) {
+      channelsStat.textContent = String(parseInt(channelsStat.textContent, 10) + 1);
+    }
+  }
+
+  btn.addEventListener("click", runSearch);
+  input.addEventListener("keydown", (e) => { if (e.key === "Enter") runSearch(); });
+
+  input.addEventListener("input", () => {
+    updateClearVisibility();
+    if (input.value.trim().length === 0) {
+      closeDropdown();
+    }
+  });
+
+  clearBtn.addEventListener("click", () => {
+    input.value = "";
+    updateClearVisibility();
+    closeDropdown();
+    input.focus();
+  });
+
+  document.addEventListener("click", (e) => {
+    if (!searchWrap.contains(e.target)) {
+      closeDropdown();
+    }
+  });
+</script>
+{% endblock %}
