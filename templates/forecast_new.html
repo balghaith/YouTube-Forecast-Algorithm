@@ -1,26 +1,158 @@
 {% extends "base.html" %}
-{% block title %}{{ video_id }} — YT Forecast{% endblock %}
+{% block title %}{{ video_title }} — YT Forecast{% endblock %}
 
 {% block crumb %}<span class="crumb"><a href="/">&larr; dashboard</a></span>{% endblock %}
 
 {% block head %}
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.4/chart.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
 <style>
-  .metric-switch { display: flex; gap: 6px; margin-bottom: 28px; }
+  .forecast-header {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    margin-bottom: 28px;
+  }
+  .forecast-thumb {
+    width: 120px;
+    height: 68px;
+    object-fit: cover;
+    border-radius: 6px;
+    flex-shrink: 0;
+    background: var(--panel-raised);
+  }
+  .forecast-header h1 {
+    margin: 0 0 8px;
+  }
+  .forecast-channel {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--text-dim);
+    font-size: 13.5px;
+  }
+  .forecast-channel:hover {
+    color: var(--text);
+    text-decoration: none;
+  }
+  .forecast-channel-avatar {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+    background: var(--panel-raised);
+  }
+
+  .forecast-stat {
+    display: inline-block;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--panel);
+    padding: 16px 20px;
+    margin-bottom: 28px;
+  }
+  .forecast-stat-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    margin-bottom: 6px;
+  }
+  .forecast-stat-label-text {
+    font-size: 12.5px;
+    font-weight: 600;
+    color: var(--text-dim);
+  }
+  .forecast-stat-day-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    color: var(--text-dim);
+    background: var(--panel-raised);
+    border-radius: 999px;
+    padding: 3px 10px 3px 8px;
+  }
+  .forecast-stat-value {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+  }
+  .forecast-stat-value .num {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 34px;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+    line-height: 1;
+  }
+  .forecast-stat-trend {
+    font-size: 13px;
+    font-weight: 600;
+    font-family: "IBM Plex Mono", monospace;
+  }
+  .forecast-stat-trend.up { color: var(--actual); }
+  .forecast-stat-trend.down { color: var(--accent); }
+  .forecast-stat-trend.flat { color: var(--predicted); }
+  .forecast-stat-trend-label {
+    font-weight: 400;
+    font-family: "IBM Plex Sans", sans-serif;
+    color: var(--text-dim);
+    margin-left: 4px;
+  }
+  .forecast-stat-dot {
+    position: relative;
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent-bright);
+  }
+  .forecast-stat-dot::before,
+  .forecast-stat-dot::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    border: 1.5px solid var(--accent-bright);
+    animation: chart-live-ripple 2s ease-out infinite;
+  }
+  .forecast-stat-dot::after {
+    animation-delay: 1s;
+  }
+
+  .metric-switch {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 28px;
+  }
   .metric-switch button {
-    padding: 7px 14px;
-    border-radius: 5px;
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 7px 15px;
+    border-radius: 7px;
     border: 1px solid var(--border);
     background: var(--panel);
     color: var(--text-dim);
     font-family: inherit;
     font-size: 13.5px;
     cursor: pointer;
+    transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+  }
+  .metric-switch button svg {
+    width: 15px;
+    height: 15px;
+    stroke: currentColor;
+    flex-shrink: 0;
+  }
+  .metric-switch button:hover {
+    color: var(--text);
+    border-color: var(--text-dim);
   }
   .metric-switch button.active {
-    border-color: var(--accent);
-    color: var(--text);
-    background: var(--panel-raised);
+    color: #fff;
+    background: var(--accent-bright);
+    border-color: var(--accent-bright);
   }
 
   .chart-panel {
@@ -32,6 +164,35 @@
   }
   .legend-row { display: flex; gap: 20px; margin-bottom: 14px; font-size: 13px; color: var(--text-dim); }
   .legend-dot { display: inline-block; width: 9px; height: 9px; border-radius: 50%; margin-right: 6px; }
+  .legend-dot.future { opacity: 0.45; }
+  .chart-wrap { position: relative; height: 320px; }
+  .chart-live-dot {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    margin-left: -4px;
+    margin-top: -4px;
+    border-radius: 50%;
+    background: var(--accent-bright);
+    display: none;
+    pointer-events: none;
+  }
+  .chart-live-dot::before,
+  .chart-live-dot::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    border: 1.5px solid var(--accent-bright);
+    animation: chart-live-ripple 2s ease-out infinite;
+  }
+  .chart-live-dot::after {
+    animation-delay: 1s;
+  }
+  @keyframes chart-live-ripple {
+    0% { transform: scale(1); opacity: 0.7; }
+    100% { transform: scale(4.5); opacity: 0; }
+  }
 
   table { width: 100%; border-collapse: collapse; font-size: 14px; }
   thead th {
@@ -55,32 +216,56 @@
 {% endblock %}
 
 {% block content %}
-  <h1 id="video-title">{{ video_id }}</h1>
-  <p class="lede" id="current-label">Loading…</p>
-
-  <div class="stat-row">
-    <div class="stat-tile">
-      <div class="value mono" id="r2-value">—</div>
-      <div class="label" id="r2-label">R²</div>
-    </div>
-    <div class="stat-tile">
-      <div class="value mono" id="current-value">—</div>
-      <div class="label" id="current-day-label">Current</div>
+  <div class="forecast-header">
+    <img class="forecast-thumb" src="https://i.ytimg.com/vi/{{ video_id }}/mqdefault.jpg" alt="">
+    <div>
+      <h1 id="video-title">{{ video_title }}</h1>
+      <a class="forecast-channel" href="/channel/{{ channel_id }}">
+        {% if channel_thumbnail %}
+          <img class="forecast-channel-avatar" src="{{ channel_thumbnail }}" alt="">
+        {% else %}
+          <div class="forecast-channel-avatar"></div>
+        {% endif %}
+        <span>{{ channel_title }}</span>
+      </a>
     </div>
   </div>
 
-  <div class="metric-switch">
-    <button data-metric="views" class="active">Views</button>
-    <button data-metric="likes">Likes</button>
-    <button data-metric="comments">Comments</button>
+  <div class="forecast-stat">
+    <div class="forecast-stat-top">
+      <span class="forecast-stat-label-text" id="current-metric-label">Views</span>
+      <span class="forecast-stat-day-badge"><span class="forecast-stat-dot"></span><span id="current-day-badge">Loading…</span></span>
+    </div>
+    <div class="forecast-stat-value">
+      <span class="num" id="current-value">—</span>
+      <span id="current-trend"></span>
+    </div>
+  </div>
+
+  <div class="metric-switch" id="metric-switch">
+    <button data-metric="views" class="active">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M1.5 12S5 5 12 5s10.5 7 10.5 7-3.5 7-10.5 7S1.5 12 1.5 12z"/><circle cx="12" cy="12" r="3"/></svg>
+      Views
+    </button>
+    <button data-metric="likes">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M7 11v9H4a1 1 0 0 1-1-1v-7a1 1 0 0 1 1-1h3zm0 0 4.5-8a2 2 0 0 1 3.8 1l-1 5.5H19a2 2 0 0 1 2 2.3l-1.2 6A2 2 0 0 1 17.8 20H10a3 3 0 0 1-3-3"/></svg>
+      Likes
+    </button>
+    <button data-metric="comments">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M4 4.5h16a1 1 0 0 1 1 1V16a1 1 0 0 1-1 1H9l-4.5 4V17H4a1 1 0 0 1-1-1V5.5a1 1 0 0 1 1-1z"/></svg>
+      Comments
+    </button>
   </div>
 
   <div class="chart-panel">
     <div class="legend-row">
-      <span><span class="legend-dot" style="background:var(--predicted);"></span>Predicted</span>
-      <span><span class="legend-dot" style="background:var(--actual);"></span>Actual</span>
+      <span><span class="legend-dot" style="background:var(--accent-bright);"></span>Actual</span>
+      <span><span class="legend-dot future" style="background:var(--accent-bright);"></span>Projected</span>
     </div>
-    <canvas id="forecast-chart" height="100"></canvas>
+    <div class="chart-wrap">
+      <canvas id="forecast-chart"></canvas>
+      <div id="live-dot" class="chart-live-dot"></div>
+    </div>
   </div>
 
   <p class="section-label">Checkpoint log</p>
@@ -109,16 +294,36 @@
 
   function renderChart(days) {
     const labels = days.map(d => `Day ${d.day}`);
-    const predicted = days.map(d => d.predicted);
-    const actual = days.map(d => d.actual);
+    const values = days.map(d => d.actual !== null ? d.actual : d.predicted);
+    const isFuture = days.map(d => d.actual === null);
+
+    const solidColor = "#ff5b6e";
+    const futureColor = "rgba(255, 91, 110, 0.45)";
+
+    let liveIndex = isFuture.indexOf(true) - 1;
+    if (liveIndex < 0) liveIndex = values.length - 1;
 
     if (chart) {
-      chart.data.labels = labels;
-      chart.data.datasets[0].data = predicted;
-      chart.data.datasets[1].data = actual;
-      chart.update();
-      return;
+      chart.destroy();
+      chart = null;
     }
+
+    const liveDotPlugin = {
+      id: "liveDotPlugin",
+      afterDraw(chartInstance) {
+        const meta = chartInstance.getDatasetMeta(0);
+        const point = meta.data[liveIndex];
+        const dot = document.getElementById("live-dot");
+        if (!dot) return;
+        if (!point) {
+          dot.style.display = "none";
+          return;
+        }
+        dot.style.left = point.x + "px";
+        dot.style.top = point.y + "px";
+        dot.style.display = "block";
+      }
+    };
 
     const ctx = document.getElementById("forecast-chart").getContext("2d");
     chart = new Chart(ctx, {
@@ -127,20 +332,15 @@
         labels: labels,
         datasets: [
           {
-            label: "Predicted",
-            data: predicted,
-            borderColor: "#e0a23d",
-            backgroundColor: "rgba(224, 162, 61, 0.08)",
-            borderDash: [5, 4],
-            spanGaps: true,
-            tension: 0.2,
-            pointRadius: 2
-          },
-          {
-            label: "Actual",
-            data: actual,
-            borderColor: "#4fae8b",
-            backgroundColor: "rgba(79, 174, 139, 0.08)",
+            label: "Views",
+            data: values,
+            borderColor: solidColor,
+            backgroundColor: "rgba(255, 91, 110, 0.08)",
+            segment: {
+              borderColor: c => isFuture[c.p1DataIndex] ? futureColor : solidColor,
+              borderDash: c => isFuture[c.p1DataIndex] ? [5, 4] : undefined
+            },
+            pointBackgroundColor: c => isFuture[c.dataIndex] ? futureColor : solidColor,
             spanGaps: true,
             tension: 0.2,
             pointRadius: 2
@@ -149,6 +349,7 @@
       },
       options: {
         responsive: true,
+        maintainAspectRatio: false,
         interaction: { mode: "index", intersect: false },
         plugins: { legend: { display: false } },
         scales: {
@@ -162,7 +363,8 @@
             ticks: { color: "#8d98a6", font: { family: "IBM Plex Mono" } }
           }
         }
-      }
+      },
+      plugins: [liveDotPlugin]
     });
   }
 
@@ -170,16 +372,42 @@
     const res = await fetch(`/api/forecast/{{ video_id }}?metric=${currentMetric}`);
     const data = await res.json();
 
-    document.getElementById("r2-value").textContent = data.r_squared !== null ? data.r_squared : "—";
-    document.getElementById("r2-label").textContent = data.confidence ? `R² · ${data.confidence} confidence` : "R²";
+    const days = Object.values(data.checkpoints).sort((a, b) => a.day - b.day);
+
     document.getElementById("current-value").textContent = data.current_value.toLocaleString();
-    document.getElementById("current-day-label").textContent = `${data.metric} at day ${data.current_day}`;
-    document.getElementById("current-label").textContent = `Currently at day ${data.current_day}`;
+    document.getElementById("current-metric-label").textContent = data.metric.charAt(0).toUpperCase() + data.metric.slice(1);
+    document.getElementById("current-day-badge").textContent = `Day ${data.current_day}`;
+
+    const targetDay = data.current_day - 1;
+    let refRow = null;
+    for (const row of days) {
+      if (row.actual !== null && row.day <= targetDay) {
+        refRow = row;
+      }
+    }
+    if (!refRow) {
+      refRow = days.find(r => r.actual !== null) || null;
+    }
+    const trendEl = document.getElementById("current-trend");
+    if (refRow && refRow.day !== Math.round(data.current_day)) {
+      const delta = data.current_value - refRow.actual;
+      let state = "flat";
+      let symbol = "–";
+      if (delta > 0) {
+        state = "up";
+        symbol = "▲";
+      } else if (delta < 0) {
+        state = "down";
+        symbol = "▼";
+      }
+      trendEl.innerHTML = `<span class="forecast-stat-trend ${state}">${symbol} ${Math.abs(delta).toLocaleString()}</span><span class="forecast-stat-trend-label">last 24h</span>`;
+    } else {
+      trendEl.innerHTML = "";
+    }
 
     const body = document.getElementById("forecast-body");
     body.innerHTML = "";
 
-    const days = Object.values(data.checkpoints).sort((a, b) => a.day - b.day);
     for (const row of days) {
       const tr = document.createElement("tr");
       tr.className = row.locked ? "locked" : "";

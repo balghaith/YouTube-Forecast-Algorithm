@@ -231,8 +231,27 @@ def api_channel_add():
 
 @app.route("/forecast/<video_id>")
 def forecast(video_id):
+    sync_data()
+    known_videos = load_known_videos()
+    tracked_channels = load_tracked_channels()
+    info = known_videos.get(video_id, {})
+    video_title = info.get("title") or video_id
+
+    channel_id = info.get("channel_id", "")
+    channel = next((c for c in tracked_channels if c["channel_id"] == channel_id), None)
+    channel_title = channel.get("title", channel_id) if channel else channel_id
+    channel_thumbnail = channel.get("thumbnail", "") if channel else ""
+
     metric = request.args.get("metric", "views")
-    return render_template("forecast_new.html", video_id=video_id, metric=metric)
+    return render_template(
+        "forecast_new.html",
+        video_id=video_id,
+        video_title=video_title,
+        channel_id=channel_id,
+        channel_title=channel_title,
+        channel_thumbnail=channel_thumbnail,
+        metric=metric
+    )
 
 
 @app.route("/classic/forecast/<video_id>")
