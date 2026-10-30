@@ -18,6 +18,7 @@ app = Flask(__name__)
 DATA_DIR = "data"
 KNOWN_VIDEOS_FILE = "known_videos.json"
 TRACKED_CHANNELS_FILE = "tracked_channels.json"
+SUBSCRIBERS_FILE = "channel_subscribers.json"
 
 
 def sync_data():
@@ -70,6 +71,38 @@ def load_tracked_channels():
 def save_tracked_channels(data):
     with open(TRACKED_CHANNELS_FILE, "w") as f:
         json.dump(data, f, indent=2)
+
+
+def subscriber_text(channel_id):
+    if not os.path.isfile(SUBSCRIBERS_FILE):
+        return ""
+    try:
+        with open(SUBSCRIBERS_FILE, "r") as f:
+            entry = json.load(f).get(channel_id)
+    except (ValueError, OSError):
+        return ""
+    if not entry or entry.get("subscribers") is None:
+        return ""
+
+    count = entry["subscribers"]
+    for threshold, divisor, suffix in (
+        (999_500_000, 1_000_000_000, "B"),
+        (999_500, 1_000_000, "M"),
+        (1_000, 1_000, "K")
+    ):
+        if count >= threshold:
+            value = count / divisor
+            if value < 10:
+                text = f"{value:.2f}"
+            elif value < 100:
+                text = f"{value:.1f}"
+            else:
+                text = f"{value:.0f}"
+            if "." in text:
+                text = text.rstrip("0").rstrip(".")
+            return f"{text}{suffix} subscribers"
+    label = "subscriber" if count == 1 else "subscribers"
+    return f"{count} {label}"
 
 
 def parse_iso_time(value):
@@ -243,7 +276,13 @@ def channel_detail(channel_id):
     channel_totals["engagement_rate"] = round(engagement_rate, 2)
 
     video_stats = [
-        {"title": v["title"], "views": v["views"], "likes": v["likes"], "comments": v["comments"]}
+        {
+            "video_id": v["video_id"],
+            "title": v["title"],
+            "views": v["views"],
+            "likes": v["likes"],
+            "comments": v["comments"]
+        }
         for v in videos
     ]
 
@@ -252,6 +291,7 @@ def channel_detail(channel_id):
         channel_id=channel_id,
         channel_title=channel_title,
         channel_thumbnail=channel_thumbnail,
+        subscriber_text=subscriber_text(channel_id),
         videos=videos,
         channel_totals=channel_totals,
         video_stats=video_stats

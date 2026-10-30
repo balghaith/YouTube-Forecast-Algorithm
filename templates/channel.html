@@ -41,6 +41,12 @@
     font-weight: 600;
     margin: 0 0 10px;
   }
+  .ch-subs {
+    font-size: 13.5px;
+    font-weight: 300;
+    color: var(--text-dim);
+    margin: -4px 0 14px;
+  }
   .ch-stats {
     display: flex;
     gap: 10px;
@@ -342,23 +348,67 @@
   }
   .perf-metric-switch {
     display: flex;
-    gap: 4px;
+    gap: 6px;
   }
   .perf-metric-switch button {
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
     background: none;
     border: 1px solid var(--border);
     border-radius: 999px;
-    width: 26px;
-    height: 26px;
+    width: 32px;
+    height: 32px;
+    padding: 0;
     color: var(--text-dim);
     cursor: pointer;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+    transition: border-color 0.12s ease, color 0.12s ease, background 0.12s ease;
+  }
+  .perf-metric-switch button:hover {
+    border-color: var(--accent-bright);
+  }
+  .perf-metric-switch button:focus-visible {
+    outline: 2px solid var(--accent-bright);
+    outline-offset: 2px;
+  }
+  .perf-metric-switch button::after {
+    content: attr(data-label);
+    position: absolute;
+    bottom: calc(100% + 8px);
+    left: 50%;
+    transform: translate(-50%, 4px);
+    background: #15191f;
+    border: 1px solid var(--border);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.45);
+    color: var(--text);
+    font-family: "IBM Plex Sans", sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 1.3;
+    padding: 5px 10px;
+    border-radius: 6px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.1s ease, transform 0.1s ease;
+    z-index: 5;
+  }
+  .perf-metric-switch button:hover::after,
+  .perf-metric-switch button:focus-visible::after,
+  .perf-metric-switch button.show-label::after {
+    opacity: 1;
+    transform: translate(-50%, 0);
   }
   .perf-metric-switch button svg {
-    width: 13px;
-    height: 13px;
+    width: 15px;
+    height: 15px;
+    pointer-events: none;
+  }
+  .videos-label {
+    margin-top: 28px;
   }
   .perf-metric-switch button.active {
     border-color: var(--accent-bright);
@@ -381,6 +431,9 @@
         <div class="ch-avatar placeholder">{{ channel_title[:1]|upper }}</div>
       {% endif %}
       <p class="ch-title">{{ channel_title }}</p>
+      {% if subscriber_text %}
+        <p class="ch-subs">{{ subscriber_text }}</p>
+      {% endif %}
       <div class="ch-stats">
         <span class="ch-stat-pill"><b>{{ videos|length }}</b> tracked</span>
         <span class="ch-stat-pill"><b>{{ videos|selectattr('status', 'equalto', 'active')|list|length }}</b> active</span>
@@ -389,6 +442,7 @@
 
     {% if videos %}
       <input class="ch-search" id="video-search" type="text" placeholder="Search videos by title">
+      <p class="section-label videos-label">Videos</p>
       <div class="video-scroll" id="video-scroll">
         {% for v in videos %}
           <a class="video-card" href="/forecast/{{ v.video_id }}">
@@ -450,13 +504,13 @@
           <div class="perf-graph-head">
             <p class="perf-graph-label">Top videos by</p>
             <div class="perf-metric-switch" id="metric-switch">
-              <button type="button" data-metric="views" class="active" title="Views">
+              <button type="button" data-metric="views" class="active" data-label="Views" aria-label="Views">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg>
               </button>
-              <button type="button" data-metric="likes" title="Likes">
+              <button type="button" data-metric="likes" data-label="Likes" aria-label="Likes">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 10v12"/><path d="M15 5.88 14 10h6.5a2 2 0 0 1 1.98 2.3l-1.4 9A2 2 0 0 1 19.1 23H7a2 2 0 0 1-2-2V11a2 2 0 0 1 .9-1.67L12 5V3a1 1 0 0 1 1-1c1.1 0 2 1.79 2 3.88Z"/></svg>
               </button>
-              <button type="button" data-metric="comments" title="Comments">
+              <button type="button" data-metric="comments" data-label="Comments" aria-label="Comments">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
               </button>
             </div>
@@ -515,6 +569,27 @@
       return [...videoStats].sort((a, b) => b[metric] - a[metric]).slice(0, n);
     }
 
+    const measureCtx = document.createElement("canvas").getContext("2d");
+    let hoverLabel = null;
+    let currentTop = [];
+
+    function fitLabel(text, maxWidth) {
+      measureCtx.font = '11.5px "IBM Plex Sans", sans-serif';
+      if (measureCtx.measureText(text).width <= maxWidth) return text;
+      let low = 0;
+      let high = text.length;
+      while (low < high) {
+        const mid = Math.ceil((low + high) / 2);
+        const candidate = text.slice(0, mid).trimEnd() + "…";
+        if (measureCtx.measureText(candidate).width <= maxWidth) {
+          low = mid;
+        } else {
+          high = mid - 1;
+        }
+      }
+      return text.slice(0, low).trimEnd() + "…";
+    }
+
     const topVideosChart = new Chart(topVideosCanvas.getContext("2d"), {
       type: "bar",
       data: {
@@ -522,7 +597,7 @@
         datasets: [{
           data: [],
           backgroundColor: "rgba(255, 91, 110, 0.75)",
-          hoverBackgroundColor: "rgba(229, 57, 79, 1)",
+          hoverBackgroundColor: "rgba(214, 24, 52, 1)",
           borderRadius: 4,
           barThickness: 16
         }]
@@ -531,22 +606,122 @@
         indexAxis: "y",
         responsive: true,
         maintainAspectRatio: false,
-        plugins: { legend: { display: false } },
+        animation: { duration: 350 },
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            displayColors: false,
+            padding: 8,
+            bodyFont: { family: "IBM Plex Mono", size: 12 },
+            callbacks: {
+              title: () => "",
+              label: (ctx) => ctx.parsed.x.toLocaleString()
+            }
+          }
+        },
         scales: {
           x: {
             grid: { color: "#2a1a1d" },
-            ticks: { color: "#a8898c", font: { family: "IBM Plex Mono", size: 10 } }
+            ticks: {
+              color: "#a8898c",
+              font: { family: "IBM Plex Mono", size: 10 },
+              maxRotation: 0
+            }
           },
           y: {
             grid: { display: false },
-            ticks: { color: "#f3eceb", font: { family: "IBM Plex Sans", size: 11.5 } }
+            ticks: {
+              color: (ctx) => ctx.index === hoverLabel ? "#ff5b6e" : "#f3eceb",
+              font: { family: "IBM Plex Sans", size: 11.5 },
+              autoSkip: false,
+              callback: function (value) {
+                const label = this.getLabelForValue(value);
+                return fitLabel(String(label), Math.max(120, this.chart.width * 0.4));
+              }
+            }
           }
         }
       }
     });
 
+    let pressedLabel = null;
+    let navigating = false;
+
+    function labelIndexAt(e) {
+      const rect = topVideosCanvas.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      const area = topVideosChart.chartArea;
+      if (x >= area.left || y < area.top || y > area.bottom) return null;
+      const index = Math.round(topVideosChart.scales.y.getValueForPixel(y));
+      if (index < 0 || index >= currentTop.length) return null;
+      return index;
+    }
+
+    function setHoverLabel(index) {
+      if (hoverLabel === index) return;
+      hoverLabel = index;
+      topVideosChart.update("none");
+    }
+
+    topVideosCanvas.style.touchAction = "manipulation";
+
+    function barIndexAt(e) {
+      const elements = topVideosChart.getElementsAtEventForMode(e, "nearest", { intersect: true }, false);
+      return elements.length ? elements[0].index : null;
+    }
+
+    function rowIndexAt(e) {
+      const labelIndex = labelIndexAt(e);
+      return labelIndex !== null ? labelIndex : barIndexAt(e);
+    }
+
+    topVideosCanvas.addEventListener("pointermove", (e) => {
+      const rowIndex = rowIndexAt(e);
+      setHoverLabel(rowIndex);
+      topVideosCanvas.style.cursor = rowIndex !== null ? "pointer" : "default";
+    });
+
+    topVideosCanvas.addEventListener("pointerdown", (e) => {
+      pressedLabel = rowIndexAt(e);
+      setHoverLabel(pressedLabel);
+    });
+
+    topVideosCanvas.addEventListener("pointerup", (e) => {
+      const index = rowIndexAt(e);
+      const target = pressedLabel;
+      pressedLabel = null;
+      if (index === null) {
+        return;
+      }
+      if (index !== target) {
+        setHoverLabel(null);
+        return;
+      }
+      const video = currentTop[index];
+      if (video && video.video_id) {
+        navigating = true;
+        setTimeout(() => {
+          window.location.href = "/forecast/" + video.video_id;
+        }, 140);
+      }
+    });
+
+    topVideosCanvas.addEventListener("pointerleave", (e) => {
+      if (navigating || e.pointerType === "touch") return;
+      pressedLabel = null;
+      setHoverLabel(null);
+    });
+
+    topVideosCanvas.addEventListener("pointercancel", () => {
+      if (navigating) return;
+      pressedLabel = null;
+      setHoverLabel(null);
+    });
+
     function renderMetric(metric) {
       const top = topByMetric(metric);
+      currentTop = top;
       topVideosChart.data.labels = top.map(v => v.title);
       topVideosChart.data.datasets[0].data = top.map(v => v[metric]);
       topVideosChart.update();
@@ -555,12 +730,32 @@
     renderMetric("views");
 
     if (metricSwitch) {
-      metricSwitch.addEventListener("click", (e) => {
+      let labelTimer = null;
+
+      function selectMetric(button) {
+        metricSwitch.querySelectorAll("button").forEach(b => {
+          b.classList.remove("active");
+          b.classList.remove("show-label");
+        });
+        button.classList.add("active");
+        button.classList.add("show-label");
+        clearTimeout(labelTimer);
+        labelTimer = setTimeout(() => button.classList.remove("show-label"), 1200);
+        renderMetric(button.dataset.metric);
+      }
+
+      metricSwitch.addEventListener("pointerdown", (e) => {
+        if (e.button !== undefined && e.button !== 0) return;
         const button = e.target.closest("button[data-metric]");
         if (!button) return;
-        metricSwitch.querySelectorAll("button").forEach(b => b.classList.remove("active"));
-        button.classList.add("active");
-        renderMetric(button.dataset.metric);
+        selectMetric(button);
+      });
+
+      metricSwitch.addEventListener("click", (e) => {
+        if (e.detail !== 0) return;
+        const button = e.target.closest("button[data-metric]");
+        if (!button) return;
+        selectMetric(button);
       });
     }
   }

@@ -17,6 +17,7 @@ TRACKED_CHANNELS_FILE = "tracked_channels.json"
 KNOWN_VIDEOS_FILE = "known_videos.json"
 CHECKPOINTS_FILE = "forecast_checkpoints.json"
 EXCLUDED_VIDEOS_FILE = "excluded_videos.json"
+SUBSCRIBERS_FILE = "channel_subscribers.json"
 MAX_TRACKED_CHANNELS = 15
 
 
@@ -142,13 +143,19 @@ def cleanup_untracked_channels():
                 print(f"Deleted entire folder for untracked channel {entry}")
 
 
-def uploads_id(channel_id):
+def fetch_channel_info(channel_id):
     request = youtube.channels().list(
-        part="contentDetails",
+        part="contentDetails,statistics",
         id=channel_id
     )
     response = request.execute()
-    return response["items"][0]["contentDetails"]["relatedPlaylists"]["uploads"]
+    item = response["items"][0]
+    playlist_id = item["contentDetails"]["relatedPlaylists"]["uploads"]
+    stats = item.get("statistics", {})
+    subscribers = None
+    if not stats.get("hiddenSubscriberCount") and "subscriberCount" in stats:
+        subscribers = int(stats["subscriberCount"])
+    return playlist_id, subscribers
 
 
 def latest_videos(playlist_id, max_results=50):
@@ -280,7 +287,7 @@ def published_after_tracking_started(published_at, added_at):
 def push_to_github():
     subprocess.run(["git", "config", "--global", "user.email", "balghaith05@gmail.com"])
     subprocess.run(["git", "config", "--global", "user.name", "balghaith"])
-    subprocess.run(["git", "add", DATA_DIR, TRACKED_CHANNELS_FILE, KNOWN_VIDEOS_FILE, CHECKPOINTS_FILE])
+    subprocess.run(["git", "add", DATA_DIR, TRACKED_CHANNELS_FILE, KNOWN_VIDEOS_FILE, CHECKPOINTS_FILE, SUBSCRIBERS_FILE])
     subprocess.run(["git", "commit", "-m", "Update tracked data"])
 
     token = os.getenv("GITHUB_TOKEN")
@@ -324,8 +331,14 @@ def run_polling_cycle(push=True):
     known_videos = load_json(KNOWN_VIDEOS_FILE, {})
     excluded_videos = set(load_json(EXCLUDED_VIDEOS_FILE, []))
 
+    subscribers_by_channel = load_json(SUBSCRIBERS_FILE, {})
+
     for channel in tracked_channels:
-        playlist_id = uploads_id(channel["channel_id"])
+        playlist_id, subscriber_count = fetch_channel_info(channel["channel_id"])
+        subscribers_by_channel[channel["channel_id"]] = {
+            "subscribers": subscriber_count,
+            "updated_at": datetime.now(timezone.utc).isoformat()
+        }
         latest = latest_videos(playlist_id, max_results=50)
 
         for video in latest:
@@ -371,6 +384,7 @@ def run_polling_cycle(push=True):
             info["tracked"] = True
 
     save_json(KNOWN_VIDEOS_FILE, known_videos)
+    save_json(SUBSCRIBERS_FILE, subscribers_by_channel)
 
     sort_all_data_files()
 
