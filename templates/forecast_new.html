@@ -43,62 +43,6 @@
     background: var(--panel-raised);
   }
 
-  .forecast-stat {
-    display: inline-block;
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    background: var(--panel);
-    padding: 16px 20px;
-    margin-bottom: 28px;
-  }
-  .forecast-stat-top {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 24px;
-    margin-bottom: 6px;
-  }
-  .forecast-stat-label-text {
-    font-size: 12.5px;
-    font-weight: 600;
-    color: var(--text-dim);
-  }
-  .forecast-stat-day-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    font-size: 12px;
-    color: var(--text-dim);
-    background: var(--panel-raised);
-    border-radius: 999px;
-    padding: 3px 10px 3px 8px;
-  }
-  .forecast-stat-value {
-    display: flex;
-    align-items: baseline;
-    gap: 10px;
-  }
-  .forecast-stat-value .num {
-    font-family: "IBM Plex Mono", monospace;
-    font-size: 34px;
-    font-weight: 600;
-    font-variant-numeric: tabular-nums;
-    line-height: 1;
-  }
-  .forecast-stat-trend {
-    font-size: 13px;
-    font-weight: 600;
-    font-family: "IBM Plex Mono", monospace;
-  }
-  .forecast-stat-trend.up { color: var(--actual); }
-  .forecast-stat-trend.down { color: var(--accent); }
-  .forecast-stat-trend.flat { color: var(--predicted); }
-  .forecast-stat-trend-label {
-    font-weight: 400;
-    font-family: "IBM Plex Sans", sans-serif;
-    color: var(--text-dim);
-    margin-left: 4px;
-  }
   .forecast-stat-dot {
     position: relative;
     display: inline-block;
@@ -119,25 +63,73 @@
   .forecast-stat-dot::after {
     animation-delay: 1s;
   }
+  .forecast-hero-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 13px;
+    color: var(--text-dim);
+    margin-bottom: 10px;
+  }
+  .forecast-hero-day-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 12px;
+    color: var(--text-dim);
+    background: var(--panel-raised);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 5px 12px 5px 9px;
+  }
+  .forecast-hero-value {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    margin-bottom: 26px;
+  }
+  .forecast-hero-value .num {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 56px;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+    line-height: 1;
+    letter-spacing: -0.015em;
+  }
+  .forecast-stat-trend {
+    font-size: 13px;
+    font-weight: 600;
+    font-family: "IBM Plex Mono", monospace;
+  }
+  .forecast-stat-trend.up { color: var(--actual); }
+  .forecast-stat-trend.down { color: var(--accent); }
+  .forecast-stat-trend.flat { color: var(--predicted); }
+  .forecast-stat-trend-label {
+    font-weight: 400;
+    font-family: "IBM Plex Sans", sans-serif;
+    color: var(--text-dim);
+    margin-left: 4px;
+  }
 
   .metric-switch {
     display: flex;
-    gap: 8px;
+    gap: 28px;
+    border-bottom: 1px solid var(--border);
     margin-bottom: 28px;
   }
   .metric-switch button {
     display: inline-flex;
     align-items: center;
     gap: 7px;
-    padding: 7px 15px;
-    border-radius: 7px;
-    border: 1px solid var(--border);
-    background: var(--panel);
+    background: none;
+    border: none;
     color: var(--text-dim);
     font-family: inherit;
-    font-size: 13.5px;
+    font-size: 14px;
+    padding: 0 0 12px;
     cursor: pointer;
-    transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+    position: relative;
+    transition: color 0.15s ease;
   }
   .metric-switch button svg {
     width: 15px;
@@ -147,12 +139,18 @@
   }
   .metric-switch button:hover {
     color: var(--text);
-    border-color: var(--text-dim);
   }
   .metric-switch button.active {
-    color: #fff;
+    color: var(--text);
+  }
+  .metric-switch button.active::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -1px;
+    height: 2px;
     background: var(--accent-bright);
-    border-color: var(--accent-bright);
   }
 
   .chart-panel {
@@ -264,15 +262,13 @@
     </div>
   </div>
 
-  <div class="forecast-stat">
-    <div class="forecast-stat-top">
-      <span class="forecast-stat-label-text" id="current-metric-label">Views</span>
-      <span class="forecast-stat-day-badge"><span class="forecast-stat-dot"></span><span id="current-day-badge">Loading…</span></span>
-    </div>
-    <div class="forecast-stat-value">
-      <span class="num" id="current-value">—</span>
-      <span id="current-trend"></span>
-    </div>
+  <div class="forecast-hero-meta">
+    <span id="current-metric-label">Views</span>
+    <span class="forecast-hero-day-pill"><span class="forecast-stat-dot"></span>Day <span class="mono" id="current-day-badge">—</span></span>
+  </div>
+  <div class="forecast-hero-value">
+    <span class="num mono" id="current-value">—</span>
+    <span id="current-trend"></span>
   </div>
 
   <div class="metric-switch" id="metric-switch">
@@ -409,7 +405,7 @@
 
     document.getElementById("current-value").textContent = data.current_value.toLocaleString();
     document.getElementById("current-metric-label").textContent = data.metric.charAt(0).toUpperCase() + data.metric.slice(1);
-    document.getElementById("current-day-badge").textContent = `Day ${data.current_day}`;
+    document.getElementById("current-day-badge").textContent = data.current_day;
 
     const targetDay = data.current_day - 1;
     let refRow = null;
