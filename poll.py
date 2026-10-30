@@ -32,6 +32,62 @@ def save_json(filename, data):
         json.dump(data, f)
 
 
+def setup_remote():
+    token = os.getenv("GITHUB_TOKEN")
+    remote_url = f"https://{token}@github.com/balghaith/YouTube-Forecast-Algorithm.git"
+    subprocess.run(["git", "remote", "remove", "origin"])
+    subprocess.run(["git", "remote", "add", "origin", remote_url])
+    subprocess.run(["git", "config", "--global", "user.email", "balghaith05@gmail.com"])
+    subprocess.run(["git", "config", "--global", "user.name", "balghaith"])
+
+
+def fetch_remote_json(filename, default):
+    result = subprocess.run(
+        ["git", "show", f"origin/main:{filename}"],
+        capture_output=True, text=True
+    )
+    if result.returncode != 0:
+        return default
+    try:
+        return json.loads(result.stdout)
+    except Exception:
+        return default
+
+
+def merge_dicts_prefer_local(local, remote):
+    merged = dict(remote)
+    merged.update(local)
+    return merged
+
+
+def merge_channel_lists_prefer_local(local, remote):
+    by_id = {c["channel_id"]: c for c in remote}
+    by_id.update({c["channel_id"]: c for c in local})
+    return list(by_id.values())
+
+
+def sync_tracked_state():
+    setup_remote()
+    fetch_result = subprocess.run(["git", "fetch", "origin", "main"], capture_output=True, text=True)
+    print("FETCH:", fetch_result.returncode, fetch_result.stderr)
+
+    remote_tracked = fetch_remote_json(TRACKED_CHANNELS_FILE, [])
+    remote_known = fetch_remote_json(KNOWN_VIDEOS_FILE, {})
+    remote_checkpoints = fetch_remote_json(CHECKPOINTS_FILE, {})
+
+    local_tracked = load_json(TRACKED_CHANNELS_FILE, [])
+    local_known = load_json(KNOWN_VIDEOS_FILE, {})
+    local_checkpoints = load_json(CHECKPOINTS_FILE, {})
+
+    merged_tracked = merge_channel_lists_prefer_local(local_tracked, remote_tracked)
+    merged_known = merge_dicts_prefer_local(local_known, remote_known)
+    merged_checkpoints = merge_dicts_prefer_local(local_checkpoints, remote_checkpoints)
+
+    save_json(TRACKED_CHANNELS_FILE, merged_tracked)
+    save_json(KNOWN_VIDEOS_FILE, merged_known)
+    save_json(CHECKPOINTS_FILE, merged_checkpoints)
+
+
 def cleanup_excluded_videos():
     known_videos = load_json(KNOWN_VIDEOS_FILE, {})
     checkpoints = load_json(CHECKPOINTS_FILE, {})
@@ -242,6 +298,8 @@ def push_to_github():
 
 
 def run_polling_cycle(push=True):
+    sync_tracked_state()
+
     cleanup_untracked_channels()
     cleanup_excluded_videos()
 
