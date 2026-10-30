@@ -146,6 +146,92 @@
     color: var(--text-dim);
   }
 
+  .video-placeholder {
+    flex: 0 0 220px;
+    border: 1px dashed var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+    color: var(--text-dim);
+    user-select: none;
+  }
+  .video-placeholder-thumb {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--panel);
+  }
+  .video-placeholder-thumb svg {
+    width: 30px;
+    height: 30px;
+    fill: none;
+    stroke: var(--text-faint);
+    stroke-width: 1.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  .video-placeholder .video-card-title {
+    color: var(--text-dim);
+  }
+  .video-placeholder .video-card-foot {
+    color: var(--text-faint);
+  }
+
+  .video-empty {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    text-align: center;
+    padding: 12px;
+  }
+  .video-empty.show {
+    display: flex;
+  }
+  .video-empty svg {
+    width: 30px;
+    height: 30px;
+    fill: none;
+    stroke: var(--text-faint);
+    stroke-width: 1.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  .video-empty-title {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text);
+  }
+  .video-empty-query {
+    font-family: "IBM Plex Mono", monospace;
+  }
+  .video-empty-hint {
+    margin: 0;
+    font-size: 12.5px;
+    color: var(--text-dim);
+  }
+  .video-empty-clear {
+    font: inherit;
+    font-size: 12.5px;
+    color: var(--text);
+    background: transparent;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 6px 14px;
+    cursor: pointer;
+  }
+  .video-empty-clear:hover {
+    border-color: var(--accent-bright);
+    color: var(--accent-bright);
+  }
+  .video-empty-clear:focus-visible {
+    outline: 2px solid var(--accent-bright);
+    outline-offset: 2px;
+  }
+
   .live-badge {
     display: inline-flex;
     align-items: center;
@@ -180,10 +266,10 @@
   }
 
   .section-label {
-    font-size: 14px;
+    font-size: 19px;
     font-weight: 600;
-    color: var(--text-dim);
-    margin: 48px 0 14px;
+    color: var(--text);
+    margin: 56px 0 16px;
   }
   .perf-section {
     display: flex;
@@ -408,7 +494,7 @@
     pointer-events: none;
   }
   .videos-label {
-    margin-top: 28px;
+    margin-top: 32px;
   }
   .perf-metric-switch button.active {
     border-color: var(--accent-bright);
@@ -418,6 +504,91 @@
   .perf-graph-wrap {
     position: relative;
     height: 230px;
+  }
+
+  .expired-box {
+    display: inline-flex;
+    align-items: center;
+    gap: 30px;
+    max-width: 100%;
+    margin-top: 88px;
+    padding: 28px 36px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--panel);
+    color: var(--text);
+    transition: border-color 0.15s ease, background 0.15s ease;
+  }
+  .expired-box:hover {
+    border-color: var(--accent-bright);
+    background: var(--panel-raised);
+    text-decoration: none;
+  }
+  .expired-box:focus-visible {
+    outline: 2px solid var(--accent-bright);
+    outline-offset: 3px;
+  }
+  .expired-fan {
+    position: relative;
+    width: 176px;
+    height: 104px;
+    flex-shrink: 0;
+  }
+  .expired-fan img {
+    position: absolute;
+    top: 10px;
+    width: 120px;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    border-radius: 5px;
+    border: 1px solid var(--border);
+    background: var(--panel-raised);
+    transition: transform 0.2s ease;
+  }
+  .expired-fan .expired-tile {
+    position: absolute;
+    top: 10px;
+    width: 120px;
+    aspect-ratio: 16 / 9;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    transition: transform 0.2s ease;
+  }
+  .expired-tile-2 { background: #1f2a3a; }
+  .expired-tile-1 { background: #2a2230; }
+  .expired-tile-0 { background: #4a2f35; }
+  .expired-fan > :nth-child(1) { left: 0; transform: rotate(-8deg); }
+  .expired-fan > :nth-child(2) { left: 28px; transform: rotate(-1deg); z-index: 1; }
+  .expired-fan > :nth-child(3) { left: 56px; transform: rotate(7deg); z-index: 2; }
+  .expired-box:hover .expired-fan > :nth-child(1) { transform: rotate(-12deg) translateX(-4px); }
+  .expired-box:hover .expired-fan > :nth-child(3) { transform: rotate(11deg) translateX(4px); }
+  .expired-text {
+    min-width: 0;
+  }
+  .expired-title {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 600;
+  }
+  .expired-sub {
+    margin: 4px 0 0;
+    font-size: 14px;
+    color: var(--text-dim);
+  }
+  .expired-chev {
+    width: 26px;
+    height: 26px;
+    fill: none;
+    stroke: var(--text-faint);
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    flex-shrink: 0;
+    transition: transform 0.15s ease, stroke 0.15s ease;
+  }
+  .expired-box:hover .expired-chev {
+    transform: translateX(3px);
+    stroke: var(--accent-bright);
   }
 </style>
 {% endblock %}
@@ -435,12 +606,12 @@
         <p class="ch-subs">{{ subscriber_text }}</p>
       {% endif %}
       <div class="ch-stats">
-        <span class="ch-stat-pill"><b>{{ videos|length }}</b> tracked</span>
-        <span class="ch-stat-pill"><b>{{ videos|selectattr('status', 'equalto', 'active')|list|length }}</b> active</span>
+        <span class="ch-stat-pill"><b>{{ total_count }}</b> tracked</span>
+        <span class="ch-stat-pill"><b>{{ live_count }}</b> active</span>
       </div>
     </div>
 
-    {% if videos %}
+    {% if videos or expired_count %}
       <input class="ch-search" id="video-search" type="text" placeholder="Search videos by title">
       <p class="section-label videos-label">Videos</p>
       <div class="video-scroll" id="video-scroll">
@@ -460,12 +631,39 @@
             </div>
           </a>
         {% endfor %}
+        {% set placeholder_lines = [
+          ("Crickets.", "Very quiet in here."),
+          ("Tumbleweed.", "A lonely corner."),
+          ("Plot twist: no video.", "Yet."),
+          ("Still in the editing room.", "Probably."),
+          ("Refreshing won't help.", "We check every hour."),
+          ("This slot is reserved.", "For a future hit."),
+          ("Nothing to see here.", "But soon, maybe."),
+          ("Upload pending.", "Worth the wait.")
+        ] %}
+        {% for slot in range(videos|length, 8) %}
+          <div class="video-placeholder" aria-hidden="true">
+            <div class="video-placeholder-thumb">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M10 8.5v7l5.5-3.5z"/></svg>
+            </div>
+            <div class="video-card-body">
+              <p class="video-card-title">{{ placeholder_lines[slot][0] }}</p>
+              <div class="video-card-foot"><span>{{ placeholder_lines[slot][1] }}</span></div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+      <div class="video-empty" id="video-empty">
+        <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4 4"/></svg>
+        <p class="video-empty-title">No videos found for <span class="video-empty-query" id="video-empty-query"></span></p>
+        <p class="video-empty-hint">Check the spelling, or try a shorter search.</p>
+        <button type="button" class="video-empty-clear" id="video-empty-clear">Clear search</button>
       </div>
     {% else %}
       <div class="empty">No videos tracked for this channel yet. New uploads are picked up automatically once the next poll runs.</div>
     {% endif %}
 
-    {% if videos %}
+    {% if videos or expired_count %}
       <p class="section-label">Channel performance</p>
       <div class="perf-section">
         <div class="perf-info">
@@ -476,7 +674,7 @@
                 <circle class="perf-ring-fg" cx="60" cy="60" r="52"></circle>
               </svg>
               <div class="perf-ring-center">
-                <span class="num">{{ videos|length }}</span>
+                <span class="num">{{ live_count }}</span>
                 <span class="lbl">tracked</span>
               </div>
             </div>
@@ -519,6 +717,28 @@
         </div>
       </div>
       <script id="video-stats-data" type="application/json">{{ video_stats|tojson }}</script>
+      <a class="expired-box" href="/channel/{{ channel_id }}/expired" aria-label="Open expired videos">
+        <div class="expired-fan" aria-hidden="true">
+          {% for slot in [2, 1, 0] %}
+            {% if slot < expired_thumbs|length %}
+              <img src="https://i.ytimg.com/vi/{{ expired_thumbs[slot] }}/mqdefault.jpg" alt="" loading="lazy">
+            {% else %}
+              <span class="expired-tile expired-tile-{{ slot }}"></span>
+            {% endif %}
+          {% endfor %}
+        </div>
+        <div class="expired-text">
+          {% if expired_count %}
+            <p class="expired-title">{{ expired_count }} expired video{{ '' if expired_count == 1 else 's' }}</p>
+            <p class="expired-sub">Finished their 30 days of tracking. Open the full list.</p>
+          {% else %}
+            <p class="expired-title">Expired videos</p>
+            <p class="expired-sub">None yet. Videos move here 30 days after upload.</p>
+          {% endif %}
+        </div>
+        <svg class="expired-chev" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg>
+      </a>
+
     {% endif %}
   </div>
 {% endblock %}
@@ -528,12 +748,41 @@
 <script>
   const searchInput = document.getElementById("video-search");
   if (searchInput) {
-    searchInput.addEventListener("input", () => {
-      const query = searchInput.value.trim().toLowerCase();
+    const videoScroll = document.getElementById("video-scroll");
+    const emptyState = document.getElementById("video-empty");
+    const emptyQuery = document.getElementById("video-empty-query");
+    const emptyClear = document.getElementById("video-empty-clear");
+    let rowHeight = videoScroll.offsetHeight;
+
+    function applySearch() {
+      if (videoScroll.offsetHeight > 60) {
+        rowHeight = videoScroll.offsetHeight;
+      }
+      const rawQuery = searchInput.value.trim();
+      const query = rawQuery.toLowerCase();
+      document.querySelectorAll("#video-scroll .video-placeholder").forEach(slot => {
+        slot.style.display = query ? "none" : "";
+      });
+      let matches = 0;
       document.querySelectorAll("#video-scroll .video-card").forEach(card => {
         const title = card.querySelector(".video-card-title").textContent.toLowerCase();
-        card.style.display = title.includes(query) ? "" : "none";
+        const visible = title.includes(query);
+        card.style.display = visible ? "" : "none";
+        if (visible) matches += 1;
       });
+      const noResults = query !== "" && matches === 0;
+      videoScroll.style.display = noResults ? "none" : "";
+      emptyState.style.minHeight = noResults ? rowHeight + "px" : "";
+      emptyState.classList.toggle("show", noResults);
+      emptyQuery.textContent = rawQuery;
+    }
+
+    searchInput.addEventListener("input", applySearch);
+
+    emptyClear.addEventListener("click", () => {
+      searchInput.value = "";
+      applySearch();
+      searchInput.focus();
     });
   }
 

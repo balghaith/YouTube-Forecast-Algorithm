@@ -260,14 +260,17 @@ def channel_detail(channel_id):
     videos.sort(key=lambda v: v["published_at"], reverse=True)
 
     channel_totals = {"views": 0, "likes": 0, "comments": 0}
+    live_videos = []
     for v in videos:
         stats = latest_video_stats(channel_id, v["video_id"])
         v["views"] = stats["views"]
         v["likes"] = stats["likes"]
         v["comments"] = stats["comments"]
-        channel_totals["views"] += stats["views"]
-        channel_totals["likes"] += stats["likes"]
-        channel_totals["comments"] += stats["comments"]
+        if v["status"] == "active":
+            live_videos.append(v)
+            channel_totals["views"] += stats["views"]
+            channel_totals["likes"] += stats["likes"]
+            channel_totals["comments"] += stats["comments"]
 
     if channel_totals["views"] > 0:
         engagement_rate = (channel_totals["likes"] + channel_totals["comments"]) / channel_totals["views"] * 100
@@ -283,18 +286,56 @@ def channel_detail(channel_id):
             "likes": v["likes"],
             "comments": v["comments"]
         }
-        for v in videos
+        for v in live_videos
     ]
+
+    expired_videos = [v for v in videos if v["status"] == "expired"]
 
     return render_template(
         "channel.html",
+        live_count=len(live_videos),
+        total_count=len(videos),
+        expired_count=len(expired_videos),
+        expired_thumbs=[v["video_id"] for v in expired_videos[:3]],
         channel_id=channel_id,
         channel_title=channel_title,
         channel_thumbnail=channel_thumbnail,
         subscriber_text=subscriber_text(channel_id),
-        videos=videos,
+        videos=live_videos,
         channel_totals=channel_totals,
         video_stats=video_stats
+    )
+
+
+@app.route("/channel/<channel_id>/expired")
+def channel_expired(channel_id):
+    sync_data()
+    tracked_channels = load_tracked_channels()
+    known_videos = visible_known_videos(load_known_videos(), tracked_channels)
+
+    channel = next((c for c in tracked_channels if c["channel_id"] == channel_id), None)
+    channel_title = channel.get("title", channel_id) if channel else channel_id
+
+    videos = []
+    for vid, info in known_videos.items():
+        if info.get("channel_id") != channel_id or info.get("status") != "expired":
+            continue
+        stats = latest_video_stats(channel_id, vid)
+        videos.append({
+            "video_id": vid,
+            "title": info.get("title") or vid,
+            "published_at": info.get("published_at", ""),
+            "views": stats["views"],
+            "likes": stats["likes"],
+            "comments": stats["comments"]
+        })
+    videos.sort(key=lambda v: v["published_at"], reverse=True)
+
+    return render_template(
+        "expired.html",
+        channel_id=channel_id,
+        channel_title=channel_title,
+        videos=videos
     )
 
 
