@@ -1,0 +1,232 @@
+{% extends "base.html" %}
+{% block title %}{{ channel_title }} — YT Forecast{% endblock %}
+
+{% block crumb %}<span class="crumb"><a href="/">&larr; dashboard</a></span>{% endblock %}
+
+{% block head %}
+<style>
+  .channel-layout {
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+    padding: 0 36px;
+    box-sizing: border-box;
+  }
+
+  .ch-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 34px;
+  }
+  .ch-avatar {
+    width: 84px;
+    height: 84px;
+    border-radius: 50%;
+    object-fit: cover;
+    background: var(--panel-raised);
+    margin-bottom: 14px;
+  }
+  .ch-avatar.placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 30px;
+    color: var(--text-dim);
+  }
+  .ch-title {
+    font-size: 26px;
+    font-weight: 600;
+    margin: 0 0 10px;
+  }
+  .ch-stats {
+    display: flex;
+    gap: 10px;
+  }
+  .ch-stat-pill {
+    font-size: 12px;
+    color: var(--text-dim);
+    background: var(--panel-raised);
+    border-radius: 999px;
+    padding: 3px 11px;
+  }
+  .ch-stat-pill b { color: var(--text); font-weight: 600; }
+
+  .ch-search {
+    display: block;
+    width: 100%;
+    max-width: 360px;
+    margin: 26px auto 34px;
+    padding: 9px 14px;
+    border-radius: 7px;
+    border: 1px solid var(--border);
+    background: var(--panel);
+    color: var(--text);
+    font-family: inherit;
+    font-size: 13.5px;
+  }
+  .ch-search::placeholder {
+    color: var(--text-dim);
+  }
+  .ch-search:focus {
+    outline: none;
+    border-color: var(--text-dim);
+  }
+
+  .video-scroll {
+    display: flex;
+    gap: 14px;
+    overflow-x: auto;
+    padding-bottom: 14px;
+    scroll-snap-type: x proximity;
+    scrollbar-width: thin;
+    scrollbar-color: var(--border) transparent;
+  }
+  .video-scroll::-webkit-scrollbar {
+    height: 6px;
+  }
+  .video-scroll::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .video-scroll::-webkit-scrollbar-thumb {
+    background: var(--border);
+    border-radius: 999px;
+  }
+  .video-scroll::-webkit-scrollbar-thumb:hover {
+    background: var(--accent);
+  }
+  .video-card {
+    display: block;
+    flex: 0 0 220px;
+    scroll-snap-align: start;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--panel);
+    overflow: hidden;
+    color: var(--text);
+  }
+  .video-card:hover {
+    background: var(--panel-raised);
+    text-decoration: none;
+  }
+  .video-card-thumb {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    display: block;
+    background: var(--panel-raised);
+  }
+  .video-card-body {
+    padding: 10px 12px 12px;
+  }
+  .video-card-title {
+    font-size: 12.5px;
+    font-weight: 500;
+    line-height: 1.35;
+    min-height: calc(1.35em * 2);
+    margin: 0 0 8px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .video-card-foot {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 11px;
+    color: var(--text-dim);
+  }
+
+  .live-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--accent-bright);
+  }
+  .live-dot {
+    position: relative;
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent-bright);
+  }
+  .live-dot::before,
+  .live-dot::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    border: 1.5px solid var(--accent-bright);
+    animation: live-ripple 2s ease-out infinite;
+  }
+  .live-dot::after {
+    animation-delay: 1s;
+  }
+  @keyframes live-ripple {
+    0% { transform: scale(1); opacity: 0.7; }
+    100% { transform: scale(4.5); opacity: 0; }
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+  <div class="channel-layout">
+    <div class="ch-header">
+      {% if channel_thumbnail %}
+        <img class="ch-avatar" src="{{ channel_thumbnail }}" alt="">
+      {% else %}
+        <div class="ch-avatar placeholder">{{ channel_title[:1]|upper }}</div>
+      {% endif %}
+      <p class="ch-title">{{ channel_title }}</p>
+      <div class="ch-stats">
+        <span class="ch-stat-pill"><b>{{ videos|length }}</b> tracked</span>
+        <span class="ch-stat-pill"><b>{{ videos|selectattr('status', 'equalto', 'active')|list|length }}</b> active</span>
+      </div>
+    </div>
+
+    {% if videos %}
+      <input class="ch-search" id="video-search" type="text" placeholder="Search videos by title">
+      <div class="video-scroll" id="video-scroll">
+        {% for v in videos %}
+          <a class="video-card" href="/forecast/{{ v.video_id }}">
+            <img class="video-card-thumb" src="https://i.ytimg.com/vi/{{ v.video_id }}/mqdefault.jpg" alt="">
+            <div class="video-card-body">
+              <p class="video-card-title">{{ v.title }}</p>
+              <div class="video-card-foot">
+                <span class="mono">{{ v.published_at[:10] }}</span>
+                {% if v.status == 'active' %}
+                  <span class="live-badge"><span class="live-dot"></span>Tracking</span>
+                {% else %}
+                  <span class="badge {{ v.status }}">{{ v.status }}</span>
+                {% endif %}
+              </div>
+            </div>
+          </a>
+        {% endfor %}
+      </div>
+    {% else %}
+      <div class="empty">No videos tracked for this channel yet. New uploads are picked up automatically once the next poll runs.</div>
+    {% endif %}
+  </div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+  const searchInput = document.getElementById("video-search");
+  if (searchInput) {
+    searchInput.addEventListener("input", () => {
+      const query = searchInput.value.trim().toLowerCase();
+      document.querySelectorAll("#video-scroll .video-card").forEach(card => {
+        const title = card.querySelector(".video-card-title").textContent.toLowerCase();
+        card.style.display = title.includes(query) ? "" : "none";
+      });
+    });
+  }
+</script>
+{% endblock %}
