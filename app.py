@@ -88,6 +88,32 @@ def hours_since_publish(timestamp_str, published_at_str):
     return (t - p).total_seconds() / 3600
 
 
+def latest_video_stats(channel_id, video_id):
+    try:
+        rows = load_video_rows(channel_id, video_id)
+    except (FileNotFoundError, OSError):
+        return {"views": 0, "likes": 0, "comments": 0}
+
+    if not rows:
+        return {"views": 0, "likes": 0, "comments": 0}
+
+    last = rows[-1]
+    try:
+        views = int(float(last.get("views", 0) or 0))
+    except ValueError:
+        views = 0
+    try:
+        likes = int(float(last.get("likes", 0) or 0))
+    except ValueError:
+        likes = 0
+    try:
+        comments = int(float(last.get("comments", 0) or 0))
+    except ValueError:
+        comments = 0
+
+    return {"views": views, "likes": likes, "comments": comments}
+
+
 @app.route("/classic")
 def index_classic():
     sync_data()
@@ -181,12 +207,35 @@ def channel_detail(channel_id):
     ]
     videos.sort(key=lambda v: v["published_at"], reverse=True)
 
+    channel_totals = {"views": 0, "likes": 0, "comments": 0}
+    for v in videos:
+        stats = latest_video_stats(channel_id, v["video_id"])
+        v["views"] = stats["views"]
+        v["likes"] = stats["likes"]
+        v["comments"] = stats["comments"]
+        channel_totals["views"] += stats["views"]
+        channel_totals["likes"] += stats["likes"]
+        channel_totals["comments"] += stats["comments"]
+
+    if channel_totals["views"] > 0:
+        engagement_rate = (channel_totals["likes"] + channel_totals["comments"]) / channel_totals["views"] * 100
+    else:
+        engagement_rate = 0.0
+    channel_totals["engagement_rate"] = round(engagement_rate, 2)
+
+    video_stats = [
+        {"title": v["title"], "views": v["views"], "likes": v["likes"], "comments": v["comments"]}
+        for v in videos
+    ]
+
     return render_template(
         "channel.html",
         channel_id=channel_id,
         channel_title=channel_title,
         channel_thumbnail=channel_thumbnail,
-        videos=videos
+        videos=videos,
+        channel_totals=channel_totals,
+        video_stats=video_stats
     )
 
 

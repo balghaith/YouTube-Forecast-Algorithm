@@ -172,6 +172,203 @@
     0% { transform: scale(1); opacity: 0.7; }
     100% { transform: scale(4.5); opacity: 0; }
   }
+
+  .section-label {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-dim);
+    margin: 48px 0 14px;
+  }
+  .perf-section {
+    display: flex;
+    gap: 16px;
+    align-items: stretch;
+  }
+  .perf-info {
+    flex: 2;
+    min-width: 0;
+    display: flex;
+    align-items: stretch;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--panel);
+    padding: 24px 28px;
+  }
+  .perf-info-inner {
+    display: flex;
+    align-items: stretch;
+    gap: 30px;
+    width: 100%;
+  }
+  .perf-ring-wrap {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    flex-shrink: 0;
+    align-self: center;
+  }
+  .perf-ring {
+    width: 100%;
+    height: 100%;
+    transform: rotate(-90deg);
+  }
+  .perf-ring-bg {
+    fill: none;
+    stroke: var(--panel-raised);
+    stroke-width: 9;
+  }
+  .perf-ring-fg {
+    fill: none;
+    stroke: var(--accent-bright);
+    stroke-width: 9;
+    stroke-linecap: round;
+    stroke-dasharray: 326.7;
+    stroke-dashoffset: 326.7;
+    animation: ring-draw 1.3s cubic-bezier(0.35, 0, 0.15, 1) 0.15s forwards;
+  }
+  @keyframes ring-draw {
+    to { stroke-dashoffset: 0; }
+  }
+  .perf-ring-center {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .perf-ring-center .num {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--text);
+    line-height: 1;
+    margin-bottom: 5px;
+  }
+  .perf-ring-center .lbl {
+    font-size: 12px;
+    color: var(--text-dim);
+  }
+  .perf-stack {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+  }
+  .perf-stack-item {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .perf-stack-item:first-child {
+    padding-top: 0;
+  }
+  .perf-stack-item:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+  .perf-stack-item .num {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 27px;
+    font-weight: 700;
+    color: var(--text);
+    line-height: 1;
+  }
+  .perf-stack-item .lbl {
+    font-size: 12.5px;
+    color: var(--text-dim);
+  }
+  .perf-engagement {
+    flex: 1;
+    min-width: 0;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--panel);
+    padding: 24px 18px;
+    overflow: hidden;
+  }
+  .perf-engagement::before {
+    content: "";
+    position: absolute;
+    top: -60%;
+    left: 50%;
+    width: 220px;
+    height: 220px;
+    transform: translateX(-50%);
+    background: radial-gradient(circle, rgba(255, 91, 110, 0.28), transparent 70%);
+    pointer-events: none;
+  }
+  .perf-engagement .num {
+    position: relative;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 38px;
+    font-weight: 700;
+    color: var(--accent-bright);
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+  .perf-engagement .lbl {
+    position: relative;
+    font-size: 12.5px;
+    color: var(--text-dim);
+  }
+  .perf-graph {
+    flex: 3;
+    min-width: 0;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--panel);
+    padding: 18px 20px;
+  }
+  .perf-graph-head {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0 0 14px;
+  }
+  .perf-graph-label {
+    font-size: 11.5px;
+    color: var(--text-dim);
+  }
+  .perf-metric-switch {
+    display: flex;
+    gap: 4px;
+  }
+  .perf-metric-switch button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    width: 26px;
+    height: 26px;
+    color: var(--text-dim);
+    cursor: pointer;
+  }
+  .perf-metric-switch button svg {
+    width: 13px;
+    height: 13px;
+  }
+  .perf-metric-switch button.active {
+    border-color: var(--accent-bright);
+    color: var(--accent-bright);
+    background: rgba(255, 91, 110, 0.1);
+  }
+  .perf-graph-wrap {
+    position: relative;
+    height: 230px;
+  }
 </style>
 {% endblock %}
 
@@ -213,10 +410,67 @@
     {% else %}
       <div class="empty">No videos tracked for this channel yet. New uploads are picked up automatically once the next poll runs.</div>
     {% endif %}
+
+    {% if videos %}
+      <p class="section-label">Channel performance</p>
+      <div class="perf-section">
+        <div class="perf-info">
+          <div class="perf-info-inner">
+            <div class="perf-ring-wrap">
+              <svg class="perf-ring" viewBox="0 0 120 120">
+                <circle class="perf-ring-bg" cx="60" cy="60" r="52"></circle>
+                <circle class="perf-ring-fg" cx="60" cy="60" r="52"></circle>
+              </svg>
+              <div class="perf-ring-center">
+                <span class="num">{{ videos|length }}</span>
+                <span class="lbl">tracked</span>
+              </div>
+            </div>
+            <div class="perf-stack">
+              <div class="perf-stack-item">
+                <p class="num count-up" data-value="{{ channel_totals.views }}">0</p>
+                <p class="lbl">Total views</p>
+              </div>
+              <div class="perf-stack-item">
+                <p class="num count-up" data-value="{{ channel_totals.likes }}">0</p>
+                <p class="lbl">Total likes</p>
+              </div>
+              <div class="perf-stack-item">
+                <p class="num count-up" data-value="{{ channel_totals.comments }}">0</p>
+                <p class="lbl">Total comments</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="perf-engagement">
+          <p class="num count-up" data-value="{{ channel_totals.engagement_rate }}" data-decimals="2" data-suffix="%">0%</p>
+          <p class="lbl">Engagement rate</p>
+        </div>
+        <div class="perf-graph">
+          <div class="perf-graph-head">
+            <p class="perf-graph-label">Top videos by</p>
+            <div class="perf-metric-switch" id="metric-switch">
+              <button type="button" data-metric="views" class="active" title="Views">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg>
+              </button>
+              <button type="button" data-metric="likes" title="Likes">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 10v12"/><path d="M15 5.88 14 10h6.5a2 2 0 0 1 1.98 2.3l-1.4 9A2 2 0 0 1 19.1 23H7a2 2 0 0 1-2-2V11a2 2 0 0 1 .9-1.67L12 5V3a1 1 0 0 1 1-1c1.1 0 2 1.79 2 3.88Z"/></svg>
+              </button>
+              <button type="button" data-metric="comments" title="Comments">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+              </button>
+            </div>
+          </div>
+          <div class="perf-graph-wrap"><canvas id="top-videos-chart"></canvas></div>
+        </div>
+      </div>
+      <script id="video-stats-data" type="application/json">{{ video_stats|tojson }}</script>
+    {% endif %}
   </div>
 {% endblock %}
 
 {% block scripts %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
 <script>
   const searchInput = document.getElementById("video-search");
   if (searchInput) {
@@ -227,6 +481,88 @@
         card.style.display = title.includes(query) ? "" : "none";
       });
     });
+  }
+
+  document.querySelectorAll(".count-up").forEach((el) => {
+    const target = parseFloat(el.dataset.value || "0");
+    const decimals = parseInt(el.dataset.decimals || "0", 10);
+    const suffix = el.dataset.suffix || "";
+    const duration = 1000;
+    const start = performance.now();
+
+    function tick(now) {
+      const progress = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      const current = target * eased;
+      el.textContent = decimals > 0
+        ? current.toFixed(decimals) + suffix
+        : Math.round(current).toLocaleString() + suffix;
+      if (progress < 1) {
+        requestAnimationFrame(tick);
+      }
+    }
+    requestAnimationFrame(tick);
+  });
+
+  const topVideosCanvas = document.getElementById("top-videos-chart");
+  const videoStatsDataEl = document.getElementById("video-stats-data");
+  const metricSwitch = document.getElementById("metric-switch");
+
+  if (topVideosCanvas && videoStatsDataEl) {
+    const videoStats = JSON.parse(videoStatsDataEl.textContent);
+
+    function topByMetric(metric, n = 8) {
+      return [...videoStats].sort((a, b) => b[metric] - a[metric]).slice(0, n);
+    }
+
+    const topVideosChart = new Chart(topVideosCanvas.getContext("2d"), {
+      type: "bar",
+      data: {
+        labels: [],
+        datasets: [{
+          data: [],
+          backgroundColor: "rgba(255, 91, 110, 0.75)",
+          hoverBackgroundColor: "rgba(229, 57, 79, 1)",
+          borderRadius: 4,
+          barThickness: 16
+        }]
+      },
+      options: {
+        indexAxis: "y",
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: { legend: { display: false } },
+        scales: {
+          x: {
+            grid: { color: "#2a1a1d" },
+            ticks: { color: "#a8898c", font: { family: "IBM Plex Mono", size: 10 } }
+          },
+          y: {
+            grid: { display: false },
+            ticks: { color: "#f3eceb", font: { family: "IBM Plex Sans", size: 11.5 } }
+          }
+        }
+      }
+    });
+
+    function renderMetric(metric) {
+      const top = topByMetric(metric);
+      topVideosChart.data.labels = top.map(v => v.title);
+      topVideosChart.data.datasets[0].data = top.map(v => v[metric]);
+      topVideosChart.update();
+    }
+
+    renderMetric("views");
+
+    if (metricSwitch) {
+      metricSwitch.addEventListener("click", (e) => {
+        const button = e.target.closest("button[data-metric]");
+        if (!button) return;
+        metricSwitch.querySelectorAll("button").forEach(b => b.classList.remove("active"));
+        button.classList.add("active");
+        renderMetric(button.dataset.metric);
+      });
+    }
   }
 </script>
 {% endblock %}
