@@ -312,22 +312,17 @@ def run_polling_cycle(push=True):
     excluded_videos = set(load_json(EXCLUDED_VIDEOS_FILE, []))
 
     for channel in tracked_channels:
-        channel_added_at = channel.get("added_at")
         playlist_id = uploads_id(channel["channel_id"])
         latest = latest_videos(playlist_id, max_results=50)
 
         for video in latest:
             if video["video_id"] not in known_videos and video["video_id"] not in excluded_videos:
-                published_at = datetime.fromisoformat(video["published_at"].replace("Z", "+00:00"))
-                added_at = datetime.fromisoformat(channel_added_at.replace("Z", "+00:00"))
-
-                if published_at > added_at:
-                    known_videos[video["video_id"]] = {
-                        "channel_id": channel["channel_id"],
-                        "published_at": video["published_at"],
-                        "status": "active",
-                        "title": video.get("title", "")
-                    }
+                known_videos[video["video_id"]] = {
+                    "channel_id": channel["channel_id"],
+                    "published_at": video["published_at"],
+                    "status": "active",
+                    "title": video.get("title", "")
+                }
 
     for video_id, info in known_videos.items():
         if info["status"] == "active" and is_video_expired(info["published_at"]):
