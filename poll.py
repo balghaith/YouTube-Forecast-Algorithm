@@ -32,6 +32,62 @@ def save_json(filename, data):
         json.dump(data, f)
 
 
+def setup_remote():
+    token = os.getenv("GITHUB_TOKEN")
+    remote_url = f"https://{token}@github.com/balghaith/YouTube-Forecast-Algorithm.git"
+    subprocess.run(["git", "remote", "remove", "origin"])
+    subprocess.run(["git", "remote", "add", "origin", remote_url])
+    subprocess.run(["git", "config", "--global", "user.email", "balghaith05@gmail.com"])
+    subprocess.run(["git", "config", "--global", "user.name", "balghaith"])
+
+
+def fetch_remote_json(filename, default):
+    result = subprocess.run(
+        ["git", "show", f"origin/main:{filename}"],
+        capture_output=True, text=True
+    )
+    if result.returncode != 0:
+        return default
+    try:
+        return json.loads(result.stdout)
+    except Exception:
+        return default
+
+
+def merge_dicts_prefer_local(local, remote):
+    merged = dict(remote)
+    merged.update(local)
+    return merged
+
+
+def merge_channel_lists_prefer_local(local, remote):
+    by_id = {c["channel_id"]: c for c in remote}
+    by_id.update({c["channel_id"]: c for c in local})
+    return list(by_id.values())
+
+
+def sync_tracked_state():
+    setup_remote()
+    fetch_result = subprocess.run(["git", "fetch", "origin", "main"], capture_output=True, text=True)
+    print("FETCH:", fetch_result.returncode, fetch_result.stderr)
+
+    remote_tracked = fetch_remote_json(TRACKED_CHANNELS_FILE, [])
+    remote_known = fetch_remote_json(KNOWN_VIDEOS_FILE, {})
+    remote_checkpoints = fetch_remote_json(CHECKPOINTS_FILE, {})
+
+    local_tracked = load_json(TRACKED_CHANNELS_FILE, [])
+    local_known = load_json(KNOWN_VIDEOS_FILE, {})
+    local_checkpoints = load_json(CHECKPOINTS_FILE, {})
+
+    merged_tracked = merge_channel_lists_prefer_local(local_tracked, remote_tracked)
+    merged_known = merge_dicts_prefer_local(local_known, remote_known)
+    merged_checkpoints = merge_dicts_prefer_local(local_checkpoints, remote_checkpoints)
+
+    save_json(TRACKED_CHANNELS_FILE, merged_tracked)
+    save_json(KNOWN_VIDEOS_FILE, merged_known)
+    save_json(CHECKPOINTS_FILE, merged_checkpoints)
+
+
 def cleanup_excluded_videos():
     known_videos = load_json(KNOWN_VIDEOS_FILE, {})
     checkpoints = load_json(CHECKPOINTS_FILE, {})
@@ -112,35 +168,50 @@ def latest_videos(playlist_id, max_results=50):
     return videos
 
 
-def poll_video_stats(video_id, channel_id):
-    request = youtube.videos().list(
-        part="statistics",
-        id=video_id
-    )
-    try:
-        response = request.execute()
-    except Exception as e:
-        print(f"Error fetching stats for {video_id}: {e}")
-        return None
-
-    if not response["items"]:
-        return None
-
-    stats = response["items"][0]["statistics"]
-
-    row = {
-        "channel_id": channel_id,
-        "video_id": video_id,
-        "timestamp": datetime.now(timezone.utc).isoformat(),
-        "views": stats.get("viewCount", 0),
-        "likes": stats.get("likeCount", 0),
-        "comments": stats.get("commentCount", 0)
-    }
-    return row
+def chunks(lst, size):
+    for i in range(0, len(lst), size):
+        yield lst[i:i + size]
 
 
-def save_row(row):
-    channel_folder = os.path.join(DATA_DIR, row["channel_id"])
+def poll_video_stats_batch(video_ids):
+    rows_by_id = {}
+    titles_by_id = {}
+    for batch in chunks(video_ids, 50):
+        request = youtube.videos().list(
+            part="snippet,statistics",
+            id=",".join(batch)
+        )
+        try:
+            response = request.execute()
+        except Exception as e:
+            print(f"Error fetching stats for batch {batch}: {e}")
+            continue
+
+        now = datetime.now(timezone.utc).isoformat()
+        returned_ids = set()
+        for item in response.get("items", []):
+            stats = item["statistics"]
+            rows_by_id[item["id"]] = {
+                "video_id": item["id"],
+                "timestamp": now,
+                "views": stats.get("viewCount", 0),
+                "likes": stats.get("likeCount", 0),
+                "comments": stats.get("commentCount", 0)
+            }
+            title = item.get("snippet", {}).get("title", "")
+            if title:
+                titles_by_id[item["id"]] = title
+            returned_ids.add(item["id"])
+
+        for vid in batch:
+            if vid not in returned_ids:
+                rows_by_id[vid] = None
+
+    return rows_by_id, titles_by_id
+
+
+def save_row(channel_id, row):
+    channel_folder = os.path.join(DATA_DIR, channel_id)
     os.makedirs(channel_folder, exist_ok=True)
 
     video_file = os.path.join(channel_folder, f"{row['video_id']}.csv")
@@ -227,6 +298,8 @@ def push_to_github():
 
 
 def run_polling_cycle(push=True):
+    sync_tracked_state()
+
     cleanup_untracked_channels()
     cleanup_excluded_videos()
 
@@ -252,31 +325,33 @@ def run_polling_cycle(push=True):
                     known_videos[video["video_id"]] = {
                         "channel_id": channel["channel_id"],
                         "published_at": video["published_at"],
-                        "status": "active"
+                        "status": "active",
+                        "title": video.get("title", "")
                     }
 
-    active_video_ids = [vid for vid, info in known_videos.items() if info["status"] == "active"]
-    polled_ids = active_video_ids[:50]
-    skipped_ids = active_video_ids[50:]
-
-    for video_id in polled_ids:
-        info = known_videos[video_id]
-        if is_video_expired(info["published_at"]):
+    for video_id, info in known_videos.items():
+        if info["status"] == "active" and is_video_expired(info["published_at"]):
             info["status"] = "expired"
             info["tracked"] = False
-        else:
-            row = poll_video_stats(video_id, info["channel_id"])
-            if row is None:
-                print(f"Video {video_id} no longer available, marking as removed")
-                info["status"] = "removed"
-                info["tracked"] = False
-            else:
-                save_row(row)
-                print("Saved:", row)
-                info["tracked"] = True
 
-    for video_id in skipped_ids:
-        known_videos[video_id]["tracked"] = False
+    active_video_ids = [vid for vid, info in known_videos.items() if info["status"] == "active"]
+
+    rows_by_id, titles_by_id = poll_video_stats_batch(active_video_ids)
+
+    for video_id in active_video_ids:
+        info = known_videos[video_id]
+        if not info.get("title") and video_id in titles_by_id:
+            info["title"] = titles_by_id[video_id]
+
+        row = rows_by_id.get(video_id)
+        if row is None:
+            print(f"Video {video_id} no longer available, marking as removed")
+            info["status"] = "removed"
+            info["tracked"] = False
+        else:
+            save_row(info["channel_id"], row)
+            print("Saved:", row)
+            info["tracked"] = True
 
     save_json(KNOWN_VIDEOS_FILE, known_videos)
 
