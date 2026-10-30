@@ -212,6 +212,31 @@
   tbody tr.locked td { color: var(--text); }
   .pending { color: var(--text-faint); }
 
+  .live-num { position: relative; display: inline-block; }
+  .live-num::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -4px;
+    height: 2px;
+    border-radius: 2px;
+    background: var(--accent-bright);
+    transform: scaleX(0);
+    transform-origin: left center;
+    animation: live-underline 3.4s ease-in-out infinite;
+    animation-delay: calc(var(--i) * 0.2s);
+  }
+  @keyframes live-underline {
+    0% { transform: scaleX(0); opacity: 1; }
+    55% { transform: scaleX(1); opacity: 1; }
+    80%, 100% { transform: scaleX(1); opacity: 0; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .live-num::after { animation: none; opacity: 0; }
+  }
+
   td.has-tip { cursor: help; position: relative; }
   td.has-tip::after {
     content: attr(data-tip);
@@ -324,13 +349,15 @@
   function renderChart(days) {
     const labels = days.map(d => `Day ${d.day}`);
     const values = days.map(d => d.actual !== null ? d.actual : d.predicted);
-    const isFuture = days.map(d => d.actual === null);
+    const isFuture = days.map(d => d.actual === null && !d.before_tracking);
 
     const solidColor = "#ff5b6e";
     const futureColor = "rgba(255, 91, 110, 0.45)";
 
-    let liveIndex = isFuture.indexOf(true) - 1;
-    if (liveIndex < 0) liveIndex = values.length - 1;
+    let liveIndex = -1;
+    days.forEach((d, i) => {
+      if (d.actual !== null) liveIndex = i;
+    });
 
     if (chart) {
       chart.destroy();
@@ -401,6 +428,19 @@
     const res = await fetch(`/api/forecast/{{ video_id }}?metric=${currentMetric}`);
     const data = await res.json();
 
+    if (data.pending) {
+      document.getElementById("current-value").textContent = "—";
+      document.getElementById("current-day-badge").textContent = "—";
+      document.getElementById("current-trend").innerHTML = "";
+      document.getElementById("forecast-body").innerHTML = `<tr><td colspan="3"><span class="pending">Waiting for the first data point. Check back within the hour.</span></td></tr>`;
+      document.getElementById("live-dot").style.display = "none";
+      if (chart) {
+        chart.destroy();
+        chart = null;
+      }
+      return;
+    }
+
     const days = Object.values(data.checkpoints).sort((a, b) => a.day - b.day);
 
     document.getElementById("current-value").textContent = data.current_value.toLocaleString();
@@ -437,11 +477,22 @@
     const body = document.getElementById("forecast-body");
     body.innerHTML = "";
 
+    let liveCount = 0;
     for (const row of days) {
       const tr = document.createElement("tr");
-      tr.className = row.locked ? "locked" : "";
-      const actualText = row.actual === null ? `<span class="pending">pending</span>` : row.actual.toLocaleString();
-      const predictedText = row.predicted === null ? `<span class="pending">n/a</span>` : row.predicted.toLocaleString();
+      const isLive = !row.locked && row.predicted !== null;
+      tr.className = row.locked ? "locked" : (isLive ? "live" : "");
+      const emptyActual = row.before_tracking ? "n/a" : "pending";
+      const actualText = row.actual === null ? `<span class="pending">${emptyActual}</span>` : row.actual.toLocaleString();
+      let predictedText;
+      if (row.predicted === null) {
+        predictedText = `<span class="pending">n/a</span>`;
+      } else if (isLive) {
+        predictedText = `<span class="live-num" style="--i:${liveCount}">${row.predicted.toLocaleString()}</span>`;
+        liveCount += 1;
+      } else {
+        predictedText = row.predicted.toLocaleString();
+      }
       const predictedTip = row.locked ? "Locked prediction" : "Still updating";
       tr.innerHTML = `<td class="mono">${row.day}</td><td class="mono has-tip" data-tip="${predictedTip}">${predictedText}</td><td class="mono">${actualText}</td>`;
       body.appendChild(tr);

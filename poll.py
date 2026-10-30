@@ -264,6 +264,19 @@ def is_video_expired(published_at_str, max_days=30):
     return age_days > max_days
 
 
+def parse_iso_time(value):
+    parsed = datetime.fromisoformat(value.replace("Z", "+00:00"))
+    if parsed.tzinfo is None:
+        parsed = parsed.replace(tzinfo=timezone.utc)
+    return parsed
+
+
+def published_after_tracking_started(published_at, added_at):
+    if not added_at or not published_at:
+        return True
+    return parse_iso_time(published_at) >= parse_iso_time(added_at)
+
+
 def push_to_github():
     subprocess.run(["git", "config", "--global", "user.email", "balghaith05@gmail.com"])
     subprocess.run(["git", "config", "--global", "user.name", "balghaith"])
@@ -316,7 +329,11 @@ def run_polling_cycle(push=True):
         latest = latest_videos(playlist_id, max_results=50)
 
         for video in latest:
-            if video["video_id"] not in known_videos and video["video_id"] not in excluded_videos:
+            if (
+                video["video_id"] not in known_videos
+                and video["video_id"] not in excluded_videos
+                and published_after_tracking_started(video["published_at"], channel.get("added_at"))
+            ):
                 known_videos[video["video_id"]] = {
                     "channel_id": channel["channel_id"],
                     "published_at": video["published_at"],
@@ -329,7 +346,12 @@ def run_polling_cycle(push=True):
             info["status"] = "expired"
             info["tracked"] = False
 
-    active_video_ids = [vid for vid, info in known_videos.items() if info["status"] == "active"]
+    added_by_channel = {c["channel_id"]: c.get("added_at") for c in tracked_channels}
+    active_video_ids = [
+        vid for vid, info in known_videos.items()
+        if info["status"] == "active"
+        and published_after_tracking_started(info["published_at"], added_by_channel.get(info["channel_id"]))
+    ]
 
     rows_by_id, titles_by_id = poll_video_stats_batch(active_video_ids)
 

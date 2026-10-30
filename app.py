@@ -6,7 +6,7 @@ from datetime import datetime, timezone
 
 import numpy as np
 
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request, jsonify, redirect, url_for
 
 from forecast import fit_arima_model, predict_arima, compute_arima_r_squared, confidence_label
 from checkpoints import update_checkpoints_for_video
@@ -72,6 +72,25 @@ def save_tracked_channels(data):
         json.dump(data, f, indent=2)
 
 
+def parse_iso_time(value):
+    parsed = datetime.fromisoformat(value.replace("Z", "+00:00"))
+    if parsed.tzinfo is None:
+        parsed = parsed.replace(tzinfo=timezone.utc)
+    return parsed
+
+
+def visible_known_videos(known_videos, tracked_channels):
+    added_by_channel = {c["channel_id"]: c.get("added_at") for c in tracked_channels}
+    visible = {}
+    for vid, info in known_videos.items():
+        added_at = added_by_channel.get(info.get("channel_id"))
+        published_at = info.get("published_at")
+        if added_at and published_at and parse_iso_time(published_at) < parse_iso_time(added_at):
+            continue
+        visible[vid] = info
+    return visible
+
+
 def load_video_rows(channel_id, video_id):
     path = os.path.join(DATA_DIR, channel_id, f"{video_id}.csv")
     rows = []
@@ -117,7 +136,7 @@ def latest_video_stats(channel_id, video_id):
 @app.route("/classic")
 def index_classic():
     sync_data()
-    known_videos = load_known_videos()
+    known_videos = visible_known_videos(load_known_videos(), load_tracked_channels())
     active_videos = [
         (vid, info) for vid, info in known_videos.items() if info["status"] == "active"
     ]
@@ -158,7 +177,7 @@ def build_channels_with_counts(tracked_channels, known_videos):
 def dashboard():
     sync_data()
     tracked_channels = load_tracked_channels()
-    known_videos = load_known_videos()
+    known_videos = visible_known_videos(load_known_videos(), tracked_channels)
 
     channels_with_counts = build_channels_with_counts(tracked_channels, known_videos)
     total_videos = sum(c["video_count"] for c in channels_with_counts)
@@ -176,7 +195,7 @@ def dashboard():
 def all_channels():
     sync_data()
     tracked_channels = load_tracked_channels()
-    known_videos = load_known_videos()
+    known_videos = visible_known_videos(load_known_videos(), tracked_channels)
 
     channels_with_counts = build_channels_with_counts(tracked_channels, known_videos)
     total_videos = sum(c["video_count"] for c in channels_with_counts)
@@ -188,7 +207,7 @@ def all_channels():
 def channel_detail(channel_id):
     sync_data()
     tracked_channels = load_tracked_channels()
-    known_videos = load_known_videos()
+    known_videos = visible_known_videos(load_known_videos(), tracked_channels)
 
     channel = next((c for c in tracked_channels if c["channel_id"] == channel_id), None)
     channel_title = channel.get("title", channel_id) if channel else channel_id
@@ -281,8 +300,13 @@ def api_channel_add():
 @app.route("/forecast/<video_id>")
 def forecast(video_id):
     sync_data()
-    known_videos = load_known_videos()
+    all_known_videos = load_known_videos()
     tracked_channels = load_tracked_channels()
+    known_videos = visible_known_videos(all_known_videos, tracked_channels)
+
+    if video_id in all_known_videos and video_id not in known_videos:
+        return redirect(url_for("channel_detail", channel_id=all_known_videos[video_id]["channel_id"]))
+
     info = known_videos.get(video_id, {})
     video_title = info.get("title") or video_id
 
@@ -318,7 +342,14 @@ def api_forecast(video_id):
     published_at = info["published_at"]
     metric = request.args.get("metric", "views")
 
-    rows = load_video_rows(channel_id, video_id)
+    try:
+        rows = load_video_rows(channel_id, video_id)
+    except (FileNotFoundError, OSError):
+        rows = []
+
+    if not rows:
+        return jsonify({"video_id": video_id, "metric": metric, "pending": True})
+
     x = [hours_since_publish(r["timestamp"], published_at) for r in rows]
     y = [float(r[metric]) for r in rows]
 
