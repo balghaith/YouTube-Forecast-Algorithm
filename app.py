@@ -1,8 +1,10 @@
 import os
+import re
 import json
 import csv
+import shutil
 import subprocess
-from datetime import datetime, timezone
+from datetime import datetime, timezone, timedelta
 from zoneinfo import ZoneInfo
 
 import numpy as np
@@ -20,6 +22,10 @@ DATA_DIR = "data"
 KNOWN_VIDEOS_FILE = "known_videos.json"
 TRACKED_CHANNELS_FILE = "tracked_channels.json"
 SUBSCRIBERS_FILE = "channel_subscribers.json"
+MAX_TRACKED_CHANNELS = 15
+CHECKPOINTS_STORE_FILE = "forecast_checkpoints.json"
+ORIGINAL_FORECASTS_FILE = "original_forecasts.json"
+CHANNEL_ID_PATTERN = re.compile(r"[A-Za-z0-9_-]+")
 
 
 def sync_data():
@@ -55,6 +61,90 @@ def push_data():
     subprocess.run(["git", "config", "merge.ours.driver", "true"], cwd=repo_dir)
     subprocess.run(["git", "merge", "origin/main", "--no-edit"], cwd=repo_dir)
     subprocess.run(["git", "push", "origin", "HEAD:main"], cwd=repo_dir)
+
+
+def read_json_file(path, default):
+    if not os.path.isfile(path):
+        return default
+    try:
+        with open(path, "r") as f:
+            return json.load(f)
+    except (ValueError, OSError):
+        return default
+
+
+def write_json_file(path, data):
+    with open(path, "w") as f:
+        json.dump(data, f)
+
+
+def remove_channel_data(channel_id):
+    tracked_channels = [c for c in load_tracked_channels() if c.get("channel_id") != channel_id]
+    write_json_file(TRACKED_CHANNELS_FILE, tracked_channels)
+
+    known_videos = read_json_file(KNOWN_VIDEOS_FILE, {})
+    video_ids = [vid for vid, info in known_videos.items() if info.get("channel_id") == channel_id]
+    for vid in video_ids:
+        del known_videos[vid]
+    write_json_file(KNOWN_VIDEOS_FILE, known_videos)
+
+    for path in (CHECKPOINTS_STORE_FILE, ORIGINAL_FORECASTS_FILE):
+        if not os.path.isfile(path):
+            continue
+        store = read_json_file(path, {})
+        for vid in video_ids:
+            store.pop(vid, None)
+        write_json_file(path, store)
+
+    subscribers = read_json_file(SUBSCRIBERS_FILE, {})
+    if channel_id in subscribers:
+        del subscribers[channel_id]
+        write_json_file(SUBSCRIBERS_FILE, subscribers)
+
+    folder = os.path.join(DATA_DIR, channel_id)
+    if os.path.isdir(folder):
+        shutil.rmtree(folder)
+
+    return video_ids
+
+
+def push_channel_deletion(channel_id):
+    repo_dir = os.path.dirname(os.path.abspath(__file__))
+    token = os.environ.get("GITHUB_TOKEN")
+
+    def git(*args):
+        return subprocess.run(["git", *args], cwd=repo_dir, capture_output=True, text=True)
+
+    tracked_data = git("ls-files", "--", os.path.join(DATA_DIR, channel_id)).stdout.strip()
+    paths = [
+        TRACKED_CHANNELS_FILE,
+        KNOWN_VIDEOS_FILE,
+        CHECKPOINTS_STORE_FILE,
+        ORIGINAL_FORECASTS_FILE,
+        SUBSCRIBERS_FILE
+    ]
+    if tracked_data:
+        paths.append(os.path.join(DATA_DIR, channel_id))
+    paths = [p for p in paths if git("ls-files", "--", p).stdout.strip()]
+
+    git("config", "user.email", "balghaith05@gmail.com")
+    git("config", "user.name", "balghaith")
+    git("add", "-A", "--", *paths)
+    commit_result = git("commit", "-m", f"Delete tracked channel {channel_id}", "--", *paths)
+    if commit_result.returncode != 0:
+        return False
+
+    if token:
+        remote_url = f"https://{token}@github.com/balghaith/YouTube-Forecast-Algorithm.git"
+        git("remote", "remove", "origin")
+        git("remote", "add", "origin", remote_url)
+    git("fetch", "origin", "main")
+    git("config", "merge.ours.driver", "true")
+    merge_result = git("merge", "origin/main", "--no-edit")
+    if merge_result.returncode != 0:
+        git("merge", "--abort")
+        return False
+    return git("push", "origin", "HEAD:main").returncode == 0
 
 
 def load_known_videos():
@@ -296,6 +386,60 @@ def build_channels_with_counts(tracked_channels, known_videos):
     return channels_with_counts
 
 
+GROWTH_CHART_MAX_LINES = 6
+
+
+def build_growth_chart(tracked_channels, known_videos):
+    today = datetime.now(LA_TZ).date()
+    dates_by_channel = {}
+    for info in known_videos.values():
+        if info.get("status") != "active":
+            continue
+        published_at = info.get("published_at")
+        channel_id = info.get("channel_id")
+        if not published_at or not channel_id:
+            continue
+        published_day = parse_iso_time(published_at).astimezone(LA_TZ).date()
+        dates_by_channel.setdefault(channel_id, []).append(min(published_day, today))
+
+    if not dates_by_channel:
+        return None
+
+    start = min(min(days) for days in dates_by_channel.values())
+    if start >= today:
+        start = today - timedelta(days=1)
+    day_list = [start + timedelta(days=n) for n in range((today - start).days + 1)]
+
+    meta = {c["channel_id"]: c for c in tracked_channels}
+    series = []
+    for channel_id, published_days in dates_by_channel.items():
+        channel = meta.get(channel_id)
+        if not channel:
+            continue
+        values = []
+        running = 0
+        for day in day_list:
+            running += sum(1 for d in published_days if d == day)
+            values.append(running)
+        series.append({
+            "id": channel_id,
+            "title": channel.get("title", channel_id),
+            "thumbnail": channel.get("thumbnail", ""),
+            "values": values
+        })
+
+    if not series:
+        return None
+
+    series.sort(key=lambda s: s["values"][-1], reverse=True)
+    shown = series[:GROWTH_CHART_MAX_LINES]
+    return {
+        "days": [d.isoformat() for d in day_list],
+        "series": shown,
+        "extra": max(len(tracked_channels) - len(shown), 0)
+    }
+
+
 @app.route("/")
 def dashboard():
     sync_data()
@@ -310,7 +454,8 @@ def dashboard():
         "dashboard.html",
         channels=channels_with_counts[:4],
         total_videos=total_videos,
-        total_channels=total_channels
+        total_channels=total_channels,
+        growth_chart=build_growth_chart(tracked_channels, known_videos)
     )
 
 
@@ -465,6 +610,9 @@ def api_channel_add():
     if any(c["channel_id"] == channel_id for c in tracked_channels):
         return jsonify({"status": "already_tracked"}), 200
 
+    if len(tracked_channels) >= MAX_TRACKED_CHANNELS:
+        return jsonify({"error": "limit_reached", "max": MAX_TRACKED_CHANNELS}), 409
+
     tracked_channels.append({
         "channel_id": channel_id,
         "title": title,
@@ -475,6 +623,22 @@ def api_channel_add():
     push_data()
 
     return jsonify({"status": "added"}), 200
+
+
+@app.route("/api/channels/<channel_id>/delete", methods=["POST"])
+def api_channel_delete(channel_id):
+    if not CHANNEL_ID_PATTERN.fullmatch(channel_id):
+        return jsonify({"error": "invalid channel id"}), 400
+
+    sync_data()
+    tracked_channels = load_tracked_channels()
+    if not any(c.get("channel_id") == channel_id for c in tracked_channels):
+        return jsonify({"error": "channel not tracked"}), 404
+
+    video_ids = remove_channel_data(channel_id)
+    pushed = push_channel_deletion(channel_id)
+
+    return jsonify({"status": "deleted", "videos": len(video_ids), "pushed": pushed}), 200
 
 
 @app.route("/forecast/<video_id>")

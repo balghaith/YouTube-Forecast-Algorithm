@@ -787,6 +787,169 @@
     transform: translateX(3px);
     stroke: var(--accent-bright);
   }
+
+  .dz {
+    position: relative;
+    margin: 56px 0 40px;
+    max-width: 760px;
+    border: 1px solid rgba(255, 91, 110, 0.45);
+    border-radius: 12px;
+    background: rgba(255, 91, 110, 0.03);
+    overflow: hidden;
+    transition: height 0.32s cubic-bezier(0.2, 0.8, 0.25, 1), background 0.3s ease, border-color 0.3s ease;
+  }
+  .dz.open {
+    background: rgba(255, 91, 110, 0.06);
+    border-color: #ff5b6e;
+  }
+  .dz-panel {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 18px 20px;
+    box-sizing: border-box;
+    transition: opacity 0.22s ease, transform 0.3s cubic-bezier(0.2, 0.8, 0.25, 1), visibility 0s linear 0.3s;
+  }
+  .dz-rest {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .dz-confirm {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+  }
+  .dz.open .dz-rest {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+  }
+  .dz.open .dz-confirm {
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    transition: opacity 0.26s ease 0.08s, transform 0.3s cubic-bezier(0.2, 0.8, 0.25, 1) 0.08s, visibility 0s;
+  }
+  .dz-title {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text);
+  }
+  .dz-sub {
+    margin: 2px 0 0;
+    font-size: 12.5px;
+    color: var(--text-dim);
+    max-width: 46ch;
+  }
+  .dz-q {
+    margin: 0 0 14px;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text);
+  }
+  .dz-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+    flex-wrap: wrap;
+  }
+  .dz-count {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+  }
+  .dz-count b {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 56px;
+    font-weight: 600;
+    line-height: 1;
+    color: #ff5b6e;
+  }
+  .dz-count span {
+    font-size: 15px;
+    color: var(--text-dim);
+  }
+  .dz-actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .dz-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    height: 38px;
+    padding: 0 16px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--text);
+    font-family: inherit;
+    font-size: 13.5px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.15s ease, border-color 0.15s ease, opacity 0.15s ease;
+  }
+  .dz-btn:hover {
+    border-color: var(--text-dim);
+  }
+  .dz-btn:focus-visible {
+    outline: 2px solid #ff5b6e;
+    outline-offset: 2px;
+  }
+  .dz-btn.danger {
+    color: #ff5b6e;
+    border-color: rgba(255, 91, 110, 0.45);
+    background: rgba(255, 91, 110, 0.10);
+  }
+  .dz-btn.danger:hover {
+    background: rgba(255, 91, 110, 0.18);
+    border-color: #ff5b6e;
+  }
+  .dz-btn.solid {
+    background: #ff5b6e;
+    border-color: #ff5b6e;
+    color: #1a0508;
+    font-weight: 600;
+  }
+  .dz-btn.solid:hover {
+    background: #ff7685;
+    border-color: #ff7685;
+  }
+  .dz-btn:disabled {
+    opacity: 0.55;
+    cursor: default;
+  }
+  .dz-btn svg {
+    width: 15px;
+    height: 15px;
+    stroke: currentColor;
+    fill: none;
+    stroke-width: 1.9;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  .dz-msg {
+    margin: 12px 0 0;
+    font-size: 13px;
+    color: #ff5b6e;
+    min-height: 0;
+  }
+  .dz-msg:empty {
+    display: none;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .dz,
+    .dz-panel {
+      transition: none;
+    }
+  }
 </style>
 {% endblock %}
 
@@ -968,6 +1131,27 @@
       {% endif %}
 
     {% endif %}
+
+    <div class="dz" id="dz" data-channel-id="{{ channel_id }}" data-channel-name="{{ channel_title }}">
+      <div class="dz-panel dz-rest" id="dz-rest">
+        <div>
+          <p class="dz-title">Stop tracking this channel</p>
+          <p class="dz-sub">Removes {{ channel_title }} and its {{ total_count }} video{{ '' if total_count == 1 else 's' }} from your dashboard and stops collecting numbers.</p>
+        </div>
+        <button type="button" class="dz-btn danger" id="dz-open"><svg viewBox="0 0 24 24"><path d="M4 7h16M10 11v6M14 11v6M6 7l1 12a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2l1-12M9 7V4h6v3"/></svg>Delete channel</button>
+      </div>
+      <div class="dz-panel dz-confirm" id="dz-confirm">
+        <p class="dz-q">Delete {{ channel_title }}?</p>
+        <div class="dz-row">
+          <div class="dz-count"><b>{{ total_count }}</b><span>video{{ '' if total_count == 1 else 's' }} will stop being tracked</span></div>
+          <div class="dz-actions">
+            <button type="button" class="dz-btn solid" id="dz-delete"><svg viewBox="0 0 24 24"><path d="M4 7h16M10 11v6M14 11v6M6 7l1 12a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2l1-12M9 7V4h6v3"/></svg>Delete channel</button>
+            <button type="button" class="dz-btn" id="dz-cancel">Cancel</button>
+          </div>
+        </div>
+        <p class="dz-msg" id="dz-msg" role="status"></p>
+      </div>
+    </div>
   </div>
 {% endblock %}
 
@@ -1277,5 +1461,78 @@
       });
     }
   }
+</script>
+
+<script>
+  (function () {
+    const dz = document.getElementById("dz");
+    if (!dz) return;
+    const rest = document.getElementById("dz-rest");
+    const confirmPanel = document.getElementById("dz-confirm");
+    const openBtn = document.getElementById("dz-open");
+    const cancelBtn = document.getElementById("dz-cancel");
+    const deleteBtn = document.getElementById("dz-delete");
+    const msg = document.getElementById("dz-msg");
+    const channelId = dz.dataset.channelId;
+    const channelName = dz.dataset.channelName;
+    let busy = false;
+
+    const fit = () => {
+      const panel = dz.classList.contains("open") ? confirmPanel : rest;
+      dz.style.height = panel.offsetHeight + 2 + "px";
+    };
+
+    const setOpen = open => {
+      dz.classList.toggle("open", open);
+      fit();
+      if (open) {
+        deleteBtn.focus({ preventScroll: true });
+      } else {
+        openBtn.focus({ preventScroll: true });
+      }
+    };
+
+    fit();
+    window.addEventListener("resize", fit);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(fit);
+
+    openBtn.addEventListener("click", () => setOpen(true));
+    cancelBtn.addEventListener("click", () => {
+      if (busy) return;
+      msg.textContent = "";
+      setOpen(false);
+    });
+    document.addEventListener("keydown", event => {
+      if (event.key === "Escape" && dz.classList.contains("open") && !busy) {
+        msg.textContent = "";
+        setOpen(false);
+      }
+    });
+
+    deleteBtn.addEventListener("click", async () => {
+      if (busy) return;
+      busy = true;
+      deleteBtn.disabled = true;
+      cancelBtn.disabled = true;
+      deleteBtn.lastChild.textContent = "Deleting";
+      msg.textContent = "";
+      fit();
+      try {
+        const res = await fetch(`/api/channels/${encodeURIComponent(channelId)}/delete`, { method: "POST" });
+        const data = await res.json();
+        if (!res.ok || data.status !== "deleted") throw new Error(data.error || "failed");
+        msg.textContent = `${channelName} was deleted. Taking you to the dashboard.`;
+        fit();
+        setTimeout(() => { window.location.href = "/"; }, 1100);
+      } catch (err) {
+        busy = false;
+        deleteBtn.disabled = false;
+        cancelBtn.disabled = false;
+        deleteBtn.lastChild.textContent = "Delete channel";
+        msg.textContent = "Could not delete the channel. Try again.";
+        fit();
+      }
+    });
+  })();
 </script>
 {% endblock %}
