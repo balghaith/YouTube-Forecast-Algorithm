@@ -412,6 +412,7 @@ def channel_expired(channel_id):
 
     channel = next((c for c in tracked_channels if c["channel_id"] == channel_id), None)
     channel_title = channel.get("title", channel_id) if channel else channel_id
+    channel_thumbnail = channel.get("thumbnail", "") if channel else ""
 
     videos = []
     for vid, info in known_videos.items():
@@ -432,6 +433,7 @@ def channel_expired(channel_id):
         "expired.html",
         channel_id=channel_id,
         channel_title=channel_title,
+        channel_thumbnail=channel_thumbnail,
         videos=videos
     )
 

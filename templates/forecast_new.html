@@ -63,12 +63,39 @@
   .forecast-stat-dot::after {
     animation-delay: 1s;
   }
-  .forecast-hero-day-pill.done .forecast-stat-dot {
-    background: var(--text-faint);
+  .forecast-hero-day-pill .pill-live {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
   }
-  .forecast-hero-day-pill.done .forecast-stat-dot::before,
-  .forecast-hero-day-pill.done .forecast-stat-dot::after {
+  .forecast-hero-day-pill .pill-live .forecast-stat-dot {
+    margin-right: 8px;
+  }
+  .forecast-hero-day-pill .pill-final {
     display: none;
+    align-items: center;
+    gap: 6px;
+  }
+  .forecast-hero-day-pill .pill-final svg {
+    width: 12px;
+    height: 12px;
+    stroke: currentColor;
+    fill: none;
+    stroke-width: 2;
+  }
+  .forecast-hero-day-pill.done {
+    color: var(--predicted);
+    background: var(--predicted-bg);
+    border-color: color-mix(in srgb, var(--predicted) 45%, transparent);
+  }
+  .forecast-hero-day-pill.done .pill-live {
+    display: none;
+  }
+  .forecast-hero-day-pill.done .pill-final {
+    display: inline-flex;
+  }
+  .forecast-hero-value .num.muted {
+    color: var(--text-dim);
   }
   .forecast-hero-meta {
     display: flex;
@@ -87,7 +114,7 @@
     background: var(--panel-raised);
     border: 1px solid var(--border);
     border-radius: 999px;
-    padding: 5px 12px 5px 9px;
+    padding: 5px 14px 5px 14px;
   }
   .forecast-hero-value {
     display: flex;
@@ -296,7 +323,10 @@
 
   <div class="forecast-hero-meta">
     <span id="current-metric-label">Views</span>
-    <span class="forecast-hero-day-pill"><span class="forecast-stat-dot"></span>Day <span class="mono" id="current-day-badge">—</span></span>
+    <span class="forecast-hero-day-pill">
+      <span class="pill-live"><span class="forecast-stat-dot"></span>Day <span class="mono" id="current-day-badge">—</span></span>
+      <span class="pill-final"><svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>Final &middot; Day <span class="mono" id="final-day-badge">30</span></span>
+    </span>
   </div>
   <div class="forecast-hero-value">
     <span class="num mono" id="current-value">—</span>
@@ -320,8 +350,8 @@
 
   <div class="chart-panel">
     <div class="legend-row">
-      <span><span class="legend-dot" style="background:var(--accent-bright);"></span>Actual</span>
-      <span><span class="legend-dot future" style="background:var(--accent-bright);"></span>Projected</span>
+      <span><span class="legend-dot" id="legend-actual-dot" style="background:var(--accent-bright);"></span>Actual</span>
+      <span id="legend-projected"><span class="legend-dot future" style="background:var(--accent-bright);"></span>Projected</span>
     </div>
     <div class="chart-wrap">
       <canvas id="forecast-chart"></canvas>
@@ -360,8 +390,9 @@
     const values = days.map(d => d.actual !== null ? d.actual : d.predicted);
     const isFuture = days.map(d => d.actual === null && !d.before_tracking);
 
-    const solidColor = "#ff5b6e";
+    const solidColor = finishedView ? "rgba(255, 91, 110, 0.5)" : "#ff5b6e";
     const futureColor = "rgba(255, 91, 110, 0.45)";
+    const metricLabel = currentMetric.charAt(0).toUpperCase() + currentMetric.slice(1);
 
     let liveIndex = -1;
     days.forEach((d, i) => {
@@ -390,6 +421,45 @@
       }
     };
 
+    const endMarkerPlugin = {
+      id: "endMarkerPlugin",
+      afterDatasetsDraw(chartInstance) {
+        if (!finishedView) return;
+        const point = chartInstance.getDatasetMeta(0).data[liveIndex];
+        if (!point) return;
+        const area = chartInstance.chartArea;
+        const c = chartInstance.ctx;
+        c.save();
+        c.strokeStyle = "rgba(241, 208, 107, 0.55)";
+        c.lineWidth = 1.2;
+        c.setLineDash([4, 4]);
+        c.beginPath();
+        c.moveTo(point.x, point.y + 11);
+        c.lineTo(point.x, area.bottom);
+        c.stroke();
+        c.setLineDash([]);
+        c.fillStyle = "#15191f";
+        c.strokeStyle = "#f1d06b";
+        c.lineWidth = 1.6;
+        c.beginPath();
+        c.arc(point.x, point.y, 11, 0, Math.PI * 2);
+        c.fill();
+        c.stroke();
+        const lockX = point.x - 4.5;
+        const lockY = point.y - 3;
+        c.fillStyle = "#f1d06b";
+        c.fillRect(lockX, lockY, 9, 7);
+        c.lineWidth = 1.4;
+        c.beginPath();
+        c.moveTo(lockX + 1.8, lockY);
+        c.lineTo(lockX + 1.8, lockY - 2.4);
+        c.arc(lockX + 4.5, lockY - 2.4, 2.7, Math.PI, 0);
+        c.lineTo(lockX + 7.2, lockY);
+        c.stroke();
+        c.restore();
+      }
+    };
+
     const ctx = document.getElementById("forecast-chart").getContext("2d");
     chart = new Chart(ctx, {
       type: "line",
@@ -397,10 +467,10 @@
         labels: labels,
         datasets: [
           {
-            label: "Views",
+            label: metricLabel,
             data: values,
             borderColor: solidColor,
-            backgroundColor: "rgba(255, 91, 110, 0.08)",
+            backgroundColor: finishedView ? "rgba(255, 91, 110, 0.04)" : "rgba(255, 91, 110, 0.08)",
             segment: {
               borderColor: c => isFuture[c.p1DataIndex] ? futureColor : solidColor,
               borderDash: c => isFuture[c.p1DataIndex] ? [5, 4] : undefined
@@ -415,8 +485,12 @@
       options: {
         responsive: true,
         maintainAspectRatio: false,
+        layout: { padding: { right: 12 } },
         interaction: { mode: "index", intersect: false },
-        plugins: { legend: { display: false } },
+        plugins: {
+          legend: { display: false },
+          tooltip: { displayColors: false }
+        },
         scales: {
           y: {
             beginAtZero: false,
@@ -429,7 +503,7 @@
           }
         }
       },
-      plugins: [liveDotPlugin]
+      plugins: [liveDotPlugin, endMarkerPlugin]
     });
   }
 
@@ -458,6 +532,10 @@
 
     finishedView = Boolean(data.finished);
     document.querySelector(".forecast-hero-day-pill").classList.toggle("done", finishedView);
+    document.getElementById("current-value").classList.toggle("muted", finishedView);
+    document.getElementById("legend-projected").hidden = finishedView;
+    document.getElementById("legend-actual-dot").style.background = finishedView ? "rgba(255, 91, 110, 0.5)" : "var(--accent-bright)";
+    document.getElementById("final-day-badge").textContent = Math.round(data.current_day);
     if (finishedView && refreshTimer !== null) {
       clearInterval(refreshTimer);
       refreshTimer = null;

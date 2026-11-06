@@ -42,7 +42,7 @@
       <div class="channel-grid">
         {% for c in channels %}
           <div class="channel-card" data-channel-id="{{ c.channel_id }}">
-            <div class="channel-card-head">
+            <a class="channel-card-head" href="/channel/{{ c.channel_id }}">
               {% if c.thumbnail %}
                 <img class="avatar" src="{{ c.thumbnail }}" alt="" style="width:56px; height:56px;">
               {% else %}
@@ -52,7 +52,7 @@
                 <div class="channel-card-title">{{ c.title }}</div>
                 <div class="channel-card-sub">{{ c.video_count }} video{{ 's' if c.video_count != 1 else '' }} tracked</div>
               </div>
-            </div>
+            </a>
 
             {% if c.recent_videos %}
               <div class="channel-card-videos">
@@ -292,6 +292,18 @@
     display: flex;
     align-items: center;
     gap: 14px;
+    color: inherit;
+    text-decoration: none;
+    min-width: 0;
+  }
+  .channel-card-head:hover {
+    text-decoration: none;
+  }
+  .channel-card-head:hover .channel-card-title {
+    color: var(--accent-bright);
+  }
+  .channel-card-title {
+    transition: color 0.15s ease;
   }
   .channel-card-title {
     font-weight: 600;
@@ -558,13 +570,13 @@
     card.className = "channel-card";
     card.dataset.channelId = channelId;
     card.innerHTML = `
-      <div class="channel-card-head">
+      <a class="channel-card-head" href="/channel/${channelId}">
         <img class="avatar" src="${thumbnail}" alt="" style="width:56px; height:56px;">
         <div style="min-width:0;">
           <div class="channel-card-title">${title}</div>
           <div class="channel-card-sub">0 videos tracked</div>
         </div>
-      </div>
+      </a>
       <div class="channel-card-videos empty">
         <svg class="empty-icon" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
           <circle cx="12" cy="12" r="9.25"/>
@@ -575,6 +587,10 @@
       <a class="channel-card-btn" href="/channel/${channelId}">View all videos</a>
     `;
     grid.prepend(card);
+    const cards = grid.querySelectorAll(".channel-card");
+    for (let i = cards.length - 1; i >= 4; i--) {
+      cards[i].remove();
+    }
 
     const channelsStat = document.querySelector(".tracking-numbers .stat-block:first-child .stat-num");
     if (channelsStat) {
