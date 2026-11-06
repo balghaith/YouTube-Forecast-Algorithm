@@ -63,6 +63,13 @@
   .forecast-stat-dot::after {
     animation-delay: 1s;
   }
+  .forecast-hero-day-pill.done .forecast-stat-dot {
+    background: var(--text-faint);
+  }
+  .forecast-hero-day-pill.done .forecast-stat-dot::before,
+  .forecast-hero-day-pill.done .forecast-stat-dot::after {
+    display: none;
+  }
   .forecast-hero-meta {
     display: flex;
     align-items: center;
@@ -335,6 +342,8 @@
 <script>
   let currentMetric = "{{ metric }}";
   let chart = null;
+  let finishedView = false;
+  let refreshTimer = null;
 
   document.querySelectorAll(".metric-switch button").forEach(b => {
     if (b.dataset.metric === currentMetric) b.classList.add("active");
@@ -371,7 +380,7 @@
         const point = meta.data[liveIndex];
         const dot = document.getElementById("live-dot");
         if (!dot) return;
-        if (!point) {
+        if (!point || finishedView) {
           dot.style.display = "none";
           return;
         }
@@ -447,6 +456,13 @@
     document.getElementById("current-metric-label").textContent = data.metric.charAt(0).toUpperCase() + data.metric.slice(1);
     document.getElementById("current-day-badge").textContent = data.current_day;
 
+    finishedView = Boolean(data.finished);
+    document.querySelector(".forecast-hero-day-pill").classList.toggle("done", finishedView);
+    if (finishedView && refreshTimer !== null) {
+      clearInterval(refreshTimer);
+      refreshTimer = null;
+    }
+
     const targetDay = data.current_day - 1;
     let refRow = null;
     for (const row of days) {
@@ -458,7 +474,7 @@
       refRow = days.find(r => r.actual !== null) || null;
     }
     const trendEl = document.getElementById("current-trend");
-    if (refRow && refRow.day !== Math.round(data.current_day)) {
+    if (!finishedView && refRow && refRow.day !== Math.round(data.current_day)) {
       const delta = data.current_value - refRow.actual;
       let state = "flat";
       let symbol = "–";
@@ -510,6 +526,6 @@
   });
 
   loadData();
-  setInterval(loadData, 60000);
+  refreshTimer = setInterval(loadData, 60000);
 </script>
 {% endblock %}

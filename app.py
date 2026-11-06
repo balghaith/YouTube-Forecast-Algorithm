@@ -3,6 +3,7 @@ import json
 import csv
 import subprocess
 from datetime import datetime, timezone
+from zoneinfo import ZoneInfo
 
 import numpy as np
 
@@ -140,7 +141,23 @@ def hours_since_publish(timestamp_str, published_at_str):
     return (t - p).total_seconds() / 3600
 
 
-def latest_video_stats(channel_id, video_id):
+TRACKING_HOURS = 30 * 24
+
+
+def rows_within_tracking(rows, published_at):
+    if not published_at:
+        return rows
+    kept = []
+    for row in rows:
+        try:
+            if hours_since_publish(row["timestamp"], published_at) <= TRACKING_HOURS:
+                kept.append(row)
+        except (ValueError, KeyError):
+            continue
+    return kept or rows[:1]
+
+
+def latest_video_stats(channel_id, video_id, published_at=None):
     try:
         rows = load_video_rows(channel_id, video_id)
     except (FileNotFoundError, OSError):
@@ -148,6 +165,9 @@ def latest_video_stats(channel_id, video_id):
 
     if not rows:
         return {"views": 0, "likes": 0, "comments": 0}
+
+    if published_at:
+        rows = rows_within_tracking(rows, published_at)
 
     last = rows[-1]
     try:
@@ -164,6 +184,76 @@ def latest_video_stats(channel_id, video_id):
         comments = 0
 
     return {"views": views, "likes": likes, "comments": comments}
+
+
+LA_TZ = ZoneInfo("America/Los_Angeles")
+TODAY_WEIGHTS = {"views": 0.5, "likes": 0.3, "comments": 0.2}
+
+
+def row_counts(row):
+    counts = {}
+    for key in ("views", "likes", "comments"):
+        try:
+            counts[key] = int(float(row.get(key, 0) or 0))
+        except ValueError:
+            counts[key] = 0
+    return counts
+
+
+def gains_today(channel_id, video_id, published_at, day_start):
+    try:
+        rows = load_video_rows(channel_id, video_id)
+    except (FileNotFoundError, OSError):
+        return None
+
+    parsed = []
+    for row in rows:
+        try:
+            parsed.append((parse_iso_time(row["timestamp"]), row))
+        except (KeyError, ValueError):
+            continue
+    if not parsed:
+        return None
+    parsed.sort(key=lambda item: item[0])
+
+    before = [item for item in parsed if item[0] <= day_start]
+    if before:
+        baseline = row_counts(before[-1][1])
+    elif published_at and parse_iso_time(published_at) >= day_start:
+        baseline = {"views": 0, "likes": 0, "comments": 0}
+    else:
+        baseline = row_counts(parsed[0][1])
+
+    latest = row_counts(parsed[-1][1])
+    return {key: max(latest[key] - baseline[key], 0) for key in latest}
+
+
+def todays_top_videos(channel_id, live_videos, limit=5):
+    now_la = datetime.now(LA_TZ)
+    day_start = now_la.replace(hour=0, minute=0, second=0, microsecond=0)
+
+    entries = []
+    for v in live_videos:
+        gains = gains_today(channel_id, v["video_id"], v["published_at"], day_start)
+        if gains is None:
+            continue
+        entries.append({
+            "video_id": v["video_id"],
+            "title": v["title"],
+            "views": gains["views"],
+            "likes": gains["likes"],
+            "comments": gains["comments"]
+        })
+
+    totals = {key: sum(e[key] for e in entries) for key in TODAY_WEIGHTS}
+    for e in entries:
+        e["score"] = sum(
+            weight * (e[key] / totals[key] if totals[key] else 0)
+            for key, weight in TODAY_WEIGHTS.items()
+        )
+
+    entries.sort(key=lambda e: (e["score"], e["views"]), reverse=True)
+    return entries[:limit], now_la
 
 
 @app.route("/classic")
@@ -290,6 +380,8 @@ def channel_detail(channel_id):
     ]
 
     expired_videos = [v for v in videos if v["status"] == "expired"]
+    top_today, now_la = todays_top_videos(channel_id, live_videos)
+    day_progress = round((now_la.hour * 60 + now_la.minute) / 1440 * 100, 1)
 
     return render_template(
         "channel.html",
@@ -297,6 +389,11 @@ def channel_detail(channel_id):
         total_count=len(videos),
         expired_count=len(expired_videos),
         expired_thumbs=[v["video_id"] for v in expired_videos[:3]],
+        top_today=top_today,
+        today_prefix=now_la.strftime("%a, %b"),
+        today_day=now_la.strftime("%-d"),
+        day_progress=day_progress,
+        day_time=now_la.strftime("%-I:%M %p"),
         channel_id=channel_id,
         channel_title=channel_title,
         channel_thumbnail=channel_thumbnail,
@@ -320,7 +417,7 @@ def channel_expired(channel_id):
     for vid, info in known_videos.items():
         if info.get("channel_id") != channel_id or info.get("status") != "expired":
             continue
-        stats = latest_video_stats(channel_id, vid)
+        stats = latest_video_stats(channel_id, vid, info.get("published_at"))
         videos.append({
             "video_id": vid,
             "title": info.get("title") or vid,
@@ -431,8 +528,18 @@ def api_forecast(video_id):
     if not rows:
         return jsonify({"video_id": video_id, "metric": metric, "pending": True})
 
+    all_hours = [hours_since_publish(r["timestamp"], published_at) for r in rows]
+    finished = info.get("status") != "active" or max(all_hours) >= TRACKING_HOURS
+
+    if finished:
+        rows = rows_within_tracking(rows, published_at)
+
     x = [hours_since_publish(r["timestamp"], published_at) for r in rows]
     y = [float(r[metric]) for r in rows]
+
+    if finished and x[-1] < TRACKING_HOURS:
+        x.append(float(TRACKING_HOURS))
+        y.append(y[-1])
 
     try:
         fitted, last_hour_fit, y_grid = fit_arima_model(x, y)
@@ -478,6 +585,7 @@ def api_forecast(video_id):
         "checkpoints": checkpoint_state,
         "current_value": round(last_actual_value),
         "current_day": round(x[-1] / 24, 2),
+        "finished": finished,
     })
 
 
