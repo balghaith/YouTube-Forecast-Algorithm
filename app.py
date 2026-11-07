@@ -4,6 +4,7 @@ import json
 import csv
 import shutil
 import subprocess
+import time
 from datetime import datetime, timezone, timedelta
 from zoneinfo import ZoneInfo
 
@@ -23,6 +24,15 @@ KNOWN_VIDEOS_FILE = "known_videos.json"
 TRACKED_CHANNELS_FILE = "tracked_channels.json"
 SUBSCRIBERS_FILE = "channel_subscribers.json"
 MAX_TRACKED_CHANNELS = 15
+ACTIVITY_DAYS = 7
+ACTIVITY_LIMIT = 30
+ACTIVITY_CACHE_SECONDS = 60
+MILESTONE_STEPS = {
+    "views": [100000, 250000, 500000, 1000000, 5000000, 10000000],
+    "likes": [5000, 10000, 50000, 100000],
+    "comments": [500, 1000, 5000, 10000]
+}
+activity_cache = {"at": 0.0, "data": None}
 CHECKPOINTS_STORE_FILE = "forecast_checkpoints.json"
 ORIGINAL_FORECASTS_FILE = "original_forecasts.json"
 CHANNEL_ID_PATTERN = re.compile(r"[A-Za-z0-9_-]+")
@@ -384,6 +394,87 @@ def build_channels_with_counts(tracked_channels, known_videos):
 
     channels_with_counts.sort(key=lambda c: c["added_at"], reverse=True)
     return channels_with_counts
+
+
+def compact_number(value):
+    if value >= 1000000:
+        return f"{value / 1000000:.1f}".rstrip("0").rstrip(".") + "M"
+    if value >= 1000:
+        return f"{value / 1000:.1f}".rstrip("0").rstrip(".") + "K"
+    return str(value)
+
+
+def read_count(row, key):
+    try:
+        return int(float(row.get(key) or 0))
+    except (TypeError, ValueError):
+        return 0
+
+
+def video_milestones(channel_id, video_id, cutoff):
+    try:
+        rows = load_video_rows(channel_id, video_id)
+    except OSError:
+        return [], None
+    if not rows:
+        return [], None
+    events = []
+    for metric, steps in MILESTONE_STEPS.items():
+        next_index = 0
+        for row in rows:
+            value = read_count(row, metric)
+            crossed = None
+            while next_index < len(steps) and value >= steps[next_index]:
+                crossed = steps[next_index]
+                next_index += 1
+            stamp = row.get("timestamp")
+            if crossed and stamp and parse_iso_time(stamp) >= cutoff:
+                events.append({"metric": metric, "threshold": crossed, "ts": stamp})
+    return events, rows[-1].get("timestamp")
+
+
+def build_activity():
+    sync_data()
+    tracked_channels = load_tracked_channels()
+    known_videos = visible_known_videos(load_known_videos(), tracked_channels)
+    channel_titles = {c["channel_id"]: c.get("title", c["channel_id"]) for c in tracked_channels}
+    cutoff = datetime.now(timezone.utc) - timedelta(days=ACTIVITY_DAYS)
+    events = []
+    last_checked = None
+    for video_id, info in known_videos.items():
+        channel_id = info.get("channel_id")
+        if channel_id not in channel_titles or info.get("status") != "active":
+            continue
+        base = {
+            "video_id": video_id,
+            "title": info.get("title") or video_id,
+            "channel_id": channel_id,
+            "channel_title": channel_titles[channel_id]
+        }
+        published_at = info.get("published_at")
+        if published_at and parse_iso_time(published_at) >= cutoff:
+            events.append({**base, "kind": "upload", "ts": published_at})
+        milestones, last_stamp = video_milestones(channel_id, video_id, cutoff)
+        for m in milestones:
+            events.append({**base, "kind": "milestone", "ts": m["ts"], "label": f"{compact_number(m['threshold'])} {m['metric']}"})
+        if last_stamp:
+            stamp_time = parse_iso_time(last_stamp)
+            if last_checked is None or stamp_time > last_checked:
+                last_checked = stamp_time
+    events.sort(key=lambda e: parse_iso_time(e["ts"]), reverse=True)
+    return {
+        "events": events[:ACTIVITY_LIMIT],
+        "last_checked": last_checked.isoformat() if last_checked else None
+    }
+
+
+@app.route("/api/activity")
+def api_activity():
+    now = time.time()
+    if activity_cache["data"] is None or now - activity_cache["at"] > ACTIVITY_CACHE_SECONDS:
+        activity_cache["data"] = build_activity()
+        activity_cache["at"] = now
+    return jsonify(activity_cache["data"])
 
 
 GROWTH_CHART_MAX_LINES = 6

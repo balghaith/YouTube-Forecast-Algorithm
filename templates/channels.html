@@ -1,0 +1,789 @@
+{% extends "base.html" %}
+{% block title %}Tracked channels — YT Forecast{% endblock %}
+
+{% block crumb %}<nav class="trail"><a class="trail-mark" href="/" aria-label="Home"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M7 4l14 8-14 8z"/></svg></a><span class="trail-sep">/</span><span class="trail-here"><span class="trail-name">Channels</span></span></nav>{% endblock %}
+
+{% block head %}
+<style>
+  html, body {
+    overflow-x: hidden;
+  }
+  .channels-layout {
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+    padding: 0 36px 60px;
+    box-sizing: border-box;
+  }
+  .channels-head {
+    text-align: center;
+    padding: 44px 0 40px;
+  }
+  .avatar-stack {
+    display: flex;
+    justify-content: center;
+    min-height: 48px;
+  }
+  .avatar-stack > * {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: 2px solid var(--bg);
+    margin-left: -10px;
+    box-sizing: border-box;
+    object-fit: cover;
+    flex-shrink: 0;
+    background: var(--panel-raised);
+  }
+  .avatar-stack > *:first-child {
+    margin-left: 0;
+  }
+  .avatar-stack .stack-letter,
+  .avatar-stack .stack-more {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-dim);
+    font-size: 15px;
+    font-weight: 600;
+  }
+  .avatar-stack .stack-more {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 13px;
+    color: var(--text);
+  }
+  @keyframes pop-in {
+    0% { opacity: 0; transform: scale(0.82) translateY(10px); }
+    60% { opacity: 1; transform: scale(1.04) translateY(0); }
+    100% { opacity: 1; transform: scale(1) translateY(0); }
+  }
+  @keyframes avatar-pop {
+    0% { opacity: 0; transform: scale(0.3); }
+    65% { opacity: 1; transform: scale(1.15); }
+    100% { opacity: 1; transform: scale(1); }
+  }
+  @keyframes caption-bump {
+    0% { transform: scale(1); color: var(--text-dim); }
+    40% { transform: scale(1.12); color: var(--text); }
+    100% { transform: scale(1); color: var(--text-dim); }
+  }
+  @keyframes fade-up {
+    0% { opacity: 0; transform: translateY(6px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+  .channels-inner.enter .avatar-stack > * {
+    animation: avatar-pop 0.45s cubic-bezier(0.2, 0.8, 0.25, 1) both;
+    animation-delay: calc(var(--i, 0) * 70ms);
+  }
+  .channels-inner.enter .channels-caption {
+    animation: fade-up 0.4s ease-out both;
+    animation-delay: 380ms;
+  }
+  .channels-inner.enter .channels-grid > .ch-card,
+  .channels-inner.enter .channels-grid > .add-card {
+    animation: pop-in 0.42s cubic-bezier(0.2, 0.8, 0.25, 1) both;
+    animation-delay: 450ms;
+  }
+  .channels-inner.enter .channels-grid > :nth-child(2) {
+    animation-delay: 520ms;
+  }
+  .channels-inner.enter .channels-grid > :nth-child(3) {
+    animation-delay: 590ms;
+  }
+  .channels-inner.enter .channels-grid > :nth-child(4) {
+    animation-delay: 660ms;
+  }
+  .channels-inner.enter .channels-grid > :nth-child(5) {
+    animation-delay: 730ms;
+  }
+  .channels-inner.enter .channels-grid > :nth-child(6) {
+    animation-delay: 800ms;
+  }
+  .channels-inner.enter .channels-grid > :nth-child(7) {
+    animation-delay: 870ms;
+  }
+  .channels-inner.enter .channels-grid > :nth-child(8) {
+    animation-delay: 940ms;
+  }
+  .channels-inner.enter .channels-grid > :nth-child(9) {
+    animation-delay: 1010ms;
+  }
+  .channels-inner.enter .channels-grid > :nth-child(10) {
+    animation-delay: 1080ms;
+  }
+  .channels-inner.enter .channels-grid > :nth-child(11) {
+    animation-delay: 1150ms;
+  }
+  .channels-inner.enter .channels-grid > :nth-child(12) {
+    animation-delay: 1220ms;
+  }
+  .channels-inner.enter .channels-grid > :nth-child(13) {
+    animation-delay: 1290ms;
+  }
+  .channels-inner.enter .channels-grid > :nth-child(14) {
+    animation-delay: 1360ms;
+  }
+  .channels-inner.enter .channels-grid > :nth-child(15) {
+    animation-delay: 1430ms;
+  }
+  .channels-inner.enter .channels-grid > :nth-child(16) {
+    animation-delay: 1500ms;
+  }
+  .ch-card.hold,
+  .avatar-stack > .hold {
+    opacity: 0;
+  }
+  .ch-card.pop {
+    animation: pop-in 0.42s cubic-bezier(0.2, 0.8, 0.25, 1) both;
+  }
+  .avatar-stack > .pop {
+    animation: avatar-pop 0.45s cubic-bezier(0.2, 0.8, 0.25, 1) both;
+  }
+  .channels-caption.bump {
+    animation: caption-bump 0.45s ease-out;
+  }
+  .channels-caption {
+    margin: 14px 0 0;
+    font-size: 14px;
+    color: var(--text-dim);
+  }
+  .channels-inner {
+    max-width: 1240px;
+    margin: 0 auto;
+  }
+  .channels-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 16px;
+  }
+  .ch-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 272px;
+    padding: 22px 18px 16px;
+    box-sizing: border-box;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    background: var(--panel);
+    color: var(--text);
+    text-align: center;
+    min-width: 0;
+    transition: border-color 0.15s ease, background 0.15s ease;
+  }
+  a.ch-card:hover {
+    border-color: var(--accent-bright);
+    background: var(--panel-raised);
+    text-decoration: none;
+  }
+  .ch-card-avatar {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    object-fit: cover;
+    background: var(--panel-raised);
+    margin-bottom: 10px;
+  }
+  .ch-card-avatar.placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 24px;
+    color: var(--text-dim);
+  }
+  .ch-card-name {
+    max-width: 100%;
+    margin: 0;
+    font-size: 16px;
+    font-weight: 600;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .ch-card-count {
+    margin: 10px 0 0;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 30px;
+    font-weight: 600;
+    line-height: 1;
+  }
+  .ch-card-count.zero {
+    color: var(--text-faint);
+  }
+  .ch-card-label {
+    margin: 4px 0 12px;
+    font-size: 12px;
+    color: var(--text-dim);
+  }
+  .ch-card-foot {
+    margin-top: auto;
+    width: 100%;
+    padding-top: 12px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 12px;
+    color: var(--text-dim);
+    min-width: 0;
+  }
+  .ch-card-foot img {
+    width: 48px;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    border-radius: 5px;
+    flex: none;
+    background: var(--panel-raised);
+  }
+  .ch-card-foot span {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .add-card {
+    min-height: 272px;
+    width: 100%;
+    box-sizing: border-box;
+    border: 1.5px dashed rgba(237, 90, 102, 0.34);
+    border-radius: 12px;
+    background: transparent;
+    color: var(--text-dim);
+    font-family: inherit;
+    font-size: 13px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    cursor: pointer;
+    transition: border-color 0.15s ease, background 0.15s ease;
+  }
+  .add-card:hover {
+    border-color: var(--accent-bright);
+    background: var(--panel);
+  }
+  .add-card:hover .add-plus {
+    border-color: var(--accent-bright);
+  }
+  .add-plus {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 1.5px solid rgba(237, 90, 102, 0.34);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--accent-bright);
+    font-size: 24px;
+    line-height: 1;
+    transition: border-color 0.15s ease;
+  }
+  .add-card b {
+    color: var(--text);
+    font-size: 15px;
+    font-weight: 600;
+  }
+  .modal-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    box-sizing: border-box;
+    background: rgba(0, 0, 0, 0.45);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.22s ease, visibility 0s linear 0.22s;
+  }
+  .modal-backdrop.open {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.22s ease, visibility 0s;
+  }
+  .modal {
+    width: min(760px, 100%);
+    max-height: min(480px, 90vh);
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    padding: 22px;
+    box-sizing: border-box;
+    border: 1px solid rgba(237, 90, 102, 0.34);
+    border-radius: 14px;
+    background: #0a0708;
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.7);
+    transform: translateY(12px) scale(0.97);
+    transition: transform 0.26s cubic-bezier(0.2, 0.8, 0.25, 1);
+  }
+  .modal-backdrop.open .modal {
+    transform: none;
+  }
+  .modal-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .modal-head h2 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 600;
+  }
+  .modal-close {
+    width: 32px;
+    height: 32px;
+    border: 0;
+    border-radius: 8px;
+    background: transparent;
+    color: var(--text-dim);
+    font-size: 22px;
+    line-height: 1;
+    cursor: pointer;
+  }
+  .modal-close:hover {
+    background: var(--panel-raised);
+    color: var(--text);
+  }
+  .modal-bar {
+    display: flex;
+    gap: 10px;
+  }
+  .modal-input {
+    flex: 1;
+    min-width: 0;
+    height: 42px;
+    padding: 0 14px;
+    border-radius: 9px;
+    border: 1px solid var(--border);
+    background: rgba(255, 255, 255, 0.04);
+    color: var(--text);
+    font-family: inherit;
+    font-size: 14px;
+    box-sizing: border-box;
+  }
+  .modal-input:focus {
+    outline: none;
+    border-color: var(--accent-bright);
+  }
+  .modal-search {
+    height: 42px;
+    padding: 0 18px;
+    border-radius: 9px;
+    border: 1px solid var(--accent-bright);
+    background: var(--accent-bright);
+    color: #1a0508;
+    font-family: inherit;
+    font-size: 13.5px;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  .modal-search:hover {
+    background: #ff7685;
+  }
+  .modal-status {
+    min-height: 18px;
+    font-size: 13px;
+    color: var(--text-dim);
+  }
+  .modal-status.success {
+    color: var(--text);
+    font-weight: 500;
+  }
+  .status-check {
+    color: var(--actual);
+    font-weight: 700;
+    margin-right: 6px;
+  }
+  .modal-results {
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-height: 0;
+    padding-right: 6px;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(237, 90, 102, 0.3) transparent;
+  }
+  .modal-results::-webkit-scrollbar {
+    width: 6px;
+  }
+  .modal-results::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .modal-results::-webkit-scrollbar-thumb {
+    background: rgba(237, 90, 102, 0.3);
+    border-radius: 999px;
+  }
+  .modal-results::-webkit-scrollbar-thumb:hover {
+    background: rgba(237, 90, 102, 0.55);
+  }
+  .add-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    background: rgba(255, 255, 255, 0.03);
+  }
+  .add-row img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex: none;
+    background: var(--panel-raised);
+  }
+  .add-row-info {
+    flex: 1;
+    min-width: 0;
+  }
+  .add-row-title {
+    font-size: 14px;
+    font-weight: 500;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .add-row-sub {
+    font-size: 12px;
+    color: var(--text-dim);
+  }
+  .add-row button {
+    flex: none;
+    height: 32px;
+    padding: 0 14px;
+    border-radius: 7px;
+    border: 1px solid var(--accent-bright);
+    background: transparent;
+    color: var(--accent-bright);
+    font-family: inherit;
+    font-size: 12.5px;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  .add-row button:hover:not(:disabled) {
+    background: var(--accent-bright);
+    color: #1a0508;
+  }
+  .add-row button:disabled {
+    opacity: 0.6;
+    cursor: default;
+  }
+  .add-row button.tracked {
+    border-color: var(--actual);
+    color: var(--actual);
+    opacity: 1;
+  }
+  .track-dot-slot {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 14px;
+    flex: none;
+    overflow: visible;
+  }
+  .track-dot {
+    position: relative;
+    display: inline-block;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--accent-bright);
+  }
+  .track-dot::before,
+  .track-dot::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    border: 1.5px solid var(--accent-bright);
+    animation: track-ripple 2s ease-out infinite;
+  }
+  .track-dot::after {
+    animation-delay: 1s;
+  }
+  @keyframes track-ripple {
+    0% { transform: scale(1); opacity: 0.7; }
+    100% { transform: scale(4.5); opacity: 0; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .modal,
+    .modal-backdrop {
+      transition: none;
+    }
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+  <div class="channels-layout">
+    <div class="channels-inner enter" id="channels-inner">
+    <div class="channels-head">
+      <div class="avatar-stack" id="avatar-stack"></div>
+      <p class="channels-caption" id="channels-caption">Tracking {{ channels|length }} channel{{ '' if channels|length == 1 else 's' }}</p>
+    </div>
+
+    <div class="channels-grid" id="channels-grid">
+      {% if channels|length < 15 %}
+        <button type="button" class="add-card" id="add-open">
+          <span class="add-plus">+</span>
+          <b>Track a channel</b>
+          <span>Search by name to add one</span>
+        </button>
+      {% endif %}
+
+      {% for c in channels %}
+        <a class="ch-card" href="/channel/{{ c.channel_id }}">
+          {% if c.thumbnail %}
+            <img class="ch-card-avatar" src="{{ c.thumbnail }}" alt="">
+          {% else %}
+            <div class="ch-card-avatar placeholder">{{ c.title[:1]|upper }}</div>
+          {% endif %}
+          <p class="ch-card-name">{{ c.title }}</p>
+          <p class="ch-card-count{{ '' if c.video_count else ' zero' }}">{{ c.video_count }}</p>
+          <p class="ch-card-label">video{{ '' if c.video_count == 1 else 's' }} tracked</p>
+          <div class="ch-card-foot"><span class="added-label" data-added="{{ c.added_at }}">Added {{ c.added_at[:10] }}</span></div>
+        </a>
+      {% endfor %}
+    </div>
+    </div>
+  </div>
+
+  {% if channels|length < 15 %}
+    <div class="modal-backdrop" id="modal-backdrop">
+      <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+        <div class="modal-head">
+          <h2 id="modal-title">Search channels</h2>
+          <button type="button" class="modal-close" id="modal-close" aria-label="Close">&times;</button>
+        </div>
+        <div class="modal-bar">
+          <input class="modal-input" id="modal-input" type="text" placeholder="Channel name" autocomplete="off">
+          <button type="button" class="modal-search" id="modal-search">Search</button>
+        </div>
+        <div class="modal-status" id="modal-status" role="status"></div>
+        <div class="modal-results" id="modal-results"></div>
+      </div>
+    </div>
+  {% endif %}
+{% endblock %}
+
+{% block scripts %}
+<script>
+  const TZ = "America/Los_Angeles";
+  const dayKey = date => new Intl.DateTimeFormat("en-CA", { timeZone: TZ, year: "numeric", month: "2-digit", day: "2-digit" }).format(date);
+  const dayIndex = key => Date.UTC(+key.slice(0, 4), +key.slice(5, 7) - 1, +key.slice(8, 10)) / 86400000;
+  const addedText = raw => {
+    if (!raw) return "";
+    const dateOnly = /^\d{4}-\d{2}-\d{2}$/.test(raw);
+    const iso = dateOnly ? raw + "T12:00:00Z" : (/(Z|[+-]\d{2}:?\d{2})$/.test(raw) ? raw : raw + "Z");
+    const date = new Date(iso);
+    if (isNaN(date)) return "Added " + raw.slice(0, 10);
+    const key = dateOnly ? raw : dayKey(date);
+    const diff = dayIndex(dayKey(new Date())) - dayIndex(key);
+    if (diff <= 0) return "Added today";
+    if (diff === 1) return "Added yesterday";
+    if (diff <= 6) return "Added " + new Intl.DateTimeFormat("en-US", { timeZone: "UTC", weekday: "long" }).format(new Date(dayIndex(key) * 86400000));
+    return "Added " + key;
+  };
+  const renderAdded = () => {
+    document.querySelectorAll(".added-label").forEach(el => {
+      el.textContent = addedText(el.dataset.added);
+    });
+  };
+  const grid = document.getElementById("channels-grid");
+  const stackEl = document.getElementById("avatar-stack");
+  const captionEl = document.getElementById("channels-caption");
+  const STACK_LIMIT = 5;
+  const renderHead = animate => {
+    const cards = Array.from(grid.querySelectorAll("a.ch-card"));
+    stackEl.innerHTML = "";
+    cards.slice(0, STACK_LIMIT).forEach(card => {
+      const img = card.querySelector("img.ch-card-avatar");
+      let node;
+      if (img) {
+        node = document.createElement("img");
+        node.src = img.src;
+        node.alt = "";
+      } else {
+        node = document.createElement("div");
+        node.className = "stack-letter";
+        const ph = card.querySelector(".ch-card-avatar");
+        node.textContent = ph ? ph.textContent.trim() : "";
+      }
+      node.style.setProperty("--i", String(stackEl.children.length));
+      stackEl.appendChild(node);
+    });
+    if (animate && stackEl.firstChild) stackEl.firstChild.classList.add("hold");
+    if (cards.length > STACK_LIMIT) {
+      const more = document.createElement("div");
+      more.className = "stack-more";
+      more.textContent = "+" + (cards.length - STACK_LIMIT);
+      stackEl.appendChild(more);
+    }
+    captionEl.textContent = "Tracking " + cards.length + " channel" + (cards.length === 1 ? "" : "s");
+
+  };
+  renderHead();
+  renderAdded();
+  setTimeout(() => document.getElementById("channels-inner").classList.remove("enter"), 2600);
+  const openBtn = document.getElementById("add-open");
+  if (openBtn) {
+    const backdrop = document.getElementById("modal-backdrop");
+    const closeBtn = document.getElementById("modal-close");
+    const input = document.getElementById("modal-input");
+    const searchBtn = document.getElementById("modal-search");
+    const statusEl = document.getElementById("modal-status");
+    const resultsEl = document.getElementById("modal-results");
+    let searchToken = 0;
+
+    const esc = value => String(value == null ? "" : value)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;");
+
+    const formatSubs = n => {
+      if (n >= 1000000) return (n / 1000000).toFixed(1).replace(/\.0$/, "") + "M";
+      if (n >= 1000) return (n / 1000).toFixed(1).replace(/\.0$/, "") + "K";
+      return String(n);
+    };
+
+    const openModal = () => {
+      backdrop.classList.add("open");
+      setTimeout(() => input.focus(), 150);
+    };
+
+    const playPending = () => {
+      const held = document.querySelectorAll(".hold");
+      if (!held.length) return;
+      held.forEach(el => {
+        el.classList.remove("hold");
+        el.classList.add("pop");
+      });
+      captionEl.classList.remove("bump");
+      void captionEl.offsetWidth;
+      captionEl.classList.add("bump");
+    };
+
+    const closeModal = () => {
+      backdrop.classList.remove("open");
+      input.value = "";
+      resultsEl.innerHTML = "";
+      statusEl.textContent = "";
+      statusEl.classList.remove("success");
+      searchToken += 1;
+      openBtn.focus({ preventScroll: true });
+      setTimeout(playPending, 240);
+    };
+
+    const runSearch = async () => {
+      const query = input.value.trim();
+      if (!query) return;
+      const token = ++searchToken;
+      statusEl.classList.remove("success");
+      statusEl.textContent = "Searching...";
+      resultsEl.innerHTML = "";
+      try {
+        const res = await fetch(`/api/channels/search?q=${encodeURIComponent(query)}`);
+        const data = await res.json();
+        if (token !== searchToken) return;
+        if (data.error) {
+          statusEl.textContent = "Search failed.";
+          return;
+        }
+        statusEl.textContent = data.results.length ? `${data.results.length} result${data.results.length === 1 ? "" : "s"}` : "No channels found.";
+        resultsEl.innerHTML = data.results.map(ch => {
+          const subs = ch.subscriber_count !== null && ch.subscriber_count !== undefined ? formatSubs(ch.subscriber_count) + " subscribers" : "";
+          return `<div class="add-row">
+            <img src="${esc(ch.thumbnail)}" alt="">
+            <div class="add-row-info">
+              <div class="add-row-title">${esc(ch.title)}</div>
+              <div class="add-row-sub">${esc(subs)}</div>
+            </div>
+            <button type="button" data-id="${esc(ch.channel_id)}" data-title="${esc(ch.title)}" data-thumb="${esc(ch.thumbnail)}">Track</button>
+          </div>`;
+        }).join("");
+      } catch (err) {
+        if (token === searchToken) statusEl.textContent = "Search failed.";
+      }
+    };
+
+    const addChannelCard = (id, title, thumb) => {
+      if (grid.querySelector(`a.ch-card[href="/channel/${CSS.escape(id)}"]`)) return;
+      const card = document.createElement("a");
+      card.className = "ch-card hold";
+      card.href = `/channel/${encodeURIComponent(id)}`;
+      card.innerHTML = `
+        <img class="ch-card-avatar" src="${esc(thumb)}" alt="">
+        <p class="ch-card-name">${esc(title)}</p>
+        <p class="ch-card-count zero">0</p>
+        <p class="ch-card-label">videos tracked</p>
+        <div class="ch-card-foot"><span class="added-label" data-added="${new Date().toISOString()}">Added today</span></div>`;
+      openBtn.after(card);
+      renderHead(true);
+    };
+
+    const trackChannel = async button => {
+      button.disabled = true;
+      button.textContent = "Adding";
+      try {
+        const res = await fetch("/api/channels/add", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            channel_id: button.dataset.id,
+            title: button.dataset.title,
+            thumbnail: button.dataset.thumb
+          })
+        });
+        const data = await res.json();
+        if (data.status === "added" || data.status === "already_tracked") {
+          button.textContent = "Tracking";
+          button.classList.add("tracked");
+          statusEl.innerHTML = `<span class="status-check">&check;</span>It'll start tracking once a new video is uploaded.`;
+          statusEl.classList.add("success");
+          if (data.status === "added") addChannelCard(button.dataset.id, button.dataset.title, button.dataset.thumb);
+        } else if (data.error === "limit_reached") {
+          button.disabled = false;
+          button.textContent = "Track";
+          statusEl.classList.remove("success");
+          statusEl.textContent = "You're already tracking the maximum of " + data.max + " channels.";
+        } else {
+          throw new Error("failed");
+        }
+      } catch (err) {
+        button.disabled = false;
+        button.textContent = "Track";
+        statusEl.classList.remove("success");
+        statusEl.textContent = "Could not add that channel.";
+      }
+    };
+
+    openBtn.addEventListener("click", openModal);
+    closeBtn.addEventListener("click", closeModal);
+    backdrop.addEventListener("mousedown", event => {
+      if (event.target === backdrop) closeModal();
+    });
+    searchBtn.addEventListener("click", runSearch);
+    input.addEventListener("keydown", event => {
+      if (event.key === "Enter") runSearch();
+    });
+    resultsEl.addEventListener("click", event => {
+      const button = event.target.closest("button[data-id]");
+      if (button && !button.disabled) trackChannel(button);
+    });
+    document.addEventListener("keydown", event => {
+      if (event.key === "Escape" && backdrop.classList.contains("open")) closeModal();
+    });
+  }
+
+</script>
+{% endblock %}

@@ -59,23 +59,331 @@
   }
 
   .topbar {
+    position: relative;
+    z-index: 30;
     border-bottom: 1px solid var(--border);
-    padding: 16px 28px;
+    height: 64px;
+    padding: 0 28px;
     display: flex;
-    align-items: baseline;
+    align-items: center;
     justify-content: space-between;
     gap: 16px;
     backdrop-filter: blur(6px);
   }
-  .topbar .mark {
-    font-weight: 600;
-    font-size: 16px;
-    letter-spacing: -0.01em;
-    color: var(--text);
+  .topbar-left {
+    min-width: 0;
+    display: flex;
+    align-items: center;
   }
-  .topbar .mark a { color: inherit; }
+  .topbar-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-shrink: 0;
+  }
   .topbar .crumb { color: var(--text-dim); font-size: 14px; }
   .topbar .crumb a { color: var(--link); }
+
+  .trail {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 0;
+    font-size: 14px;
+    color: var(--text-dim);
+  }
+  .trail a {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--text-dim);
+    white-space: nowrap;
+  }
+  .trail-avatar {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+    border: 1px solid var(--border);
+    background: var(--panel-raised);
+  }
+  .trail-avatar-letter {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text-dim);
+  }
+  .trail a:hover {
+    color: var(--text);
+    text-decoration: none;
+  }
+  .trail-sep {
+    color: var(--text-faint);
+  }
+  .trail-here {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    min-width: 0;
+    max-width: 420px;
+    color: var(--text);
+    font-weight: 500;
+  }
+  .trail-name {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .trail-mark {
+    width: 28px;
+    height: 28px;
+    border-radius: 8px;
+    border: 1px solid rgba(237, 90, 102, 0.34);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--accent-bright) !important;
+    flex-shrink: 0;
+  }
+  .trail-mark:hover {
+    background: rgba(255, 91, 110, 0.12);
+  }
+
+  .status-pill {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 14px;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    background: var(--panel);
+    font-size: 13px;
+    color: var(--text-dim);
+    white-space: nowrap;
+  }
+  .status-dot {
+    --dot: var(--actual);
+    position: relative;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--dot);
+    flex-shrink: 0;
+  }
+  .status-dot::before,
+  .status-dot::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    border: 1.5px solid var(--dot);
+    animation: status-ripple 2s ease-out infinite;
+  }
+  .status-dot::after {
+    animation-delay: 1s;
+  }
+  @keyframes status-ripple {
+    0% { transform: scale(1); opacity: 0.7; }
+    100% { transform: scale(4.5); opacity: 0; }
+  }
+  .status-pill.stale .status-dot {
+    --dot: var(--predicted);
+  }
+  .status-pill.idle .status-dot {
+    --dot: var(--text-faint);
+  }
+  .status-pill.idle .status-dot::before,
+  .status-pill.idle .status-dot::after {
+    animation: none;
+    opacity: 0;
+  }
+
+  .bell-wrap {
+    position: relative;
+  }
+  .bell-btn {
+    position: relative;
+    width: 38px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    background: var(--panel);
+    color: var(--text-dim);
+    cursor: pointer;
+    transition: border-color 0.15s ease, color 0.15s ease;
+  }
+  .bell-btn:hover,
+  .bell-btn.open {
+    border-color: rgba(237, 90, 102, 0.34);
+    color: var(--text);
+  }
+  .bell-count {
+    position: absolute;
+    top: -6px;
+    right: -6px;
+    min-width: 18px;
+    height: 18px;
+    padding: 0 5px;
+    box-sizing: border-box;
+    border-radius: 9px;
+    border: 2px solid #0b0708;
+    background: var(--accent-bright);
+    color: #1a0508;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 11px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .bell-count[hidden] {
+    display: none;
+  }
+  .activity-panel {
+    position: absolute;
+    top: calc(100% + 12px);
+    right: 0;
+    width: 420px;
+    max-width: calc(100vw - 32px);
+    border: 1px solid rgba(237, 90, 102, 0.34);
+    border-radius: 14px;
+    background: #0f0a0c;
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.7);
+    overflow: hidden;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-6px) scale(0.98);
+    transform-origin: top right;
+    transition: opacity 0.18s ease, transform 0.18s ease, visibility 0.18s;
+  }
+  .activity-panel.open {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0) scale(1);
+  }
+  .activity-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 18px;
+    border-bottom: 1px solid var(--border);
+    font-size: 14px;
+    font-weight: 600;
+  }
+  .activity-head span {
+    font-size: 12.5px;
+    font-weight: 400;
+    color: var(--text-dim);
+  }
+  .activity-list {
+    max-height: min(440px, 65vh);
+    overflow-y: auto;
+    padding-bottom: 6px;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(237, 90, 102, 0.3) transparent;
+  }
+  .activity-list::-webkit-scrollbar {
+    width: 6px;
+  }
+  .activity-list::-webkit-scrollbar-thumb {
+    background: rgba(237, 90, 102, 0.3);
+    border-radius: 999px;
+  }
+  .activity-day {
+    padding: 12px 18px 4px;
+    font-size: 11.5px;
+    color: var(--text-faint);
+  }
+  .activity-item {
+    position: relative;
+    display: flex;
+    gap: 14px;
+    padding: 10px 18px 10px 22px;
+    color: var(--text);
+  }
+  .activity-item:hover {
+    background: var(--panel-raised);
+    text-decoration: none;
+  }
+  .activity-item.fresh::before {
+    content: "";
+    position: absolute;
+    left: 8px;
+    top: 50%;
+    width: 5px;
+    height: 5px;
+    margin-top: -2.5px;
+    border-radius: 50%;
+    background: var(--accent-bright);
+  }
+  .activity-thumb {
+    position: relative;
+    width: 64px;
+    height: 36px;
+    flex-shrink: 0;
+  }
+  .activity-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 6px;
+    background: var(--panel-raised);
+  }
+  .activity-badge {
+    position: absolute;
+    right: -6px;
+    bottom: -6px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 2px solid #0f0a0c;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .activity-badge.upload {
+    background: var(--accent-bright);
+    color: #1a0508;
+  }
+  .activity-badge.milestone {
+    background: var(--actual);
+    color: #06140e;
+  }
+  .activity-text {
+    min-width: 0;
+    font-size: 13px;
+    line-height: 1.4;
+  }
+  .activity-title {
+    margin: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .activity-title em {
+    font-style: normal;
+    font-weight: 600;
+    color: var(--actual);
+  }
+  .activity-sub {
+    margin: 2px 0 0;
+    font-size: 12px;
+    color: var(--text-dim);
+  }
+  .activity-empty {
+    padding: 30px 18px;
+    text-align: center;
+    font-size: 13px;
+    color: var(--text-dim);
+  }
 
   .shell {
     max-width: 880px;
@@ -124,7 +432,6 @@
     margin-top: 2px;
   }
 
-  /* list rows (channels, videos) */
   .list {
     border: 1px solid var(--border);
     border-radius: var(--radius);
@@ -190,12 +497,188 @@
 </head>
 <body>
   <div class="topbar">
-    <span class="mark"><a href="/">YT Forecast</a></span>
-    {% block crumb %}{% endblock %}
+    <div class="topbar-left">
+      {% block crumb %}{% endblock %}
+    </div>
+    <div class="topbar-right">
+      <div class="status-pill idle" id="status-pill">
+        <span class="status-dot"></span>
+        <span id="status-text">Checking</span>
+      </div>
+      <div class="bell-wrap" id="bell-wrap">
+        <button type="button" class="bell-btn" id="bell-btn" aria-label="Activity" aria-expanded="false">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6 9a6 6 0 0112 0c0 6 2.5 7.5 2.5 7.5h-17S6 15 6 9z"/>
+            <path d="M10 20a2 2 0 004 0"/>
+          </svg>
+          <span class="bell-count mono" id="bell-count" hidden></span>
+        </button>
+        <div class="activity-panel" id="activity-panel">
+          <div class="activity-head">Activity<span id="activity-new"></span></div>
+          <div class="activity-list" id="activity-list"></div>
+        </div>
+      </div>
+    </div>
   </div>
   <div class="shell">
     {% block content %}{% endblock %}
   </div>
+  <script>
+    (function () {
+      const pill = document.getElementById("status-pill");
+      const statusText = document.getElementById("status-text");
+      const bellBtn = document.getElementById("bell-btn");
+      const bellCount = document.getElementById("bell-count");
+      const panel = document.getElementById("activity-panel");
+      const listEl = document.getElementById("activity-list");
+      const newEl = document.getElementById("activity-new");
+      const wrap = document.getElementById("bell-wrap");
+      const SEEN_KEY = "ytf_activity_seen";
+      const TZ = "America/Los_Angeles";
+      let events = [];
+      let lastChecked = null;
+      let freshSince = 0;
+
+      const readSeen = () => {
+        try {
+          return Number(localStorage.getItem(SEEN_KEY)) || (Date.now() - 86400000);
+        } catch (err) {
+          return Date.now() - 86400000;
+        }
+      };
+      const writeSeen = value => {
+        try {
+          localStorage.setItem(SEEN_KEY, String(value));
+        } catch (err) {
+          return;
+        }
+      };
+      const esc = value => String(value == null ? "" : value)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;");
+
+      const ago = ms => {
+        const minutes = Math.floor(ms / 60000);
+        if (minutes < 1) return "just now";
+        if (minutes < 60) return minutes + " min ago";
+        const hours = Math.floor(minutes / 60);
+        if (hours < 24) return hours + " hour" + (hours === 1 ? "" : "s") + " ago";
+        const days = Math.floor(hours / 24);
+        return days + " day" + (days === 1 ? "" : "s") + " ago";
+      };
+
+      const renderStatus = () => {
+        if (!lastChecked) {
+          statusText.textContent = "No data yet";
+          pill.className = "status-pill idle";
+          return;
+        }
+        const diff = Date.now() - lastChecked;
+        statusText.textContent = "Last checked " + ago(diff);
+        pill.className = "status-pill" + (diff > 3 * 3600000 ? " stale" : "");
+      };
+
+      const dayKey = date => new Intl.DateTimeFormat("en-CA", { timeZone: TZ, year: "numeric", month: "2-digit", day: "2-digit" }).format(date);
+      const dayIndex = key => Date.UTC(+key.slice(0, 4), +key.slice(5, 7) - 1, +key.slice(8, 10)) / 86400000;
+      const dayLabel = date => {
+        const diff = dayIndex(dayKey(new Date())) - dayIndex(dayKey(date));
+        if (diff <= 0) return "Today";
+        if (diff === 1) return "Yesterday";
+        return new Intl.DateTimeFormat("en-US", { timeZone: TZ, weekday: "short", month: "short", day: "numeric" }).format(date);
+      };
+
+      const uploadIcon = '<svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><path d="M7 4l14 8-14 8z"/></svg>';
+      const starIcon = '<svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7 7.5.6-5.7 4.9 1.8 7.3L12 17.8 5.4 21.8l1.8-7.3L1.5 9.6 9 9z"/></svg>';
+
+      const renderList = () => {
+        if (!events.length) {
+          listEl.innerHTML = '<div class="activity-empty">No activity yet. New uploads and milestones show up here.</div>';
+          return;
+        }
+        let html = "";
+        let currentDay = "";
+        events.forEach(event => {
+          const date = new Date(event.ts);
+          const label = dayLabel(date);
+          if (label !== currentDay) {
+            currentDay = label;
+            html += '<div class="activity-day">' + esc(label) + "</div>";
+          }
+          const fresh = date.getTime() > freshSince ? " fresh" : "";
+          const isMilestone = event.kind === "milestone";
+          const heading = isMilestone
+            ? "<em>" + esc(event.label) + "</em> · " + esc(event.title)
+            : "New video · " + esc(event.title);
+          html += '<a class="activity-item' + fresh + '" href="/forecast/' + encodeURIComponent(event.video_id) + '">'
+            + '<div class="activity-thumb"><img src="https://i.ytimg.com/vi/' + encodeURIComponent(event.video_id) + '/mqdefault.jpg" alt="">'
+            + '<span class="activity-badge ' + (isMilestone ? "milestone" : "upload") + '">' + (isMilestone ? starIcon : uploadIcon) + "</span></div>"
+            + '<div class="activity-text"><p class="activity-title">' + heading + "</p>"
+            + '<p class="activity-sub">' + esc(event.channel_title) + " · " + ago(Date.now() - date.getTime()) + "</p></div></a>";
+        });
+        listEl.innerHTML = html;
+      };
+
+      const unread = () => {
+        const seen = readSeen();
+        return events.filter(event => new Date(event.ts).getTime() > seen).length;
+      };
+
+      const renderCount = () => {
+        const count = unread();
+        bellCount.hidden = count === 0;
+        bellCount.textContent = count > 9 ? "9+" : String(count);
+      };
+
+      const openPanel = () => {
+        freshSince = readSeen();
+        const count = unread();
+        newEl.textContent = count ? count + " new" : "";
+        renderList();
+        panel.classList.add("open");
+        bellBtn.classList.add("open");
+        bellBtn.setAttribute("aria-expanded", "true");
+        writeSeen(Date.now());
+        renderCount();
+      };
+
+      const closePanel = () => {
+        panel.classList.remove("open");
+        bellBtn.classList.remove("open");
+        bellBtn.setAttribute("aria-expanded", "false");
+      };
+
+      bellBtn.addEventListener("click", () => {
+        if (panel.classList.contains("open")) closePanel();
+        else openPanel();
+      });
+      document.addEventListener("click", event => {
+        if (!wrap.contains(event.target)) closePanel();
+      });
+      document.addEventListener("keydown", event => {
+        if (event.key === "Escape") closePanel();
+      });
+
+      const load = async () => {
+        try {
+          const res = await fetch("/api/activity");
+          const data = await res.json();
+          events = data.events || [];
+          lastChecked = data.last_checked ? new Date(data.last_checked).getTime() : null;
+          renderStatus();
+          renderCount();
+          if (panel.classList.contains("open")) renderList();
+        } catch (err) {
+          statusText.textContent = "Offline";
+        }
+      };
+
+      load();
+      setInterval(load, 120000);
+      setInterval(renderStatus, 30000);
+    })();
+  </script>
   {% block scripts %}{% endblock %}
 </body>
 </html>

@@ -1,0 +1,577 @@
+{% extends "base.html" %}
+{% block title %}Expired videos — {{ channel_title }} — YT Forecast{% endblock %}
+
+{% block crumb %}<nav class="trail"><a class="trail-mark" href="/" aria-label="Home"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M7 4l14 8-14 8z"/></svg></a><span class="trail-sep">/</span><a href="/channels">Channels</a><span class="trail-sep">/</span><a href="/channel/{{ channel_id }}">{% if channel_thumbnail %}<img class="trail-avatar" src="{{ channel_thumbnail }}" alt="">{% else %}<span class="trail-avatar trail-avatar-letter">{{ channel_title[:1]|upper }}</span>{% endif %}{{ channel_title }}</a><span class="trail-sep">/</span><span class="trail-here"><span class="trail-name">Expired videos</span></span></nav>{% endblock %}
+
+{% block head %}
+<style>
+  html, body {
+    overflow-x: hidden;
+  }
+
+  .expired-layout {
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+    padding: 0 36px;
+    box-sizing: border-box;
+  }
+  .expired-channel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    text-align: center;
+    margin-top: 6px;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+    color: inherit;
+    text-decoration: none;
+  }
+  .expired-channel:hover {
+    text-decoration: none;
+  }
+  .expired-channel:hover .expired-avatar {
+    border-color: var(--accent-bright);
+  }
+  .expired-channel:hover .expired-channel-name {
+    color: var(--text);
+  }
+  .expired-channel:focus-visible {
+    outline: 2px solid var(--accent-bright);
+    outline-offset: 6px;
+    border-radius: 12px;
+  }
+  .expired-avatar {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    object-fit: cover;
+    background: var(--panel-raised);
+    border: 1px solid var(--border);
+    transition: border-color 0.15s ease;
+  }
+  .expired-avatar.placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 26px;
+    color: var(--text-dim);
+  }
+  .expired-channel-name {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--text-dim);
+    transition: color 0.15s ease;
+  }
+  .expired-head {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin: 18px 0 6px;
+  }
+  .expired-head h1 {
+    margin: 0;
+    font-size: 30px;
+    font-weight: 600;
+  }
+  .expired-lock {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1.5px solid #f1d06b;
+    background: #15191f;
+    color: #f1d06b;
+  }
+  .expired-lock svg {
+    width: 16px;
+    height: 16px;
+    stroke: currentColor;
+    fill: none;
+    stroke-width: 1.9;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+  .expired-note {
+    margin: 0 0 24px;
+    font-size: 13px;
+    color: var(--text-dim);
+    text-align: center;
+  }
+  .expired-stats {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 12px;
+    max-width: 760px;
+    margin: 0 auto;
+  }
+  .expired-stat {
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 16px;
+    background: var(--panel);
+    text-align: center;
+    min-width: 0;
+  }
+  .expired-stat b {
+    display: block;
+    font-family: "IBM Plex Mono", monospace;
+    font-weight: 600;
+    font-size: 24px;
+  }
+  .expired-stat span {
+    font-size: 12px;
+    color: var(--text-dim);
+  }
+  .expired-tools {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin: 26px auto;
+  }
+  .expired-search-wrap {
+    position: relative;
+    flex: 1 1 320px;
+    max-width: 440px;
+  }
+  .expired-search-wrap svg {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    width: 15px;
+    height: 15px;
+    transform: translateY(-50%);
+    stroke: var(--text-dim);
+    fill: none;
+    stroke-width: 1.9;
+    stroke-linecap: round;
+    pointer-events: none;
+  }
+  .expired-search {
+    display: block;
+    width: 100%;
+    height: 42px;
+    padding: 0 14px 0 38px;
+    border-radius: 9px;
+    border: 1px solid var(--border);
+    background: var(--panel);
+    color: var(--text);
+    font-family: inherit;
+    font-size: 14px;
+    box-sizing: border-box;
+  }
+  .expired-search::placeholder {
+    color: var(--text-dim);
+  }
+  .expired-search:focus {
+    outline: none;
+    border-color: var(--accent-bright);
+    box-shadow: 0 0 0 3px rgba(255, 91, 110, 0.10);
+  }
+  .expired-sort-wrap {
+    position: relative;
+    flex: 0 0 auto;
+  }
+  .expired-sort-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 214px;
+    height: 42px;
+    padding: 0 14px;
+    border-radius: 9px;
+    border: 1px solid var(--border);
+    background: var(--panel);
+    color: var(--text);
+    font-family: inherit;
+    font-size: 13.5px;
+    cursor: pointer;
+    box-sizing: border-box;
+    transition: border-radius 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
+  }
+  .expired-sort-btn svg {
+    margin-left: auto;
+  }
+  .expired-sort-btn:hover,
+  .expired-sort-btn:focus-visible {
+    outline: none;
+    border-color: var(--accent-bright);
+    box-shadow: 0 0 0 3px rgba(255, 91, 110, 0.10);
+  }
+  .expired-sort-btn[aria-expanded="true"] {
+    outline: none;
+    border-color: var(--accent-bright);
+    border-bottom-color: var(--border);
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    box-shadow: none;
+  }
+  .expired-sort-label {
+    color: var(--text-dim);
+  }
+  .expired-sort-value {
+    font-weight: 500;
+  }
+  .expired-sort-btn svg {
+    width: 15px;
+    height: 15px;
+    stroke: var(--text-dim);
+    fill: none;
+    stroke-width: 1.9;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    transition: transform 0.15s ease;
+  }
+  .expired-sort-btn[aria-expanded="true"] svg {
+    transform: rotate(180deg);
+  }
+  .expired-sort-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    margin-top: -1px;
+    padding: 6px;
+    box-sizing: border-box;
+    border: 1px solid var(--accent-bright);
+    border-top-color: var(--border);
+    border-radius: 0 0 9px 9px;
+    background: linear-gradient(var(--panel), var(--panel)), var(--bg, #070505);
+    box-shadow: 0 14px 30px rgba(0, 0, 0, 0.55);
+    z-index: 20;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-6px) scaleY(0.94);
+    transform-origin: top;
+    transition: opacity 0.18s ease, transform 0.18s ease, visibility 0s linear 0.18s;
+  }
+  .expired-sort-menu.open {
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    transition: opacity 0.18s ease, transform 0.18s ease, visibility 0s;
+  }
+  .expired-sort-opt {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    padding: 8px 10px;
+    border: 0;
+    border-radius: 7px;
+    background: transparent;
+    color: var(--text-dim);
+    font-family: inherit;
+    font-size: 13.5px;
+    text-align: left;
+    cursor: pointer;
+  }
+  .expired-sort-opt:hover,
+  .expired-sort-opt:focus-visible {
+    outline: none;
+    background: var(--panel-raised);
+    color: var(--text);
+  }
+  .expired-sort-opt.on {
+    color: var(--text);
+    background: rgba(255, 91, 110, 0.12);
+  }
+  .expired-sort-opt svg {
+    width: 15px;
+    height: 15px;
+    flex: none;
+    stroke: var(--accent-bright);
+    fill: none;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    visibility: hidden;
+  }
+  .expired-sort-opt.on svg {
+    visibility: visible;
+  }
+  .expired-sort-sep {
+    height: 1px;
+    margin: 6px 4px;
+    background: var(--border);
+  }
+  @media (max-width: 640px) {
+    .expired-stats {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+  .expired-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 16px;
+  }
+  .expired-card {
+    display: block;
+    min-width: 0;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--panel);
+    overflow: hidden;
+    color: var(--text);
+    transition: border-color 0.15s ease, background 0.15s ease;
+  }
+  .expired-card:hover {
+    border-color: var(--accent-bright);
+    background: var(--panel-raised);
+    text-decoration: none;
+  }
+  .expired-card-thumb {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    display: block;
+    background: var(--panel-raised);
+  }
+  .expired-card-body {
+    padding: 10px 12px 12px;
+  }
+  .expired-card-title {
+    font-size: 12.5px;
+    font-weight: 500;
+    line-height: 1.35;
+    min-height: calc(1.35em * 2);
+    margin: 0 0 8px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .expired-card-foot {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 11px;
+    color: var(--text-dim);
+  }
+  .expired-card-nums {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    justify-content: space-between;
+    gap: 8px;
+    margin: 10px 0 0;
+    padding-top: 10px;
+    border-top: 1px solid var(--border);
+  }
+  .expired-card-nums span {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+    font-size: 10.5px;
+    color: var(--text-dim);
+  }
+  .expired-card-nums b {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text);
+    white-space: nowrap;
+  }
+  .expired-card.pop {
+    animation: expired-pop 0.38s cubic-bezier(0.2, 0.8, 0.25, 1) both;
+  }
+  @keyframes expired-pop {
+    from {
+      opacity: 0;
+      transform: translateY(14px) scale(0.96);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .expired-card.pop {
+      animation: none;
+    }
+  }
+  .expired-none {
+    display: none;
+    padding: 40px 12px;
+    text-align: center;
+    font-size: 13.5px;
+    color: var(--text-dim);
+  }
+  .expired-none.show {
+    display: block;
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+  <div class="expired-layout">
+    <a class="expired-channel" href="/channel/{{ channel_id }}">
+      {% if channel_thumbnail %}
+        <img class="expired-avatar" src="{{ channel_thumbnail }}" alt="">
+      {% else %}
+        <div class="expired-avatar placeholder">{{ channel_title[:1]|upper }}</div>
+      {% endif %}
+      <div class="expired-channel-name">{{ channel_title }}</div>
+    </a>
+    <div class="expired-head">
+      <span class="expired-lock" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></span>
+      <h1>Expired videos</h1>
+    </div>
+    <p class="expired-note">Finished their 30 days of tracking. Their numbers are final.</p>
+
+    {% if videos %}
+      <div class="expired-stats">
+        <div class="expired-stat"><b id="stat-videos">0</b><span>videos</span></div>
+        <div class="expired-stat"><b id="stat-views">0</b><span>total views</span></div>
+        <div class="expired-stat"><b id="stat-likes">0</b><span>total likes</span></div>
+        <div class="expired-stat"><b id="stat-comments">0</b><span>total comments</span></div>
+      </div>
+
+      <div class="expired-tools">
+        <div class="expired-search-wrap">
+          <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+          <input class="expired-search" id="expired-search" type="text" placeholder="Search expired videos">
+        </div>
+        <div class="expired-sort-wrap">
+          <button type="button" class="expired-sort-btn" id="expired-sort-btn" aria-haspopup="listbox" aria-expanded="false">
+            <span class="expired-sort-label">Sort by</span>
+            <span class="expired-sort-value" id="expired-sort-value">Newest first</span>
+            <svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="expired-sort-menu" id="expired-sort-menu" role="listbox">
+            <button type="button" class="expired-sort-opt on" data-sort="newest" role="option"><svg viewBox="0 0 24 24"><path d="M5 12l5 5 9-10"/></svg>Newest first</button>
+            <button type="button" class="expired-sort-opt" data-sort="oldest" role="option"><svg viewBox="0 0 24 24"><path d="M5 12l5 5 9-10"/></svg>Oldest first</button>
+            <div class="expired-sort-sep"></div>
+            <button type="button" class="expired-sort-opt" data-sort="views" role="option"><svg viewBox="0 0 24 24"><path d="M5 12l5 5 9-10"/></svg>Most views</button>
+            <button type="button" class="expired-sort-opt" data-sort="likes" role="option"><svg viewBox="0 0 24 24"><path d="M5 12l5 5 9-10"/></svg>Most likes</button>
+            <button type="button" class="expired-sort-opt" data-sort="comments" role="option"><svg viewBox="0 0 24 24"><path d="M5 12l5 5 9-10"/></svg>Most comments</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="expired-grid" id="expired-grid">
+        {% for v in videos %}
+          <a class="expired-card" href="/forecast/{{ v.video_id }}" data-i="{{ loop.index0 }}" data-date="{{ v.published_at }}" data-views="{{ v.views }}" data-likes="{{ v.likes }}" data-comments="{{ v.comments }}">
+            <img class="expired-card-thumb" src="https://i.ytimg.com/vi/{{ v.video_id }}/mqdefault.jpg" alt="" loading="lazy">
+            <div class="expired-card-body">
+              <p class="expired-card-title">{{ v.title }}</p>
+              <div class="expired-card-foot">
+                <span class="mono">{{ v.published_at[:10] }}</span>
+                <span class="badge expired">expired</span>
+              </div>
+              <p class="expired-card-nums">
+                <span><b>{{ "{:,}".format(v.views) }}</b>views</span>
+                <span><b>{{ "{:,}".format(v.likes) }}</b>likes</span>
+                <span><b>{{ "{:,}".format(v.comments) }}</b>comments</span>
+              </p>
+            </div>
+          </a>
+        {% endfor %}
+      </div>
+      <p class="expired-none" id="expired-none">No expired videos match your search.</p>
+    {% else %}
+      <div class="empty">No videos have expired for this channel yet. Videos move here 30 days after upload.</div>
+    {% endif %}
+  </div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+  const expiredSearch = document.getElementById("expired-search");
+  if (expiredSearch) {
+    const sortBtn = document.getElementById("expired-sort-btn");
+    const sortMenu = document.getElementById("expired-sort-menu");
+    const sortValue = document.getElementById("expired-sort-value");
+    let sortKey = "newest";
+    const expiredGrid = document.getElementById("expired-grid");
+    const expiredNone = document.getElementById("expired-none");
+    const cards = Array.from(expiredGrid.querySelectorAll(".expired-card"));
+
+    const formatStat = n => {
+      if (n >= 1000000) return (n / 1000000).toFixed(1).replace(/\.0$/, "") + "M";
+      if (n >= 100000) return Math.round(n / 1000) + "K";
+      return n.toLocaleString("en-US");
+    };
+
+    const sorters = {
+      newest: (a, b) => b.dataset.date.localeCompare(a.dataset.date) || a.dataset.i - b.dataset.i,
+      oldest: (a, b) => a.dataset.date.localeCompare(b.dataset.date) || a.dataset.i - b.dataset.i,
+      views: (a, b) => b.dataset.views - a.dataset.views || a.dataset.i - b.dataset.i,
+      likes: (a, b) => b.dataset.likes - a.dataset.likes || a.dataset.i - b.dataset.i,
+      comments: (a, b) => b.dataset.comments - a.dataset.comments || a.dataset.i - b.dataset.i
+    };
+
+    const refresh = animate => {
+      const query = expiredSearch.value.trim().toLowerCase();
+      cards.sort(sorters[sortKey]).forEach(card => expiredGrid.appendChild(card));
+      let matches = 0;
+      let views = 0;
+      let likes = 0;
+      let comments = 0;
+      cards.forEach(card => {
+        const title = card.querySelector(".expired-card-title").textContent.toLowerCase();
+        const visible = title.includes(query);
+        card.style.display = visible ? "" : "none";
+        if (visible) {
+          matches += 1;
+          views += Number(card.dataset.views);
+          likes += Number(card.dataset.likes);
+          comments += Number(card.dataset.comments);
+        }
+      });
+      if (animate) {
+        let step = 0;
+        cards.forEach(card => {
+          card.classList.remove("pop");
+          if (card.style.display === "none") return;
+          card.style.animationDelay = Math.min(step * 28, 700) + "ms";
+          step += 1;
+        });
+        void expiredGrid.offsetWidth;
+        cards.forEach(card => {
+          if (card.style.display !== "none") card.classList.add("pop");
+        });
+      }
+      document.getElementById("stat-videos").textContent = matches.toLocaleString("en-US");
+      document.getElementById("stat-views").textContent = formatStat(views);
+      document.getElementById("stat-likes").textContent = formatStat(likes);
+      document.getElementById("stat-comments").textContent = formatStat(comments);
+      expiredNone.classList.toggle("show", matches === 0);
+    };
+
+    expiredSearch.addEventListener("input", () => refresh(false));
+    const closeMenu = () => {
+      sortMenu.classList.remove("open");
+      sortBtn.setAttribute("aria-expanded", "false");
+    };
+    sortBtn.addEventListener("click", event => {
+      event.stopPropagation();
+      const open = sortMenu.classList.toggle("open");
+      sortBtn.setAttribute("aria-expanded", open ? "true" : "false");
+    });
+    sortMenu.querySelectorAll(".expired-sort-opt").forEach(opt => {
+      opt.addEventListener("click", () => {
+        sortKey = opt.dataset.sort;
+        sortMenu.querySelectorAll(".expired-sort-opt").forEach(o => o.classList.toggle("on", o === opt));
+        sortValue.textContent = opt.textContent.trim();
+        closeMenu();
+        refresh(true);
+      });
+    });
+    document.addEventListener("click", closeMenu);
+    document.addEventListener("keydown", event => {
+      if (event.key === "Escape") closeMenu();
+    });
+    refresh(false);
+  }
+</script>
+{% endblock %}

@@ -358,77 +358,93 @@
   @keyframes g-draw {
     to { stroke-dashoffset: 0; }
   }
-  .g-end {
+  @keyframes g-fade {
+    from { opacity: 0; transform: scale(0.4); }
+    to { opacity: 1; transform: scale(1); }
+  }
+  .g-mark {
     position: absolute;
-    display: flex;
-    align-items: center;
-    gap: 8px;
+    width: 26px;
     height: 26px;
-    font-family: "IBM Plex Mono", monospace;
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--text);
-    text-decoration: none;
+    margin: -13px 0 0 -13px;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    background: none;
+    cursor: pointer;
+    z-index: 2;
     opacity: 0;
   }
-  .growth-plot.play .g-end {
-    animation: g-fade 0.5s ease-out 2.7s both;
+  .growth-plot.play .g-mark {
+    animation: g-fade 0.4s ease-out both;
   }
-  .growth-plot.settled .g-end {
+  .growth-plot.settled .g-mark {
     animation: none;
     opacity: 1;
   }
-  .g-end:hover {
-    text-decoration: none;
-    color: var(--text);
+  .g-mark:hover,
+  .g-mark:focus-visible,
+  .g-mark.active {
+    z-index: 6;
   }
-  .g-end:hover .g-logo,
-  .g-end:focus-visible .g-logo {
-    transform: scale(1.12);
-  }
-  .g-name {
-    position: absolute;
-    right: calc(100% + 8px);
-    top: 50%;
-    padding: 5px 10px;
-    background: #120c0e;
-    border: 1px solid rgba(237, 90, 102, 0.34);
-    border-radius: 8px;
-    font-family: "IBM Plex Sans", sans-serif;
-    font-size: 12.5px;
-    font-weight: 500;
-    white-space: nowrap;
-    opacity: 0;
-    transform: translateY(-50%) translateX(4px);
-    transition: opacity 0.14s ease, transform 0.14s ease;
-    pointer-events: none;
-    z-index: 4;
-  }
-  .g-end:hover .g-name,
-  .g-end:focus-visible .g-name {
-    opacity: 1;
-    transform: translateY(-50%) translateX(0);
-  }
-  @keyframes g-fade {
-    from { opacity: 0; transform: scale(0.8); }
-    to { opacity: 1; transform: scale(1); }
+  .g-mark:hover .g-logo,
+  .g-mark:focus-visible .g-logo,
+  .g-mark.active .g-logo {
+    transform: scale(1.2);
   }
   .g-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 26px;
     height: 26px;
     border-radius: 50%;
     border: 2px solid var(--accent-bright);
     box-sizing: border-box;
     object-fit: cover;
-    flex-shrink: 0;
     background: var(--panel-raised);
     transition: transform 0.14s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     font-family: "IBM Plex Sans", sans-serif;
     font-size: 11px;
     font-weight: 600;
+    color: var(--text-dim);
+  }
+  .g-pop {
+    position: absolute;
+    z-index: 8;
+    min-width: 170px;
+    padding: 10px 14px;
+    background: #120c0e;
+    border: 1px solid rgba(237, 90, 102, 0.34);
+    border-radius: 10px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.55);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateX(6px);
+    transition: opacity 0.14s ease, transform 0.14s ease, visibility 0.14s;
+  }
+  .g-pop.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(0);
+  }
+  .g-pop.pinned {
+    pointer-events: auto;
+  }
+  .g-pop-name {
+    display: block;
+    font-size: 13.5px;
+    font-weight: 600;
+    color: var(--text);
+  }
+  .g-pop-name:hover {
+    color: var(--link);
+    text-decoration: none;
+  }
+  .g-pop-count {
+    margin-top: 2px;
+    font-size: 12px;
     color: var(--text-dim);
   }
   .g-tip {
@@ -846,7 +862,7 @@
     }
     const colors = ["#ff5b6e", "#4fae8b", "#f1d06b", "#6aa7ff", "#b58cff", "#ff9f5b"];
     const HEIGHT = 300;
-    const PAD = { left: 34, right: 110, top: 16, bottom: 30 };
+    const PAD = { left: 34, right: 40, top: 16, bottom: 30 };
     const days = data.days;
     const series = data.series;
     const count = days.length;
@@ -867,6 +883,8 @@
     }
 
     let settled = false;
+    let closePop = () => {};
+    document.addEventListener("click", () => closePop());
 
     const draw = () => {
       const width = plot.clientWidth;
@@ -895,31 +913,68 @@
         const color = colors[idx % colors.length];
         const path = item.values.map((v, i) => (i ? "L" : "M") + x(i).toFixed(1) + "," + y(v).toFixed(1)).join(" ");
         svg += `<path class="g-line" pathLength="1" d="${path}" stroke="${color}" style="animation-delay:${idx * 0.2}s"/>`;
-        svg += `<circle cx="${x(count - 1)}" cy="${y(item.values[count - 1])}" r="4" fill="${color}"/>`;
       });
 
       svg += `<line id="g-cross" y1="${PAD.top}" y2="${HEIGHT - PAD.bottom}" stroke="rgba(255,255,255,0.25)" stroke-dasharray="3 3" style="display:none"/>`;
       svg += `<g id="g-hover-dots"></g>`;
       svg += `<rect id="g-capture" x="${PAD.left}" y="0" width="${width - PAD.left - PAD.right + 8}" height="${HEIGHT}" fill="transparent"/>`;
 
-      const ends = series
-        .map((item, idx) => ({ item, idx, y: y(item.values[count - 1]) }))
-        .sort((a, b) => a.y - b.y);
-      for (let i = 1; i < ends.length; i++) {
-        if (ends[i].y - ends[i - 1].y < 28) ends[i].y = ends[i - 1].y + 28;
-      }
-      const endHtml = ends.map(e => {
-        const color = colors[e.idx % colors.length];
-        return `<a class="g-end" href="/channel/${encodeURIComponent(e.item.id)}" style="left:${x(count - 1) + 14}px;top:${e.y - 13}px">${logoHtml(e.item, color)}<span>${e.item.values[count - 1]}</span><span class="g-name">${esc(e.item.title)}</span></a>`;
+      const markHtml = series.map((item, idx) => {
+        const color = colors[idx % colors.length];
+        return `<button type="button" class="g-mark" data-i="${idx}" aria-label="${esc(item.title)}" style="left:${x(count - 1)}px;top:${y(item.values[count - 1])}px;animation-delay:${(idx * 0.2 + 2.5).toFixed(2)}s">${logoHtml(item, color)}</button>`;
       }).join("");
-
-      plot.innerHTML = `<svg width="${width}" height="${HEIGHT}" viewBox="0 0 ${width} ${HEIGHT}">${svg}</svg>${endHtml}<div class="g-tip" id="g-tip"></div>`;
+      plot.innerHTML = `<svg width="${width}" height="${HEIGHT}" viewBox="0 0 ${width} ${HEIGHT}">${svg}</svg>${markHtml}<div class="g-tip" id="g-tip"></div><div class="g-pop" id="g-pop"></div>`;
       if (settled) plot.classList.add("settled");
 
       const capture = document.getElementById("g-capture");
       const cross = document.getElementById("g-cross");
       const dots = document.getElementById("g-hover-dots");
       const tip = document.getElementById("g-tip");
+      const pop = document.getElementById("g-pop");
+      const marks = Array.from(plot.querySelectorAll(".g-mark"));
+      let pinned = -1;
+
+      const showPop = (i, pin) => {
+        const item = series[i];
+        pop.innerHTML = `<a class="g-pop-name" href="/channel/${encodeURIComponent(item.id)}">${esc(item.title)}</a><div class="g-pop-count">${item.values[count - 1]} video${item.values[count - 1] === 1 ? "" : "s"} tracked</div>`;
+        pop.classList.toggle("pinned", pin);
+        const popWidth = pop.offsetWidth;
+        const popHeight = pop.offsetHeight;
+        const cx = x(count - 1);
+        const cy = y(item.values[count - 1]);
+        pop.style.left = Math.max(0, cx - 22 - popWidth) + "px";
+        pop.style.top = Math.max(0, cy - popHeight / 2) + "px";
+        pop.classList.add("show");
+        tip.classList.remove("show");
+      };
+      const hidePop = () => {
+        pop.classList.remove("show", "pinned");
+        marks.forEach(m => m.classList.remove("active"));
+        pinned = -1;
+      };
+
+      marks.forEach(mark => {
+        const i = Number(mark.dataset.i);
+        mark.addEventListener("mouseenter", () => {
+          if (pinned === -1) showPop(i, false);
+        });
+        mark.addEventListener("mouseleave", () => {
+          if (pinned === -1) pop.classList.remove("show");
+        });
+        mark.addEventListener("click", event => {
+          event.stopPropagation();
+          if (pinned === i) {
+            hidePop();
+            return;
+          }
+          marks.forEach(m => m.classList.remove("active"));
+          mark.classList.add("active");
+          pinned = i;
+          showPop(i, true);
+        });
+      });
+      pop.addEventListener("click", event => event.stopPropagation());
+      closePop = hidePop;
 
       capture.addEventListener("mousemove", event => {
         const rect = plot.getBoundingClientRect();

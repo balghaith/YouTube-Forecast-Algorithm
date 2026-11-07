@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block title %}{{ video_title }} — YT Forecast{% endblock %}
 
-{% block crumb %}<span class="crumb"><a href="/">&larr; dashboard</a></span>{% endblock %}
+{% block crumb %}<nav class="trail"><a class="trail-mark" href="/" aria-label="Home"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M7 4l14 8-14 8z"/></svg></a><span class="trail-sep">/</span><a href="/channels">Channels</a>{% if channel_id %}<span class="trail-sep">/</span><a href="/channel/{{ channel_id }}">{% if channel_thumbnail %}<img class="trail-avatar" src="{{ channel_thumbnail }}" alt="">{% else %}<span class="trail-avatar trail-avatar-letter">{{ channel_title[:1]|upper }}</span>{% endif %}{{ channel_title }}</a>{% endif %}<span class="trail-sep">/</span><span class="trail-here"><span class="trail-name">{{ video_title }}</span></span></nav>{% endblock %}
 
 {% block head %}
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
