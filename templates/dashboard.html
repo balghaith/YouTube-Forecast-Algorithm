@@ -37,7 +37,6 @@
     {% if channels %}
       <a class="dashboard-title-link" href="/channels" style="margin-left:-275px; margin-top:155px;">
         <h1 class="section-label dashboard-title">Tracked Channels</h1>
-        <span class="dashboard-title-arrow">&rsaquo;</span>
       </a>
       <div class="channel-grid">
         {% for c in channels %}
@@ -79,23 +78,59 @@
             <a class="channel-card-btn" href="/channel/{{ c.channel_id }}">View all videos</a>
           </div>
         {% endfor %}
+        {% if more_channels %}
+          <a class="channel-more" href="/channels" data-n="{{ more_channels }}">
+            <span class="channel-more-num">+{{ more_channels }}</span>
+            <span class="channel-more-label">more channel{{ 's' if more_channels != 1 else '' }}</span>
+          </a>
+        {% endif %}
       </div>
-      {% if growth_chart %}
-        <div class="growth-card" id="growth-card" data-chart='{{ growth_chart|tojson }}'>
-          <div class="growth-head">
-            <div>
-              <h2 class="growth-title">Active videos tracked over time</h2>
-              <p class="growth-sub">Each line is a channel</p>
-            </div>
-            <div class="growth-total">
-              <span class="growth-total-num mono">{{ total_videos }}</span>
-              <small>video{{ 's' if total_videos != 1 else '' }} total</small>
-            </div>
+      {% if leaderboard %}
+        <div class="lb-wrap" id="lb">
+          <div class="lb-head">
+            <h2 class="lb-title">Channel leaderboard</h2>
+            <span class="lb-info-wrap">
+              <button class="lb-info" id="lb-info" type="button" aria-label="About this leaderboard" aria-expanded="false">?</button>
+              <span class="lb-pop" id="lb-pop" role="tooltip">The average views per video for each channel, counting only the videos that are currently being tracked.</span>
+            </span>
           </div>
-          <div class="growth-plot" id="growth-plot"></div>
-          <p class="growth-note" id="growth-note"></p>
+          <div class="lb-card">
+            {% for row in leaderboard %}
+              <a class="lb-row{{ ' top' if loop.first else '' }}" href="/channel/{{ row.channel_id }}">
+                <span class="lb-rank">{{ loop.index }}</span>
+                {% if row.thumbnail %}
+                  <img class="lb-avatar" src="{{ row.thumbnail }}" alt="">
+                {% else %}
+                  <span class="lb-avatar lb-avatar-letter">{{ row.title[:1]|upper }}</span>
+                {% endif %}
+                <span class="lb-name">{{ row.title }}<small>{{ row.videos }} video{{ 's' if row.videos != 1 else '' }}</small></span>
+                <span class="lb-bar"><i data-w="{{ row.share }}"></i></span>
+                <span class="lb-num">{{ row.average_text }}</span>
+              </a>
+            {% endfor %}
+          </div>
         </div>
       {% endif %}
+      <div class="how-wrap">
+        <h2 class="how-title">How it works</h2>
+        <div class="how-card">
+          <div class="how-step">
+            <div class="how-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
+            <h3>Track</h3>
+            <p>New uploads are checked every hour for 30 days.</p>
+          </div>
+          <div class="how-step">
+            <div class="how-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/></svg></div>
+            <h3>Forecast</h3>
+            <p>Views, likes and comments are projected for the days ahead.</p>
+          </div>
+          <div class="how-step">
+            <div class="how-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></div>
+            <h3>Compare</h3>
+            <p>Once a day passes, the forecast is checked against the real number.</p>
+          </div>
+        </div>
+      </div>
     {% else %}
       <div class="empty">No channels tracked yet. Search above to add your first one.</div>
     {% endif %}
@@ -123,20 +158,38 @@
     text-decoration: none;
     color: var(--text);
   }
-  .dashboard-title-link:hover .dashboard-title-arrow {
-    transform: translateX(4px);
-  }
   .dashboard-title {
+    color: #fff;
     font-size: 24px;
     font-weight: 600;
     letter-spacing: -0.01em;
     margin: 0;
   }
-  .dashboard-title-arrow {
-    font-size: 26px;
-    line-height: 1;
+  .channel-more {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    background: var(--panel);
+    border: 1px dashed var(--border);
+    border-radius: 14px;
     color: var(--text-dim);
-    transition: transform 0.15s ease;
+    transition: background 0.15s ease, color 0.15s ease;
+  }
+  .channel-more:hover {
+    background: var(--panel-raised);
+    color: var(--text);
+    text-decoration: none;
+  }
+  .channel-more-num {
+    font-size: 48px;
+    font-weight: 300;
+    line-height: 1;
+    color: #fff;
+  }
+  .channel-more-label {
+    font-size: 14px;
   }
 
   .tracking-stats {
@@ -288,215 +341,221 @@
     margin-right: 6px;
   }
 
-  .growth-card {
-    position: relative;
-    box-sizing: border-box;
+  .lb-wrap {
     width: 1386px;
-    margin: 44px 0 60px -275px;
-    padding: 24px 30px 18px;
+    margin: 56px 0 0 -275px;
+  }
+  .lb-info-wrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+  .lb-head {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+  .lb-title {
+    margin: 0;
+    font-size: 19px;
+    font-weight: 600;
+  }
+  .lb-info {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    padding: 0;
+    border: 1px solid var(--text-faint);
+    border-radius: 50%;
+    background: none;
+    color: var(--text-dim);
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 1;
+    cursor: pointer;
+    transition: color 0.15s ease, border-color 0.15s ease, background 0.15s ease;
+  }
+  .lb-info:hover,
+  .lb-info[aria-expanded="true"] {
+    color: var(--accent-bright);
+    border-color: var(--accent-bright);
+    background: rgba(255, 91, 110, 0.1);
+  }
+  .lb-pop {
+    position: absolute;
+    left: 30px;
+    top: 50%;
+    z-index: 5;
+    width: 400px;
+    margin-top: -22px;
+    padding: 10px 13px;
+    background: #17110f;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.5);
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--text-dim);
+    opacity: 0;
+    transform: translateX(-4px);
+    pointer-events: none;
+    transition: opacity 0.15s ease, transform 0.15s ease;
+  }
+  .lb-info:hover ~ .lb-pop,
+  .lb-info:focus-visible ~ .lb-pop,
+  .lb-pop.show {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  .lb-card {
+    box-sizing: border-box;
+    padding: 8px 26px;
     background: var(--panel);
     border: 1px solid var(--border);
     border-radius: 14px;
   }
-  .growth-head {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
+  .lb-row {
+    display: grid;
+    grid-template-columns: 24px 40px 280px 1fr 100px;
+    align-items: center;
+    gap: 16px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--border);
+    color: inherit;
+    text-decoration: none;
   }
-  .growth-title {
-    margin: 0 0 4px;
-    font-size: 16px;
-    font-weight: 600;
+  .lb-row:last-child {
+    border-bottom: none;
   }
-  .growth-sub {
-    margin: 0;
-    font-size: 13px;
-    color: var(--text-dim);
+  .lb-row:hover {
+    text-decoration: none;
   }
-  .growth-total {
-    text-align: right;
+  .lb-row:hover .lb-name {
+    color: var(--accent-bright);
   }
-  .growth-total-num {
-    display: block;
-    font-size: 34px;
-    font-weight: 600;
-    line-height: 1.1;
-  }
-  .growth-total small {
-    font-size: 12px;
-    color: var(--text-dim);
-  }
-  .growth-plot {
-    position: relative;
-    margin-top: 14px;
-    height: 300px;
-  }
-  .growth-plot svg {
-    display: block;
-    overflow: visible;
-  }
-  .growth-plot text {
-    fill: var(--text-dim);
+  .lb-rank {
     font-family: "IBM Plex Mono", monospace;
-    font-size: 11px;
+    font-size: 13px;
+    color: var(--text-faint);
+    text-align: center;
   }
-  .g-line {
-    fill: none;
-    stroke-width: 2.2;
-    stroke-linejoin: round;
-    stroke-linecap: round;
-    stroke-dasharray: 1;
-    stroke-dashoffset: 1;
+  .lb-row.top .lb-rank {
+    color: var(--accent-bright);
   }
-  .growth-plot.play .g-line {
-    animation: g-draw 2.6s cubic-bezier(0.35, 0.5, 0.25, 1) forwards;
-  }
-  .growth-plot.settled .g-line {
-    animation: none;
-    stroke-dashoffset: 0;
-  }
-  @keyframes g-draw {
-    to { stroke-dashoffset: 0; }
-  }
-  @keyframes g-fade {
-    from { opacity: 0; transform: scale(0.4); }
-    to { opacity: 1; transform: scale(1); }
-  }
-  .g-mark {
-    position: absolute;
-    width: 26px;
-    height: 26px;
-    margin: -13px 0 0 -13px;
-    padding: 0;
-    border: 0;
+  .lb-avatar {
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
-    background: none;
-    cursor: pointer;
-    z-index: 2;
-    opacity: 0;
+    object-fit: cover;
+    background: var(--panel-raised);
+    border: 1px solid rgba(255, 255, 255, 0.14);
   }
-  .growth-plot.play .g-mark {
-    animation: g-fade 0.4s ease-out both;
-  }
-  .growth-plot.settled .g-mark {
-    animation: none;
-    opacity: 1;
-  }
-  .g-mark:hover,
-  .g-mark:focus-visible,
-  .g-mark.active {
-    z-index: 6;
-  }
-  .g-mark:hover .g-logo,
-  .g-mark:focus-visible .g-logo,
-  .g-mark.active .g-logo {
-    transform: scale(1.2);
-  }
-  .g-logo {
+  .lb-avatar-letter {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 26px;
-    height: 26px;
-    border-radius: 50%;
-    border: 2px solid var(--accent-bright);
-    box-sizing: border-box;
-    object-fit: cover;
-    background: var(--panel-raised);
-    transition: transform 0.14s ease;
-    font-family: "IBM Plex Sans", sans-serif;
-    font-size: 11px;
+    font-size: 16px;
     font-weight: 600;
     color: var(--text-dim);
   }
-  .g-pop {
-    position: absolute;
-    z-index: 8;
-    min-width: 170px;
-    padding: 10px 14px;
-    background: #120c0e;
-    border: 1px solid rgba(237, 90, 102, 0.34);
-    border-radius: 10px;
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.55);
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-    transform: translateX(6px);
-    transition: opacity 0.14s ease, transform 0.14s ease, visibility 0.14s;
+  .lb-row.top .lb-avatar {
+    border-color: var(--accent-bright);
+    box-shadow: 0 0 14px rgba(255, 91, 110, 0.4);
   }
-  .g-pop.show {
-    opacity: 1;
-    visibility: visible;
-    transform: translateX(0);
+  .lb-name {
+    min-width: 0;
+    font-size: 16px;
+    font-weight: 500;
+    transition: color 0.15s ease;
   }
-  .g-pop.pinned {
-    pointer-events: auto;
-  }
-  .g-pop-name {
+  .lb-name small {
     display: block;
-    font-size: 13.5px;
-    font-weight: 600;
-    color: var(--text);
-  }
-  .g-pop-name:hover {
-    color: var(--link);
-    text-decoration: none;
-  }
-  .g-pop-count {
     margin-top: 2px;
     font-size: 12px;
+    font-weight: 400;
     color: var(--text-dim);
   }
-  .g-tip {
-    position: absolute;
-    top: 8px;
-    min-width: 190px;
-    padding: 10px 12px;
-    background: #120c0e;
-    border: 1px solid rgba(237, 90, 102, 0.34);
-    border-radius: 9px;
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.55);
-    pointer-events: none;
-    opacity: 0;
-    transition: opacity 0.12s ease;
-    z-index: 3;
-  }
-  .g-tip.show {
-    opacity: 1;
-  }
-  .g-tip-date {
-    margin-bottom: 8px;
-    font-size: 12px;
-    color: var(--text-dim);
-  }
-  .g-tip-row {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    margin-top: 6px;
-    font-size: 12.5px;
-  }
-  .g-tip-dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    flex-shrink: 0;
-  }
-  .g-tip-name {
-    flex: 1;
+  .lb-bar {
+    height: 7px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.07);
     overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
   }
-  .g-tip-val {
+  .lb-bar i {
+    display: block;
+    width: 0;
+    height: 100%;
+    border-radius: 999px;
+    background: linear-gradient(90deg, #c52030, #ff5b6e);
+    transition: width 1.1s cubic-bezier(0.25, 0.7, 0.25, 1);
+  }
+  .lb-num {
     font-family: "IBM Plex Mono", monospace;
+    font-size: 20px;
+    font-weight: 700;
+    text-align: right;
+  }
+  .lb-row.top .lb-num {
+    color: var(--accent-bright);
+    text-shadow: 0 0 18px rgba(255, 91, 110, 0.55);
+  }
+
+  .how-wrap {
+    width: 1386px;
+    margin: 56px 0 60px -275px;
+  }
+  .how-title {
+    margin: 0 0 16px;
+    font-size: 19px;
     font-weight: 600;
   }
-  .growth-note {
-    margin: 6px 0 0;
-    min-height: 16px;
-    font-size: 12px;
-    color: var(--text-faint);
+  .how-card {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    box-sizing: border-box;
+    padding: 34px 20px;
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+  }
+  .how-step {
+    position: relative;
+    padding: 0 40px;
+    text-align: center;
+  }
+  .how-step + .how-step::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 8px;
+    bottom: 8px;
+    border-left: 1px solid var(--border);
+  }
+  .how-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 54px;
+    height: 54px;
+    margin: 0 auto 16px;
+    border: 1.5px solid var(--accent-bright);
+    border-radius: 50%;
+    color: var(--accent-bright);
+  }
+  .how-step h3 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 600;
+  }
+  .how-step p {
+    margin: 8px 0 0;
+    font-size: 14px;
+    line-height: 1.55;
+    color: var(--text-dim);
   }
 
   .channel-grid {
@@ -815,8 +874,21 @@
     `;
     grid.prepend(card);
     const cards = grid.querySelectorAll(".channel-card");
-    for (let i = cards.length - 1; i >= 4; i--) {
+    let tile = grid.querySelector(".channel-more");
+    const total = cards.length + (tile ? parseInt(tile.dataset.n, 10) : 0);
+    const shown = total > 4 ? 3 : 4;
+    for (let i = cards.length - 1; i >= shown; i--) {
       cards[i].remove();
+    }
+    if (total > 4) {
+      if (!tile) {
+        tile = document.createElement("a");
+        tile.className = "channel-more";
+        tile.href = "/channels";
+        grid.appendChild(tile);
+      }
+      tile.dataset.n = String(total - 3);
+      tile.innerHTML = `<span class="channel-more-num">+${total - 3}</span><span class="channel-more-label">more channel${total - 3 === 1 ? "" : "s"}</span>`;
     }
 
     const channelsStat = document.querySelector(".tracking-numbers .stat-block:first-child .stat-num");
@@ -848,181 +920,47 @@
     }
   });
 
+
   (function () {
-    const card = document.getElementById("growth-card");
-    if (!card) return;
-    const plot = document.getElementById("growth-plot");
-    const note = document.getElementById("growth-note");
-    let data;
-    try {
-      data = JSON.parse(card.dataset.chart);
-    } catch (err) {
-      card.style.display = "none";
-      return;
+    const board = document.getElementById("lb");
+    if (!board) return;
+    const bars = Array.from(board.querySelectorAll(".lb-bar i"));
+    function fill() {
+      bars.forEach((bar, i) => {
+        bar.style.transitionDelay = (i * 0.08).toFixed(2) + "s";
+        bar.style.width = bar.dataset.w + "%";
+      });
     }
-    const colors = ["#ff5b6e", "#4fae8b", "#f1d06b", "#6aa7ff", "#b58cff", "#ff9f5b"];
-    const HEIGHT = 300;
-    const PAD = { left: 34, right: 40, top: 16, bottom: 30 };
-    const days = data.days;
-    const series = data.series;
-    const count = days.length;
-    const dateFormat = new Intl.DateTimeFormat("en-US", { timeZone: "UTC", month: "short", day: "numeric" });
-    const fmt = key => dateFormat.format(new Date(key + "T12:00:00Z"));
-    const esc = value => String(value == null ? "" : value)
-      .replace(/&/g, "&amp;")
-      .replace(/</g, "&lt;")
-      .replace(/>/g, "&gt;")
-      .replace(/"/g, "&quot;");
-
-    const logoHtml = (item, color) => item.thumbnail
-      ? `<img class="g-logo" style="border-color:${color}" src="${esc(item.thumbnail)}" alt="">`
-      : `<div class="g-logo" style="border-color:${color}">${esc((item.title || "?").slice(0, 1).toUpperCase())}</div>`;
-
-    if (data.extra > 0) {
-      note.textContent = data.extra + " more channel" + (data.extra === 1 ? "" : "s") + " not shown";
-    }
-
-    let settled = false;
-    let closePop = () => {};
-    document.addEventListener("click", () => closePop());
-
-    const draw = () => {
-      const width = plot.clientWidth;
-      if (!width) return;
-      const maxValue = Math.max(1, ...series.map(s => s.values[count - 1]));
-      const rawStep = maxValue / 4;
-      const magnitude = Math.pow(10, Math.floor(Math.log10(rawStep)));
-      const step = [1, 2, 5, 10].map(m => m * magnitude).find(m => m >= rawStep) || magnitude * 10;
-      const niceStep = Math.max(1, step);
-      const yMax = Math.max(niceStep * 2, Math.ceil(maxValue / niceStep) * niceStep);
-      const x = i => PAD.left + i * (width - PAD.left - PAD.right) / (count - 1);
-      const y = v => PAD.top + (HEIGHT - PAD.top - PAD.bottom) * (1 - v / yMax);
-
-      let svg = "";
-      for (let v = 0; v <= yMax; v += niceStep) {
-        svg += `<line x1="${PAD.left}" x2="${x(count - 1) + 8}" y1="${y(v)}" y2="${y(v)}" stroke="rgba(255,255,255,0.06)"/>`;
-        svg += `<text x="0" y="${y(v) + 4}">${Math.round(v)}</text>`;
-      }
-      const ticks = Array.from(new Set([0, Math.round((count - 1) / 3), Math.round((count - 1) * 2 / 3), count - 1]));
-      ticks.forEach(i => {
-        const anchor = i === 0 ? "start" : i === count - 1 ? "end" : "middle";
-        svg += `<text x="${x(i)}" y="${HEIGHT - 6}" text-anchor="${anchor}">${fmt(days[i])}</text>`;
-      });
-
-      series.forEach((item, idx) => {
-        const color = colors[idx % colors.length];
-        const path = item.values.map((v, i) => (i ? "L" : "M") + x(i).toFixed(1) + "," + y(v).toFixed(1)).join(" ");
-        svg += `<path class="g-line" pathLength="1" d="${path}" stroke="${color}" style="animation-delay:${idx * 0.2}s"/>`;
-      });
-
-      svg += `<line id="g-cross" y1="${PAD.top}" y2="${HEIGHT - PAD.bottom}" stroke="rgba(255,255,255,0.25)" stroke-dasharray="3 3" style="display:none"/>`;
-      svg += `<g id="g-hover-dots"></g>`;
-      svg += `<rect id="g-capture" x="${PAD.left}" y="0" width="${width - PAD.left - PAD.right + 8}" height="${HEIGHT}" fill="transparent"/>`;
-
-      const markHtml = series.map((item, idx) => {
-        const color = colors[idx % colors.length];
-        return `<button type="button" class="g-mark" data-i="${idx}" aria-label="${esc(item.title)}" style="left:${x(count - 1)}px;top:${y(item.values[count - 1])}px;animation-delay:${(idx * 0.2 + 2.5).toFixed(2)}s">${logoHtml(item, color)}</button>`;
-      }).join("");
-      plot.innerHTML = `<svg width="${width}" height="${HEIGHT}" viewBox="0 0 ${width} ${HEIGHT}">${svg}</svg>${markHtml}<div class="g-tip" id="g-tip"></div><div class="g-pop" id="g-pop"></div>`;
-      if (settled) plot.classList.add("settled");
-
-      const capture = document.getElementById("g-capture");
-      const cross = document.getElementById("g-cross");
-      const dots = document.getElementById("g-hover-dots");
-      const tip = document.getElementById("g-tip");
-      const pop = document.getElementById("g-pop");
-      const marks = Array.from(plot.querySelectorAll(".g-mark"));
-      let pinned = -1;
-
-      const showPop = (i, pin) => {
-        const item = series[i];
-        pop.innerHTML = `<a class="g-pop-name" href="/channel/${encodeURIComponent(item.id)}">${esc(item.title)}</a><div class="g-pop-count">${item.values[count - 1]} video${item.values[count - 1] === 1 ? "" : "s"} tracked</div>`;
-        pop.classList.toggle("pinned", pin);
-        const popWidth = pop.offsetWidth;
-        const popHeight = pop.offsetHeight;
-        const cx = x(count - 1);
-        const cy = y(item.values[count - 1]);
-        pop.style.left = Math.max(0, cx - 22 - popWidth) + "px";
-        pop.style.top = Math.max(0, cy - popHeight / 2) + "px";
-        pop.classList.add("show");
-        tip.classList.remove("show");
-      };
-      const hidePop = () => {
-        pop.classList.remove("show", "pinned");
-        marks.forEach(m => m.classList.remove("active"));
-        pinned = -1;
-      };
-
-      marks.forEach(mark => {
-        const i = Number(mark.dataset.i);
-        mark.addEventListener("mouseenter", () => {
-          if (pinned === -1) showPop(i, false);
-        });
-        mark.addEventListener("mouseleave", () => {
-          if (pinned === -1) pop.classList.remove("show");
-        });
-        mark.addEventListener("click", event => {
-          event.stopPropagation();
-          if (pinned === i) {
-            hidePop();
-            return;
-          }
-          marks.forEach(m => m.classList.remove("active"));
-          mark.classList.add("active");
-          pinned = i;
-          showPop(i, true);
-        });
-      });
-      pop.addEventListener("click", event => event.stopPropagation());
-      closePop = hidePop;
-
-      capture.addEventListener("mousemove", event => {
-        const rect = plot.getBoundingClientRect();
-        const px = event.clientX - rect.left;
-        const idx = Math.max(0, Math.min(count - 1, Math.round((px - PAD.left) / ((width - PAD.left - PAD.right) / (count - 1)))));
-        cross.setAttribute("x1", x(idx));
-        cross.setAttribute("x2", x(idx));
-        cross.style.display = "";
-        dots.innerHTML = series.map((item, i) =>
-          `<circle cx="${x(idx)}" cy="${y(item.values[idx])}" r="4.5" fill="${colors[i % colors.length]}" stroke="#0b0708" stroke-width="2"/>`
-        ).join("");
-        tip.innerHTML = `<div class="g-tip-date">${fmt(days[idx])}</div>` + series.map((item, i) =>
-          `<div class="g-tip-row"><span class="g-tip-dot" style="background:${colors[i % colors.length]}"></span><span class="g-tip-name">${esc(item.title)}</span><span class="g-tip-val">${item.values[idx]}</span></div>`
-        ).join("");
-        const tipWidth = tip.offsetWidth;
-        const left = x(idx) + 16 + tipWidth > width ? x(idx) - 16 - tipWidth : x(idx) + 16;
-        tip.style.left = left + "px";
-        tip.classList.add("show");
-      });
-      capture.addEventListener("mouseleave", () => {
-        cross.style.display = "none";
-        dots.innerHTML = "";
-        tip.classList.remove("show");
-      });
-    };
-
-    const play = () => {
-      plot.classList.add("play");
-      setTimeout(() => { settled = true; plot.classList.add("settled"); }, 4800);
-    };
-
-    draw();
-    if ("IntersectionObserver" in window) {
-      const observer = new IntersectionObserver(entries => {
-        if (entries.some(entry => entry.isIntersecting)) {
-          observer.disconnect();
-          play();
-        }
-      }, { threshold: 0.35 });
-      observer.observe(card);
-    } else {
-      play();
-    }
-    let resizeTimer;
-    window.addEventListener("resize", () => {
-      clearTimeout(resizeTimer);
-      resizeTimer = setTimeout(draw, 120);
+    const infoBtn = document.getElementById("lb-info");
+    const infoPop = document.getElementById("lb-pop");
+    infoBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      const open = !infoPop.classList.contains("show");
+      infoPop.classList.toggle("show", open);
+      infoBtn.setAttribute("aria-expanded", open ? "true" : "false");
     });
+    document.addEventListener("click", () => {
+      infoPop.classList.remove("show");
+      infoBtn.setAttribute("aria-expanded", "false");
+    });
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") {
+        infoPop.classList.remove("show");
+        infoBtn.setAttribute("aria-expanded", "false");
+      }
+    });
+
+    if ("IntersectionObserver" in window) {
+      const observer = new IntersectionObserver((entries) => {
+        if (entries.some((e) => e.isIntersecting)) {
+          observer.disconnect();
+          fill();
+        }
+      }, { threshold: 0.3 });
+      observer.observe(board);
+    } else {
+      fill();
+    }
   })();
 </script>
 {% endblock %}
