@@ -30,20 +30,35 @@
 
   * { box-sizing: border-box; }
 
+  html {
+    background: #0f0f0f;
+  }
+
   html, body {
     margin: 0;
     min-height: 100%;
-    background:
-      radial-gradient(ellipse 1100px 600px at 50% -10%, rgba(197, 32, 48, 0.32), transparent 60%),
-      radial-gradient(ellipse 800px 500px at 110% 10%, rgba(140, 16, 28, 0.18), transparent 55%),
-      radial-gradient(ellipse 1300px 900px at -10% 85%, rgba(255, 255, 255, 0.34), transparent 65%),
-      radial-gradient(ellipse 1300px 900px at 110% 115%, rgba(40, 70, 190, 0.85), transparent 65%),
-      var(--bg);
-    background-attachment: fixed;
+  }
+
+  body {
+    background: transparent;
     color: var(--text);
     font-family: "IBM Plex Sans", -apple-system, sans-serif;
     font-size: 15px;
     line-height: 1.55;
+  }
+
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    opacity: var(--fade, 1);
+    background:
+      radial-gradient(ellipse 1100px 600px at 50% -10%, rgba(197, 32, 48, 0.32), transparent 60%),
+      radial-gradient(ellipse 800px 500px at 110% 10%, rgba(140, 16, 28, 0.18), transparent 55%),
+      radial-gradient(ellipse 1300px 900px at -10% 85%, rgba(255, 255, 255, 0.34), transparent 65%),
+      radial-gradient(ellipse 1300px 900px at 110% 115%, rgba(40, 70, 190, 0.85), transparent 65%);
   }
 
   .mono {
@@ -524,6 +539,24 @@
     {% block content %}{% endblock %}
   </div>
   <script>
+    (function () {
+      var DISTANCE = 360;
+      var queued = false;
+      function apply() {
+        queued = false;
+        var t = Math.min(1, Math.max(0, (window.scrollY || 0) / DISTANCE));
+        var eased = t * t * (3 - 2 * t);
+        document.documentElement.style.setProperty("--fade", (1 - eased).toFixed(3));
+      }
+      window.addEventListener("scroll", function () {
+        if (!queued) {
+          queued = true;
+          requestAnimationFrame(apply);
+        }
+      }, { passive: true });
+      apply();
+    })();
+
     (function () {
       const pill = document.getElementById("status-pill");
       const statusText = document.getElementById("status-text");

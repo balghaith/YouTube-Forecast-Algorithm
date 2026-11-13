@@ -477,58 +477,68 @@ def api_activity():
     return jsonify(activity_cache["data"])
 
 
-GROWTH_CHART_MAX_LINES = 6
+LEADERBOARD_LIMIT = 7
+LEADERBOARD_CACHE_SECONDS = 300
+leaderboard_cache = {"ready": False, "data": None, "at": 0.0, "size": -1}
 
 
-def build_growth_chart(tracked_channels, known_videos):
-    today = datetime.now(LA_TZ).date()
-    dates_by_channel = {}
-    for info in known_videos.values():
-        if info.get("status") != "active":
-            continue
-        published_at = info.get("published_at")
+def leaderboard_number(value):
+    if value >= 1000000:
+        return f"{value / 1000000:.1f}M"
+    if value >= 1000:
+        return f"{value / 1000:.0f}K"
+    return str(round(value))
+
+
+def compute_channel_leaderboard(tracked_channels, known_videos):
+    totals = {}
+    for video_id, info in known_videos.items():
         channel_id = info.get("channel_id")
-        if not published_at or not channel_id:
+        if not channel_id or info.get("status") != "active":
             continue
-        published_day = parse_iso_time(published_at).astimezone(LA_TZ).date()
-        dates_by_channel.setdefault(channel_id, []).append(min(published_day, today))
-
-    if not dates_by_channel:
-        return None
-
-    start = min(min(days) for days in dates_by_channel.values())
-    if start >= today:
-        start = today - timedelta(days=1)
-    day_list = [start + timedelta(days=n) for n in range((today - start).days + 1)]
-
-    meta = {c["channel_id"]: c for c in tracked_channels}
-    series = []
-    for channel_id, published_days in dates_by_channel.items():
-        channel = meta.get(channel_id)
-        if not channel:
+        stats = latest_video_stats(channel_id, video_id, info.get("published_at"))
+        if stats["views"] <= 0:
             continue
-        values = []
-        running = 0
-        for day in day_list:
-            running += sum(1 for d in published_days if d == day)
-            values.append(running)
-        series.append({
-            "id": channel_id,
-            "title": channel.get("title", channel_id),
+        entry = totals.setdefault(channel_id, {"views": 0, "videos": 0})
+        entry["views"] += stats["views"]
+        entry["videos"] += 1
+
+    board = []
+    for channel in tracked_channels:
+        entry = totals.get(channel["channel_id"])
+        if not entry:
+            continue
+        average = entry["views"] / entry["videos"]
+        board.append({
+            "channel_id": channel["channel_id"],
+            "title": channel.get("title", channel["channel_id"]),
             "thumbnail": channel.get("thumbnail", ""),
-            "values": values
+            "videos": entry["videos"],
+            "average": average,
+            "average_text": leaderboard_number(average)
         })
 
-    if not series:
+    board.sort(key=lambda row: row["average"], reverse=True)
+    board = board[:LEADERBOARD_LIMIT]
+    if not board:
         return None
 
-    series.sort(key=lambda s: s["values"][-1], reverse=True)
-    shown = series[:GROWTH_CHART_MAX_LINES]
-    return {
-        "days": [d.isoformat() for d in day_list],
-        "series": shown,
-        "extra": max(len(tracked_channels) - len(shown), 0)
-    }
+    top = board[0]["average"]
+    for row in board:
+        row["share"] = max(round(row["average"] / top * 100, 1), 2.5)
+    return board
+
+
+def build_channel_leaderboard(tracked_channels, known_videos):
+    now = time.time()
+    fresh = now - leaderboard_cache["at"] < LEADERBOARD_CACHE_SECONDS
+    if leaderboard_cache["ready"] and fresh and leaderboard_cache["size"] == len(known_videos):
+        return leaderboard_cache["data"]
+    leaderboard_cache["data"] = compute_channel_leaderboard(tracked_channels, known_videos)
+    leaderboard_cache["at"] = now
+    leaderboard_cache["size"] = len(known_videos)
+    leaderboard_cache["ready"] = True
+    return leaderboard_cache["data"]
 
 
 @app.route("/")
@@ -543,10 +553,11 @@ def dashboard():
 
     return render_template(
         "dashboard.html",
-        channels=channels_with_counts[:4],
+        channels=channels_with_counts[:3] if total_channels > 4 else channels_with_counts[:4],
+        more_channels=max(total_channels - 3, 0) if total_channels > 4 else 0,
         total_videos=total_videos,
         total_channels=total_channels,
-        growth_chart=build_growth_chart(tracked_channels, known_videos)
+        leaderboard=build_channel_leaderboard(tracked_channels, known_videos)
     )
 
 
