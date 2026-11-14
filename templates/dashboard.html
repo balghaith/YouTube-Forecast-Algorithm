@@ -1,6 +1,8 @@
 {% extends "base.html" %}
 {% block title %}YT Forecast — Dashboard{% endblock %}
 
+{% block crumb %}<nav class="trail"><a class="trail-mark" href="#" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;" aria-label="Back to top"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M7 4l14 8-14 8z"/></svg></a></nav>{% endblock %}
+
 {% block content %}
   <div class="dashboard-layout">
     <div class="top-controls">
@@ -38,50 +40,38 @@
       <a class="dashboard-title-link" href="/channels" style="margin-left:-275px; margin-top:155px;">
         <h1 class="section-label dashboard-title">Tracked Channels</h1>
       </a>
-      <div class="channel-grid">
+      <div class="orbit">
+        <svg class="orbit-lines" width="1386" height="580" viewBox="0 0 1386 580" aria-hidden="true">
+          {% if channels|length >= 0 %}<line x1="631.3" y1="225.9" x2="550.2" y2="141.8"/>{% endif %}
+          {% if channels|length >= 1 %}<line x1="754.7" y1="225.9" x2="835.8" y2="141.8"/>{% endif %}
+          {% if channels|length >= 2 %}<line x1="780.6" y1="274.4" x2="1086.0" y2="220.0"/>{% endif %}
+          {% if channels|length >= 3 %}<line x1="780.6" y1="305.6" x2="1086.0" y2="360.0"/>{% endif %}
+          {% if channels|length >= 4 %}<line x1="754.7" y1="354.1" x2="835.8" y2="438.2"/>{% endif %}
+          {% if channels|length >= 5 %}<line x1="631.3" y1="354.1" x2="550.2" y2="438.2"/>{% endif %}
+          {% if channels|length >= 6 %}<line x1="605.4" y1="305.6" x2="300.0" y2="360.0"/>{% endif %}
+          {% if channels|length >= 7 %}<line x1="605.4" y1="274.4" x2="300.0" y2="220.0"/>{% endif %}
+        </svg>
+        <a class="orbit-hub" href="/channels">
+          <span class="orbit-hub-num">{{ total_channels }}</span>
+          <span class="orbit-hub-label">channel{{ 's' if total_channels != 1 else '' }} tracked</span>
+          <span class="orbit-hub-link">See all &rsaquo;</span>
+        </a>
         {% for c in channels %}
-          <div class="channel-card" data-channel-id="{{ c.channel_id }}">
-            <a class="channel-card-head" href="/channel/{{ c.channel_id }}">
-              {% if c.thumbnail %}
-                <img class="avatar" src="{{ c.thumbnail }}" alt="" style="width:56px; height:56px;">
-              {% else %}
-                <div class="avatar placeholder" style="width:56px; height:56px; font-size:20px;">{{ c.title[:1]|upper }}</div>
-              {% endif %}
-              <div style="min-width:0;">
-                <div class="channel-card-title">{{ c.title }}</div>
-                <div class="channel-card-sub">{{ c.video_count }} video{{ 's' if c.video_count != 1 else '' }} tracked</div>
-              </div>
-            </a>
-
-            {% if c.recent_videos %}
-              <div class="channel-card-videos">
-                {% for v in c.recent_videos %}
-                  <a href="/forecast/{{ v.video_id }}">
-                    <span class="track-dot-slot">
-                      {% if v.tracked %}<span class="track-dot"></span>{% endif %}
-                    </span>
-                    <img src="https://i.ytimg.com/vi/{{ v.video_id }}/mqdefault.jpg" alt="">
-                    <span class="video-title">{{ v.title }}</span>
-                  </a>
-                {% endfor %}
-              </div>
+          <a class="orbit-node slot-{{ loop.index0 }}" href="/channel/{{ c.channel_id }}">
+            {% if c.thumbnail %}
+              <img class="orbit-avatar" src="{{ c.thumbnail }}" alt="">
             {% else %}
-              <div class="channel-card-videos empty">
-                <svg class="empty-icon" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                  <circle cx="12" cy="12" r="9.25"/>
-                  <path d="M10 8.7l6 3.3-6 3.3V8.7z" fill="currentColor" stroke="none"/>
-                </svg>
-                <span class="empty-label">No videos tracked yet</span>
-              </div>
+              <span class="orbit-avatar orbit-avatar-letter">{{ c.title[:1]|upper }}</span>
             {% endif %}
-
-            <a class="channel-card-btn" href="/channel/{{ c.channel_id }}">View all videos</a>
-          </div>
+            <span class="orbit-name">{{ c.title }}</span>
+            <span class="orbit-sub">{{ c.last_upload }}</span>
+          </a>
         {% endfor %}
-        {% if more_channels %}
-          <a class="channel-more" href="/channels" data-n="{{ more_channels }}">
-            <span class="channel-more-num">+{{ more_channels }}</span>
-            <span class="channel-more-label">more channel{{ 's' if more_channels != 1 else '' }}</span>
+        {% if channels|length < 8 %}
+          <a class="orbit-node orbit-add slot-{{ channels|length }}" id="orbit-add" href="#">
+            <span class="orbit-avatar orbit-avatar-add">+</span>
+            <span class="orbit-name">Track a channel</span>
+            <span class="orbit-sub">Search to add one</span>
           </a>
         {% endif %}
       </div>
@@ -164,32 +154,6 @@
     font-weight: 600;
     letter-spacing: -0.01em;
     margin: 0;
-  }
-  .channel-more {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 6px;
-    background: var(--panel);
-    border: 1px dashed var(--border);
-    border-radius: 14px;
-    color: var(--text-dim);
-    transition: background 0.15s ease, color 0.15s ease;
-  }
-  .channel-more:hover {
-    background: var(--panel-raised);
-    color: var(--text);
-    text-decoration: none;
-  }
-  .channel-more-num {
-    font-size: 48px;
-    font-weight: 300;
-    line-height: 1;
-    color: #fff;
-  }
-  .channel-more-label {
-    font-size: 14px;
   }
 
   .tracking-stats {
@@ -558,147 +522,126 @@
     color: var(--text-dim);
   }
 
-  .channel-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 330px);
-    gap: 22px;
+  .orbit {
+    position: relative;
+    width: 1386px;
+    height: 580px;
     margin-left: -275px;
     margin-top: 20px;
   }
-  .channel-card {
+  .orbit-lines {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+  .orbit-lines line {
+    stroke: rgba(255, 91, 110, 0.28);
+    stroke-width: 1;
+    stroke-dasharray: 2 5;
+  }
+  .orbit-hub {
+    position: absolute;
+    left: 608px;
+    top: 205px;
+    width: 170px;
+    height: 170px;
+    border-radius: 50%;
     display: flex;
     flex-direction: column;
-    gap: 18px;
-    background: var(--panel);
-    border: 1px solid var(--border);
-    border-radius: 14px;
-    padding: 24px;
-  }
-  .channel-card-head {
-    display: flex;
     align-items: center;
-    gap: 14px;
-    color: inherit;
-    text-decoration: none;
-    min-width: 0;
+    justify-content: center;
+    color: var(--text);
+    background: radial-gradient(circle at 50% 35%, rgba(255, 91, 110, 0.16), rgba(255, 255, 255, 0.03));
+    border: 1px solid rgba(255, 91, 110, 0.4);
+    box-shadow: 0 0 60px rgba(229, 57, 79, 0.18);
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
   }
-  .channel-card-head:hover {
+  .orbit-hub:hover {
     text-decoration: none;
+    border-color: var(--accent-bright);
+    box-shadow: 0 0 70px rgba(229, 57, 79, 0.3);
   }
-  .channel-card-head:hover .channel-card-title {
+  .orbit-hub-num {
+    font-size: 52px;
+    font-weight: 300;
+    line-height: 1;
+    color: #fff;
+  }
+  .orbit-hub-label {
+    margin-top: 6px;
+    font-size: 13px;
+    color: var(--text-dim);
+  }
+  .orbit-hub-link {
+    margin-top: 8px;
+    font-size: 12px;
     color: var(--accent-bright);
   }
-  .channel-card-title {
-    transition: color 0.15s ease;
+  .orbit-node {
+    position: absolute;
+    width: 210px;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    color: var(--text);
   }
-  .channel-card-title {
+  .slot-0 { left: 501.7px; top: 91.4px; }
+  .slot-1 { left: 884.3px; top: 91.4px; }
+  .slot-2 { left: 1154.9px; top: 207.7px; }
+  .slot-3 { left: 1154.9px; top: 372.3px; }
+  .slot-4 { left: 884.3px; top: 488.6px; }
+  .slot-5 { left: 501.7px; top: 488.6px; }
+  .slot-6 { left: 231.1px; top: 372.3px; }
+  .slot-7 { left: 231.1px; top: 207.7px; }
+  .orbit-node:hover {
+    text-decoration: none;
+  }
+  .orbit-avatar {
+    width: 58px;
+    height: 58px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid rgba(255, 255, 255, 0.12);
+    transition: border-color 0.15s ease, transform 0.15s ease;
+  }
+  .orbit-node:hover .orbit-avatar {
+    border-color: var(--accent-bright);
+    transform: scale(1.05);
+  }
+  .orbit-avatar-letter,
+  .orbit-avatar-add {
+    display: grid;
+    place-items: center;
+    font-size: 22px;
     font-weight: 600;
-    font-size: 17px;
+    background: var(--panel-raised);
+  }
+  .orbit-avatar-add {
+    background: none;
+    border: 1.5px dashed rgba(255, 91, 110, 0.5);
+    color: var(--accent-bright);
+    font-size: 26px;
+    font-weight: 300;
+  }
+  .orbit-name {
+    margin-top: 9px;
+    max-width: 100%;
+    font-size: 15px;
+    font-weight: 600;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+    transition: color 0.15s ease;
   }
-  .channel-card-sub {
-    color: var(--text-dim);
-    font-size: 13px;
+  .orbit-node:hover .orbit-name {
+    color: var(--accent-bright);
+  }
+  .orbit-sub {
     margin-top: 3px;
-  }
-  .channel-card-videos {
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
-  }
-  .channel-card-videos a {
-    display: flex;
-    align-items: center;
-    gap: 10px;
+    font-size: 12px;
     color: var(--text-dim);
-  }
-  .channel-card-videos a:hover {
-    color: var(--link);
-    text-decoration: none;
-  }
-  .channel-card-videos a img {
-    width: 92px;
-    height: 52px;
-    object-fit: cover;
-    border-radius: 6px;
-    flex-shrink: 0;
-    background: var(--panel-raised);
-  }
-  .channel-card-videos a .video-title {
-    font-size: 14px;
-    line-height: 1.35;
-    overflow: hidden;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-  }
-  .track-dot-slot {
-    width: 14px;
-    flex-shrink: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: visible;
-  }
-  .track-dot {
-    position: relative;
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
-    background: var(--accent-bright);
-  }
-  .track-dot::before,
-  .track-dot::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    border-radius: 50%;
-    border: 1.5px solid var(--accent-bright);
-    animation: track-ripple 2s ease-out infinite;
-  }
-  .track-dot::after {
-    animation-delay: 1s;
-  }
-  @keyframes track-ripple {
-    0% { transform: scale(1); opacity: 0.7; }
-    100% { transform: scale(4.5); opacity: 0; }
-  }
-  .channel-card-videos.empty {
-    flex: 1;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    padding: 24px 0;
-    min-height: 140px;
-    border: none;
-    background: none;
-    color: var(--text-faint);
-    font-size: 13.5px;
-  }
-  .empty-icon {
-    color: var(--text-faint);
-    opacity: 0.55;
-  }
-  .empty-label {
-    letter-spacing: 0.01em;
-  }
-  .channel-card-btn {
-    margin-top: auto;
-    text-align: center;
-    padding: 11px 0;
-    border-radius: 7px;
-    border: 1px solid var(--border);
-    color: var(--text-dim);
-    font-size: 14px;
-    font-weight: 500;
-  }
-  .channel-card-btn:hover {
-    background: var(--panel-raised);
-    color: var(--text);
-    text-decoration: none;
   }
 
   .result-row {
@@ -847,54 +790,17 @@
     }
   }
 
-  function addChannelCard(channelId, title, thumbnail) {
-    const grid = document.querySelector(".channel-grid");
-    if (!grid) return;
-    if (grid.querySelector(`[data-channel-id="${channelId}"]`)) return;
+  function addChannelCard() {
+    setTimeout(() => window.location.reload(), 1200);
+  }
 
-    const card = document.createElement("div");
-    card.className = "channel-card";
-    card.dataset.channelId = channelId;
-    card.innerHTML = `
-      <a class="channel-card-head" href="/channel/${channelId}">
-        <img class="avatar" src="${thumbnail}" alt="" style="width:56px; height:56px;">
-        <div style="min-width:0;">
-          <div class="channel-card-title">${title}</div>
-          <div class="channel-card-sub">0 videos tracked</div>
-        </div>
-      </a>
-      <div class="channel-card-videos empty">
-        <svg class="empty-icon" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-          <circle cx="12" cy="12" r="9.25"/>
-          <path d="M10 8.7l6 3.3-6 3.3V8.7z" fill="currentColor" stroke="none"/>
-        </svg>
-        <span class="empty-label">No videos tracked yet</span>
-      </div>
-      <a class="channel-card-btn" href="/channel/${channelId}">View all videos</a>
-    `;
-    grid.prepend(card);
-    const cards = grid.querySelectorAll(".channel-card");
-    let tile = grid.querySelector(".channel-more");
-    const total = cards.length + (tile ? parseInt(tile.dataset.n, 10) : 0);
-    const shown = total > 4 ? 3 : 4;
-    for (let i = cards.length - 1; i >= shown; i--) {
-      cards[i].remove();
-    }
-    if (total > 4) {
-      if (!tile) {
-        tile = document.createElement("a");
-        tile.className = "channel-more";
-        tile.href = "/channels";
-        grid.appendChild(tile);
-      }
-      tile.dataset.n = String(total - 3);
-      tile.innerHTML = `<span class="channel-more-num">+${total - 3}</span><span class="channel-more-label">more channel${total - 3 === 1 ? "" : "s"}</span>`;
-    }
-
-    const channelsStat = document.querySelector(".tracking-numbers .stat-block:first-child .stat-num");
-    if (channelsStat) {
-      channelsStat.textContent = String(parseInt(channelsStat.textContent, 10) + 1);
-    }
+  const orbitAdd = document.getElementById("orbit-add");
+  if (orbitAdd) {
+    orbitAdd.addEventListener("click", (e) => {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      setTimeout(() => input.focus(), 350);
+    });
   }
 
   btn.addEventListener("click", runSearch);
