@@ -4,7 +4,9 @@ import json
 import csv
 import shutil
 import subprocess
+import math
 import time
+import threading
 from datetime import datetime, timezone, timedelta
 from zoneinfo import ZoneInfo
 
@@ -24,8 +26,8 @@ KNOWN_VIDEOS_FILE = "known_videos.json"
 TRACKED_CHANNELS_FILE = "tracked_channels.json"
 SUBSCRIBERS_FILE = "channel_subscribers.json"
 MAX_TRACKED_CHANNELS = 15
-ACTIVITY_DAYS = 7
-ACTIVITY_LIMIT = 30
+ACTIVITY_DAYS = 30
+ACTIVITY_LIMIT = 100
 ACTIVITY_CACHE_SECONDS = 60
 MILESTONE_STEPS = {
     "views": [100000, 250000, 500000, 1000000, 5000000, 10000000],
@@ -48,6 +50,60 @@ def sync_data():
     subprocess.run(["git", "remote", "add", "origin", remote_url], cwd=repo_dir)
     subprocess.run(["git", "fetch", "origin", "main"], cwd=repo_dir)
     subprocess.run(["git", "reset", "--hard", "origin/main"], cwd=repo_dir)
+
+
+LOCAL_REFRESH_SECONDS = 300
+local_refresh_state = {"at": 0.0}
+local_refresh_lock = threading.Lock()
+LOCAL_DATA_PATHS = [
+    "data",
+    "known_videos.json",
+    "tracked_channels.json",
+    "forecast_checkpoints.json",
+    "original_forecasts.json",
+    "channel_subscribers.json",
+    "excluded_videos.json",
+    "video_stats.csv"
+]
+
+
+def refresh_local_data():
+    if not os.environ.get("SKIP_SYNC"):
+        return
+    if not local_refresh_lock.acquire(blocking=False):
+        return
+    try:
+        if time.time() - local_refresh_state["at"] < LOCAL_REFRESH_SECONDS:
+            return
+        local_refresh_state["at"] = time.time()
+        repo_dir = os.path.dirname(os.path.abspath(__file__))
+        fetched = subprocess.run(
+            ["git", "fetch", "origin", "main"],
+            cwd=repo_dir, capture_output=True, text=True, timeout=30
+        )
+        if fetched.returncode != 0:
+            return
+        local_channels = read_json_file(TRACKED_CHANNELS_FILE, [])
+        subprocess.run(
+            ["git", "restore", "--source=origin/main", "--worktree", "--", *LOCAL_DATA_PATHS],
+            cwd=repo_dir, capture_output=True, text=True, timeout=60
+        )
+        remote_channels = read_json_file(TRACKED_CHANNELS_FILE, [])
+        remote_ids = {c.get("channel_id") for c in remote_channels}
+        local_only = [c for c in local_channels if c.get("channel_id") not in remote_ids]
+        if local_only:
+            write_json_file(TRACKED_CHANNELS_FILE, remote_channels + local_only)
+    except (subprocess.TimeoutExpired, OSError):
+        pass
+    finally:
+        local_refresh_lock.release()
+
+
+@app.before_request
+def refresh_before_request():
+    if request.path.startswith("/static"):
+        return
+    refresh_local_data()
 
 
 def push_data():
@@ -367,10 +423,61 @@ def index_classic():
     return render_template("index.html", videos=active_videos)
 
 
+ORBIT_CENTER_X = 693
+ORBIT_CENTER_Y = 290
+ORBIT_RADIUS_X = 500
+ORBIT_RADIUS_Y = 215
+ORBIT_HUB_RADIUS = 85
+ORBIT_SLOT_COUNT = 8
+
+
+def build_orbit_slots():
+    slots = []
+    for i in range(ORBIT_SLOT_COUNT):
+        angle = -math.pi / 2 - math.pi / 8 + i * math.pi / 4
+        x = ORBIT_CENTER_X + ORBIT_RADIUS_X * math.cos(angle)
+        y = ORBIT_CENTER_Y + ORBIT_RADIUS_Y * math.sin(angle)
+        dx = x - ORBIT_CENTER_X
+        dy = y - ORBIT_CENTER_Y
+        length = math.hypot(dx, dy)
+        ux = dx / length
+        uy = dy / length
+        slots.append({
+            "x": round(x, 1),
+            "y": round(y, 1),
+            "x1": round(ORBIT_CENTER_X + ux * (ORBIT_HUB_RADIUS + 4), 1),
+            "y1": round(ORBIT_CENTER_Y + uy * (ORBIT_HUB_RADIUS + 4), 1),
+            "x2": round(ORBIT_CENTER_X + ux * (length - 70), 1),
+            "y2": round(ORBIT_CENTER_Y + uy * (length - 70), 1)
+        })
+    return slots
+
+
+def last_upload_text(published_times):
+    if not published_times:
+        return "No uploads yet"
+    latest = max(published_times)
+    try:
+        published = datetime.fromisoformat(latest.replace("Z", "+00:00"))
+    except ValueError:
+        return "No uploads yet"
+    hours = int((datetime.now(timezone.utc) - published).total_seconds() // 3600)
+    if hours < 1:
+        return "Last uploaded just now"
+    if hours < 48:
+        return f"Last uploaded {hours}h ago"
+    return f"Last uploaded {hours // 24}d ago"
+
+
 def build_channels_with_counts(tracked_channels, known_videos):
     channels_with_counts = []
     for channel in tracked_channels:
         channel_id = channel["channel_id"]
+        published_times = [
+            info.get("published_at", "")
+            for info in known_videos.values()
+            if info.get("channel_id") == channel_id and info.get("published_at")
+        ]
         channel_videos = [
             {
                 "video_id": vid,
@@ -389,6 +496,7 @@ def build_channels_with_counts(tracked_channels, known_videos):
             "thumbnail": channel.get("thumbnail", ""),
             "added_at": channel.get("added_at", ""),
             "video_count": len(channel_videos),
+            "last_upload": last_upload_text(published_times),
             "recent_videos": channel_videos[:5]
         })
 
@@ -466,6 +574,11 @@ def build_activity():
         "events": events[:ACTIVITY_LIMIT],
         "last_checked": last_checked.isoformat() if last_checked else None
     }
+
+
+@app.route("/activity")
+def activity_page():
+    return render_template("activity.html")
 
 
 @app.route("/api/activity")
@@ -553,8 +666,9 @@ def dashboard():
 
     return render_template(
         "dashboard.html",
-        channels=channels_with_counts[:3] if total_channels > 4 else channels_with_counts[:4],
-        more_channels=max(total_channels - 3, 0) if total_channels > 4 else 0,
+        channels=channels_with_counts[:ORBIT_SLOT_COUNT - 1],
+        more_channels=max(total_channels - (ORBIT_SLOT_COUNT - 1), 0),
+        orbit_slots=build_orbit_slots(),
         total_videos=total_videos,
         total_channels=total_channels,
         leaderboard=build_channel_leaderboard(tracked_channels, known_videos)
@@ -858,4 +972,5 @@ def api_forecast(video_id):
 
 
 if __name__ == "__main__":
+    os.environ.setdefault("SKIP_SYNC", "1")
     app.run(debug=True, port=5000)

@@ -40,6 +40,12 @@
   }
 
   body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+
+  body {
     background: transparent;
     color: var(--text);
     font-family: "IBM Plex Sans", -apple-system, sans-serif;
@@ -74,16 +80,19 @@
   }
 
   .topbar {
-    position: relative;
+    position: sticky;
+    top: 0;
     z-index: 30;
-    border-bottom: 1px solid var(--border);
+    background: rgba(14, 10, 11, 0.9);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px);
     height: 64px;
     padding: 0 28px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 16px;
-    backdrop-filter: blur(6px);
   }
   .topbar-left {
     min-width: 0;
@@ -155,7 +164,7 @@
   .trail-mark {
     width: 28px;
     height: 28px;
-    border-radius: 8px;
+    border-radius: 50%;
     border: 1px solid rgba(237, 90, 102, 0.34);
     display: flex;
     align-items: center;
@@ -171,10 +180,7 @@
     display: flex;
     align-items: center;
     gap: 8px;
-    padding: 6px 14px;
-    border: 1px solid var(--border);
-    border-radius: 999px;
-    background: var(--panel);
+    padding: 6px 4px;
     font-size: 13px;
     color: var(--text-dim);
     white-space: nowrap;
@@ -227,17 +233,17 @@
     align-items: center;
     justify-content: center;
     padding: 0;
-    border-radius: 10px;
-    border: 1px solid var(--border);
-    background: var(--panel);
+    border-radius: 50%;
+    border: none;
+    background: none;
     color: var(--text-dim);
     cursor: pointer;
-    transition: border-color 0.15s ease, color 0.15s ease;
+    transition: background 0.15s ease, color 0.15s ease;
   }
   .bell-btn:hover,
   .bell-btn.open {
-    border-color: rgba(237, 90, 102, 0.34);
-    color: var(--text);
+    background: var(--panel-raised);
+    color: var(--text);    text-decoration: none;
   }
   .bell-count {
     position: absolute;
@@ -261,149 +267,30 @@
   .bell-count[hidden] {
     display: none;
   }
-  .activity-panel {
-    position: absolute;
-    top: calc(100% + 12px);
-    right: 0;
-    width: 420px;
-    max-width: calc(100vw - 32px);
-    border: 1px solid rgba(237, 90, 102, 0.34);
-    border-radius: 14px;
-    background: #0f0a0c;
-    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.7);
-    overflow: hidden;
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(-6px) scale(0.98);
-    transform-origin: top right;
-    transition: opacity 0.18s ease, transform 0.18s ease, visibility 0.18s;
-  }
-  .activity-panel.open {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0) scale(1);
-  }
-  .activity-head {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 14px 18px;
-    border-bottom: 1px solid var(--border);
-    font-size: 14px;
-    font-weight: 600;
-  }
-  .activity-head span {
-    font-size: 12.5px;
-    font-weight: 400;
-    color: var(--text-dim);
-  }
-  .activity-list {
-    max-height: min(440px, 65vh);
-    overflow-y: auto;
-    padding-bottom: 6px;
-    scrollbar-width: thin;
-    scrollbar-color: rgba(237, 90, 102, 0.3) transparent;
-  }
-  .activity-list::-webkit-scrollbar {
-    width: 6px;
-  }
-  .activity-list::-webkit-scrollbar-thumb {
-    background: rgba(237, 90, 102, 0.3);
-    border-radius: 999px;
-  }
-  .activity-day {
-    padding: 12px 18px 4px;
-    font-size: 11.5px;
-    color: var(--text-faint);
-  }
-  .activity-item {
-    position: relative;
-    display: flex;
-    gap: 14px;
-    padding: 10px 18px 10px 22px;
-    color: var(--text);
-  }
-  .activity-item:hover {
-    background: var(--panel-raised);
-    text-decoration: none;
-  }
-  .activity-item.fresh::before {
-    content: "";
-    position: absolute;
-    left: 8px;
-    top: 50%;
-    width: 5px;
-    height: 5px;
-    margin-top: -2.5px;
-    border-radius: 50%;
-    background: var(--accent-bright);
-  }
-  .activity-thumb {
-    position: relative;
-    width: 64px;
-    height: 36px;
-    flex-shrink: 0;
-  }
-  .activity-thumb img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 6px;
-    background: var(--panel-raised);
-  }
-  .activity-badge {
-    position: absolute;
-    right: -6px;
-    bottom: -6px;
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    border: 2px solid #0f0a0c;
-    box-sizing: border-box;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .activity-badge.upload {
-    background: var(--accent-bright);
-    color: #1a0508;
-  }
-  .activity-badge.milestone {
-    background: var(--actual);
-    color: #06140e;
-  }
-  .activity-text {
-    min-width: 0;
-    font-size: 13px;
-    line-height: 1.4;
-  }
-  .activity-title {
-    margin: 0;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
-  .activity-title em {
-    font-style: normal;
-    font-weight: 600;
-    color: var(--actual);
-  }
-  .activity-sub {
-    margin: 2px 0 0;
-    font-size: 12px;
-    color: var(--text-dim);
-  }
-  .activity-empty {
-    padding: 30px 18px;
-    text-align: center;
-    font-size: 13px;
-    color: var(--text-dim);
-  }
-
   .shell {
+    flex: 1 0 auto;
+    width: 100%;
     max-width: 880px;
     margin: 0 auto;
     padding: 36px 28px 80px;
+  }
+
+  .site-footer {
+    border-top: 1px solid var(--border);
+    padding: 34px 28px 36px;
+    text-align: center;
+  }
+  .site-footer .trail-mark {
+    margin: 0 auto 14px;
+  }
+  .site-footer-name {
+    font-size: 14px;
+    color: var(--text);
+  }
+  .site-footer-rights {
+    margin: 5px 0 0;
+    font-size: 13px;
+    color: var(--text-dim);
   }
 
   h1 {
@@ -521,23 +408,24 @@
         <span id="status-text">Checking</span>
       </div>
       <div class="bell-wrap" id="bell-wrap">
-        <button type="button" class="bell-btn" id="bell-btn" aria-label="Activity" aria-expanded="false">
+        <a class="bell-btn{% if request.path == '/activity' %} open{% endif %}" id="bell-btn" href="/activity" aria-label="Activity">
           <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
             <path d="M6 9a6 6 0 0112 0c0 6 2.5 7.5 2.5 7.5h-17S6 15 6 9z"/>
             <path d="M10 20a2 2 0 004 0"/>
           </svg>
           <span class="bell-count mono" id="bell-count" hidden></span>
-        </button>
-        <div class="activity-panel" id="activity-panel">
-          <div class="activity-head">Activity<span id="activity-new"></span></div>
-          <div class="activity-list" id="activity-list"></div>
-        </div>
+        </a>
       </div>
     </div>
   </div>
   <div class="shell">
     {% block content %}{% endblock %}
   </div>
+  <footer class="site-footer">
+    <a class="trail-mark" href="/" aria-label="Home"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M7 4l14 8-14 8z"/></svg></a>
+    <div class="site-footer-name">Built by Bader Al Ghaith</div>
+    <p class="site-footer-rights">&copy; 2026 &middot; All rights reserved</p>
+  </footer>
   <script>
     (function () {
       var DISTANCE = 360;
@@ -560,17 +448,11 @@
     (function () {
       const pill = document.getElementById("status-pill");
       const statusText = document.getElementById("status-text");
-      const bellBtn = document.getElementById("bell-btn");
       const bellCount = document.getElementById("bell-count");
-      const panel = document.getElementById("activity-panel");
-      const listEl = document.getElementById("activity-list");
-      const newEl = document.getElementById("activity-new");
-      const wrap = document.getElementById("bell-wrap");
       const SEEN_KEY = "ytf_activity_seen";
       const TZ = "America/Los_Angeles";
       let events = [];
       let lastChecked = null;
-      let freshSince = 0;
 
       const readSeen = () => {
         try {
@@ -613,46 +495,6 @@
         pill.className = "status-pill" + (diff > 3 * 3600000 ? " stale" : "");
       };
 
-      const dayKey = date => new Intl.DateTimeFormat("en-CA", { timeZone: TZ, year: "numeric", month: "2-digit", day: "2-digit" }).format(date);
-      const dayIndex = key => Date.UTC(+key.slice(0, 4), +key.slice(5, 7) - 1, +key.slice(8, 10)) / 86400000;
-      const dayLabel = date => {
-        const diff = dayIndex(dayKey(new Date())) - dayIndex(dayKey(date));
-        if (diff <= 0) return "Today";
-        if (diff === 1) return "Yesterday";
-        return new Intl.DateTimeFormat("en-US", { timeZone: TZ, weekday: "short", month: "short", day: "numeric" }).format(date);
-      };
-
-      const uploadIcon = '<svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><path d="M7 4l14 8-14 8z"/></svg>';
-      const starIcon = '<svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7 7.5.6-5.7 4.9 1.8 7.3L12 17.8 5.4 21.8l1.8-7.3L1.5 9.6 9 9z"/></svg>';
-
-      const renderList = () => {
-        if (!events.length) {
-          listEl.innerHTML = '<div class="activity-empty">No activity yet. New uploads and milestones show up here.</div>';
-          return;
-        }
-        let html = "";
-        let currentDay = "";
-        events.forEach(event => {
-          const date = new Date(event.ts);
-          const label = dayLabel(date);
-          if (label !== currentDay) {
-            currentDay = label;
-            html += '<div class="activity-day">' + esc(label) + "</div>";
-          }
-          const fresh = date.getTime() > freshSince ? " fresh" : "";
-          const isMilestone = event.kind === "milestone";
-          const heading = isMilestone
-            ? "<em>" + esc(event.label) + "</em> · " + esc(event.title)
-            : "New video · " + esc(event.title);
-          html += '<a class="activity-item' + fresh + '" href="/forecast/' + encodeURIComponent(event.video_id) + '">'
-            + '<div class="activity-thumb"><img src="https://i.ytimg.com/vi/' + encodeURIComponent(event.video_id) + '/mqdefault.jpg" alt="">'
-            + '<span class="activity-badge ' + (isMilestone ? "milestone" : "upload") + '">' + (isMilestone ? starIcon : uploadIcon) + "</span></div>"
-            + '<div class="activity-text"><p class="activity-title">' + heading + "</p>"
-            + '<p class="activity-sub">' + esc(event.channel_title) + " · " + ago(Date.now() - date.getTime()) + "</p></div></a>";
-        });
-        listEl.innerHTML = html;
-      };
-
       const unread = () => {
         const seen = readSeen();
         return events.filter(event => new Date(event.ts).getTime() > seen).length;
@@ -664,35 +506,6 @@
         bellCount.textContent = count > 9 ? "9+" : String(count);
       };
 
-      const openPanel = () => {
-        freshSince = readSeen();
-        const count = unread();
-        newEl.textContent = count ? count + " new" : "";
-        renderList();
-        panel.classList.add("open");
-        bellBtn.classList.add("open");
-        bellBtn.setAttribute("aria-expanded", "true");
-        writeSeen(Date.now());
-        renderCount();
-      };
-
-      const closePanel = () => {
-        panel.classList.remove("open");
-        bellBtn.classList.remove("open");
-        bellBtn.setAttribute("aria-expanded", "false");
-      };
-
-      bellBtn.addEventListener("click", () => {
-        if (panel.classList.contains("open")) closePanel();
-        else openPanel();
-      });
-      document.addEventListener("click", event => {
-        if (!wrap.contains(event.target)) closePanel();
-      });
-      document.addEventListener("keydown", event => {
-        if (event.key === "Escape") closePanel();
-      });
-
       const load = async () => {
         try {
           const res = await fetch("/api/activity");
@@ -701,7 +514,6 @@
           lastChecked = data.last_checked ? new Date(data.last_checked).getTime() : null;
           renderStatus();
           renderCount();
-          if (panel.classList.contains("open")) renderList();
         } catch (err) {
           statusText.textContent = "Offline";
         }
