@@ -6,6 +6,7 @@
 {% block head %}
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
 <style>
+  .log-label { color: #fff; }
   .forecast-header {
     display: flex;
     align-items: center;
@@ -359,7 +360,7 @@
     </div>
   </div>
 
-  <p class="section-label">Checkpoint log</p>
+  <p class="section-label log-label">Checkpoint log</p>
   <div class="list" style="padding:0;">
     <table>
       <thead><tr><th>Day</th><th>Predicted</th><th>Actual</th></tr></thead>
